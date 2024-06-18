@@ -209,7 +209,7 @@ function enable_divtel(objname)
             {
               elemento.className = "divddlnorm";  
             }
-            /*
+            
             for (i = 0; i < elemento.options.length; i++)
             {
                var elm2 = elemento.options[i].value;
@@ -225,7 +225,7 @@ function enable_divtel(objname)
             }
             
             var Producto = obj.value;//
-            alert(Producto);*/
+            alert(Producto);
           
         }
         
@@ -411,24 +411,25 @@ function enable_divtel(objname)
                  var elm2 = elemento.options[i].value;
                  if(elemento.options[i].selected == true)
                  {
+                    
                     if(elm2 == "cc")
                     {
                          document.getElementById("LbNameNui").innerHTML="NOMBRES Y APELLIDOS";
-                         document.getElementById("txtUserId").value = "Digite su número de documento Ejemplo: 2822447";
+                         document.getElementById("txtUserId").value = "Digite su numero de documento";
                          document.getElementById("txtInfoProcId").value = "Digite su nombre y apellido";
                          document.getElementById("HFSelectDoc").value = "1";
                     }
                     if(elm2 == "ti")
                     {
                          document.getElementById("LbNameNui").innerHTML="NOMBRES Y APELLIDOS";
-                         document.getElementById("txtUserId").value = "Digite su número de documento Ejemplo: 2822447";
+                         document.getElementById("txtUserId").value = "Digite su numero de documento";
                          document.getElementById("txtInfoProcId").value = "Digite su nombre y apellido";
                          document.getElementById("HFSelectDoc").value = "2";
                     }
                     if(elm2 == "ce")
                     {
                           document.getElementById("LbNameNui").innerHTML="NOMBRES Y APELLIDOS";
-                         document.getElementById("txtUserId").value = "Digite su número de documento Ejemplo: 2822447";
+                         document.getElementById("txtUserId").value = "Digite su numero de documento";
                          document.getElementById("txtInfoProcId").value = "Digite su nombre y apellido";
                          document.getElementById("HFSelectDoc").value = "3";
                     }

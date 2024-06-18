@@ -90,9 +90,7 @@ Loading... <asp:Image id="Image1" runat="server" ImageUrl="~/App_Themes/Office20
 <dxe:ListEditItem Text="TODAS" Value="TODAS"></dxe:ListEditItem>
 <dxe:ListEditItem Text="PQR" Value="PQR"></dxe:ListEditItem>
 <dxe:ListEditItem Text="TRAMITES" Value="TRA"></dxe:ListEditItem>
-<dxe:ListEditItem Text="DERECHOS DE PETICION" Value="PET"></dxe:ListEditItem>
-<dxe:ListEditItem Text="SOLICITUD" Value="SOLI"></dxe:ListEditItem>
-<dxe:ListEditItem Text="RECLAMOS" Value="RECLA"></dxe:ListEditItem>
+<dxe:ListEditItem Text="DERECHOS DE PETICION" Value="DERE"></dxe:ListEditItem>
 </Items>
 
 <ButtonStyle Width="13px"></ButtonStyle>
@@ -137,7 +135,7 @@ Loading... <asp:Image id="Image1" runat="server" ImageUrl="~/App_Themes/Office20
                             <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Buscar:"></asp:Label></td>
                         <td style="width: 1332px; height: 36px">
                             <asp:ImageButton ID="ImageButton2" runat="server" Height="34px" ImageUrl="~/AlfaNetImagen/ToolBar/buscarnew2.gif"
-                                Width="35px" /></td>
+                                Width="35px"  OnClick="ImageButton2_Click"/></td>
                     </tr>
                 </table>
                         </td>
@@ -184,9 +182,9 @@ Loading... <asp:Image id="Image1" runat="server" ImageUrl="~/App_Themes/Office20
 </dxwpg:ASPxPivotGrid> 
 </TD></TR></TBODY></TABLE>
 <asp:SqlDataSource id="AlfaWeb" runat="server" SelectCommand="Radicado_ConsultasGestionTareasDinamico" ConnectionString="<%$ ConnectionStrings:ConnStrSQLServer %>" SelectCommandType="StoredProcedure"><SelectParameters>
-    <asp:ControlParameter ControlID="RadDatePicker1" DbType="DateTime" DefaultValue="01/01/2012"
+    <asp:ControlParameter ControlID="RadDatePicker1" DbType="DateTime" DefaultValue="01/01/2011"
         Name="WFMovimientoFecha" PropertyName="SelectedDate" />
-    <asp:ControlParameter ControlID="RadDatePicker2" DbType="DateTime" DefaultValue="31/12/2012"
+    <asp:ControlParameter ControlID="RadDatePicker2" DbType="DateTime" DefaultValue="31/12/2011"
         Name="WFMovimientoFecha1" PropertyName="SelectedDate" />
 </SelectParameters>
 </asp:SqlDataSource>

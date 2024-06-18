@@ -1,13 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true"  CodeFile="ReporteSeguridad.aspx.cs" Inherits="_ReporteUsuario" %>
 
-<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845DCD8080CC91"
     Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
-
-<%@ Register Assembly="Infragistics2.WebUI.UltraWebNavigator.v7.1, Version=7.1.20071.40, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
-    Namespace="Infragistics.WebUI.UltraWebNavigator" TagPrefix="ignav" %>
-
-<%@ Register Assembly="Infragistics2.WebUI.UltraWebListbar.v7.1, Version=7.1.20071.40, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
-    Namespace="Infragistics.WebUI.UltraWebListbar" TagPrefix="iglbar" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <span style="font-size: 24pt">
@@ -25,12 +19,8 @@
         <asp:ObjectDataSource ID="ObjectDataSource3" runat="server" SelectMethod="GetDependenciaPermisos"
             TypeName="DSDependenciaSQLTableAdapters.Dependencia_ReadDependenciaPermisosTableAdapter">
         </asp:ObjectDataSource>
-    </asp:panel>
-        <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" SelectMethod="GetData"
-            TypeName="DSUsuarioTableAdapters.Usuariosxdependencia1TableAdapter"></asp:ObjectDataSource>
-        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetProfilePropertyUser"
-            TypeName="DSaspnet_UsersTableAdapters.aspnet_Profile_PorpertyUsersTableAdapter">
-        </asp:ObjectDataSource>
+    </asp:Panel>
+
     </span>
            
 </asp:Content>

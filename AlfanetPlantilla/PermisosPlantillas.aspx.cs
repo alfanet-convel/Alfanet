@@ -11,11 +11,37 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.NetworkInformation;
 
 public partial class AlfanetPlantilla_PermisosPlantillas : System.Web.UI.Page
 {
+    string ModuloLog = "Plantillas Permiso";
+    string ConsecutivoCodigo = "8";
+    string ConsecutivoCodigoErr = "4";
+    string ActividadLogCodigoErr = "Error";
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        IPHostEntry host;
+        string localIP = "";
+        host = Dns.GetHostEntry(Dns.GetHostName());
+        foreach (IPAddress ip in host.AddressList)
+        {
+            if (ip.AddressFamily.ToString() == "InterNetwork")
+            {
+                String IPAdd = string.Empty;
+                IPAdd = Request.ServerVariables["HTTP_X_FORWARDER_FOR"];
+                if (String.IsNullOrEmpty(IPAdd))
+                {
+                    IPAdd = Request.ServerVariables["REMOTE_ADDR"];
+                    localIP = IPAdd.ToString();
+                    Session["IP"] = localIP;
+                }
+            }
+        }
+        Session["Nombrepc"] = host.HostName.ToString();
+
         if (!IsPostBack)
         {            
             string result = string.Empty;
@@ -28,10 +54,65 @@ public partial class AlfanetPlantilla_PermisosPlantillas : System.Web.UI.Page
                     ddlPlantillas.SelectedValue = plantillaCodigo;                    
                     GetDependenciasByPlantillaCodigo(plantillaCodigo);
                 }
+
+                // LOG ACCESO
+				string codigoPlantilla = "";
+				string dependencia = "";
+                string ActLogCod = "ACCESO";
+                DateTime Fecha = DateTime.Now;
+                //OBTENER CONSECUTIVO DE LOGS
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+                Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+                DataRow[] fila = Conse.Select();
+                string x = fila[0].ItemArray[0].ToString();
+                string LOG = Convert.ToString(x);
+                string UserName = Profile.GetProfile(Profile.UserName).UserName.ToString();
+                DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+                string UsrId = objUsr.Aspnet_UserIDByUserName(UserName).ToString();
+                DateTime FechaFin = DateTime.Now;
+                Int64 LogId = Convert.ToInt64(LOG);
+                string IP = Session["IP"].ToString();
+                string NombreEquipo = Session["Nombrepc"].ToString();
+                System.Web.HttpBrowserCapabilities nav = Request.Browser;
+                string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+                //INSERT DE LOG ACCESO PLANTILLA
+                DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter InsertaLogPermiso = new DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter();
+                InsertaLogPermiso.InsertPlantillaPermiso(LogId, Fecha, UserName, ActLogCod, ModuloLog, codigoPlantilla, dependencia,
+                                                IP, NombreEquipo, Navegador);
+                //Actualiza consecutivo log
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                ConseLogs.GetConsecutivos(ConsecutivoCodigo);
             }
             catch (Exception)
             {                
                 lblMessage.Text = "Ocurrió un inconveniente al cargar los datos de inicio. Por favor intente nuevamente.";
+                //Variables de LOG ERROR
+                DateTime FechaInicio = DateTime.Now;
+                string grupoo = "";
+                //OBTENER CONSECUTIVO DE LOGS
+                string DatosFinales = "Error log insertar " + lblMessage.Text;
+                DateTime WFMovimientoFechaFin = DateTime.Now;
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConsecutivosErr = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                DSGrupoSQL.ConsecutivoLogsDataTable ConseErr = new DSGrupoSQL.ConsecutivoLogsDataTable();
+                ConseErr = ConsecutivosErr.GetConseError(ConsecutivoCodigoErr);
+                DataRow[] fila2 = ConseErr.Select();
+                string z = fila2[0].ItemArray[0].ToString();
+                string LOGERROR = Convert.ToString(z);
+                Int64 LogIdErr = Convert.ToInt64(LOGERROR);
+                string username = Profile.GetProfile(Profile.UserName).UserName.ToString();
+                DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+                string UsrId = objUsr.Aspnet_UserIDByUserName(username).ToString();
+                string IP = HttpContext.Current.Session["IP"].ToString();
+                string NombreEquipo = HttpContext.Current.Session["Nombrepc"].ToString();
+                System.Web.HttpBrowserCapabilities nav = HttpContext.Current.Request.Browser;
+                string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+                //Se hace el insert de Log error
+                DSLogAlfaNetTableAdapters.LogAlfaNetErroresTableAdapter Errores = new DSLogAlfaNetTableAdapters.LogAlfaNetErroresTableAdapter();
+                Errores.GetError(LogIdErr, username, FechaInicio, ActividadLogCodigoErr, grupoo, ModuloLog, DatosFinales, WFMovimientoFechaFin, IP, NombreEquipo, Navegador);
+                //Se hace el update consecutivo de Logs
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                ConseLogs.GetConsecutivos(ConsecutivoCodigoErr);
             }            
         }
     }
@@ -100,6 +181,7 @@ public partial class AlfanetPlantilla_PermisosPlantillas : System.Web.UI.Page
     }
     protected void ibtnAdd_Click(object sender, ImageClickEventArgs e)
     {
+        string ActLogCod = "INSERTAR";
         lblMessage.Text = string.Empty;
         BLLPlantillas bll = null;
         string codigoPlantilla = ddlPlantillas.SelectedValue;
@@ -127,6 +209,32 @@ public partial class AlfanetPlantilla_PermisosPlantillas : System.Web.UI.Page
                             if (guardo == "Proceso finalizado correctamente.")
                             {
                                 ltbDependencias.Items.Add(txtDependencias.Text.Trim());
+
+                                //LOG INSERTAR PERMISO PLANTILLA
+                                DateTime Fecha = DateTime.Now;
+                                //OBTENER CONSECUTIVO DE LOGS
+                                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                                DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+                                Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+                                DataRow[] fila = Conse.Select();
+                                string x = fila[0].ItemArray[0].ToString();
+                                string LOG = Convert.ToString(x);
+                                string UserName = Profile.GetProfile(Profile.UserName).UserName.ToString();
+                                DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+                                string UsrId = objUsr.Aspnet_UserIDByUserName(UserName).ToString();
+                                DateTime FechaFin = DateTime.Now;
+                                Int64 LogId = Convert.ToInt64(LOG);
+                                string IP = Session["IP"].ToString();
+                                string NombreEquipo = Session["Nombrepc"].ToString();
+                                System.Web.HttpBrowserCapabilities nav = Request.Browser;
+                                string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+                                //INSERT DE LOG AÑADIR PERMISO PLANTILLA
+                                DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter InsertaLogPermiso = new DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter();
+                                InsertaLogPermiso.InsertPlantillaPermiso(LogId, Fecha, UserName, ActLogCod, ModuloLog, codigoPlantilla, dependencia,
+                                                                IP, NombreEquipo, Navegador);
+                                //Actualiza consecutivo log
+                                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                                ConseLogs.GetConsecutivos(ConsecutivoCodigo);
                             }
                             txtDependencias.Text = string.Empty;
                         }
@@ -137,7 +245,7 @@ public partial class AlfanetPlantilla_PermisosPlantillas : System.Web.UI.Page
                     }
                     else
                     {
-                        lblMessage.Text = "La dependenciaque intenta ingresar no existe.";
+                        lblMessage.Text = "La dependencia que intenta ingresar no existe.";
                         txtDependencias.Text = string.Empty;
                     }
                 }
@@ -149,6 +257,33 @@ public partial class AlfanetPlantilla_PermisosPlantillas : System.Web.UI.Page
             catch (Exception)
             {
                 lblMessage.Text = "Ocurrió un error durante el proceso. Por favor intente nuevamente.";
+
+                //Variables de LOG ERROR
+                DateTime FechaInicio = DateTime.Now;
+                string grupoo = "";
+                //OBTENER CONSECUTIVO DE LOGS
+                string DatosFinales = "Error log insertar " + lblMessage.Text;
+                DateTime WFMovimientoFechaFin = DateTime.Now;
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConsecutivosErr = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                DSGrupoSQL.ConsecutivoLogsDataTable ConseErr = new DSGrupoSQL.ConsecutivoLogsDataTable();
+                ConseErr = ConsecutivosErr.GetConseError(ConsecutivoCodigoErr);
+                DataRow[] fila2 = ConseErr.Select();
+                string z = fila2[0].ItemArray[0].ToString();
+                string LOGERROR = Convert.ToString(z);
+                Int64 LogIdErr = Convert.ToInt64(LOGERROR);
+                string username = Profile.GetProfile(Profile.UserName).UserName.ToString();
+                DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+                string UsrId = objUsr.Aspnet_UserIDByUserName(username).ToString();
+                string IP = HttpContext.Current.Session["IP"].ToString();
+                string NombreEquipo = HttpContext.Current.Session["Nombrepc"].ToString();
+                System.Web.HttpBrowserCapabilities nav = HttpContext.Current.Request.Browser;
+                string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+                //Se hace el insert de Log error
+                DSLogAlfaNetTableAdapters.LogAlfaNetErroresTableAdapter Errores = new DSLogAlfaNetTableAdapters.LogAlfaNetErroresTableAdapter();
+                Errores.GetError(LogIdErr, username, FechaInicio, ActividadLogCodigoErr, grupoo, ModuloLog, DatosFinales, WFMovimientoFechaFin, IP, NombreEquipo, Navegador);
+                //Se hace el update consecutivo de Logs
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                ConseLogs.GetConsecutivos(ConsecutivoCodigoErr);
             }
         }
         else
@@ -214,6 +349,7 @@ public partial class AlfanetPlantilla_PermisosPlantillas : System.Web.UI.Page
     }
     protected void ibtnQuitarItem_Click(object sender, ImageClickEventArgs e)
     {
+        string ActLogCod = "ELIMINAR";
         lblMessage.Text = string.Empty;
         BLLPlantillas bll = null;
         string codigoPlantilla = ddlPlantillas.SelectedValue;
@@ -233,11 +369,64 @@ public partial class AlfanetPlantilla_PermisosPlantillas : System.Web.UI.Page
                 if (elimino == "Proceso finalizado correctamente.")
                 {
                     ltbDependencias.Items.Remove(ltbDependencias.SelectedItem);
+
+                    //LOG ELIMINAR PERMISO PLANTILLAS
+                    DateTime Fecha = DateTime.Now;
+                    //OBTENER CONSECUTIVO DE LOGS
+                    DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                    DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+                    Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+                    DataRow[] fila = Conse.Select();
+                    string x = fila[0].ItemArray[0].ToString();
+                    string LOG = Convert.ToString(x);
+                    string UserName = Profile.GetProfile(Profile.UserName).UserName.ToString();
+                    DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+                    string UsrId = objUsr.Aspnet_UserIDByUserName(UserName).ToString();
+                    DateTime FechaFin = DateTime.Now;
+                    Int64 LogId = Convert.ToInt64(LOG);
+                    string IP = Session["IP"].ToString();
+                    string NombreEquipo = Session["Nombrepc"].ToString();
+                    System.Web.HttpBrowserCapabilities nav = Request.Browser;
+                    string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+                    //insert de log elimianr permiso plantilla
+                    DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter InsertaLogPermiso = new DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter();
+                    InsertaLogPermiso.InsertPlantillaPermiso(LogId, Fecha, UserName, ActLogCod, ModuloLog, codigoPlantilla,
+                                                    dependencia, IP, NombreEquipo, Navegador);
+                    //Actualiza consecutivo Log
+                    DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                    ConseLogs.GetConsecutivos(ConsecutivoCodigo);
                 }
             }
             catch (Exception)
             {
                 lblMessage.Text = "Ocurrió un error durante el proceso. Por favor intente nuevamente.";
+                //Variables de LOG ERROR
+                DateTime FechaInicio = DateTime.Now;
+                string grupoo = "";
+                //OBTENER CONSECUTIVO DE LOGS
+                string DatosFinales = "Error log eliminar " + lblMessage.Text;
+                DateTime WFMovimientoFechaFin = DateTime.Now;
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConsecutivosErr = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                DSGrupoSQL.ConsecutivoLogsDataTable ConseErr = new DSGrupoSQL.ConsecutivoLogsDataTable();
+                ConseErr = ConsecutivosErr.GetConseError(ConsecutivoCodigoErr);
+                DataRow[] fila2 = ConseErr.Select();
+                string z = fila2[0].ItemArray[0].ToString();
+                string LOGERROR = Convert.ToString(z);
+                Int64 LogIdErr = Convert.ToInt64(LOGERROR);
+                string username = Profile.GetProfile(Profile.UserName).UserName.ToString();
+                DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+                string UsrId = objUsr.Aspnet_UserIDByUserName(username).ToString();
+                string IP = HttpContext.Current.Session["IP"].ToString();
+                string NombreEquipo = HttpContext.Current.Session["Nombrepc"].ToString();
+                System.Web.HttpBrowserCapabilities nav = HttpContext.Current.Request.Browser;
+                string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+                //Se hace el insert de Log error
+                DSLogAlfaNetTableAdapters.LogAlfaNetErroresTableAdapter Errores = new DSLogAlfaNetTableAdapters.LogAlfaNetErroresTableAdapter();
+                Errores.GetError(LogIdErr, username, FechaInicio, ActividadLogCodigoErr, grupoo, ModuloLog, DatosFinales, WFMovimientoFechaFin, IP, NombreEquipo, Navegador);
+                //Se hace el update consecutivo de Logs
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                ConseLogs.GetConsecutivos(ConsecutivoCodigoErr);
+
             }
         }
         else

@@ -12,7 +12,7 @@
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 <TABLE style="WIDTH: 100%; HEIGHT: 100%" borderColor=activeborder cellSpacing=0 
-cellPadding=0 border=1><TBODY><TR><TD style="HEIGHT: 1px">   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+cellPadding=0 border=1><TBODY><TR><TD style="HEIGHT: 1px">   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
     <table style="width: 100%">
         <tr>
             <td style="width: 30%">
@@ -45,7 +45,9 @@ cellPadding=0 border=1><TBODY><TR><TD style="HEIGHT: 1px">   &nbsp;&nbsp; &nbs
             </td>
         </tr>
     </table>
-    <asp:HiddenField id="HFCodigoSeleccionado" runat="server"></asp:HiddenField> <asp:HiddenField id="HFNroDetCount" runat="server"></asp:HiddenField>&nbsp;&nbsp;<BR /><cc1:tabcontainer style="TEXT-ALIGN: left" id="TCDepartamento" runat="server" activetabindex="0" autopostback="True" backcolor="White" width="500px"><cc1:TabPanel runat="server" HeaderText="TabPanel1" ID="TabPanel1"><HeaderTemplate>
+    <asp:HiddenField id="HFCodigoSeleccionado" runat="server"></asp:HiddenField> <asp:HiddenField id="HFNroDetCount" runat="server"></asp:HiddenField>
+                    <asp:HiddenField ID="HDFSeleccion" runat="server" />
+                    &nbsp;&nbsp;<BR /><cc1:tabcontainer style="TEXT-ALIGN: left" id="TCDepartamento" runat="server" activetabindex="0" autopostback="True" backcolor="White" width="500px"><cc1:TabPanel runat="server" HeaderText="TabPanel1" ID="TabPanel1"><HeaderTemplate>
                                     <img src="../../AlfaNetImagen/ToolBar/user_edit.png"  />
                                 
 </HeaderTemplate>
@@ -122,7 +124,7 @@ cellPadding=0 border=1><TBODY><TR><TD style="HEIGHT: 1px">   &nbsp;&nbsp; &nbs
 <asp:ImageButton id="ImgBtnInsert" onclick="ImgBtnInsert_Click" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/Accept.png" CommandName="Insert"></asp:ImageButton> &nbsp;<asp:ImageButton id="ImageButton7" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/Cancel.png" CausesValidation="False" CommandName="Cancel"></asp:ImageButton>&nbsp; 
 </InsertItemTemplate>
 <ItemTemplate>
-<asp:ImageButton id="ImageButton1" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/Edit.png" CausesValidation="False" CommandName="Edit"></asp:ImageButton> &nbsp;<asp:ImageButton id="ImgBtnNew" onclick="ImgBtnNew_Click" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/Add.png" CausesValidation="False" CommandName="New"></asp:ImageButton> &nbsp;<asp:ImageButton id="ImgBtnDelete" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/Delete.png" CausesValidation="False" CommandName="Delete"></asp:ImageButton>&nbsp; 
+<asp:ImageButton id="ImageButton1" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/Edit.png" CausesValidation="False" CommandName="Edit"></asp:ImageButton> &nbsp;<asp:ImageButton id="ImgBtnNew" onclick="ImgBtnNew_Click" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/Add.png" CausesValidation="False" CommandName="New"></asp:ImageButton> &nbsp;<asp:ImageButton id="ImgBtnDelete" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/Delete.png" CausesValidation="False" OnClick="ImgBtnDelete_Click"></asp:ImageButton>&nbsp; 
 </ItemTemplate>
 </asp:TemplateField>
 </Fields>
@@ -134,7 +136,7 @@ cellPadding=0 border=1><TBODY><TR><TD style="HEIGHT: 1px">   &nbsp;&nbsp; &nbs
 <PagerStyle HorizontalAlign="Center" BackColor="#2461BF" ForeColor="White"></PagerStyle>
 <RowStyle BackColor="#EFF3FB"></RowStyle>
 
-</asp:DetailsView> <asp:LinkButton id="LinkButton1" onclick="LinkButton1_Click" runat="server" Enabled="False"></asp:LinkButton> <asp:ObjectDataSource id="WFProcesoDetalleDataSource" runat="server" UpdateMethod="Update" TypeName="DSProcesoTableAdapters.WFProcesoDetalle1TableAdapter" SelectMethod="GetWFProcesoDetalleById" OldValuesParameterFormatString="original_{0}" InsertMethod="Insert" DeleteMethod="Delete"><DeleteParameters>
+</asp:DetailsView> <asp:LinkButton id="LinkButton1" onclick="LinkButton1_Click" runat="server" Visible="False">Agregar Detalle al Proceso</asp:LinkButton> <asp:ObjectDataSource id="WFProcesoDetalleDataSource" runat="server" UpdateMethod="Update" TypeName="DSProcesoTableAdapters.WFProcesoDetalle1TableAdapter" SelectMethod="GetWFProcesoDetalleById" OldValuesParameterFormatString="original_{0}" InsertMethod="Insert" DeleteMethod="Delete"><DeleteParameters>
 <asp:Parameter Name="Original_WFProcesoCodigo" Type="String"></asp:Parameter>
 <asp:Parameter Name="Original_WFProcesoDetallePaso" Type="Int32"></asp:Parameter>
 </DeleteParameters>
@@ -287,7 +289,7 @@ cellPadding=0 border=1><TBODY><TR><TD style="HEIGHT: 1px">   &nbsp;&nbsp; &nbs
 <asp:ImageButton id="ImgBtnInsertDetalle" onclick="ImgBtnInsertDetalle_Click" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/Accept.png" CommandName="Insert"></asp:ImageButton> &nbsp;<asp:ImageButton id="ImgBtnCancelDetalle" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/Cancel.png" CausesValidation="False" CommandName="Cancel"></asp:ImageButton>&nbsp; 
 </InsertItemTemplate>
 <ItemTemplate>
-<asp:ImageButton id="ImgBtnEditDetalle" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/Edit.png" CausesValidation="False" CommandName="Edit"></asp:ImageButton> &nbsp;<asp:ImageButton id="ImgBtnNewDetalle" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/Add.png" CausesValidation="False" CommandName="New"></asp:ImageButton> &nbsp;<asp:ImageButton id="ImgBtnDeleteDetalle" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/Delete.png" CausesValidation="False" CommandName="Delete"></asp:ImageButton>&nbsp; 
+<%--<asp:ImageButton id="ImgBtnEditDetalle" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/Edit.png" CausesValidation="False" CommandName="Edit"></asp:ImageButton>--%> &nbsp;<asp:ImageButton id="ImgBtnNewDetalle" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/Add.png" CausesValidation="False" CommandName="New"></asp:ImageButton> &nbsp;<asp:ImageButton id="ImgBtnDeleteDetalle" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/Delete.png" CausesValidation="False" OnClick="ImgBtnDeleteDetalle_Click"></asp:ImageButton>&nbsp; 
 </ItemTemplate>
 </asp:TemplateField>
 </Fields>
@@ -324,7 +326,7 @@ cellPadding=0 border=1><TBODY><TR><TD style="HEIGHT: 1px">   &nbsp;&nbsp; &nbs
 </cc1:TabPanel>
 </cc1:tabcontainer> 
 </ContentTemplate>
-</asp:UpdatePanel>  &nbsp; &nbsp; &nbsp; &nbsp;
+</asp:UpdatePanel>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             </td>
             <td style="width: 30%">
             </td>

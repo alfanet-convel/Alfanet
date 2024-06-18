@@ -14,7 +14,7 @@
                     <img src="../AlfaNetImagen/MainPages/MainInicio.JPG" style="width: 320px;
                         height: 350px" /></td>
                 <td style="height: 345px">
-                    <h1>
+                    <h1>Inicio Alfanet
                         <strong><span style="color: appworkspace">MainInicio.aspx </span></strong>
                     </h1>
                     <h1>

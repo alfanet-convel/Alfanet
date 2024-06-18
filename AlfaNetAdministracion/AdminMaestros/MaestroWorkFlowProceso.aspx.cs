@@ -7,12 +7,30 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using System.Net;
+using System.Net.NetworkInformation;
 
 public partial class _MaestroWorkFlowProceso : System.Web.UI.Page 
 {
+    DateTime FechaIni = DateTime.Now;
+    string ConsecutivoCodigo = "6";
+    string ModuloLog = "Maestro WFPROCESOS";
+    string ConsecutivoCodigoErr = "4";
+    string ActividadLogCodigoErr = "Error";
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        IPHostEntry host;
+        string localIP = "";
+        host = Dns.GetHostEntry(Dns.GetHostName());
+        foreach (IPAddress ip in host.AddressList)
+        {
+            if (ip.AddressFamily.ToString() == "InterNetwork")
+            {
+                localIP = ip.ToString();
+                Session["IP"] = localIP;
+            }
+        }
+        Session["Nombrepc"] = host.HostName.ToString();
 
         if (!IsPostBack)
         {
@@ -497,6 +515,12 @@ public partial class _MaestroWorkFlowProceso : System.Web.UI.Page
     {
         CheckBox Ch = (CheckBox)DVWFProceso.FindControl("CheckBox1");
         TextBox Text = (TextBox)DVWFProceso.FindControl("TextBox1");
+        string ActLogCod = "INSERTAR";
+        TextBox TxtDescripcion = (TextBox)DVWFProceso.FindControl("TextBox4");
+        string nombre = TxtDescripcion.Text;
+        TextBox TxtCodigo = (TextBox)DVWFProceso.FindControl("TextBox3");
+        string codigo = TxtCodigo.Text;
+
         if (Ch.Checked == true)
         {
             Text.Text = "1";
@@ -506,6 +530,7 @@ public partial class _MaestroWorkFlowProceso : System.Web.UI.Page
             Text.Text = "0";
         }
 
+        string habilitar = this.WFProcesoDataSource.InsertParameters["WFProcesoHabilitar"].DefaultValue;
         TextBox TxtBox = (TextBox)DVWFProceso.FindControl("TextBox2");
 
         if (TxtBox.Text != "")
@@ -516,13 +541,42 @@ public partial class _MaestroWorkFlowProceso : System.Web.UI.Page
             }
         }
         this.WFProcesoDataSource.InsertParameters["WFProcesoCodigoPadre"].DefaultValue = "0";
-        
 
+        //OBTENER CONSECUTIVO DE LOGS E INSERTAR EN TABLAS LOGS
+        DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+        DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+        Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+        DataRow[] fila = Conse.Select();
+        string x = fila[0].ItemArray[0].ToString();
+        string LOG = Convert.ToString(x);
+        Int64 LogId = Convert.ToInt64(LOG);
+        string UserName = Profile.GetProfile(Profile.UserName).UserName.ToString();
+        DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+        string UsrId = objUsr.Aspnet_UserIDByUserName(UserName).ToString();
+        string DatosIni = "Nuevo";// WFPROCESOCod + ProcesoNombre + Habilitar
+        string DatosFin = TxtCodigo.Text + " | " + nombre + " | " + habilitar;
+        DateTime FechaFin = DateTime.Now;
+        string IP = Session["IP"].ToString();
+        string NombreEquipo = Session["Nombrepc"].ToString();
+        System.Web.HttpBrowserCapabilities nav = Request.Browser;
+        string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+        //Se hace insert de Log añadir proceso
+        DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter BuscarMaestra = new DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter();
+        BuscarMaestra.GetMaestros(LogId, FechaIni, UserName, ActLogCod, ModuloLog, DatosIni, DatosFin, FechaFin, IP, NombreEquipo, Navegador);
+        //Actualiza consecutivo Log
+        DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+        ConseLogs.GetConsecutivos(ConsecutivoCodigo);
     }
     protected void ImgBtnEdit_Click(object sender, ImageClickEventArgs e)
     {
         CheckBox Ch = (CheckBox)DVWFProceso.FindControl("CheckBox1");
         TextBox Text = (TextBox)DVWFProceso.FindControl("TextBox1");
+        string ActLogCod = "ACTUALIZAR";
+        TextBox TxtDescripcion = (TextBox)DVWFProceso.FindControl("TextBox3");
+        string nombre = TxtDescripcion.Text;
+        Label LblCodigo = (Label)DVWFProceso.FindControl("Label1");
+        string codigo = LblCodigo.Text;
+
         if (Ch.Checked == true)
         {
             Text.Text = "1";
@@ -531,7 +585,10 @@ public partial class _MaestroWorkFlowProceso : System.Web.UI.Page
         {
             Text.Text = "0";
         }
-        
+
+        string habilitar = this.WFProcesoDataSource.UpdateParameters["WFProcesoHabilitar"].DefaultValue;
+        // WFPROCESOCod + ProcesoNombre + Habilitar
+        string DatosIni = DVWFProceso.SelectedValue + " | " + habilitar;
         TextBox TxtBox = (TextBox)DVWFProceso.FindControl("TextBox2");
 
         if (TxtBox.Text != "")
@@ -541,12 +598,43 @@ public partial class _MaestroWorkFlowProceso : System.Web.UI.Page
                 TxtBox.Text = TxtBox.Text.Remove(TxtBox.Text.IndexOf(" | "));
             }
         }
+        //OBTENER CONSECUTIVO DE LOGS E INSERTAR EN TABLAS LOGS
+        DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+        DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+        Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+        DataRow[] fila = Conse.Select();
+        string x = fila[0].ItemArray[0].ToString();
+        string LOG = Convert.ToString(x);
+        Int64 LogId = Convert.ToInt64(LOG);
+        string UserName = Profile.GetProfile(Profile.UserName).UserName.ToString();
+        DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+        string UsrId = objUsr.Aspnet_UserIDByUserName(UserName).ToString();
+        // WFPROCESOCod + ProcesoNombre + Habilitar
+        string DatosFin = codigo + " | " + nombre + " | " + habilitar;
+        DateTime FechaFin = DateTime.Now;
+        string IP = Session["IP"].ToString();
+        string NombreEquipo = Session["Nombrepc"].ToString();
+        System.Web.HttpBrowserCapabilities nav = Request.Browser;
+        string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+        //Insert de Log actualizar proceso
+        DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter BuscarMaestra = new DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter();
+        BuscarMaestra.GetMaestros(LogId, FechaIni, UserName, ActLogCod, ModuloLog, DatosIni, DatosFin, FechaFin, IP, NombreEquipo, Navegador);
+        //Actualiza consecutivo de Log
+        DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+        ConseLogs.GetConsecutivos(ConsecutivoCodigo);
         //DVWFProceso.ChangeMode(DetailsViewMode.ReadOnly);
     }
     protected void ImgBtnUpdateDetalle_Click(object sender, ImageClickEventArgs e)
     {
         CheckBox Ch = (CheckBox)DVWFProcesoDetalle.FindControl("CheckBox1");
         TextBox Text = (TextBox)DVWFProcesoDetalle.FindControl("TextBox1");
+
+        TextBox TxtDescripcion = (TextBox)DVWFProcesoDetalle.FindControl("TextBox4"); string nombre = TxtDescripcion.Text;
+        Label LblCodigo = (Label)DVWFProcesoDetalle.FindControl("Label1"); string codigo = LblCodigo.Text;
+        Label LblDetallePaso = (Label)DVWFProcesoDetalle.FindControl("Label2"); string detallepaso = LblDetallePaso.Text;
+        TextBox TxtTiempo = (TextBox)DVWFProcesoDetalle.FindControl("TextBox5"); string tiempo = TxtTiempo.Text;
+        string ActLogCod = "ACTUALIZAR_DETALLE";
+
         if (Ch.Checked == true)
         {
             Text.Text = "1";
@@ -593,6 +681,32 @@ public partial class _MaestroWorkFlowProceso : System.Web.UI.Page
         //this.WFProcesoDetalleDataSource.UpdateParameters["WFAccionNombre"].DefaultValue = null;
         //this.WFProcesoDetalleDataSource.UpdateParameters["DependenciaNombre"].DefaultValue = null;
         //this.WFProcesoDetalleDataSource.UpdateParameters["SerieNombre"].DefaultValue = null;
+        string habilitar = this.WFProcesoDataSource.InsertParameters["WFProcesoHabilitar"].DefaultValue;
+        string DatosIni = "WFProceso de codigo: " + DVWFProceso.SelectedValue + " Habilitar:" + habilitar;
+        //OBTENER CONSECUTIVO DE LOGS
+        DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+        DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+        Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+        DataRow[] fila = Conse.Select();
+        string x = fila[0].ItemArray[0].ToString();
+        string LOG = Convert.ToString(x);
+        Int64 LogId = Convert.ToInt64(LOG);
+        string UserName = Profile.GetProfile(Profile.UserName).UserName.ToString();
+        DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+        string UsrId = objUsr.Aspnet_UserIDByUserName(UserName).ToString();
+        // WFPROCESOCod +  Habilitar
+        string DatosFin = DVWFProceso.SelectedValue + " | " + habilitar;
+        DateTime FechaFin = DateTime.Now;
+        string IP = Session["IP"].ToString();
+        string NombreEquipo = Session["Nombrepc"].ToString();
+        System.Web.HttpBrowserCapabilities nav = Request.Browser;
+        string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+        //Insert de Log actualizar detalle
+        DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter BuscarMaestra = new DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter();
+        BuscarMaestra.GetMaestros(LogId, FechaIni, UserName, ActLogCod, ModuloLog, DatosIni, DatosFin, FechaFin, IP, NombreEquipo, Navegador);
+        //Actualiza consecutivo Log
+        DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+        ConseLogs.GetConsecutivos(ConsecutivoCodigo);
     }
     protected void ImgBtnInsertDetalle_Click(object sender, ImageClickEventArgs e)
     {
@@ -660,6 +774,7 @@ public partial class _MaestroWorkFlowProceso : System.Web.UI.Page
     }
     protected void ImgBtnFind_Click(object sender, ImageClickEventArgs e)
     {
+        string ActLogCod = "BUSCAR";
         if (TxtDepartamento.Text != "")
         {
             if (TxtDepartamento.Text.Contains(" | "))
@@ -667,9 +782,33 @@ public partial class _MaestroWorkFlowProceso : System.Web.UI.Page
                 this.HFCodigoSeleccionado.Value = TxtDepartamento.Text.Remove(TxtDepartamento.Text.IndexOf(" | "));
                 this.DVWFProceso.ChangeMode(DetailsViewMode.ReadOnly);
                 this.DVWFProceso.DataBind();
-                //this.DVWFProcesoDetalle.DataBind();                
+                this.DVWFProcesoDetalle.DataBind();                
                 this.TxtDepartamento.Text = null;
                 this.HFRbtLst.Value = null;
+                this.LinkButton1.Visible = true;
+                //OBTENER CONSECUTIVO DE LOGS
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+                Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+                DataRow[] fila = Conse.Select();
+                string x = fila[0].ItemArray[0].ToString();
+                string LOG = Convert.ToString(x);
+                Int64 LogId = Convert.ToInt64(LOG);
+                string UserName = Profile.GetProfile(Profile.UserName).UserName.ToString();
+                DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+                string UsrId = objUsr.Aspnet_UserIDByUserName(UserName).ToString();
+                string DatosIni = "Buscar";
+                string DatosFin = "Se busco WFProceso de codigo: " + HFCodigoSeleccionado.Value;
+                DateTime FechaFin = DateTime.Now;
+                string IP = Session["IP"].ToString();
+                string NombreEquipo = Session["Nombrepc"].ToString();
+                System.Web.HttpBrowserCapabilities nav = Request.Browser;
+                string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();  //Se hace insert de Log buscar proceso
+                DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter BuscarMaestra = new DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter();
+                BuscarMaestra.GetMaestros(LogId, FechaIni, UserName, ActLogCod, ModuloLog, DatosIni, DatosFin, FechaFin, IP, NombreEquipo, Navegador);
+                //actualiza consecutivo log
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                ConseLogs.GetConsecutivos(ConsecutivoCodigo);
             }
         }        
     }
@@ -705,23 +844,23 @@ public partial class _MaestroWorkFlowProceso : System.Web.UI.Page
     }
     protected void Button1_Click1(object sender, EventArgs e)
     {
-        //WFProcesoBLL Proceso = new WFProcesoBLL();
-        //bool Correcto;
-
-        //try
-        //{
-
-        //    //Correcto = Proceso.//(HFCodigoSeleccionado.Value);
-        //}
-        //catch (Exception Error)
-        //{
-        //    this.LblMessageBox.Text = "Ocurrio un problema al tratar de eliminar el registro. ";
-        //    this.MPEMensaje.Show();
-        //}
-
-        ////this.DVDepartamento.DataBind();
-        //this.LblMessageBox.Text = "Registro Eliminado";
-        //this.MPEMensaje.Show();
-        //this.TxtDepartamento.Text = "";
+        //Eliminar el proceso seleccionado
+        if ("PROCESO" == this.HDFSeleccion.Value)
+            this.DVWFProceso.DeleteItem();
+        //Eliminar el detalle del proceso
+        else if ("DETALLEPROCESO" == this.HDFSeleccion.Value)
+            this.DVWFProcesoDetalle.DeleteItem();
+    }
+    protected void ImgBtnDelete_Click(object sender, EventArgs e)
+    {
+        this.Label7.Text = "¿Va a eliminar proceso seleccionado, Está seguro?";
+        this.HDFSeleccion.Value = "PROCESO";
+        this.MPEPregunta.Show();
+    }
+    protected void ImgBtnDeleteDetalle_Click(object sender, EventArgs e)
+    {
+        this.Label7.Text = "¿Va a eliminar el detalle del proceso seleccionado, Está seguro?";
+        this.HDFSeleccion.Value = "DETALLEPROCESO";
+        this.MPEPregunta.Show();
     }
 }

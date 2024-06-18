@@ -219,7 +219,7 @@
             </InsertParameters>
         </asp:ObjectDataSource>        &nbsp;<br />
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStrSQLServer %>"
-        SelectCommand="SELECT max(convert(int,dbo.UDF_ParseAlphaChars([MedioCodigo]))+1) as Consecutivo &#13;&#10;  FROM [dbo].[Medio]&#13;&#10;">
+        SelectCommand="SELECT max(convert(bigint,dbo.UDF_ParseAlphaChars([MedioCodigo]))+1) as Consecutivo &#13;&#10;  FROM [dbo].[Medio]&#13;&#10;">
     </asp:SqlDataSource>
     <br />
 </asp:Content>

@@ -14,6 +14,9 @@ using DSGrupoSQLTableAdapters;
 using System.Data.SqlClient;
 using AjaxControlToolkit;
 using System.Text;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Drawing;
 
 
 public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
@@ -23,6 +26,10 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
     rutinas ejecutar = new rutinas();
     DataTable tabla = new DataTable();
     string MotDevolucionAnterior;
+    string ModuloLog = "Documentos";
+    string ConsecutivoCodigo = "3";
+    string ConsecutivoCodigoErr = "4";
+    string ActividadLogCodigoErr = "Error";
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -32,6 +39,25 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
         this.Label12.Visible = false;
         try
         {
+            IPHostEntry host;
+            string localIP = "";
+            host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (IPAddress ip in host.AddressList)
+            {
+                if (ip.AddressFamily.ToString() == "InterNetwork")
+                {
+                    localIP = ip.ToString();
+                    Session["IP"] = localIP;
+                }
+            }
+            Session["Nombrepc"] = host.HostName.ToString();
+            //Solo los administradores pueden añadir naturalezas desde esta parte
+            if (Roles.RoleExists("Administrador") && !Roles.IsUserInRole("Administrador"))
+            {
+                this.ImageButton7.Visible = false;//Naturaleza
+                this.ImageButton9.Visible = false;//Expediente
+            }
+            
 
             if (!IsPostBack)
             {
@@ -79,7 +105,7 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
                 }
                 else
                 {
-                    ((MainMaster)this.Master).showmenu();
+                   // ((MainMaster)this.Master).showmenu();
                 }
 
                 this.TreeVRemite.Attributes["onClick"] = "return OnTreeClick(event);";
@@ -99,6 +125,7 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
                 this.cmdAceptar.Enabled = true;
                 this.RadioButtonList1.SelectedValue = "1";
                 String RegistroCodigo = Request["RegistroCodigo"];
+                String RadicadoCodigo = Request["RadicadoCodigo"];
                 String GrupoRegistroCodigo = Request["GrupoRegistroCodigo"];
 
                 if (RegistroCodigo != null)
@@ -106,39 +133,7 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
 
                     string Grupo = GrupoRegistroCodigo;
                     string nrodoc = RegistroCodigo;
-
-                    //RegistroBLL ObjReg = new RegistroBLL();
-                    //DSRegistro.Registro_ReadRegistroDataTable registros = new DSRegistro.Registro_ReadRegistroDataTable();
-                    //registros = ObjReg.GetRegistroById(nrodoc);
-                    //DataRow[] rows = registros.Select();
-
-                    //this.DateFechaRad.Text = rows[0].ItemArray[1].ToString().Trim();
-                    //this.TxtDependencia.Text = rows[0].ItemArray[4].ToString().Trim() + " | " + rows[0].ItemArray[19].ToString().Trim();
-                    //this.RadioButtonList1.SelectedValue = rows[0].ItemArray[17].ToString().Trim();
-                    //if (RadioButtonList1.SelectedValue == "1")
-                    //{
-                    //    this.TxtDestino.Text = rows[0].ItemArray[3].ToString().Trim() + " | " + rows[0].ItemArray[20].ToString().Trim();
-                    //}
-                    //if (RadioButtonList1.SelectedValue == "0")
-                    //{
-                    //    this.TxtDestino.Text = rows[0].ItemArray[2].ToString().Trim() + " | " + rows[0].ItemArray[24].ToString().Trim() + " | " + rows[0].ItemArray[25].ToString().Trim();
-                    //}
-                    //this.TxtRadFuente.Text = rows[0].ItemArray[6].ToString().Trim();
-                    //this.TxtDetalle.Text = rows[0].ItemArray[7].ToString().Trim();
-                    //this.TxtNaturaleza.Text = rows[0].ItemArray[5].ToString() + " | " + rows[0].ItemArray[21].ToString().Trim();
-                    //this.TxtMedioRecibo.Text = rows[0].ItemArray[13].ToString() + " | " + rows[0].ItemArray[22].ToString().Trim();
-                    //this.TxtPesoEnvio.Text = rows[0].ItemArray[15].ToString();
-                    //this.TxtGuia.Text = rows[0].ItemArray[9].ToString();
-                    //this.TxtValor.Text = rows[0].ItemArray[16].ToString();
-                    //this.TxtExpediente.Text = rows[0].ItemArray[12].ToString() + " | " + rows[0].ItemArray[23].ToString().Trim();
-                    //this.TextBox1.Text = rows[0].ItemArray[14].ToString();
-                    //this.TxtAnexo.Text = rows[0].ItemArray[10].ToString();
-                    //this.TextBox1.Visible = true;
-                    //this.cmdActualizar.Enabled = true;
-                    //this.cmdAceptar.Enabled = false; 
-                    //this.ExceptionDetails.Text = "Registro Nro" + " " + nrodoc;
-                    //this.NavDocEnviado1.HFGrupoCodigoValor("2");
-                    //this.NavDocEnviado1.HFRegistroCodigoValor(nrodoc);
+                                        
                     tabla = ejecutar.rtn_traer_registros_por_grupo_por_id(Grupo, nrodoc);
                     DataRow[] rows = tabla.Select();
 
@@ -156,9 +151,7 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
 
                     this.TxtBuscarRadicado.Text = nrodoc;
                 }
-                else
-                {
-                    if (Request.Cookies.Get("DependenciaEnv") != null || Request.Cookies.Get("DestinoEnv") != null || Request.Cookies.Get("TipoEnv") != null || Request.Cookies.Get("NaturalezaEnv") != null || Request.Cookies.Get("MedioEnv") != null || Request.Cookies.Get("ExpedienteEnv") != null || Request.Cookies.Get("SerieEnv") != null)
+                if (Request.Cookies.Get("DependenciaEnv") != null || Request.Cookies.Get("DestinoEnv") != null || Request.Cookies.Get("TipoEnv") != null || Request.Cookies.Get("NaturalezaEnv") != null || Request.Cookies.Get("MedioEnv") != null || Request.Cookies.Get("ExpedienteEnv") != null || Request.Cookies.Get("SerieEnv") != null)
                     {
                         // Recogemos la cookie que nos interese                        
                         HttpCookie DependenciaEnvCookie = Request.Cookies.Get("DependenciaEnv");
@@ -173,6 +166,13 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
                         this.TxtDependencia.Text = DependenciaEnvCookie.Value;
                         this.TxtDestino.Text = DestinoEnvCookie.Value;
                         this.RadioButtonList1.SelectedValue = TipoEnvCookie.Value;
+                        if (this.RadioButtonList1.SelectedValue == "0")
+                            {
+                                this.AutoCompleteDestino.ServiceMethod = "GetProcedenciaByTextNombre";
+                                this.PopCDestino.Enabled = false;
+                                this.ImageButton12.Visible = true;
+                            }
+
                         this.TxtNaturaleza.Text = NaturalezaEnvCookie.Value;
                         this.TxtMedioRecibo.Text = MedioEnvCookie.Value;
                         this.TxtExpediente.Text = ExpedienteEnvCookie.Value;
@@ -206,12 +206,62 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
                         Response.Cookies.Add(ExpedienteEnvCookie);
                         Response.Cookies.Add(SerieEnvCookie);
                     }
-                }
+                    if (RadicadoCodigo != null)
+                    { 
+                        // codigo para respuesta automatica de radicado.
+                        ListBoxFuente.Items.Add(RadicadoCodigo + " | ");
+                        DataTable tablaRad = new DataTable();
+                        tablaRad = ejecutar.rtn_traer_radicados_por_grupo_por_id("1", RadicadoCodigo);
+                        DataRow[] rows = tablaRad.Select();
 
+                        this.TxtDependencia.Text = Profile.CodigoDepUsuario + " | " + Profile.NombreDepUsuario; 
+                        this.RadioButtonList1.SelectedValue = "0";
+                        this.TxtDestino.Text = rows[0]["procedenciacodigo"].ToString().Trim() + " | " + rows[0]["procedencianombre"].ToString().Trim() + " | " + rows[0]["ciudadnombre"].ToString().Trim();
+                        //this.TxtDetalle.Text = rows[0]["radicadodetalle"].ToString();
+                        this.TxtNaturaleza.Text = rows[0]["naturalezacodigo"].ToString() + " | " + rows[0]["naturalezanombre"].ToString().Trim();
+                        this.TxtMedioRecibo.Text = rows[0]["mediocodigo"].ToString() + " | " + rows[0]["medionombre"].ToString().Trim();
+                        this.TxtExpediente.Text = rows[0]["expedientecodigo"].ToString() + " | " + rows[0]["expedientenombre"].ToString().Trim();
+
+
+
+                    }
+                    string ActLogCod = "ACCESO";
+                    DateTime FechaInicio = DateTime.Now;
+                    //OBTENER CONSECUTIVO DE LOGS
+                    DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                    DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+                    Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+                    DataRow[] fila = Conse.Select();
+                    string x = fila[0].ItemArray[0].ToString();
+                    string LOG = Convert.ToString(x);
+                    //Se Realiza el Log
+                    int NumeroDocumento = Convert.ToInt32("0");
+                    string GrupoCod = "2";
+                    string Datosini = "";
+                    string Datosfin1 = "Acceso a modulo de Documentos Enviados.";
+                    string usernam = Profile.GetProfile(Profile.UserName).UserName.ToString();
+                    DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+                    string UserId = objUsr.Aspnet_UserIDByUserName(usernam).ToString();
+                    DateTime FechaFin = DateTime.Now;
+                    Int64 LogId = Convert.ToInt64(LOG);
+                    string IP = Session["IP"].ToString();
+                    string NombreEquipo = Session["Nombrepc"].ToString();
+                    System.Web.HttpBrowserCapabilities nav = Request.Browser;
+                    string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+
+                    DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter Accediendo = new DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter();
+                    //Insert de Log Acceso
+                    Accediendo.InsertEnviados(LogId, usernam, FechaInicio, ActLogCod, NumeroDocumento, GrupoCod, ModuloLog,
+                                                Datosini, Datosfin1, FechaFin, IP, NombreEquipo, Navegador);
+                    //Actualiza el consecutivo de Logs
+                    DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                    ConseLogs.GetConsecutivos(ConsecutivoCodigo);
             }
             else
             {
             }
+            this.hlinkCarta.Visible = false;
+            this.lbCartaPlantilla.Visible = false;
         }
         catch (Exception Error)
         {
@@ -226,7 +276,10 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
     }
     protected void ImgBtnFindRad_Click(object sender, ImageClickEventArgs e)
     {
+        string usernam = Profile.GetProfile(Profile.UserName).UserName.ToString();
         Session["CodRegistro"] = "";
+        DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+        string UserId = objUsr.Aspnet_UserIDByUserName(usernam).ToString();
         this.ExceptionDetails.Text = "";
         this.Label6.Text = "";
 
@@ -309,61 +362,102 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
             DataTable tabla = ejecutar.rtn_traer_registros_por_grupo_por_id(Grupo, NroReg);
             DataRow[] rows = tabla.Select();
 
-             this.mostrar(rows);
-            
-            
-            if (RadioButtonList1.SelectedValue == "1") //interno
+            if (tabla.Rows.Count > 0)
             {
-                this.AutoCompleteDestino.ServiceMethod = "GetDependenciaByText";
-            }
-            if (RadioButtonList1.SelectedValue == "0") //externo
-            {
-                this.AutoCompleteDestino.ServiceMethod = "GetProcedenciaByTextNombre";
-               // this.TxtDestino.Text = rows[0]["procedenciacoddestino"].ToString().Trim() + " | " + rows[0]["expedientenombre"].ToString().Trim() + " | " + rows[0]["serienombre"].ToString().Trim();
-            }
+                this.mostrar(rows);
 
-            if (rows[0]["codigomotdevolucion"].ToString() == "")
-            {
-                this.DropDownList1.SelectedValue = "101";
+                if (RadioButtonList1.SelectedValue == "1") //interno
+                {
+                    this.AutoCompleteDestino.ServiceMethod = "GetDependenciaByText";
+                }
+                if (RadioButtonList1.SelectedValue == "0") //externo
+                {
+                    this.AutoCompleteDestino.ServiceMethod = "GetProcedenciaByTextNombre";
+                    // this.TxtDestino.Text = rows[0]["procedenciacoddestino"].ToString().Trim() + " | " + rows[0]["expedientenombre"].ToString().Trim() + " | " + rows[0]["serienombre"].ToString().Trim();
+                }
+
+                if (rows[0]["codigomotdevolucion"].ToString() == "")
+                {
+                    this.DropDownList1.SelectedValue = "101";
+                }
+                else
+                {
+                    this.DropDownList1.SelectedValue = rows[0]["codigomotdevolucion"].ToString();
+                }
+
+                this.TextBox1.Visible = true;
+
+                this.cmdActualizar.Enabled = true;
+                this.RadioButtonList1.Enabled = false;
+                this.cmdAceptar.Enabled = false;
+                //this.ExceptionDetails.Text = "Registro Nro " + NroReg;
+                this.Label6.Text = NroReg;
+                this.Label12.Visible = true;
+
+                tabla = ejecutar.rtn_traer_tbtablas_por_Id("GRUPOREG");
+                string codigodelgruporegistros = tabla.Rows[0][0].ToString().Trim();
+                this.NavDocEnviado1.HFGrupoCodigoValor(this.DropDownListGrupo.SelectedValue);
+                this.NavDocEnviado1.HFRegistroCodigoValor(NroReg);
+                this.NavDocEnviado1.HFGrupoPadreCodigoValor(codigodelgruporegistros);
+
+
+
+
+                DataTable DTRadFuente = ejecutar.rtn_traer_radicadofuente_por_grupo_por_id(Grupo, Convert.ToInt32(NroReg));
+                ListBoxFuente.Items.Clear();
+                foreach (DataRow dr in DTRadFuente.Rows)
+                {
+                    ListBoxFuente.Items.Add(dr["gruporadicadocodigofuente"].ToString() + "--" + dr["radicadocodigofuente"].ToString() + " | " + dr["ProcedenciaNombre"].ToString());
+                    this.DropDownListGrupoFuente.SelectedValue = dr["gruporadicadocodigofuente"].ToString().Trim();
+                }
+
+
+                this.DropDownList1.Visible = true;
+                this.LblMotDev.Visible = true;
+                this.LblFecDev.Visible = true;
+                this.TxtFecMotDev.Visible = true;
+                this.ImgFecDev.Visible = true;
+                this.lbCartaPlantilla.Visible = true;
+                this.hlinkCarta.Visible = true;
+                this.hlinkCarta.NavigateUrl = "DocEnviadoDevPorNoCompetencia.aspx?RegistroCodigo=" + Convert.ToString(NroReg);
+
+                Session["DatosActualReg"] = this.DateFechaRad.Text + "|" + TxtDestino.Text.ToString() + "|" + TxtDetalle.Text.ToString() + "|" + TxtNaturaleza.Text.ToString().Trim() + "|" + TxtMedioRecibo.Text.ToString() + "|" + TxtGuia.Text.ToString() + "|" + TxtPesoEnvio.Text.ToString() + " " + "|" + TxtValor.Text.ToString() + TxtExpediente.Text.ToString() + "|" + this.TextBox1.Text.ToString() + "|" + TxtAnexo.Text.ToString() + ListBoxEnterar.Text.ToString();
+                /*FechaRad+ DependenciaDestinoCod y nombre+ Detalle + NaturaCod y nombre + MedioCodyNombre + Guia + peso envio +  Valor + ExpedienteCodyNombre + Archivar en + Anexo + enterar a:
+                */
+
+                string ActLogCod = "BUSCAR";
+                DateTime FechaInicio = DateTime.Now;
+                //OBTENER CONSECUTIVO DE LOGS
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+                Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+                DataRow[] fila = Conse.Select();
+                string x = fila[0].ItemArray[0].ToString();
+                string LOG = Convert.ToString(x);
+                //Se Realiza el Log
+                //int NumeroDocumento = Convert.ToInt32(TxtBuscarRadicado.Text);
+                string GrupoCod = "2";
+                string Datosini = "Buscar por Numero Registro";
+                string Datosfin1 = TxtBuscarRadicado.Text;//NUM REG
+                DateTime FechaFin = DateTime.Now;
+                Int64 LogId = Convert.ToInt64(LOG);
+                string IP = Session["IP"].ToString();
+                string NombreEquipo = Session["Nombrepc"].ToString();
+                System.Web.HttpBrowserCapabilities nav = Request.Browser;
+                string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+
+                DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter Accediendo = new DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter();
+                //Se hace el insert de Log Enviados
+                Accediendo.InsertEnviados(LogId, usernam, FechaInicio, ActLogCod, Convert.ToInt32(NroReg), GrupoCod, ModuloLog,
+                                            Datosini, Datosfin1, FechaFin, IP, NombreEquipo, Navegador);
+                //Se hace el update consecutivo de Logs
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                ConseLogs.GetConsecutivos(ConsecutivoCodigo);
             }
             else
             {
-                this.DropDownList1.SelectedValue = rows[0]["codigomotdevolucion"].ToString();
-            }
-
-            this.TextBox1.Visible = true;
-
-            this.cmdActualizar.Enabled = true;
-            this.RadioButtonList1.Enabled = false;
-            this.cmdAceptar.Enabled = false;
-            //this.ExceptionDetails.Text = "Registro Nro " + NroReg;
-            this.Label6.Text = NroReg;
-            this.Label12.Visible = true;
-
-            tabla = ejecutar.rtn_traer_tbtablas_por_Id("GRUPOREG");
-            string codigodelgruporegistros = tabla.Rows[0][0].ToString().Trim();
-            this.NavDocEnviado1.HFGrupoCodigoValor(this.DropDownListGrupo.SelectedValue);
-            this.NavDocEnviado1.HFRegistroCodigoValor(NroReg);
-            this.NavDocEnviado1.HFGrupoPadreCodigoValor(codigodelgruporegistros);
-
-
-
-
-            DataTable DTRadFuente = ejecutar.rtn_traer_radicadofuente_por_grupo_por_id(Grupo, Convert.ToInt32(NroReg));
-            ListBoxFuente.Items.Clear();
-            foreach (DataRow dr in DTRadFuente.Rows)
-            {
-                ListBoxFuente.Items.Add(dr["gruporadicadocodigofuente"].ToString() + "--" + dr["radicadocodigofuente"].ToString() + " | " + dr["ProcedenciaNombre"].ToString());
-                this.DropDownListGrupoFuente.SelectedValue = dr["gruporadicadocodigofuente"].ToString().Trim();
-            }
-
-
-            this.DropDownList1.Visible = true;
-            this.LblMotDev.Visible = true;
-            this.LblFecDev.Visible = true;
-            this.TxtFecMotDev.Visible = true;
-            this.ImgFecDev.Visible = true;
-            
+                this.ExceptionDetails.Text = "No Numero de Registro no fue Encontrado o No Existe Verifique en intente de nuevo";
+            }      
 
         }
         catch (Exception Error)
@@ -606,9 +700,21 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
         string RegistroCodigo = "1";
         string TipoDocEnviado;
         int WFMovTipo;
+        string ActLogCod = "ADICIONAR";
+        DateTime FechaInicio = DateTime.Now;
+        //OBTENER CONSECUTIVO LOGS
+        DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+        DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+        Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+        DataRow[] fila = Conse.Select();
+        string x = fila[0].ItemArray[0].ToString();
+        string LOG = Convert.ToString(x);
+        string username = Profile.GetProfile(Profile.UserName).UserName.ToString();
+        DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+        string UserId = objUsr.Aspnet_UserIDByUserName(username).ToString();
         try
         {
-            cmdAceptar.Enabled = false;
+
             String RadCodString;
             RadCodString = TxtRadFuente.Text;
             if (RadCodString == "")
@@ -628,6 +734,10 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
                 RegistroBLL ObjReg = new RegistroBLL();
                 RegistroCodigo = ObjReg.AddRegistro(GrpDocReg, DateTime.Now, null, TxtDestino.Text.ToString(), TxtDependencia.Text.ToString(), TxtNaturaleza.Text.ToString(), Convert.ToInt32(RadCodString), TxtDetalle.Text.ToString(), TxtGuia.Text.ToString(), TxtPesoEnvio.Text.ToString(), TxtGuia.Text, TxtAnexo.Text.ToString(), Profile.GetProfile(Profile.UserName).CodigoDepUsuario.ToString(), TxtExpediente.Text.ToString(), TxtMedioRecibo.Text.ToString(), TextBox1.Text.ToString(), TxtValor.Text.ToString(), RadioButtonList1.Text.ToString(), WFAccion, DateTime.Now, DateTime.Now, Convert.ToInt32(RadioButtonList1.Text.ToString()), TxtDetalle.Text.ToString(), "0");
                 TipoDocEnviado = "1";
+
+                string Datosfin = GrpDocReg + "|" + Profile.GetProfile(User.Identity.Name.ToString()).CodigoDepUsuario.ToString() + "|" + username + "|" + this.DateFechaRad.Text + "|" + TxtDependencia.Text.ToString() + "|" + TxtDestino.Text.ToString() + "|" + TxtDetalle.Text.ToString() + "|" + TxtNaturaleza.Text.ToString().Trim() + "|" + TxtMedioRecibo.Text.ToString() + "|" + TxtGuia.Text.ToString() + "|" + TxtPesoEnvio.Text.ToString() + " " + "|" + TxtValor.Text.ToString() + TxtExpediente.Text.ToString() + "|" + this.TextBox1.Text.ToString() + "|" + TxtAnexo.Text.ToString();
+                //Variable de session para almacenar datos de busqueda y utilizar posteriormente
+                Session["DatosfinReg"] = Datosfin;
                 //foreach (ListItem Item in ListBoxFuente.Items)
                 //{
                 //    if (Item.Text != null)
@@ -640,10 +750,10 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
                 //    DSRadicadoFuenteSQLTableAdapters.RadicadoFuente_ReadRadicadoFuenteTableAdapter TARadFuente = new DSRadicadoFuenteSQLTableAdapters.RadicadoFuente_ReadRadicadoFuenteTableAdapter();
                 //    TARadFuente.Insert(Convert.ToInt32(RegistroCodigo), Convert.ToInt32(Item.Text));
                 //}
-
+          
                 this.insertarradicadosfuente(RegistroCodigo);
 
-
+                
             }
             else
             {
@@ -653,6 +763,10 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
                 this.insertarradicadosfuente(RegistroCodigo);
                 TipoDocEnviado = "0";
 
+                string Datosfin = GrpDocReg + "|" + Profile.GetProfile(User.Identity.Name.ToString()).CodigoDepUsuario.ToString() + "|" + username + "|" + this.DateFechaRad.Text + "|" + TxtDependencia.Text.ToString() + "|" + TxtDestino.Text.ToString() + "|" + TxtDetalle.Text.ToString() + "|" + TxtNaturaleza.Text.ToString().Trim() + "|" + TxtMedioRecibo.Text.ToString() + "|" + TxtGuia.Text.ToString() + "|" + TxtPesoEnvio.Text.ToString() + " " + "|" + TxtValor.Text.ToString() + TxtExpediente.Text.ToString() + "|" + this.TextBox1.Text.ToString() + "|" + TxtAnexo.Text.ToString();
+                //Variable de session para almacenar datos de busqueda y utilizar posteriormente
+                Session["DatosfinReg"] = Datosfin;
+                
                 //foreach (ListItem Item in ListBoxFuente.Items)
                 //{
                 //    if (Item.Text != null)
@@ -694,7 +808,7 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
                 if (RBEnterarA.SelectedValue == "T")
                 {
                     String Correcto = ObjReg.CopiaTodosRegistro(TxtDependencia.Text.ToString(), this.ListBoxEnterar.Items[0].Value, WFAccion, DateTime.Now, DateTime.Now, WFMovTipo, TxtDetalle.Text.ToString(), null, RegistroCodigo, GrpDocReg, DateTime.Now, "0");
-
+            
                     //String Correcto = ObjReg.CopiasRegistro(TxtDependencia.Text.ToString(), DateTime.Now, this.ListBoxEnterar.Items[0].Value, null, WFAccion, DateTime.Now, DateTime.Now, WFMovTipo, null, null, RegistroCodigo, GrpDocReg, DateTime.Now, "0");
 
                 }
@@ -750,7 +864,7 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
             HttpCookie SerieEnvCookie = Request.Cookies.Get("SerieEnv");
             SerieEnvCookie.Value = this.TextBox1.Text.ToString();
             Response.Cookies.Set(SerieEnvCookie);
-
+            
             //mostrar etiqueta de consecutivo documento
             tabla = ejecutar.rtn_traer_tbtablas_por_Id("GRUPOREG");
             string codigodelgruporegistros = tabla.Rows[0][0].ToString().Trim();
@@ -763,6 +877,9 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
             this.Label6.Text = RegistroCodigo;
             this.Label12.Visible = true;
 
+            this.hlinkCarta.Visible = true;
+            this.lbCartaPlantilla.Visible = true;
+            this.hlinkCarta.NavigateUrl = "DocEnviadoDevPorNoCompetencia.aspx?RegistroCodigo=" + Convert.ToString(RegistroCodigo);
 
             this.LblMessageBox.Text = "Registro Nro" + " " + RegistroCodigo;
             Session["CodRegistro"] = RegistroCodigo;
@@ -772,29 +889,110 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
             this.ListBoxEnterar.Items.Clear();
             if (RadioButtonList1.SelectedValue == "1")
             {
+                
                 MailBLL Correo = new MailBLL();
                 MembershipUser usuario;
                 DSUsuarioTableAdapters.UsuariosxdependenciaTableAdapter ObjTaUsuarioxDependencia = new DSUsuarioTableAdapters.UsuariosxdependenciaTableAdapter();
                 DSUsuario.UsuariosxdependenciaDataTable DTUsuariosxDependencia = new DSUsuario.UsuariosxdependenciaDataTable();
-                DTUsuariosxDependencia = ObjTaUsuarioxDependencia.GetUsuariosxDependenciaByDependencia(this.TxtDependencia.Text.Remove(TxtDestino.Text.IndexOf(" | ")).ToString().Trim());
+                DTUsuariosxDependencia = ObjTaUsuarioxDependencia.GetUsuariosxDependenciaByDependencia(this.TxtDestino.Text.Remove(TxtDestino.Text.IndexOf(" | ")).ToString().Trim());
                 if (DTUsuariosxDependencia.Count > 0)
                 {
                     DataRow[] rows = DTUsuariosxDependencia.Select();
                     System.Guid a = new Guid(rows[0].ItemArray[0].ToString().Trim());
-                    usuario = Membership.GetUser(a);
+                    DSaspnet_UsersTableAdapters.Aspnet_Users_ReadUsersByUserNameTableAdapter objReadUser = new DSaspnet_UsersTableAdapters.Aspnet_Users_ReadUsersByUserNameTableAdapter();
+                    DSaspnet_Users.Aspnet_Users_ReadUsersByUserNameDataTable TablaRead = new DSaspnet_Users.Aspnet_Users_ReadUsersByUserNameDataTable();
+                    TablaRead = objReadUser.GetDataByUserId(a.ToString());
+                    DataRow[] rowsUser = TablaRead.Select();
+                    string Usrname = rowsUser[0].ItemArray[1].ToString();
+                    usuario = Membership.GetUser(Usrname);
                     string Body = "Tiene un nuevo Registro Nro " + RegistroCodigo + "<BR>" + " Fecha de Tramite: " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "<BR>" + "Dependencia: " + this.TxtDependencia.Text.ToString() + "<BR>" + "Naturaleza: " + this.TxtNaturaleza.Text.ToString().Trim() + "<BR>";
                     Correo.EnvioCorreo("alfanet.archivar@gmail.com", usuario.Email, "Registro Nro" + " " + RegistroCodigo, Body, true, "1");
                 }
             }
+            DateTime FechaFin = DateTime.Now;
+            int NumeroDocumento = Convert.ToInt32(this.Label6.Text);
+            string GrupoCod = GrpDocReg;
+            string Datosini = "";
+            /*DATOS FIN:   GrupoDoc+ CodDepUsuario+ username+ FechaRad+ DependenciaCod y nombre + DependenciaDestinoCod y nombre+ Detalle + NaturaCod y nombre + MedioCodyNombre + Guia + peso envio +  Valor + ExpedienteCodyNombre + Archivar en + Anexo
+             */
+
+            string Datosfin1 = Session["DatosfinReg"].ToString();
+            Int64 LogId = Convert.ToInt64(LOG);
+            string IP = Session["IP"].ToString();
+            string NombreEquipo = Session["Nombrepc"].ToString();
+            System.Web.HttpBrowserCapabilities nav = Request.Browser;
+            string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+
+            DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter DocInsertEnv = new DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter();
+            //Se hace el insert de Log Enviados Adicionar
+            DocInsertEnv.InsertEnviados(LogId, username, FechaInicio, ActLogCod, NumeroDocumento, GrupoCod, ModuloLog,
+                                        Datosini, Datosfin1, FechaFin, IP, NombreEquipo, Navegador);
+            //Se actualiza el consecutivo de Logs
+            DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+            ConseLogs.GetConsecutivos(ConsecutivoCodigo);
+
+            /*Registrar el evento de busqueda*/
+            String Ip_cliente = Context.Request.UserHostAddress;
+            //String Uri_OrigRef = Context.Request.UrlReferrer.OriginalString;
+
+            log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+
+            String Log = "1" + " " + RegistroCodigo + " " + this.DropDownListGrupo.SelectedValue + "?" + value_pipe(this.TxtDependencia.Text) + "?" + value_pipe(this.TxtDestino.Text) + "?" + this.TxtDetalle.Text + "?" +
+                value_pipe(this.TxtNaturaleza.Text) + "?" + value_pipe(this.TxtMedioRecibo.Text) + "?" + this.TxtGuia.Text + "?" +
+                this.TxtPesoEnvio.Text + "?" + this.DropDownList1.SelectedValue + "?" + this.TxtFecMotDev.Text + "?" + value_pipe(TxtExpediente.Text) + "?" + value_pipe(this.TextBox1.Text) + "?" +
+                Profile.GetProfile(Profile.UserName).CodigoDepUsuario.ToString() + "?" + TxtAnexo.Text;
+
+
+            //ILog logger = LogManager.GetLogger("primerEjemplo");
+            logger.Fatal(Ip_cliente + " " + Log); 
+            
+
+
         }
         catch (Exception Error)
         {
             this.ExceptionDetails.Text = "Problema" + Error;
+            //OBTENER CONSECUTIVO DE LOGS
+            string DatosFinales = this.ExceptionDetails.Text;
+            DateTime WFMovimientoFechaFin = DateTime.Now;
+
+            DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConsecutivosErr = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+            DSGrupoSQL.ConsecutivoLogsDataTable ConseErr = new DSGrupoSQL.ConsecutivoLogsDataTable();
+            ConseErr = ConsecutivosErr.GetConseError(ConsecutivoCodigoErr);
+            DataRow[] fila2 = ConseErr.Select();
+            string z = fila2[0].ItemArray[0].ToString();
+            string LOGERROR = Convert.ToString(z);
+            Int64 LogIdErr = Convert.ToInt64(LOGERROR);
+            string IP = Session["IP"].ToString();
+            string NombreEquipo = Session["Nombrepc"].ToString();
+            System.Web.HttpBrowserCapabilities nav = Request.Browser;
+            string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+
+            DSLogAlfaNetTableAdapters.LogAlfaNetErroresTableAdapter Errores = new DSLogAlfaNetTableAdapters.LogAlfaNetErroresTableAdapter();
+            Errores.GetError(LogIdErr, username, FechaInicio, ActividadLogCodigoErr, GrpDocReg, ModuloLog,
+                             DatosFinales, WFMovimientoFechaFin, IP, NombreEquipo,
+                             Navegador);
+            //ACTUALIZA el consecutivo de Logs
+            DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+            ConseLogs.GetConsecutivos(ConsecutivoCodigoErr);
         }
-        finally
+    }
+    protected string value_pipe(string val_1)
+    {
+        string res = "";
+        if (val_1 != "" && val_1 != null)
         {
-            cmdAceptar.Enabled = true;
+            if (val_1.Contains(" | "))
+            {
+                res = val_1.Remove(val_1.IndexOf(" | "));
+            }
+            else
+            {
+                res = val_1;
+            }
         }
+        return res;
     }
     protected void cmdCancel_Click(object sender, ImageClickEventArgs e)
     {
@@ -849,10 +1047,20 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
         string grupofuente = "";
         string RegistroCodigo = "";
         string FechaActMotDevolucion;
-        
-        
 
-
+        string ActLogCod = "ACTUALIZAR";
+        DateTime FechaInicio = DateTime.Now;
+        //OBTENER CONSECUTIVO LOGS
+        DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+        DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+        Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+        DataRow[] fila = Conse.Select();
+        string x = fila[0].ItemArray[0].ToString();
+        string LOG = Convert.ToString(x);
+        string username = Profile.GetProfile(Profile.UserName).UserName.ToString();
+        DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+        string UserId = objUsr.Aspnet_UserIDByUserName(username).ToString();
+                
         try
         {
 
@@ -876,7 +1084,8 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
                 NroReg = TxtBuscarRadicado.Text.Remove(TxtBuscarRadicado.Text.ToString().IndexOf(" | "));
                 TxtBuscarRadicado.Text = TxtBuscarRadicado.Text.Remove(TxtBuscarRadicado.Text.IndexOf(" | "));
             }
-
+			//Datos Actualizados
+            Session["DatosUpdateReg"] = this.DateFechaRad.Text + "|" + TxtDestino.Text.ToString() + "|" + TxtDetalle.Text.ToString() + "|" + TxtNaturaleza.Text.ToString().Trim() + "|" + TxtMedioRecibo.Text.ToString() + "|" + TxtGuia.Text.ToString() + "|" + TxtPesoEnvio.Text.ToString() + " " + "|" + TxtValor.Text.ToString() + TxtExpediente.Text.ToString() + "|" + this.TextBox1.Text.ToString() + "|" + TxtAnexo.Text.ToString() + ListBoxEnterar.Text.ToString();
 
             if (RadioButtonList1.SelectedValue == "1")
             {
@@ -984,10 +1193,66 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
             this.LblMessageBox.Text = "Registro Actualizado Nro" + " " + RegistroCodigo;
             this.ModalPopupExtender1.Show();
 
+            // LOG 
+            int NumeroDocumento = Convert.ToInt32(Session["NumDocReg"]);
+            string Datosini = Session["DatosActualReg"].ToString();
+            string Datosfin1 = Session["DatosUpdateReg"].ToString();
+            DateTime FechaFin = DateTime.Now;
+            Int64 LogId = Convert.ToInt64(LOG);
+            string IP = Session["IP"].ToString();
+            string NombreEquipo = Session["Nombrepc"].ToString();
+            System.Web.HttpBrowserCapabilities nav = Request.Browser;
+            string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+
+            DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter DocupdateReg = new DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter();
+            //Se inserta el Log de actualizar
+            DocupdateReg.InsertEnviados(LogId, username, FechaInicio, ActLogCod, NumeroDocumento, GrpDocReg,
+                                        ModuloLog, Datosini, Datosfin1, FechaFin, IP, NombreEquipo, Navegador);
+            //Se hace el consecutivo de Logs
+            DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+            ConseLogs.GetConsecutivos(ConsecutivoCodigo);
+
+            /*Registrar el evento de busqueda*/
+            String Ip_cliente = Context.Request.UserHostAddress;
+            //String Uri_OrigRef = Context.Request.UrlReferrer.OriginalString;
+
+            log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+
+            String Log = "1" + " " + RegistroCodigo + " " + this.DropDownListGrupo.SelectedValue + "?" + value_pipe(this.TxtDependencia.Text) + "?" + value_pipe(this.TxtDestino.Text) + "?" + this.TxtDetalle.Text + "?" +
+                value_pipe(this.TxtNaturaleza.Text) + "?" + value_pipe(this.TxtMedioRecibo.Text) + "?" + this.TxtGuia.Text + "?" +
+                this.TxtPesoEnvio.Text + "?" + this.DropDownList1.SelectedValue + "?" + this.TxtFecMotDev.Text + "?" + value_pipe(TxtExpediente.Text) + "?" + value_pipe(this.TextBox1.Text) + "?" +
+                Profile.GetProfile(Profile.UserName).CodigoDepUsuario.ToString() + "?" + TxtAnexo.Text;
+
+
+            //ILog logger = LogManager.GetLogger("primerEjemplo");
+            logger.Fatal(Ip_cliente + " " + Log); 
+
         }
         catch (Exception Error)
         {
             this.ExceptionDetails.Text = "Problema" + Error;
+            //OBTENER CONSECUTIVO DE LOGS
+            string DatosFinales = this.ExceptionDetails.Text;
+            DateTime WFMovimientoFechaFin = DateTime.Now;
+            DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConsecutivosErr = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+            DSGrupoSQL.ConsecutivoLogsDataTable ConseErr = new DSGrupoSQL.ConsecutivoLogsDataTable();
+            ConseErr = ConsecutivosErr.GetConseError(ConsecutivoCodigoErr);
+            DataRow[] fila2 = ConseErr.Select();
+            string z = fila2[0].ItemArray[0].ToString();
+            string LOGERROR = Convert.ToString(z);
+            Int64 LogIdErr = Convert.ToInt64(LOGERROR);
+            System.Web.HttpBrowserCapabilities nav = Request.Browser;
+            string IP = Session["IP"].ToString();
+            string NombreEquipo = Session["Nombrepc"].ToString();
+            string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+            //Se hace el insert de Log error
+            DSLogAlfaNetTableAdapters.LogAlfaNetErroresTableAdapter Errores = new DSLogAlfaNetTableAdapters.LogAlfaNetErroresTableAdapter();
+            Errores.GetError(LogIdErr, username, FechaInicio, ActividadLogCodigoErr, GrpDocReg, ModuloLog, DatosFinales,
+            WFMovimientoFechaFin, IP, NombreEquipo, Navegador);
+            //Se hace el update consecutivo de Logs
+            DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+            ConseLogs.GetConsecutivos(ConsecutivoCodigoErr);
         }
     }
     protected void DropDownListGrupo_SelectedIndexChanged(object sender, EventArgs e)
@@ -1049,17 +1314,25 @@ public partial class _NuevoDocEnviadoInt : System.Web.UI.Page
             {
                 if (Item.Text.Contains("|"))
                 {
-                    int correr = 0;
-                    correr = Item.Text.IndexOf("|") - (Item.Text.IndexOf("--") + 2);
-                    grupofuente = Item.Text.Substring(0, Item.Text.IndexOf("--"));
-                    xcodigo = Item.Text.Substring(Item.Text.IndexOf("--") + 2, correr);
+                    if (Item.Text.Contains("--"))
+                    {
+                        int correr = 0;
+                        correr = Item.Text.IndexOf("|") - (Item.Text.IndexOf("--") + 2);
+                        grupofuente = Item.Text.Substring(0, Item.Text.IndexOf("--"));
+                        xcodigo = Item.Text.Substring(Item.Text.IndexOf("--") + 2, correr);
+                    }
+                    else
+                    {
+                        xcodigo = Item.Text.Remove(Item.Text.IndexOf("|"));
+                    }
 
                 }
-                //else
+                else
                 //{
 
                 //    grupofuente = DropDownListGrupoFuente.SelectedValue;
                 //    xcodigo = Item.Text.Substring(Item.Text.IndexOf("--") + 2, correr);
+                    xcodigo = Item.Text;
                 //}
 
                 //}

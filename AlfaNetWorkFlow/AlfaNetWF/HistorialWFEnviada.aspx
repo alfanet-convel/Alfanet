@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true"  CodeFile="HistorialWFEnviada.aspx.cs" Inherits="_HistorialWFNEnviada" %>
 
-<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845DCD8080CC91"
     Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
     
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
@@ -51,15 +51,7 @@
 <EditRowStyle BackColor="#2461BF"></EditRowStyle>
 
 <AlternatingRowStyle BackColor="White"></AlternatingRowStyle>
-</asp:DetailsView> <BR />
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="Label3" Width="400px"  Font-Bold="true" Height="30px"  runat="server" 
-                    BackColor="#C9FEC1" Text=" &nbsp;&nbsp;&nbsp; En caso de
-                 requerir  información  detallada del  proceso, es necesario  dar clic sobre el 
-                escritorio o Post-It que desee detallar" BorderStyle="Outset"></asp:Label>
-            <br />
-</TD></TR><TR><TD colSpan=3><asp:Panel id="Panel1" runat="server" Width="100%" HorizontalAlign="Center" Direction="LeftToRight"> 
+</asp:DetailsView> </TD></TR><TR><TD colSpan=3><asp:Panel id="Panel1" runat="server" Width="100%" HorizontalAlign="Center" Direction="LeftToRight"> 
 </asp:Panel><BR /></TD></TR><TR><TD style="HEIGHT: 25px" colSpan=3><asp:Label id="LblDetalleMultitarea" runat="server" Width="435px" BackColor="CornflowerBlue" Visible="False" BorderColor="#B5C7DE" ForeColor="White" Font-Bold="True" BorderStyle="Solid" BorderWidth="2px"></asp:Label></TD></TR><TR><TD colSpan=3><BR /><BR /><asp:Panel id="Panel2" runat="server" Width="100%" HorizontalAlign="Center" Direction="LeftToRight"> </asp:Panel><BR /></TD></TR><TR><TD colSpan=3><asp:Label id="LblAccionEnterese" runat="server" Width="435px" BackColor="CornflowerBlue" Visible="False" BorderColor="#B5C7DE" ForeColor="White" Font-Bold="True" BorderStyle="Solid" BorderWidth="2px"></asp:Label></TD></TR></TBODY></TABLE>&nbsp;&nbsp;</DIV><asp:ObjectDataSource id="ODSHistorico" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetRegistroHistorico" TypeName="DSRegistroTableAdapters.Registro_ConsultasHistoricoTableAdapter"><SelectParameters>
 <asp:ControlParameter ControlID="HFCodigoSeleccionado" PropertyName="Value" Name="RegistroCodigo" Type="Int32"></asp:ControlParameter>
 <asp:ControlParameter ControlID="HFGrupoSeleccionado" PropertyName="Value" Name="GrupoCodigo" Type="String"></asp:ControlParameter>

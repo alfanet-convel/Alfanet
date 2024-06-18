@@ -94,6 +94,10 @@ public class ErrorHandled
                             mErrorDescription += " Uno o Varios Parametros no Existen o no Fueron Validados en las Listas ";
 
                         }
+                        if (mError.Message.Contains("No se puede insertar una clave duplicada"))
+                        {
+                            mErrorDescription += " No se puede Insertar debido a que Ya Existe en la Base de Datos. ";
+                        }
 
                     }
                 }         

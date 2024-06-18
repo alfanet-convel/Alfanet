@@ -12,10 +12,10 @@
             <tr>
                 <td style="vertical-align: top; width: 165px; text-align: center">
                     <br />
-                    <img src="../AlfaNetImagen/MainPages/MainAyuda.gif" style="width: 84px; height: 156px" /></td>
+                   </td>
                 <td>
                     <strong></strong>
-                    <h1 style="text-align: center">
+                    <h1 style="text-align: center">Ayuda Alfanet
                         <strong><span style="color: appworkspace">DOCUMENTOS</span></strong></h1>
                     <h1 style="text-align: center">
                         <strong><span style="color: appworkspace"></span></strong><strong><span style="color: appworkspace">

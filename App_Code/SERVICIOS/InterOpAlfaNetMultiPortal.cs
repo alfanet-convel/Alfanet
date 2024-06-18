@@ -99,26 +99,6 @@ public class InterOpAlfaNetMultiPortal : System.Web.Services.WebService
              RadicarTramiteIn.insertarprocedenciaDataTable Dtabla = new RadicarTramiteIn.insertarprocedenciaDataTable();
              RadicarTramiteInTableAdapters.insertarprocedenciaTableAdapter Tabla = new RadicarTramiteInTableAdapters.insertarprocedenciaTableAdapter();
 
-            /* RadicarTramiteUAndesTableAdapters.Consulta_NuiTableAdapter consultanui = new RadicarTramiteUAndesTableAdapters.Consulta_NuiTableAdapter();
-             DataTable existe = new DataTable();
-             existe = consultanui.GetData(NUI);
-
-             string a = "";
-
-             foreach (DataRow item in existe.Rows)
-             {
-                 a = item["Column1"].ToString();
-             }*/
-             string Result;
-           /*  if (a == "0")
-             {
-                 NUI = "TICS_" + NUI;
-                 // string mensaje = "Nos Encontramos en mantenimiento por favor comunicarse con Mintic.";
-
-                 // Result = "<Root>" + "<RadicadoCodigo></RadicadoCodigo>" + "<WFMovimientoFecha></WFMovimientoFecha><ExpedienteCodigo></ExpedienteCodigo>" + "<CodigoError>" + "1" + "</CodigoError>" + "<MensajeError>" + mensaje + "</MensajeError>" + "</Root>";
-                 // return Result;
-             }*/
-
              Dtabla = Tabla.GetData(NUI, Nombre, Direccion, Ciudad, Telefono1, Telefono2, Email1, Email2, Fax, url, Naturaleza, Dependencia, Expediente, Detalle, DateTime.Now);
             
              string coderror;
@@ -130,7 +110,7 @@ public class InterOpAlfaNetMultiPortal : System.Web.Services.WebService
              {
                  coderror = "1";
              }
-             //string Result;
+             string Result;
              Result = "<Root>" + "<RadicadoCodigo>" + Dtabla[0].RadicadoCodigo + "</RadicadoCodigo>" + "<ExpedienteCodigo>" + Dtabla[0].ExpedienteCodigo + "</ExpedienteCodigo>" + "<CodigoError>" + coderror + "</CodigoError>" + "<MensajeError>" + Dtabla[0].ErrorMessage + "</MensajeError>" + "</Root>";
              if (url == "")
              {

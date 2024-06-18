@@ -14,7 +14,7 @@
         <tr>
             <td style="vertical-align: top; text-align: center">
                 <br />
-                        <img src="../../AlfaNetImagen/Logo/convel.jpg" /><br />
+                        <img src="../../AlfaNetImagen/Logo/Logo Empresa.jpg" Width="250px" height = "180px" style="margin-right:40px"/><br />
             </td>
         </tr>
         <tr>
@@ -53,7 +53,7 @@
                                                         <asp:TextBox ID="UserName" runat="server" Height="15px" Width="150px" CssClass="TxtProp"></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName"
                                                             ErrorMessage="El nombre de usuario es obligatorio." ToolTip="El nombre de usuario es obligatorio."
-                                                            ValidationGroup="ctl01$Login1" ForeColor="White">*</asp:RequiredFieldValidator></td>
+                                                            ValidationGroup="ctl01$Login1" ForeColor="red">*</asp:RequiredFieldValidator></td>
                                                 </tr>
                                                 <tr>
                                                     <td align="right" style="width: 108px; height: 35px; text-align: float">
@@ -63,7 +63,7 @@
                                                             Width="150px" CssClass="TxtProp"></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password"
                                                             ErrorMessage="La contraseña es obligatoria." ToolTip="La contraseña es obligatoria."
-                                                            ValidationGroup="ctl01$Login1" ForeColor="White">*</asp:RequiredFieldValidator></td>
+                                                            ValidationGroup="ctl01$Login1" ForeColor="red">*</asp:RequiredFieldValidator></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2" style="height: 32px">

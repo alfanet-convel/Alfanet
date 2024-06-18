@@ -22,76 +22,184 @@
 			Cufon.replace('#LblCodigoBarras'); // Requires a selector engine for IE 6-7, see above
 	 </script>
 
+    <script language="javascript" type="text/javascript">
+        function prevenirDeborde(){
+            contenedor = document.getElementById("pnlContenido");
+            sticker = document.getElementById("PnlSticker");
+            if (IE){
+                BordeMax = contenedor.offsetLeft + contenedor.offsetWidth;
+                Borde = sticker.offsetLeft + sticker.offsetWidth;
+                VerticalMax = contenedor.offsetTop + contenedor.offsetHeight;
+                Vertical = sticker.offsetTop + sticker.offsetHeight;
+
+                if(Borde > BordeMax)
+                    sticker.style.left = BordeMax - sticker.offsetWidth;
+                    
+                if(Vertical > VerticalMax)
+                    sticker.style.top = VerticalMax - sticker.offsetHeight;
+                
+                if(0 > sticker.offsetLeft)
+                    sticker.style.left = 0;
+                if(0 > sticker.offsetTop)
+                    sticker.style.top= 0;
+
+            }
+            else{
+                BordeMax = parseInt(window.getComputedStyle(contenedor, null).getPropertyValue("left")) + parseInt(window.getComputedStyle(contenedor, null).getPropertyValue("width"));
+                Borde =    parseInt(window.getComputedStyle(sticker, null).getPropertyValue("left"))    + parseInt(window.getComputedStyle(sticker, null).getPropertyValue("width"));
+
+                VerticalMax = parseInt(window.getComputedStyle(contenedor, null).getPropertyValue("top")) + parseInt(window.getComputedStyle(contenedor, null).getPropertyValue("height"));
+                Vertical =    parseInt(window.getComputedStyle(sticker, null).getPropertyValue("top"))    + parseInt(window.getComputedStyle(sticker, null).getPropertyValue("height"));
+
+                if(Borde > BordeMax){
+                    nvoleft = BordeMax - parseInt(window.getComputedStyle(sticker, null).getPropertyValue("width"));
+                    nvoleft = nvoleft + "px";
+                    sticker.style.left = nvoleft;
+                }
+
+                if(Vertical > VerticalMax){
+                    nvoTop = VerticalMax - parseInt(window.getComputedStyle(sticker, null).getPropertyValue("height"));
+                    nvoTop = nvoleft + "px";
+                    sticker.style.top = nvoTop;
+                }
+
+
+                if(0 > parseInt(window.getComputedStyle(sticker, null).getPropertyValue("left")))
+                    sticker.style.left = "0px";
+                if(0 > parseInt(window.getComputedStyle(sticker, null).getPropertyValue("top")))
+                    sticker.style.top= "0px";
+            } 
+        }
+        //La variable IE determina si estamos utilizando IE
+	    var IE = document.all?true:false;
+	    //Si no utilizamos IE capturamos el evento del mouse
+	    if (!IE){
+	        //document.captureEvents(Event.MOUSEMOVE)
+            document.body.addEventListener('mousemove',prevenirDeborde,true);
+        }
+    </script>
+    <style type="text/css">
+.Sticker {
+  margin: 0mm;
+  padding: 0mm;
+  /*width: 65mm;*/
+  height: 24mm;
+  font-family: "Calibri","Arial Narrow","Times New Roman","Arial","Georgia","Geneva","Andele Mono","Trebuchet";
+  font-size: 8.5pt;
+  overflow: visible;
+  /*overflow: hidden;*/
+  /*
+  border-style: solid;
+  border-width: 1px;
+  */
+}
+.StickerTabla {
+  margin: 0mm;
+  padding: 0mm;
+  width: 100%;
+  border-collapse: collapse;
+}
+.StickerTabla td, .StickerTabla tr, .StickerTabla div {
+  margin: 0mm;
+  padding: 0mm;
+  overflow: visible;
+  /*height: 4mm;*/
+  /*overflow: hidden;*/
+}
+
+  </style>
+
 </head>
-<body>    
+<body onmousemove="prevenirDeborde()" style=" margin:0px 0px 0px 0px; padding:0px 0px 0px 0px;">    
     <form id="form1" runat="server">
         <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
         </cc1:ToolkitScriptManager>
-         <cc1:DragPanelExtender ID="DragPanelExtender1" runat="server" TargetControlID="PnlSticker" DragHandleID="Panel2">
+         <cc1:DragPanelExtender ID="DragPanelExtender1" runat="server" TargetControlID="PnlSticker" DragHandleID="PnlSticker">
                     </cc1:DragPanelExtender>
         <asp:HiddenField ID="HFSticker" runat="server" />
         <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/cross.png"
             OnClientClick="return exit();" Visible="False" /><asp:LinkButton ID="LinkButton2" runat="server"
                 OnClientClick="return exit();" Visible="False">Cerrar</asp:LinkButton>
-        <asp:Panel ID="Panel2" runat="server" Height="600px" Width="800px" 
-        HorizontalAlign="Left" style="margin-top: 0px">
-                        <asp:Panel ID="PnlSticker" runat="server" HorizontalAlign="Center" Style="text-align: left "
-                            Width="400px" BorderWidth="0px" Direction="LeftToRight">
-                            <table style="width: 100%; height: 100%; line-height: normal;">
-                                <tr>
-                                    <td colspan="3">
-                            <asp:Label ID="LblCliente" runat="server" Text="MINISTERIO DE LAS TECNOLOGIAS DE LA INFORMACION Y LAS COMUNICACIONES"
-                                Font-Size="7pt" Font-Bold="False"></asp:Label></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="1" style="width: 190px; text-align: left;">
-                            <asp:Label ID="Label1" runat="server" Font-Size="X-Small" Text="Fecha:  "></asp:Label><asp:Label ID="LblStickerFecRad" runat="server" Font-Size="X-Small" Font-Bold="False"></asp:Label></td>
-                                    
-                                    <td colspan="1" style="text-align: left; width: 170px;">
-                                        <asp:Label ID="Label6" runat="server" Font-Size="X-Small" Text="Hora:  "></asp:Label><asp:Label ID="Label17" runat="server" Font-Size="X-Small" Text="Hora:  "></asp:Label></td>
-                                    
-                                    <td colspan="1" style="text-align: left; width: 200px;">
+        <asp:Panel ID="pnlContenido" runat="server" HorizontalAlign="Left" style="left:0mm; top:0mm; height:280mm; width:215mm;">
+                        <asp:Panel ID="PnlSticker" runat="server" Direction="LeftToRight" CssClass="Sticker">
+                                <table class="StickerTabla">
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="1" rowspan="1" style="vertical-align: top">
+                                                <asp:Panel ID="Panel2" runat="server" style="width: 48mm;">
+                                                    <asp:Label ID="LblCliente" runat="server" style="font-weight: bold" 
+                                                        Text="Archivar Ltda"></asp:Label>
+                                                </asp:Panel>
+                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1" rowspan="1">
+                                        <asp:Label ID="Label1" runat="server" Text="Fecha: " Font-Bold="True"></asp:Label>
+                                        <asp:Label ID="LblStickerFecRad" runat="server"></asp:Label>
+                                        <asp:Label ID="Label17" runat="server" Text="Hora:  "></asp:Label>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="1" rowspan="1">
+                                        <asp:Label ID="Label8" runat="server" Text="Radicado No: " Font-Bold="True"></asp:Label>
+                                        <asp:Label ID="LblStickerNroRad" runat="server" style="font-weight: bold;"></asp:Label></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <asp:Panel ID="pnlProcedencia" runat="server">
+                                                    <asp:Label ID="LabelProcedencia" runat="server" Text="Origen:" Font-Bold="True"></asp:Label>
+                                                </asp:Panel>
+                                            </td>
+                                            <td>
+                                                <asp:Label ID="Label18" runat="server" Text="Procedencia:"></asp:Label>
+                                            </td>
+                                        
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                
+                                                    <asp:Label ID="Label11" runat="server" Text="Destino: " Font-Bold="True"></asp:Label>
+                                                
+                                            </td>
+                                            <td>
+                                                <asp:Panel ID="pnlTramiteA" runat="server" style="height:4mm; text-align:left; overflow:visible;">
+                                                    <asp:Label ID="LblStickercargarA" runat="server"></asp:Label>
+                                                </asp:Panel>
+                                            </td>
+                                        
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                    <asp:Label ID="Label2" runat="server" Text="Direccion: " Font-Bold="True"></asp:Label>
+                                            </td>
+                                            <td>
+                                                <asp:Panel ID="pnlDireccion" runat="server" style="height:4mm; overflow:visible;">
+                                                    <asp:Label ID="LblDireccion" runat="server"></asp:Label>
+                                                </asp:Panel>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            </td>
+                                            <td>
+                                                <asp:Panel ID="pnlCiudad" runat="server" style="height:4mm; overflow:visible;">
+                                                    <asp:Label ID="Label5" runat="server"></asp:Label>
+                                                </asp:Panel>
+                                             </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </asp:Panel>
+            <asp:Panel ID="Panel1" runat="server" Visible="False">
+                <asp:Label ID="Label13" runat="server" Font-Size="XX-Small" Text=" RADICADOR:  " Visible="False"></asp:Label><asp:Label ID="LblStickerUsr" runat="server" Font-Size="XX-Small" Font-Bold="False" Visible="False"></asp:Label>&nbsp;
+                                     <asp:Label ID="Label19" runat="server" Font-Size="Small" Visible="False"> FOLIOS: </asp:Label>
                                     
                                     <asp:Label ID="Label3" runat="server"
-                                    Font-Size="X-Small"> FOLIOS: </asp:Label><asp:Label ID="Label19" runat="server" Font-Size="X-Small"> FOLIOS: </asp:Label></td>
-                                    <%--<td colspan="1" style="text-align: left; width: 35%;">
-                                    </td>--%>
-                                    
-                                </tr>
-                                <tr>
-                                    <td colspan="3" style="vertical-align: text-top">
-                            <asp:Label ID="Label8" runat="server" Font-Bold="False" Font-Size="X-Small" 
-                                Text="Radicado No:"></asp:Label><asp:Label ID="LblStickerNroRad" runat="server" Font-Bold="True"
-                                Font-Size="Small"></asp:Label><asp:Label ID="Label13" runat="server" Font-Size="XX-Small" Text=" RADICADOR:  " Visible="False"></asp:Label><asp:Label ID="LblStickerUsr" runat="server" Font-Size="XX-Small" Font-Bold="False" Visible="False"></asp:Label><br />
-                            <asp:Label ID="LabelProcedencia" runat="server" Font-Bold="False" Font-Size="X-Small" 
-                                Text="Procedencia:" Width="76px"></asp:Label><asp:Label ID="Label18" runat="server"
-                                    Font-Bold="False" Font-Size="X-Small" Text="Procedencia:"></asp:Label></td>
-                                </tr>
-                               
-                               
-                                <tr>
-                                     <td colspan="3" style="width: 375px">
-                            <asp:Label ID="Label11" runat="server" Font-Size="X-Small" Text="TRAMITE A:.     " Width="74px"></asp:Label><asp:Label ID="LblStickercargarA" runat="server" Font-Bold="False" Font-Size="XX-Small"></asp:Label></td>
-                                </tr>
-                                <tr>
-                                  <%-- <td colspan="3" rowspan="1" style="width: 375px">
-                            <asp:Label ID="Label2" runat="server" Font-Size="X-Small" Text="DIRECCION: "></asp:Label><asp:Label ID="LblDireccion" runat="server" Font-Size="X-Small" 
-                                Font-Bold="False"></asp:Label></td>--%>
-                                </tr>
-                                <tr>
-                                 <td style="width: 375px" colspan="3">
-                                     <asp:Label ID="Label4" runat="server" Font-Size="X-Small" Text="CIUDAD: " 
-                                         Visible="False"></asp:Label>
-                                     <asp:Label ID="Label5" runat="server" Font-Size="X-Small"></asp:Label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3" rowspan="1">
+                                    Font-Size="Small" Font-Bold="True" Visible="False">FOLIOS: </asp:Label>
+                                     <asp:Label ID="Label4" runat="server" Font-Size="X-Small" Text="CIUDAD: " Font-Bold="True"></asp:Label>&nbsp;
                             <asp:Label ID="LblCodigoBarras" runat="server"
-                                Font-Size="30pt" Font-Names="3 of 9 Barcode">Archivar Ltda</asp:Label></td>
-                                </tr>
-                            </table>
-                        </asp:Panel>
+                                Font-Size="30pt" Font-Names="3 of 9 Barcode">Archivar Ltda</asp:Label>
+                <asp:Label ID="Label6" runat="server" Font-Size="X-Small" Text="Hora:  " Font-Bold="True" Visible="False"></asp:Label></asp:Panel>
         </asp:Panel>
     </form>
 </body>

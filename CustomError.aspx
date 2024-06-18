@@ -15,7 +15,7 @@
                 <td>
                     &nbsp;</td>
                 <td style="text-align: center">
-        Error de servidor. Contacte a su administrador.</td>
+        Error de caracteres invalidos, revisar el campo: Detalle</td>
                 <td>
                     &nbsp;</td>
             </tr>

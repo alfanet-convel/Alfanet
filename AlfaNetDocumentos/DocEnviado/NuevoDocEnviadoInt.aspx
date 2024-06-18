@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true"
-    CodeFile="NuevoDocEnviadoInt.aspx.cs" Inherits="_NuevoDocEnviadoInt" %>
+    CodeFile="NuevoDocEnviadoInt.aspx.cs" Inherits="_NuevoDocEnviadoInt" ValidateRequest="false"%>
 
 <%@ Register Src="NavDocEnviado.ascx" TagName="NavDocEnviado" TagPrefix="uc1"%>
 <%@ Import Namespace="System.Configuration" %>
@@ -228,7 +228,7 @@
                         <tr>
                             <td>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="TxtDestino"
-                                    ErrorMessage="Debe ingresar la Gestino Interno o Externo" SetFocusOnError="True">*</asp:RequiredFieldValidator></td>
+                                    ErrorMessage="Debe ingresar el Gestino Interno o Externo" SetFocusOnError="True">*</asp:RequiredFieldValidator></td>
                             <td colspan="2" style="text-align: left">
                                 <asp:UpdatePanel id="UpdatePanel1" runat="server">
                                     <contenttemplate>
@@ -259,7 +259,7 @@
                         <tr>
                             <td>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="TxtDestino"
-                                    ErrorMessage="Debe ingresar la Radicado Fuente" Height="15px" SetFocusOnError="True"
+                                    ErrorMessage="Debe ingresar el Radicado Fuente" Height="15px" SetFocusOnError="True"
                                     Width="7px">*</asp:RequiredFieldValidator></td>
                             <td colspan="2" style="text-align: left">
                                 <%--<asp:UpdatePanel ID="UpdatePanel3" runat="server">--%>
@@ -443,11 +443,14 @@ style="WIDTH: 76px; HEIGHT: 10px"><asp:Label id="LblGuia" runat="server" Width="
 <cc1:TextBoxWatermarkExtender id="TextBoxWatermarkExtender2" watermarkText="Digite el Peso de Envio..." runat="server" TargetControlID="TxtPesoEnvio">
 </cc1:TextBoxWatermarkExtender> </TD></TR><TR><TD style="WIDTH: 76px; HEIGHT: 10px"><asp:Label id="LblValor" runat="server" Width="145px" Text="Valor($).:" Font-Bold="False" CssClass="LabelStyle"> </asp:Label> 
 </TD><TD style="WIDTH: 76px; HEIGHT: 10px"><asp:TextBox id="TxtValor" tabIndex=21 runat="server" ValidationGroup="1"> </asp:TextBox> 
-<cc1:maskededitextender id="MaskedEditExtender1" runat="server" clearmaskonlostfocus="False" cultureampmplaceholder="" culturecurrencysymbolplaceholder="" culturedateformat="" culturedateplaceholder="" culturedecimalplaceholder="" culturethousandsplaceholder="" culturetimeplaceholder="" enabled="True" mask="9999999999,99" masktype="Number" targetcontrolid="TxtValor"></cc1:maskededitextender> 
+<cc1:maskededitextender id="MaskedEditExtender1" runat="server" clearmaskonlostfocus="False" cultureampmplaceholder="" culturecurrencysymbolplaceholder="" culturedateformat="" culturedateplaceholder="" culturedecimalplaceholder="" culturethousandsplaceholder="" culturetimeplaceholder="" enabled="True" mask="9999999999,99" masktype="Number" targetcontrolid="TxtValor" ErrorTooltipEnabled="false"></cc1:maskededitextender> 
 <cc1:TextBoxWatermarkExtender id="TextBoxWatermarkExtender4" watermarkText="Digite el valor de Envio.." runat="server" TargetControlID="TxtValor">
 </cc1:TextBoxWatermarkExtender> </TD></TR><TR><TD style="WIDTH: 76px"><asp:Label id="LblMotDev" runat="server" Width="145px" Visible="False" Text="Motivo Devolucion.:" Font-Bold="False" CssClass="LabelStyle"></asp:Label></TD><TD>
 <asp:DropDownList id="DropDownList1" runat="server" Width="200px" DataSourceID="SQLDS" Visible="False" AppendDataBoundItems="False" DataTextField="TTVALORC" DataValueField="TTCODCLA">
-</asp:DropDownList><asp:SqlDataSource id="SQLDS" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStrSQLServer %>" SelectCommand="SELECT [TTCODCLA], [TTVALORC] FROM [TBTABLAS] WHERE ([TTCODTAB] = @TTCODTAB) ORDER BY [TTCODCLA]"><SelectParameters>
+</asp:DropDownList>
+<asp:SqlDataSource id="SQLDS" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStrSQLServer %>" 
+SelectCommand="SELECT [TTCODCLA], [TTVALORC] FROM [TBTABLAS] WHERE ([TTCODTAB] = @TTCODTAB) ORDER BY [TTCODCLA]">
+<SelectParameters>
 <asp:Parameter DefaultValue="MOTDEVRE" Name="TTCODTAB" Type="String"></asp:Parameter>
 </SelectParameters>
 </asp:SqlDataSource> </TD></TR><TR><TD 
@@ -760,6 +763,29 @@ style="WIDTH: 76px"><asp:Label id="LblFecDev" runat="server" Width="145px" Visib
                         </td>
                         <td>
                 <uc1:NavDocEnviado ID="NavDocEnviado1" runat="server" />
+                        </td>
+                        <td style="width: 41px">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            <asp:HyperLink ID="hlinkCarta" runat="server" target="_blank" 
+                                NavigateUrl="~/AlfaNetDocumentos/DocEnviado/DocEnviadoDevPorNoCompetencia.aspx?Admon=S" 
+                                ImageUrl="~/AlfaNetImagen/iconos/icono_txt.gif" Visible="False"
+                                >
+                                <asp:Image ID="ImgCartaPlantilla" runat="server" ImageUrl="~/AlfaNetImagen/iconos/icono_txt.gif"  />
+                            </asp:HyperLink>
+                        </td>
+                        <td style="width: 41px">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                        <asp:Label ID="lbCartaPlantilla" runat="server" Text="Carta de Plantilla" Visible="False"></asp:Label>
                         </td>
                         <td style="width: 41px">
                         </td>

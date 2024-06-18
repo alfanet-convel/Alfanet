@@ -110,17 +110,17 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="SerieNombre" msdata:Caption="Nombre" msprop:Generator_UserColumnName="SerieNombre" msprop:Generator_ColumnVarNameInTable="columnSerieNombre" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="SerieNombre" msprop:Generator_ColumnPropNameInTable="SerieNombreColumn">
+              <xs:element name="SerieNombre" msdata:Caption="Nombre" msprop:Generator_UserColumnName="SerieNombre" msprop:Generator_ColumnVarNameInTable="columnSerieNombre" msprop:Generator_ColumnPropNameInRow="SerieNombre" msprop:Generator_ColumnPropNameInTable="SerieNombreColumn">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="600" />
+                    <xs:maxLength value="400" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="SerieCodigoPadre" msdata:Caption="Serie_Padre" msprop:Generator_UserColumnName="SerieCodigoPadre" msprop:Generator_ColumnVarNameInTable="columnSerieCodigoPadre" msprop:Generator_ColumnPropNameInRow="SerieCodigoPadre" msprop:Generator_ColumnPropNameInTable="SerieCodigoPadreColumn">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="600" />
+                    <xs:maxLength value="400" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

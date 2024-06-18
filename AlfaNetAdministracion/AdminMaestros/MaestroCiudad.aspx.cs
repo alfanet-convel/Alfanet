@@ -7,13 +7,32 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using System.Data;
+using System.Net;
+using System.Net.NetworkInformation;
 
 
 public partial class _MaestroCiudad : System.Web.UI.Page
 {
-    
+    DateTime FechaIni = DateTime.Now;
+    string ConsecutivoCodigo = "6";
+    string ModuloLog = "Maestro Ciudad";
+    string ConsecutivoCodigoErr = "4";
+    string ActividadLogCodigoErr = "Error";
     protected void Page_Load(object sender, EventArgs e)
     {
+        IPHostEntry host;
+        string localIP = "";
+        host = Dns.GetHostEntry(Dns.GetHostName());
+        foreach (IPAddress ip in host.AddressList)
+        {
+            if (ip.AddressFamily.ToString() == "InterNetwork")
+            {
+                localIP = ip.ToString();
+                Session["IP"] = localIP;
+            }
+        }
+        Session["Nombrepc"] = host.HostName.ToString();
         //this.Button1.Visible = false;
         //this.Button2.Visible = false;
         if (!IsPostBack)
@@ -31,13 +50,38 @@ public partial class _MaestroCiudad : System.Web.UI.Page
 
     protected void ImgBtnFind_Click(object sender, ImageClickEventArgs e)
     {
+        string ActLogCod = "BUSCAR";
         if (TxtCiudad.Text != "")
         {
             if (TxtCiudad.Text.Contains(" | "))
             {
                 this.HFCodigoSeleccionado.Value = TxtCiudad.Text.Remove(TxtCiudad.Text.IndexOf(" | "));
                 this.DVCiudad.ChangeMode(DetailsViewMode.ReadOnly);
-                
+                //OBTENER CONSECUTIVO DE LOGS
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+                Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+                DataRow[] fila = Conse.Select();
+                string x = fila[0].ItemArray[0].ToString();
+                string LOG = Convert.ToString(x);
+                Int64 LogId = Convert.ToInt64(LOG);
+                string UserName = Profile.GetProfile(Profile.UserName).UserName.ToString();
+                DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+                string UsrId = objUsr.Aspnet_UserIDByUserName(UserName).ToString();
+                string DatosIni = "Buscar";
+                string DatosFin = "Se busco la Ciudad de codigo: " + HFCodigoSeleccionado.Value;
+                DateTime FechaFin = DateTime.Now;
+                string IP = Session["IP"].ToString();
+                string NombreEquipo = Session["Nombrepc"].ToString();
+                System.Web.HttpBrowserCapabilities nav = Request.Browser;
+                string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+                //Se inserta Log de buscar ciudad
+                DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter BuscarMaestra = new DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter();
+                BuscarMaestra.GetMaestros(LogId, FechaIni, UserName, ActLogCod, ModuloLog, DatosIni,
+                                            DatosFin, FechaFin, IP, NombreEquipo, Navegador);
+                //Se actualiza consecutivo de Log
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                ConseLogs.GetConsecutivos(ConsecutivoCodigo);
                // this.ModalPopupExtender1.Show();
             }
         }
@@ -243,6 +287,7 @@ public partial class _MaestroCiudad : System.Web.UI.Page
         
     protected void Button1_Click1(object sender, EventArgs e)
     {
+        string ActLogCod = "ELIMINAR";
         CiudadBLL Ciudad = new CiudadBLL();
         bool Correcto;
 
@@ -250,11 +295,65 @@ public partial class _MaestroCiudad : System.Web.UI.Page
         {
 
             Correcto = Ciudad.DeleteCiudad(HFCodigoSeleccionado.Value);
+            //OBTENER CONSECUTIVO DE LOGS
+            DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+            DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+            Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+            DataRow[] fila = Conse.Select();
+            string x = fila[0].ItemArray[0].ToString();
+            string LOG = Convert.ToString(x);
+            Int64 LogId = Convert.ToInt64(LOG);
+            string UserName = Profile.GetProfile(Profile.UserName).UserName.ToString();
+            DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+            string UsrId = objUsr.Aspnet_UserIDByUserName(UserName).ToString();
+            string DatosIni = "Eliminado";
+            string DatosFin = "Se elimino la ciudad de codigo: " + HFCodigoSeleccionado.Value;
+            DateTime FechaFin = DateTime.Now;
+            string IP = Session["IP"].ToString();
+            string NombreEquipo = Session["Nombrepc"].ToString();
+            System.Web.HttpBrowserCapabilities nav = Request.Browser;
+            string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+            Session["Navega"] = Navegador;
+            DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter DeleteMaestra = new DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter();
+            //Se inserta el Log de Eliminar ciudad
+            DeleteMaestra.GetMaestros(LogId, FechaIni, UserName, ActLogCod, ModuloLog, DatosIni, DatosFin,
+                                        FechaFin, IP, NombreEquipo, Navegador);
+            //Se actualiza consecutivo de Log
+            DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+            ConseLogs.GetConsecutivos(ConsecutivoCodigo);
         }
         catch (Exception Error)
         {
             this.LblMessageBox.Text = "No se pudo eliminar el registro. ";
             this.MPEMensaje.Show();
+            //Variables de LOG ERROR
+            DateTime FechaInicio = DateTime.Now;
+            string ModuloLog = "Maestro Ciudad";
+            string Grupo = "";
+            //OBTENER CONSECUTIVO DE LOGS
+            string DatosFinales = LblMessageBox.Text + Error;
+            DateTime WFMovimientoFechaFin = DateTime.Now;
+            DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConsecutivosErr = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+            DSGrupoSQL.ConsecutivoLogsDataTable ConseErr = new DSGrupoSQL.ConsecutivoLogsDataTable();
+            ConseErr = ConsecutivosErr.GetConseError(ConsecutivoCodigoErr);
+            DataRow[] fila2 = ConseErr.Select();
+            string z = fila2[0].ItemArray[0].ToString();
+            string LOGERROR = Convert.ToString(z);
+            Int64 LogIdErr = Convert.ToInt64(LOGERROR);
+            string username = Profile.GetProfile(Profile.UserName).UserName.ToString();
+            DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+            string UsrId = objUsr.Aspnet_UserIDByUserName(username).ToString();
+            System.Web.HttpBrowserCapabilities nav = Request.Browser;
+            string IP = Session["IP"].ToString();
+            string NombreEquipo = Session["Nombrepc"].ToString();
+            string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+            //Se hace el insert de Log error
+            DSLogAlfaNetTableAdapters.LogAlfaNetErroresTableAdapter Errores = new DSLogAlfaNetTableAdapters.LogAlfaNetErroresTableAdapter();
+            Errores.GetError(LogIdErr, username, FechaInicio, ActividadLogCodigoErr, Grupo, ModuloLog, DatosFinales,
+            WFMovimientoFechaFin, IP, NombreEquipo, Navegador);
+            //Se hace el update consecutivo de Logs
+            DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+            ConseLogs.GetConsecutivos(ConsecutivoCodigoErr);
         }
 
         //this.DVDepartamento.DataBind();

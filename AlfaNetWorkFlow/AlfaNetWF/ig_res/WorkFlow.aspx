@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true" EnableEventValidation="false" ValidateRequest="false" CodeFile="WorkFlow.aspx.cs" Inherits="_WorkFlow_old" %>
+Ôªø<%@ Page Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true" EnableEventValidation="false" ValidateRequest="false" CodeFile="WorkFlow.aspx.cs" Inherits="_WorkFlow_old" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
@@ -8,14 +8,6 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Import Namespace="System.Configuration" %>
 
-<%@ Register Assembly="DevExpress.Web.v9.1" Namespace="DevExpress.Web.ASPxPopupControl"
-    TagPrefix="dxpc" %>
-
-<%@ Register Assembly="DevExpress.Web.v9.1" Namespace="DevExpress.Web.ASPxCallbackPanel"
-    TagPrefix="dxcp" %>
-    
-<%@ Register Assembly="DevExpress.Web.v9.1" Namespace="DevExpress.Web.ASPxPanel"
-    TagPrefix="dxp" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 <div id="global">
@@ -283,27 +275,7 @@
         callbackPanel.AdjustControl();
             }
 </script>        
-<asp:UpdatePanel ID="UdPnRecExtVen" runat="server">
-                                                        <ContentTemplate>
-<dxpc:ASPxPopupControl id="popup" runat="server" ImageFolder="~/App_Themes/Office2003 Blue/{0}/" CssPostfix="Office2003_Blue" CssFilePath="~/App_Themes/Office2003 Blue/{0}/styles.css" HeaderText="Vinculo a Respuesta" PopupHorizontalAlign="OutsideRight" AllowDragging="True" ClientInstanceName="popup">
-<ClientSideEvents Shown="popup_Shown"></ClientSideEvents>
-<ContentCollection>
-<dxpc:PopupControlContentControl runat="server"><dxcp:ASPxCallbackPanel runat="server" ClientInstanceName="callbackPanel" RenderMode="Table" Width="100%" Height="100%" ID="callbackPanel" OnCallback="callbackPanel_Callback">
-<LoadingPanelImage Url="~/App_Themes/Office2003 Blue/Web/Loading.gif"></LoadingPanelImage>
 
-<LoadingDivStyle Opacity="100" BackColor="White"></LoadingDivStyle>
-<PanelCollection>
-<dxp:PanelContent runat="server"><asp:Panel runat="server" ID="PnlContent">
-    </asp:Panel>
-
- </dxp:PanelContent>
-</PanelCollection>
-</dxcp:ASPxCallbackPanel>
- </dxpc:PopupControlContentControl>
-</ContentCollection>
-</dxpc:ASPxPopupControl>
-                                                        </ContentTemplate>
-                                                    </asp:UpdatePanel>
     <table width="100%">
         <tr>
             <td align="center">            
@@ -451,9 +423,9 @@
                                                                                             </asp:TemplateField>
                                                                                             <asp:TemplateField HeaderText="Opciones">
                                                                                                 <ItemTemplate>
-                                                                                                    <asp:HyperLink ID="HprLnkImgExtVen1" runat="server" CssClass="LinKBtnStyleBig" Font-Underline="True">Im·genes</asp:HyperLink>
+                                                                                                    <asp:HyperLink ID="HprLnkImgExtVen1" runat="server" CssClass="LinKBtnStyleBig" Font-Underline="True">Im√°genes</asp:HyperLink>
                                                                                                     <br />
-                                                                                                    <asp:HyperLink ID="HprLnkHisExtven1" runat="server" CssClass="LinKBtnStyleBig" Font-Underline="True">HistÛrico</asp:HyperLink>&nbsp;<br />
+                                                                                                    <asp:HyperLink ID="HprLnkHisExtven1" runat="server" CssClass="LinKBtnStyleBig" Font-Underline="True">Hist√≥rico</asp:HyperLink>&nbsp;<br />
                                                                                                     <asp:HyperLink ID="HprLnkExp" runat="server" CssClass="LinKBtnStyleBig" Target="_blank"
                                                                                                         Text="Expediente"></asp:HyperLink>
                                                                                                 </ItemTemplate>
@@ -541,12 +513,16 @@
                                         
 </FooterTemplate>
 <ItemTemplate>
-<asp:HyperLink id="HyperLink1" runat="server" ForeColor="Blue" Text='<%# Eval("NumeroDocumento") %>' Font-Underline="True"></asp:HyperLink>
-<asp:HiddenField ID="HiddenFieldRes1" runat="server" Value='<%# Bind("Respuesta") %>' Visible="false" />
-<a id="LnkRpta" runat="server" href="javascript:void(0);">
-<asp:Image id="ImageLinkDoc" runat="server" Width="12px" ImageUrl="~/AlfaNetImagen/ToolBar/reply.gif">
-</asp:Image>
-</a>
+    <asp:LinkButton ID="LinkButton5" runat="server" CssClass="LinKBtnStyle" PostBackUrl="javascript:void(0);"
+        Text='<%# Eval("NumeroDocumento") %>' Visible="False"></asp:LinkButton>
+    <asp:HyperLink ID="HyperLink1" runat="server"
+    Text='<%# Eval("NumeroDocumento") %>' Font-Underline="True" ForeColor="Blue"></asp:HyperLink>
+     <asp:Label id="Label60" runat="server" Visible="False" Text='<%# Bind("Respuesta") %>'></asp:Label> 
+<asp:Panel style="LEFT: 499px" id="PnlRpta" runat="server" HorizontalAlign="Left" CssClass="popupControl">
+<asp:Label id="Label80" runat="server" Width="76px" Text="Registro Nro.:"></asp:Label><BR  />
+</asp:Panel> <asp:Image id="Image1" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/reply.gif">
+</asp:Image><ajaxToolkit:PopupControlExtender id="PCERpta" runat="server" TargetControlID="Image1" PopupControlID="PnlRpta">
+            </ajaxToolkit:PopupControlExtender>
                                         
 </ItemTemplate>
 
@@ -758,8 +734,8 @@
     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
 </asp:TemplateField>
 <asp:TemplateField HeaderText="Opciones" SortExpression="GrupoCodigo"><ItemTemplate>
-                                            <asp:HyperLink ID="HprLnkImgExtVen" runat="server" Text="Im·genes" CssClass="LinKBtnStyleBig" Font-Overline="False" Font-Underline="True"></asp:HyperLink><br />
-                                            <asp:HyperLink ID="HprLnkHisExtven" runat="server" CssClass="LinKBtnStyleBig" Font-Overline="False" Font-Underline="True">HistÛrico</asp:HyperLink><br />
+                                            <asp:HyperLink ID="HprLnkImgExtVen" runat="server" Text="Im√°genes" CssClass="LinKBtnStyleBig" Font-Overline="False" Font-Underline="True"></asp:HyperLink><br />
+                                            <asp:HyperLink ID="HprLnkHisExtven" runat="server" CssClass="LinKBtnStyleBig" Font-Overline="False" Font-Underline="True">Hist√≥rico</asp:HyperLink><br />
                                             <asp:HyperLink ID="HprLnkExp" runat="server" Target="_blank" Text="Expediente" CssClass="LinKBtnStyleBig"></asp:HyperLink>
     <asp:HiddenField ID="HFGrupo" Value='<%# Bind("GrupoCodigo") %>' runat="server" />
                                         
@@ -1070,8 +1046,8 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Opciones" SortExpression="GrupoCodigo">
                                         <ItemTemplate>
-                                            <asp:HyperLink ID="HprLnkImgExtVen" runat="server" Text="Im·genes" CssClass="LinKBtnStyleBig" Font-Underline="True"></asp:HyperLink><br  />
-                                            <asp:HyperLink ID="HprLnkHisExtven" runat="server" Width="55px" CssClass="LinKBtnStyleBig" Font-Underline="True">HistÛrico</asp:HyperLink><br/>
+                                            <asp:HyperLink ID="HprLnkImgExtVen" runat="server" Text="Im√°genes" CssClass="LinKBtnStyleBig" Font-Underline="True"></asp:HyperLink><br  />
+                                            <asp:HyperLink ID="HprLnkHisExtven" runat="server" Width="55px" CssClass="LinKBtnStyleBig" Font-Underline="True">Hist√≥rico</asp:HyperLink><br/>
                                             <asp:HyperLink ID="HprLnkExp" runat="server" Target="_blank" Text="Expediente" CssClass="LinKBtnStyleBig"></asp:HyperLink>
                                             <asp:HiddenField ID="HFGrupo" Value='<%# Bind("GrupoCodigo") %>' runat="server" />
                                         </ItemTemplate>
@@ -1376,8 +1352,8 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Opciones" SortExpression="GrupoCodigo">
                                         <ItemTemplate>
-                                            <asp:HyperLink ID="HprLnkImgExtVen" runat="server" Text="Im·genes" CssClass="LinKBtnStyleBig" Font-Underline="True"></asp:HyperLink><br  />
-                                            <asp:HyperLink ID="HprLnkHisExtven" runat="server" Width="55px" CssClass="LinKBtnStyleBig" Font-Underline="True">HistÛrico</asp:HyperLink><br />
+                                            <asp:HyperLink ID="HprLnkImgExtVen" runat="server" Text="Im√°genes" CssClass="LinKBtnStyleBig" Font-Underline="True"></asp:HyperLink><br  />
+                                            <asp:HyperLink ID="HprLnkHisExtven" runat="server" Width="55px" CssClass="LinKBtnStyleBig" Font-Underline="True">Hist√≥rico</asp:HyperLink><br />
                                             <asp:HyperLink ID="HprLnkExp" runat="server" Target="_blank" Text="Expediente" CssClass="LinKBtnStyleBig"></asp:HyperLink>
                                             <asp:HiddenField ID="HFGrupo" Value='<%# Bind("GrupoCodigo") %>' runat="server" />
                                         </ItemTemplate>
@@ -1619,8 +1595,8 @@
         SortExpression="NaturalezaCodigo" Visible="False" />
                                         <asp:TemplateField HeaderText="Opciones" SortExpression="GrupoCodigo">
                                             <ItemTemplate>
-                                                <asp:HyperLink ID="HprLnkImgExtVen" runat="server" Text="Im·genes" CssClass="LinKBtnStyleBig" Font-Underline="True"></asp:HyperLink><br  />
-                                                <asp:HyperLink ID="HprLnkHisExtven" runat="server" Width="55px" CssClass="LinKBtnStyleBig" Font-Underline="True">HistÛrico</asp:HyperLink>
+                                                <asp:HyperLink ID="HprLnkImgExtVen" runat="server" Text="Im√°genes" CssClass="LinKBtnStyleBig" Font-Underline="True"></asp:HyperLink><br  />
+                                                <asp:HyperLink ID="HprLnkHisExtven" runat="server" Width="55px" CssClass="LinKBtnStyleBig" Font-Underline="True">Hist√≥rico</asp:HyperLink>
                                                 <asp:HiddenField ID="HFGrupo" Value='<%# Bind("GrupoCodigo") %>' runat="server" />
                                             <asp:HyperLink ID="HprLnkExp" runat="server" Target="_blank" Text="Expediente" CssClass="LinKBtnStyleBig"></asp:HyperLink>
                                             </ItemTemplate>
@@ -1907,8 +1883,8 @@
     </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Opciones" SortExpression="GrupoCodigo">
                                     <ItemTemplate>
-                                        <asp:HyperLink ID="HprLnkImgExtVen" runat="server" Text="Im·genes" CssClass="LinKBtnStyleBig" Font-Underline="True"></asp:HyperLink><br />
-                                        <asp:HyperLink ID="HprLnkHisExtven" runat="server" Width="55px" Target="_blank" CssClass="LinKBtnStyleBig" Font-Underline="True">HistÛrico</asp:HyperLink><br />
+                                        <asp:HyperLink ID="HprLnkImgExtVen" runat="server" Text="Im√°genes" CssClass="LinKBtnStyleBig" Font-Underline="True"></asp:HyperLink><br />
+                                        <asp:HyperLink ID="HprLnkHisExtven" runat="server" Width="55px" Target="_blank" CssClass="LinKBtnStyleBig" Font-Underline="True">Hist√≥rico</asp:HyperLink><br />
                                             <asp:HyperLink ID="HprLnkExp" runat="server" Target="_blank" Text="Expediente" CssClass="LinKBtnStyleBig"></asp:HyperLink>
                                         <asp:HiddenField ID="HFGrupo" Value='<%# Bind("GrupoCodigo") %>'  runat="server" />
                                     </ItemTemplate>
@@ -2270,8 +2246,8 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Opciones" SortExpression="GrupoCodigo">
                                     <ItemTemplate>
-                                        <asp:HyperLink ID="HprLnkImgExtVen" runat="server" Text="Im·genes" CssClass="LinKBtnStyleBig" Font-Underline="True"></asp:HyperLink><br />
-                                        <asp:HyperLink ID="HprLnkHisExtven" runat="server" Width="55px" CssClass="LinKBtnStyleBig" Font-Underline="True">HistÛrico</asp:HyperLink><br />
+                                        <asp:HyperLink ID="HprLnkImgExtVen" runat="server" Text="Im√°genes" CssClass="LinKBtnStyleBig" Font-Underline="True"></asp:HyperLink><br />
+                                        <asp:HyperLink ID="HprLnkHisExtven" runat="server" Width="55px" CssClass="LinKBtnStyleBig" Font-Underline="True">Hist√≥rico</asp:HyperLink><br />
                                          <asp:HyperLink ID="HprLnkExp" runat="server" Target="_blank" Text="Expediente" CssClass="LinKBtnStyleBig"></asp:HyperLink>
                                                 <asp:HiddenField ID="HFGrupo" Value='<%# Bind("GrupoCodigo") %>' runat="server" />
                                     </ItemTemplate>
@@ -2493,8 +2469,8 @@
     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Opciones" SortExpression="GrupoCodigo">
                                         <ItemTemplate>
-                                            <asp:HyperLink ID="HprLnkImgExtVen" runat="server" Text="Im·genes" CssClass="LinKBtnStyleBig" Font-Underline="True"></asp:HyperLink><br/>
-                                            <asp:HyperLink ID="HprLnkHisExtven" runat="server" CssClass="LinKBtnStyleBig" Font-Underline="True">HistÛrico</asp:HyperLink><br/>
+                                            <asp:HyperLink ID="HprLnkImgExtVen" runat="server" Text="Im√°genes" CssClass="LinKBtnStyleBig" Font-Underline="True"></asp:HyperLink><br/>
+                                            <asp:HyperLink ID="HprLnkHisExtven" runat="server" CssClass="LinKBtnStyleBig" Font-Underline="True">Hist√≥rico</asp:HyperLink><br/>
                                             <asp:HyperLink ID="HprLnkExp" runat="server" Target="_blank" Text="Expediente" CssClass="LinKBtnStyleBig"></asp:HyperLink>
                                             <asp:HiddenField ID="HFGrupo" Value='<%# Bind("GrupoCodigo") %>'  runat="server" />
                                         </ItemTemplate>

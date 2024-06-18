@@ -34,7 +34,7 @@
                         height: 288px" /></td>
                 <td>
                     <strong></strong>
-                    <h1>
+                    <h1>Administración Alfanet
                         <strong><span style="color: appworkspace">MainAdministracion.aspx </span></strong>
                     </h1>
                     <h1>

@@ -1,7 +1,7 @@
 <%@ Page Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true"
     CodeFile="ConsultaPrestamos.aspx.cs" Inherits="_ConsultaPrestamos" %>
 
-<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845DCD8080CC91"
     Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 
 <%@ Import Namespace="System.Configuration" %>
@@ -234,7 +234,7 @@ style="WIDTH: 100%; COLOR: white; BACKGROUND-COLOR: #507cd1" colSpan=3><asp:Tabl
 
 <PagerStyle HorizontalAlign="Center" BackColor="#2461BF" ForeColor="White"></PagerStyle>
 <EmptyDataTemplate>
-                        No Hay Prestamos que correspondan con la conbinacion de criterios de busqueda!
+                        No Hay Prestamos que correspondan con la combinacion de criterios de busqueda!
                     
 </EmptyDataTemplate>
 

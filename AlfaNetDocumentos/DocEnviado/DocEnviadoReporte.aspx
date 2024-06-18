@@ -1,7 +1,7 @@
 <%@ Page Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true"
     CodeFile="DocEnviadoReporte.aspx.cs" Inherits="_DocEnviadoReporte" %>
 
-<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845DCD8080CC91"
     Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
     
 <%@ import Namespace="System.Configuration" %>

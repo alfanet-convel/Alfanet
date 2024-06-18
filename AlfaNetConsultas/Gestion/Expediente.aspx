@@ -1,5 +1,5 @@
-<%@ Page Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true"
-    CodeFile="Expediente.aspx.cs" Inherits="_Expediente" %>
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
+    CodeFile="Expediente.aspx.cs" Inherits="AlfaNetConsultas_Gestion_Expediente" %>
    
 <%@ Import Namespace="System.Configuration" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
@@ -217,7 +217,7 @@ style="HEIGHT: 318px" colSpan=3><asp:UpdatePanel id="UpdatePanelExpediente" runa
 </DataItemTemplate>
 </dxwgv:GridViewDataTextColumn>
 <dxwgv:GridViewDataTextColumn FieldName="ExpedienteNombre" VisibleIndex="2"></dxwgv:GridViewDataTextColumn>
-<dxwgv:GridViewDataTextColumn FieldName="ExpedienteTelefono1" Caption="Clasificación" VisibleIndex="3"></dxwgv:GridViewDataTextColumn>
+<dxwgv:GridViewDataTextColumn FieldName="ExpedienteMail2" Caption="NIT" VisibleIndex="3"></dxwgv:GridViewDataTextColumn>
 <dxwgv:GridViewDataTextColumn FieldName="ExpedienteDireccion" Caption="Folio" VisibleIndex="4"></dxwgv:GridViewDataTextColumn>
 </Columns>
 

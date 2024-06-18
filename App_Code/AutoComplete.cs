@@ -7,6 +7,10 @@ using System.Web.Services.Protocols;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using System.Web.Configuration;
+using System.Text;
+using System.DirectoryServices;
+
 
 
 /// <summary>
@@ -224,6 +228,27 @@ public class AutoComplete : System.Web.Services.WebService {
         {
             ExpedienteList.Add(DataRowCurrent[0].ToString() + " | " + DataRowCurrent[1].ToString());
         }
+        return (ExpedienteList.ToArray());
+    }
+
+    [WebMethod]
+    [System.Web.Script.Services.ScriptMethod]
+    public string[] GetExpedienteByTextNombre1(string prefixText, int count, string contextKey)
+    {
+        List<String> ExpedienteList = new List<string>(20);
+
+
+        string res = contextKey;
+                ExpedienteBLL Expedientes = new ExpedienteBLL();
+                if (res != null)
+                {
+                    foreach (DataRow DataRowCurrent in Expedientes.GetExpedienteByTextNombre1(prefixText, true, res))
+                    {
+                        ExpedienteList.Add(DataRowCurrent[0].ToString() + " | " + DataRowCurrent[1].ToString());
+                    }
+                }
+            
+        
         return (ExpedienteList.ToArray());
     }
 
@@ -470,6 +495,17 @@ public class AutoComplete : System.Web.Services.WebService {
         }
         return (SerieList.ToArray());
     }
+	[WebMethod]
+    public string[] GetSubSerieByText(string prefixText)
+    {
+        List<String> SerieList = new List<string>(20);
+        SerieBLL Series = new SerieBLL();
+        foreach (DataRow DataRowCurrent in Series.GetSubSerieByText(prefixText, "1"))
+        {
+            SerieList.Add(DataRowCurrent[0].ToString() + " | " + DataRowCurrent[1].ToString().ToUpper());
+        }
+        return (SerieList.ToArray());
+    }
     [WebMethod]
     public string[] GetSerieTextById(string prefixText)
     {
@@ -681,7 +717,7 @@ public class AutoComplete : System.Web.Services.WebService {
 
         return (PrestamosList.ToArray());
     }
-    [WebMethod]
+	[WebMethod]
     public string[] Getaspnet_UsersByUserName(string prefixText)
     {
         List<String> aspnet_UsersList = new List<string>(20);
@@ -693,6 +729,49 @@ public class AutoComplete : System.Web.Services.WebService {
         }
 
         return (aspnet_UsersList.ToArray());
+    }
+	[WebMethod]
+    public string[] GetADUsername(string prefixText)
+    { 
+     List<String> usrname = new List<String>(20); 
+        string path = ConfigurationManager.ConnectionStrings["ADConnectionString"].ConnectionString;
+        DirectoryEntry _path = new DirectoryEntry(path);
+        _path.AuthenticationType = AuthenticationTypes.Secure;
+        _path.Username = "mutualser.org\\ldapalfanet";
+        _path.Password = "Mutu4lser2020*";
+        DirectorySearcher search = new DirectorySearcher(_path);
+        search.Filter = "(&(objectClass=user)(objectCategory=person))";
+        search.PropertiesToLoad.Add("samaccountname").ToString().ToUpper();
+        SearchResult result;
+        SearchResultCollection iResult = search.FindAll();
+        User item;
+        item = new User();
+
+            if (iResult != null)
+            {                
+                    for (int counter = 0; counter < iResult.Count; counter++)
+                    {
+                        result = iResult[counter];
+
+                        if (result.Properties.Contains("samaccountname"))
+                        {
+                            item.UserName = (String)result.Properties["samaccountname"][0].ToString().ToUpper();
+
+                            if (item.UserName.Contains(prefixText.ToUpper()))
+                            {
+                                usrname.Add(item.UserName);
+                            }
+                        }
+                        if (result.Properties.Contains("mail"))
+                        {
+                            item.Email = (String)result.Properties["mail"][0];
+                            usrname.Add(item.Email);
+                        }
+                    }
+                }
+        search.Dispose();
+        search.Dispose();
+        return (usrname.ToArray());
     }
     [WebMethod]
     public string[] GetUsuariosByNombres(string prefixText)
@@ -722,7 +801,85 @@ public class AutoComplete : System.Web.Services.WebService {
 
         return (UsuariosxApellidosList.ToArray());
     }
-    // 
+	// [WebMethod]
+    // public string[] GetADUsers(string prefixText)
+    // {
+        // List<String> rst = new List<String>(20); 
+        // string path = ConfigurationManager.ConnectionStrings["ADConnectionString"].ConnectionString;
+        // DirectoryEntry _path = new DirectoryEntry(path);
+        // _path.AuthenticationType = AuthenticationTypes.Secure;
+        // _path.Username = "mutualser.org\\ldapalfanet";
+        // _path.Password = "Mutu4lser2020*";
+        // DirectorySearcher search = new DirectorySearcher(_path);
+        // search.Filter = "(&(objectClass=user)(objectCategory=person))";
+        // search.PropertiesToLoad.Add("givenName").ToString().ToUpper();
+        // SearchResult result;
+        // SearchResultCollection iResult = search.FindAll();
+        // User item;
+        // item = new User();
+
+            // if (iResult != null)
+            // {                
+                    // for (int counter = 0; counter < iResult.Count; counter++)
+                    // {
+                        // result = iResult[counter];
+
+                        // if (result.Properties.Contains("givenName"))
+                        // {
+                            // item.UserName = (String)result.Properties["givenName"][0].ToString().ToUpper();
+
+                            // if (item.UserName.Contains(prefixText.ToUpper()))
+                            // { 
+                                // rst.Add(item.UserName);
+                            // }
+                        // }
+                    // }
+            // }
+
+        // search.Dispose();
+        // search.Dispose();
+        // return (rst.ToArray());
+       
+    // }
+	[WebMethod]
+    public string[] GetADApellidos(string prefixText)
+    {
+        List<String> rst = new List<String>(20);
+        string path = ConfigurationManager.ConnectionStrings["ADConnectionString"].ConnectionString;
+        DirectoryEntry _path = new DirectoryEntry(path);
+        _path.AuthenticationType = AuthenticationTypes.Secure;
+        _path.Username = "mutualser.org\\ldapalfanet";
+        _path.Password = "Mutu4lser2020*";
+        DirectorySearcher search = new DirectorySearcher(_path);
+        search.Filter = "(&(objectClass=user)(objectCategory=person))";
+        search.PropertiesToLoad.Add("mail");
+        search.PropertiesToLoad.Add("sn").ToString().ToUpper();
+        SearchResult result;
+        SearchResultCollection iResult = search.FindAll();
+        User item;
+        item = new User();
+
+        if (iResult != null)
+        {
+            for (int counter = 0; counter < iResult.Count; counter++)
+            {
+                result = iResult[counter];
+
+                if (result.Properties.Contains("sn"))
+                {
+                    item.UserName = (String)result.Properties["sn"][0].ToString().ToUpper();
+
+                    if (item.UserName.Contains(prefixText.ToUpper()))
+                    {
+                        rst.Add(item.UserName);
+                    }
+                }
+            }
+        }
+        search.Dispose();
+        search.Dispose();
+        return (rst.ToArray());
+    }
     [WebMethod]
     public string[] GetDocArchivadosRecibidos(string prefixText)
     {

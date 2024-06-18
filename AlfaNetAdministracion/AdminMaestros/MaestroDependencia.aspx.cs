@@ -8,12 +8,30 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
-
+using System.Net;
+using System.Net.NetworkInformation;
 
 public partial class _MaestroDependencia : System.Web.UI.Page
 {
+    DateTime FechaIni = DateTime.Now;
+    string ConsecutivoCodigo = "6";
+    string ModuloLog = "Maestro Dependencia";
+    string ConsecutivoCodigoErr = "4";
+    string ActividadLogCodigoErr = "Error";
     protected void Page_Load(object sender, EventArgs e)
     {
+        IPHostEntry host;
+        string localIP = "";
+        host = Dns.GetHostEntry(Dns.GetHostName());
+        foreach (IPAddress ip in host.AddressList)
+        {
+            if (ip.AddressFamily.ToString() == "InterNetwork")
+            {
+                localIP = ip.ToString();
+                Session["IP"] = localIP;
+            }
+        }
+        Session["Nombrepc"] = host.HostName.ToString();
         if (!IsPostBack)
         {
             
@@ -123,6 +141,7 @@ public partial class _MaestroDependencia : System.Web.UI.Page
 
     protected void ImgBtnFind_Click(object sender, ImageClickEventArgs e)
     {
+        string ActLogCod = "BUSCAR";
         if (this.TxtDependencia.Text != "")
         {
             if (this.TxtDependencia.Text.Contains(" | "))
@@ -168,14 +187,37 @@ public partial class _MaestroDependencia : System.Web.UI.Page
                 this.TreeVPreuba.Nodes.Clear();
                 TreeVPreuba_Load();
 
-                
+                //OBTENER CONSECUTIVO DE LOGS
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+                Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+                DataRow[] fila = Conse.Select();
+                string x = fila[0].ItemArray[0].ToString();
+                string LOG = Convert.ToString(x);
+                Int64 LogId = Convert.ToInt64(LOG);
+                string UserName = Profile.GetProfile(Profile.UserName).UserName.ToString();
+                DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+                string UsrId = objUsr.Aspnet_UserIDByUserName(UserName).ToString();
+                string DatosIni = "Buscar";
+                string DatosFin = "Se busco la Dependencia de codigo: " + HFCodigoSeleccionado.Value;
+                DateTime FechaFin = DateTime.Now;
+                string IP = Session["IP"].ToString();
+                string NombreEquipo = Session["Nombrepc"].ToString();
+                System.Web.HttpBrowserCapabilities nav = Request.Browser;
+                string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+                //Se hace insert de Log Buscar Dependencia
+                DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter BuscarMaestra = new DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter();
+                BuscarMaestra.GetMaestros(LogId, FechaIni, UserName, ActLogCod, ModuloLog, DatosIni, DatosFin, FechaFin, IP, NombreEquipo, Navegador);
+                //Se actualiza el Consecutivo Log
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                ConseLogs.GetConsecutivos(ConsecutivoCodigo);
             }
         }
     }
 
     protected void ImgBtnEditDependencia_Click(object sender, ImageClickEventArgs e)
     {
-            
+        string ActLogCod = "ACTUALIZAR";
                 CheckBox Ch = (CheckBox)DVDependencia.FindControl("CheckBox1");
                 if (Ch.Checked == true)
                 {
@@ -229,6 +271,31 @@ public partial class _MaestroDependencia : System.Web.UI.Page
         this.DependenciaByIdDataSource.UpdateParameters["DependenciaPermiso"].DefaultValue = RbtnLstPermiso.SelectedValue.ToString();
         this.DependenciaByIdDataSource.UpdateParameters["Original_DependenciaCodigo"].DefaultValue = HFCodigoSeleccionado.Value;
         this.DependenciaByIdDataSource.UpdateParameters["DependenciaNombre"].DefaultValue = HFCodigoSeleccionado.Value;
+
+        string habilitar = this.DependenciaByIdDataSource.UpdateParameters["DependenciaHabilitar"].DefaultValue;
+        string DatosIni = DVDependencia.SelectedValue + " | " + habilitar; //AccioCod + Habilitar
+        //OBTENER CONSECUTIVO DE LOGS
+        DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+        DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+        Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+        DataRow[] fila = Conse.Select();
+        string x = fila[0].ItemArray[0].ToString();
+        string LOG = Convert.ToString(x);
+        Int64 LogId = Convert.ToInt64(LOG);
+        string UserName = Profile.GetProfile(Profile.UserName).UserName.ToString();
+        DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+        string UsrId = objUsr.Aspnet_UserIDByUserName(UserName).ToString();//AccioCod + Habilitar
+        string DatosFin = DVDependencia.SelectedValue + " | " + habilitar;
+        DateTime FechaFin = DateTime.Now;
+        string IP = Session["IP"].ToString();
+        string NombreEquipo = Session["Nombrepc"].ToString();
+        System.Web.HttpBrowserCapabilities nav = Request.Browser;
+        string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();  //Se hace insert de Log actualizar accion
+        DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter BuscarMaestra = new DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter();
+        BuscarMaestra.GetMaestros(LogId, FechaIni, UserName, ActLogCod, ModuloLog, DatosIni, DatosFin, FechaFin, IP, NombreEquipo, Navegador);
+        //Actualiza consecutivo Log
+        DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+        ConseLogs.GetConsecutivos(ConsecutivoCodigo);
         
     }
 
@@ -290,6 +357,7 @@ public partial class _MaestroDependencia : System.Web.UI.Page
             this.LblMessageBox.Text = "Ocurrio un problema al tratar de adicionar el registro. ";
             Exception inner = e.Exception.InnerException;
             this.LblMessageBox.Text += ErrorHandled.FindError(inner);
+            //this.LblMessageBox.Text += inner.Message.ToString();
             this.LblMessageBox.Text += e.Exception.Message.ToString();
             this.MPEMensaje.Show();
 
@@ -327,6 +395,56 @@ public partial class _MaestroDependencia : System.Web.UI.Page
         }
         else if (e.Exception == null)
         {
+            TextBox text = (TextBox)DVDependencia.FindControl("TextBox1");
+
+            string dependencia = TxtDependencia.Text;
+
+            if (dependencia.Contains(" | "))
+            {
+
+                dependencia = dependencia.Remove(dependencia.IndexOf(" | "));
+
+                //prof.CodigoDepUsuario = DependenciaCod;
+
+            }
+
+            //else
+
+            //{
+
+            //    dependencia = null;
+
+            //    //prof.CodigoDepUsuario = ND[0].ToString().TrimEnd();
+
+            //}
+
+            DSUsuarioTableAdapters.Usuariosxdependencia1TableAdapter DSUXDependencia = new DSUsuarioTableAdapters.Usuariosxdependencia1TableAdapter();
+
+            DSUsuario.Usuariosxdependencia1DataTable DSUsuarioDT = new DSUsuario.Usuariosxdependencia1DataTable();
+
+            //DataSet ds = new DataSet();
+
+            DSUsuarioDT = DSUXDependencia.GetDataByUsuarioxDependencia(dependencia);
+
+            //ds=(DataSet)DSUXDependencia.GetDataByUsuarioxDependencia(dependencia);
+
+
+
+            foreach (DataRow item in DSUsuarioDT.Rows)
+            {
+
+                ProfileCommon prof = Profile.GetProfile(DSUsuarioDT.Rows[0]["username"].ToString());
+
+                String[] ND = this.TxtDependencia.Text.Split('|');
+
+                prof.CodigoDepUsuario = ND[0].ToString().TrimEnd();
+
+                prof.NombreDepUsuario = text.Text.Trim();
+
+                prof.Save();
+
+            }
+
             this.DVDependencia.DataBind();
             //this.GVDependenciaPermiso.DataBind();
             this.LblMessageBox.Text = "Registro Editado";
@@ -1506,6 +1624,11 @@ public partial class _MaestroDependencia : System.Web.UI.Page
         ListBox2_Load();
         TreeVExpediente_Load();
 
+    }
+    protected void ImageButton3_Click(object sender, EventArgs e)
+    {
+        this.Label7.Text = "¿Va a eliminar la Dependencia seleccionada, Está seguro?";
+        this.MPEPregunta.Show();
     }
 }
 

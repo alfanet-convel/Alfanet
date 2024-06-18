@@ -505,20 +505,20 @@ public partial class _WorkFlow : System.Web.UI.Page
                             }
 
 
-                            MailBLL Correo = new MailBLL();
-                            MembershipUser usuario;
-                            DSUsuarioTableAdapters.UsuariosxdependenciaTableAdapter ObjTaUsuarioxDependencia = new DSUsuarioTableAdapters.UsuariosxdependenciaTableAdapter();
-                            DSUsuario.UsuariosxdependenciaDataTable DTUsuariosxDependencia = new DSUsuario.UsuariosxdependenciaDataTable();
+                            //MailBLL Correo = new MailBLL();
+                            //MembershipUser usuario;
+                            //DSUsuarioTableAdapters.UsuariosxdependenciaTableAdapter ObjTaUsuarioxDependencia = new DSUsuarioTableAdapters.UsuariosxdependenciaTableAdapter();
+                            //DSUsuario.UsuariosxdependenciaDataTable DTUsuariosxDependencia = new DSUsuario.UsuariosxdependenciaDataTable();
 
-                            DTUsuariosxDependencia = ObjTaUsuarioxDependencia.GetUsuariosxDependenciaByDependencia(mDependenciaCodDestino);
-                            if (DTUsuariosxDependencia.Count > 0)
-                            {
-                                DataRow[] rows = DTUsuariosxDependencia.Select();
-                                System.Guid a = new Guid(rows[0].ItemArray[0].ToString().Trim());
-                                usuario = Membership.GetUser(a);
-                                string Body = "Tiene una nueva Tarea Nro " + mNumeroDocumento + "<BR>" + " Fecha de Radicacion: " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " Accion: " + mWFAccionCodigo + "<BR>";
-                                Correo.EnvioCorreo("soporte.archivar@gmail.com", "soporte.archivar@gmail.com", "Tarea Nro" + " " + mNumeroDocumento, Body, true, "1");
-                            }
+                            //DTUsuariosxDependencia = ObjTaUsuarioxDependencia.GetUsuariosxDependenciaByDependencia(mDependenciaCodDestino);
+                            //if (DTUsuariosxDependencia.Count > 0)
+                            //{
+                            //    DataRow[] rows = DTUsuariosxDependencia.Select();
+                            //    System.Guid a = new Guid(rows[0].ItemArray[0].ToString().Trim());
+                            //    usuario = Membership.GetUser(a);
+                            //    string Body = "Tiene una nueva Tarea Nro " + mNumeroDocumento + "<BR>" + " Fecha de Radicacion: " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " Accion: " + mWFAccionCodigo + "<BR>";
+                            //    Correo.EnvioCorreo("alfanetpruebas@gmail.com", "alfanetpruebas@gmail.com", "Tarea Nro" + " " + mNumeroDocumento, Body, true, "1");
+                            //}
                     }
 
                     else if (mHFCarga.Value == "Serie" && TxtDepDesitno.Text != "")
@@ -1301,7 +1301,7 @@ public partial class _WorkFlow : System.Web.UI.Page
         NroDoc.Attributes.Add("onClick", "urlInt(event," + Grupo.Value + ");");
 
         /*Añadir las funciones en los hyperlinks de la columna opciones*/
-        ((HyperLink)((ASPxGridView)sender).FindRowCellTemplateControl(GVR.VisibleIndex, colOpc, "HprLnkImgExtVen")).Attributes.Add("onClick", "VImagenesReg(event," + NroDoc.Text + "," + Grupo.Value + ");");
+        ((HyperLink)((ASPxGridView)sender).FindRowCellTemplateControl(GVR.VisibleIndex, colOpc, "HprLnkImgExtVen")).Attributes.Add("onClick", "VImagenes(event," + NroDoc.Text + "," + Grupo.Value + ");");
         ((HyperLink)((ASPxGridView)sender).FindRowCellTemplateControl(GVR.VisibleIndex, colOpc, "HprLnkHisExtven")).Attributes.Add("onClick", "HistoricoReg(event," + NroDoc.Text + "," + Grupo.Value + ");");
         ((HyperLink)((ASPxGridView)sender).FindRowCellTemplateControl(GVR.VisibleIndex, colOpc, "HprLnkExp")).Attributes.Add("onClick", "Expediente(event," + NroDoc.Text + ",'" + Expediente.Value + "'," + Grupo.Value + ");");
         
@@ -1379,7 +1379,7 @@ public partial class _WorkFlow : System.Web.UI.Page
         NroDoc.Attributes.Add("onClick", "urlInt(event," + Grupo.Value + ");");
 
         /*Adicionar las funciones a los hyperlinks de la columna de opciones*/
-        ((HyperLink)((ASPxGridView)sender).FindRowCellTemplateControl(GVR.VisibleIndex, colOpc, "HprLnkImgExtVen")).Attributes.Add("onClick", "VImagenesReg(event," + NroDoc.Text + "," + Grupo.Value + ");");
+        ((HyperLink)((ASPxGridView)sender).FindRowCellTemplateControl(GVR.VisibleIndex, colOpc, "HprLnkImgExtVen")).Attributes.Add("onClick", "VImagenes(event," + NroDoc.Text + "," + Grupo.Value + ");");
         ((HyperLink)((ASPxGridView)sender).FindRowCellTemplateControl(GVR.VisibleIndex, colOpc, "HprLnkHisExtven")).Attributes.Add("onClick", "HistoricoReg(event," + NroDoc.Text + "," + Grupo.Value + ");");
         ((HyperLink)((ASPxGridView)sender).FindRowCellTemplateControl(GVR.VisibleIndex, colOpc, "HprLnkExp")).Attributes.Add("onClick", "Expediente(event," + NroDoc.Text + ",'" + Expediente.Value + "'," + Grupo.Value + ");");
 
@@ -1748,21 +1748,21 @@ public partial class _WorkFlow : System.Web.UI.Page
                                                                    );
                             }
 
-                            /*
-                            MailBLL Correo = new MailBLL();
-                            MembershipUser usuario;
-                            DSUsuarioTableAdapters.UsuariosxdependenciaTableAdapter ObjTaUsuarioxDependencia = new DSUsuarioTableAdapters.UsuariosxdependenciaTableAdapter();
-                            DSUsuario.UsuariosxdependenciaDataTable DTUsuariosxDependencia = new DSUsuario.UsuariosxdependenciaDataTable();
 
-                            DTUsuariosxDependencia = ObjTaUsuarioxDependencia.GetUsuariosxDependenciaByDependencia(mDependenciaCodDestino);
-                            if (DTUsuariosxDependencia.Count > 0)
-                            {
-                                DataRow[] rows = DTUsuariosxDependencia.Select();
-                                System.Guid a = new Guid(rows[0].ItemArray[0].ToString().Trim());
-                                usuario = Membership.GetUser(a);
-                                string Body = "Tiene una nueva Tarea Nro " + mNumeroDocumento + "<BR>" + " Fecha de Radicacion: " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " Accion: " + mWFAccionCodigo + "<BR>";
-                                Correo.EnvioCorreo("soporte.archivar@gmail.com", "soporte.archivar@gmail.com", "Tarea Nro" + " " + mNumeroDocumento, Body, true, "1");
-                            }*/
+                            //MailBLL Correo = new MailBLL();
+                            //MembershipUser usuario;
+                            //DSUsuarioTableAdapters.UsuariosxdependenciaTableAdapter ObjTaUsuarioxDependencia = new DSUsuarioTableAdapters.UsuariosxdependenciaTableAdapter();
+                            //DSUsuario.UsuariosxdependenciaDataTable DTUsuariosxDependencia = new DSUsuario.UsuariosxdependenciaDataTable();
+
+                            //DTUsuariosxDependencia = ObjTaUsuarioxDependencia.GetUsuariosxDependenciaByDependencia(mDependenciaCodDestino);
+                            //if (DTUsuariosxDependencia.Count > 0)
+                            //{
+                            //    DataRow[] rows = DTUsuariosxDependencia.Select();
+                            //    System.Guid a = new Guid(rows[0].ItemArray[0].ToString().Trim());
+                            //    usuario = Membership.GetUser(a);
+                            //    string Body = "Tiene una nueva Tarea Nro " + mNumeroDocumento + "<BR>" + " Fecha de Radicacion: " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " Accion: " + mWFAccionCodigo + "<BR>";
+                            //    Correo.EnvioCorreo("alfanetpruebas@gmail.com", "alfanetpruebas@gmail.com", "Tarea Nro" + " " + mNumeroDocumento, Body, true, "1");
+                            //}
                         }
 
                         else if (mHFCarga.Value == "Serie" && TxtDepDesitno.Text != "")
@@ -1826,8 +1826,6 @@ public partial class _WorkFlow : System.Web.UI.Page
 
                         this.LblMessageBox.Text += string.Format("Se descargo el documento {0}", mNumeroDocumento);
                         this.LblMessageBox.Text += " de su escritorio<br />";
-                        this.MPEMensaje.Show();
-                         
                     }
                     else if (hdWfMovTipo.Value == "4") /*Si se va el radicado por proceso (4)*/
                     {

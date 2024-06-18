@@ -7,12 +7,30 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using System.Collections;
+using System.Net;
+using System.Net.NetworkInformation;
 
 
 public partial class _TransDocPendientes : System.Web.UI.Page
 {
+    string ModuloLog = "Transf. Docs Pendientes";
+    string ConsecutivoCodigoErr = "4";
+    string ActividadLogCodigoErr = "Error";
     protected void Page_Load(object sender, EventArgs e)
     {
+        IPHostEntry host;
+        string localIP = "";
+        host = Dns.GetHostEntry(Dns.GetHostName());
+        foreach (IPAddress ip in host.AddressList)
+        {
+            if (ip.AddressFamily.ToString() == "InterNetwork")
+            {
+                localIP = ip.ToString();
+                Session["IP"] = localIP;
+            }
+        }
+        Session["Nombrepc"] = host.HostName.ToString();
         if (!IsPostBack)
         {
            
@@ -107,6 +125,7 @@ public partial class _TransDocPendientes : System.Web.UI.Page
         String DependenciaDestino;
         DependenciaOrigen = this.TxtDocumento.Text;
         DependenciaDestino = this.TxtDepFinal.Text;
+        string ActLogCod = "ACTUALIZAR";
 
         if (DependenciaOrigen.Contains(" | "))
         {
@@ -129,6 +148,8 @@ public partial class _TransDocPendientes : System.Web.UI.Page
         {
             if (this.TxtDocumento.Text != "")
             {
+                try
+                {
                 ////////////////////////////////////////////////
                 MembershipUser user = Membership.GetUser();
                 Object CodigoRuta = user.ProviderUserKey;
@@ -159,11 +180,79 @@ public partial class _TransDocPendientes : System.Web.UI.Page
                                                        null,
                                                        "0",
                                                        UserId);
+                    //Recibidos                      
+                    string ConsecutivoCodigo = "2";
+                    DateTime WFMovimientoFecha = DateTime.Now;
+                    //OBTENER CONSECUTIVO DE LOGS
+                    DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                    DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+                    Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+                    DataRow[] fila = Conse.Select();
+                    string x = fila[0].ItemArray[0].ToString();
+                    string LOG = Convert.ToString(x);
+                    int NumeroDocumento = row.NumeroDocumento;
+                    string GrupoCod = "1";
+                    //DSWFMOVIMIENTOS
+                    DataRow[] rows = DTTranferencia.Select();
+                    string DepCodigoOrigen = rows[0].ItemArray[1].ToString();
+                    //NUM DOC + Dependencia CodOrigen
+                    string Datosini = NumeroDocumento + " | " + DepCodigoOrigen;
+                    //NUM DOC + Dependencia CodDestino
+                    string Datosfin1 = NumeroDocumento + " | " + DependenciaDestino;
+                    string username = Profile.GetProfile(Profile.UserName).UserName.ToString();
+                    DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+                    string UsrId = objUsr.Aspnet_UserIDByUserName(username).ToString();
+                    DateTime FechaFin = DateTime.Now;
+                    Int64 LogId = Convert.ToInt64(LOG);
+                    string IP = Session["IP"].ToString();
+                    string NombreEquipo = Session["Nombrepc"].ToString();
+                    System.Web.HttpBrowserCapabilities nav = Request.Browser;
+                    string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+                    //Insert log actualizar trans docs pendientes enviados
+                    DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter Accede = new DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter();
+                    Accede.GetData(LogId, username, WFMovimientoFecha, ActLogCod, NumeroDocumento, GrupoCod, ModuloLog, Datosini, Datosfin1, FechaFin, IP, NombreEquipo, Navegador);
+                    //Actualiza consecutivo log
+                    DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                    ConseLogs.GetConsecutivos(ConsecutivoCodigo);
+                }
+                }
+                catch (Exception error)
+                {
+                    this.LblMessageBox.Text = "Se ha presentado un error al transferir los documentos a: " + DependenciaDestino + "  Error:" + error;
+                    this.MPEMensaje.Show();
+                    //Variables de LOG ERROR
+                    DateTime FechaInicio = DateTime.Now;
+                    string grupoo = "";
+                    //OBTENER CONSECUTIVO DE LOGS
+                    string DatosFinales = "Error al Transferir docs " + error;
+                    DateTime WFMovimientoFechaFin = DateTime.Now;
+                    DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConsecutivosErr = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                    DSGrupoSQL.ConsecutivoLogsDataTable ConseErr = new DSGrupoSQL.ConsecutivoLogsDataTable();
+                    ConseErr = ConsecutivosErr.GetConseError(ConsecutivoCodigoErr);
+                    DataRow[] fila2 = ConseErr.Select();
+                    string z = fila2[0].ItemArray[0].ToString();
+                    string LOGERROR = Convert.ToString(z);
+                    Int64 LogIdErr = Convert.ToInt64(LOGERROR);
+                    string username = Profile.GetProfile(Profile.UserName).UserName.ToString();
+                    DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+                    string UsrId = objUsr.Aspnet_UserIDByUserName(username).ToString();
+                    string IP = HttpContext.Current.Session["IP"].ToString();
+                    string NombreEquipo = HttpContext.Current.Session["Nombrepc"].ToString();
+                    System.Web.HttpBrowserCapabilities nav = HttpContext.Current.Request.Browser;
+                    string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+                    //Se hace el insert de Log error
+                    DSLogAlfaNetTableAdapters.LogAlfaNetErroresTableAdapter Errores = new DSLogAlfaNetTableAdapters.LogAlfaNetErroresTableAdapter();
+                    Errores.GetError(LogIdErr, username, FechaInicio, ActividadLogCodigoErr, grupoo, ModuloLog, DatosFinales, WFMovimientoFechaFin, IP, NombreEquipo, Navegador);
+                    //Se hace el update consecutivo de Logs
+                    DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                    ConseLogs.GetConsecutivos(ConsecutivoCodigoErr);
                 }
             }
         }
         if (this.ChBoxLst.Items[1].Selected)
         {
+            try
+            {
             DSWorkFlowTableAdapters.TranferenciaEnviadaTableAdapter TATransferencia = new DSWorkFlowTableAdapters.TranferenciaEnviadaTableAdapter();
             DSWorkFlow.TranferenciaEnviadaDataTable DTTranferencia = new DSWorkFlow.TranferenciaEnviadaDataTable();
             DTTranferencia = TATransferencia.GetEnviada(DependenciaOrigen);
@@ -193,6 +282,72 @@ public partial class _TransDocPendientes : System.Web.UI.Page
                                                    null,
                                                    "0",
                                                    UserId);
+                //enviados
+                string ConsecutivoCodigo = "3";
+                DateTime WFMovimientoFecha = DateTime.Now;
+                //OBTENER CONSECUTIVO DE LOGS
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+                Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+                DataRow[] fila = Conse.Select();
+                string x = fila[0].ItemArray[0].ToString();
+                string LOG = Convert.ToString(x);
+                int NumeroDocumento = row.NumeroDocumento;
+                string GrupoCod = "2";
+                //DSWFMOVIMIENTOS
+                DataRow[] rows = DTTranferencia.Select();
+                string DepCodigoOrigen = rows[0].ItemArray[1].ToString();
+                //NUM DOC + Dependencia CodOrigen
+                string Datosini = NumeroDocumento + " | " + DepCodigoOrigen;
+                //NUM DOC + Dependencia CodDestino
+                string Datosfin1 = NumeroDocumento + " | " + DependenciaDestino;
+                string username = Profile.GetProfile(Profile.UserName).UserName.ToString();
+                DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+                string UsrId = objUsr.Aspnet_UserIDByUserName(username).ToString();
+                DateTime FechaFin = DateTime.Now;
+                Int64 LogId = Convert.ToInt64(LOG);
+                string IP = Session["IP"].ToString();
+                string NombreEquipo = Session["Nombrepc"].ToString();
+                System.Web.HttpBrowserCapabilities nav = Request.Browser;
+                string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+                //Insert log actualizar trans docs pendientes enviados
+                DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter Accede = new DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter();
+                Accede.InsertEnviados(LogId, username, WFMovimientoFecha, ActLogCod, NumeroDocumento, GrupoCod, ModuloLog, Datosini, Datosfin1, FechaFin, IP, NombreEquipo, Navegador);
+                //Actualiza consecutivo
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                ConseLogs.GetConsecutivos(ConsecutivoCodigo);
+            }
+            }
+            catch (Exception error)
+            {
+                this.LblMessageBox.Text = "Se ha presentado un error al transferir los documentos a: " + DependenciaDestino + "  Error:" + error;
+                this.MPEMensaje.Show();
+                //Variables de LOG ERROR
+                DateTime FechaInicio = DateTime.Now;
+                string grupoo = "";
+                //OBTENER CONSECUTIVO DE LOGS
+                string DatosFinales = "Error al Transferir docs " + error;
+                DateTime WFMovimientoFechaFin = DateTime.Now;
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConsecutivosErr = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                DSGrupoSQL.ConsecutivoLogsDataTable ConseErr = new DSGrupoSQL.ConsecutivoLogsDataTable();
+                ConseErr = ConsecutivosErr.GetConseError(ConsecutivoCodigoErr);
+                DataRow[] fila2 = ConseErr.Select();
+                string z = fila2[0].ItemArray[0].ToString();
+                string LOGERROR = Convert.ToString(z);
+                Int64 LogIdErr = Convert.ToInt64(LOGERROR);
+                string username = Profile.GetProfile(Profile.UserName).UserName.ToString();
+                DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+                string UsrId = objUsr.Aspnet_UserIDByUserName(username).ToString();
+                string IP = HttpContext.Current.Session["IP"].ToString();
+                string NombreEquipo = HttpContext.Current.Session["Nombrepc"].ToString();
+                System.Web.HttpBrowserCapabilities nav = HttpContext.Current.Request.Browser;
+                string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+                //Se hace el insert de Log error
+                DSLogAlfaNetTableAdapters.LogAlfaNetErroresTableAdapter Errores = new DSLogAlfaNetTableAdapters.LogAlfaNetErroresTableAdapter();
+                Errores.GetError(LogIdErr, username, FechaInicio, ActividadLogCodigoErr, grupoo, ModuloLog, DatosFinales, WFMovimientoFechaFin, IP, NombreEquipo, Navegador);
+                //Se hace el update consecutivo de Logs
+                DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+                ConseLogs.GetConsecutivos(ConsecutivoCodigoErr);
             }
         }
 

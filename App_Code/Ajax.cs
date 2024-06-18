@@ -25,7 +25,7 @@ public class Ajax : System.Web.Services.WebService {
         {
             dependencias = new List<ObjDependencia>();
             bll = new BLLPlantillas();
-            string resultSearch = null;
+            //string resultSearch = null;
             dependencias = bll.GetDependencias();
             //dependencias = bll.FindDependenciasInCache("Dependencias", out resultSearch);
             List<string> output = new List<string>();

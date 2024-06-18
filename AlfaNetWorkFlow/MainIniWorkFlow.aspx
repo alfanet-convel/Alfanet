@@ -14,7 +14,7 @@
                     <img src="../AlfaNetImagen/MainPages/WorkFlowEscritorio.jpg" style="width: 320px;
                         height: 350px" /></td>
                 <td style="height: 345px">
-                    <h1>
+                    <h1>WorkFlow Alfanet
                         <strong><span style="color: appworkspace">MainIniWorkFlow.aspx </span></strong>
                     </h1>
                     <h1>

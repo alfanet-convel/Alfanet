@@ -14,7 +14,7 @@
         <br />
         <rsweb:ReportViewer ID="GrupoReportViewer" AsyncRendering="false"  runat="server" Font-Names="Verdana" Font-Size="8pt"
             Height="400px" Width="715px">
-            <LocalReport ReportPath="AlfaNetReportes\ReportesMaestros\ReporteGrupo.rdlc">
+            <LocalReport EnableExternalImages="true" ReportPath="AlfaNetReportes\ReportesMaestros\ReporteGrupo.rdlc">
                 <DataSources>
                     <rsweb:ReportDataSource DataSourceId="GrupoDataSource" Name="DSGrupo_Grupo" />
                 </DataSources>

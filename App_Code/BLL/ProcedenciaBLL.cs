@@ -70,7 +70,7 @@ public class ProcedenciaBLL
 
     // CREATE METHOD
     [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Insert, true)]
-    public bool AddProcedencia(string ProcedenciaNUI, string ProcedenciaCodigo, string ProcedenciaNombre, string ProcedenciaNUIPadre, string ProcedenciaDireccion, string ProcedenciaTelefono1, string ProcedenciaTelefono2, string ProcedenciaFax, string ProcedenciaMail1, string ProcedenciaMail2, string ProcedenciaPaginaWeb, string CiudadCodigo, string ProcedenciaHabilitar, string ProcedenciaPermiso,String CiudadNombre,String DepartamentoNombre)
+    public bool AddProcedencia(string ProcedenciaNUI, string ProcedenciaCodigo, string ProcedenciaNombre, string ProcedenciaNUIPadre, string ProcedenciaDireccion, string ProcedenciaTelefono1, string ProcedenciaTelefono2, string ProcedenciaFax, string ProcedenciaMail1, string ProcedenciaMail2, string ProcedenciaPaginaWeb, string CiudadCodigo, string ProcedenciaHabilitar, string ProcedenciaPermiso)
     {
         // Create a new ExpedienteRow instance
         DSProcedenciaSQL.ProcedenciaDataTable procedencias = new DSProcedenciaSQL.ProcedenciaDataTable();
@@ -120,9 +120,6 @@ public class ProcedenciaBLL
         procedencia.CiudadCodigo = CiudadCodigo;
         procedencia.ProcedenciaHabilitar = ProcedenciaHabilitar;
         procedencia.ProcedenciaPermiso = ProcedenciaPermiso;
-        //parametros de solo lectura
-        procedencia.CiudadNombre = "";
-        procedencia.DepartamentoNombre = "";
         
         // Add the new expediente
         procedencias.AddProcedenciaRow(procedencia);
@@ -135,7 +132,7 @@ public class ProcedenciaBLL
 
     // UPDATE METHOD
     [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Update, true)]
-    public bool UpdateProcedencia(string ProcedenciaCodigo, string ProcedenciaNombre, string ProcedenciaNUIPadre, string ProcedenciaDireccion, string ProcedenciaTelefono1, string ProcedenciaTelefono2, string ProcedenciaFax, string ProcedenciaMail1, string ProcedenciaMail2, string ProcedenciaPaginaWeb, string CiudadCodigo, string ProcedenciaHabilitar, string ProcedenciaPermiso, string Original_ProcedenciaNUI, String CiudadNombre, String DepartamentoNombre)
+    public bool UpdateProcedencia(string ProcedenciaCodigo, string ProcedenciaNombre, string ProcedenciaNUIPadre, string ProcedenciaDireccion, string ProcedenciaTelefono1, string ProcedenciaTelefono2, string ProcedenciaFax, string ProcedenciaMail1, string ProcedenciaMail2, string ProcedenciaPaginaWeb, string CiudadCodigo, string ProcedenciaHabilitar, string ProcedenciaPermiso,string Original_ProcedenciaNUI)
     {
         DSProcedenciaSQL.ProcedenciaDataTable procedencias = AdapterProcedencia.GetProcedenciaById(Original_ProcedenciaNUI);
         if (procedencias.Count == 0)
@@ -189,9 +186,6 @@ public class ProcedenciaBLL
         procedencia.ProcedenciaHabilitar = ProcedenciaHabilitar;
         procedencia.ProcedenciaPermiso = ProcedenciaPermiso;
         procedencia.Original_ProcedenciaNUI = Original_ProcedenciaNUI;
-        //parametros de solo lectura
-        procedencia.CiudadNombre = "";
-        procedencia.DepartamentoNombre = "";
 
         // Update the product record
         int rowsAffected = AdapterProcedencia.Update(procedencias);

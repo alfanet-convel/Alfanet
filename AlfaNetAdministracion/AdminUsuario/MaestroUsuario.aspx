@@ -93,7 +93,7 @@ style="FONT-SIZE: 10pt">Perfil del
 usuario</SPAN></TD></TR><TR><TD 
 style="TEXT-ALIGN: right" align=center> &nbsp;&nbsp;&nbsp;
     <asp:Label id="Label1" runat="server" Width="197px" ForeColor="ControlDarkDark" Font-Size="Small" Font-Bold="True" AssociatedControlID="AvailableRoles">Perfil:</asp:Label></TD><TD 
-style="TEXT-ALIGN: left"><asp:ListBox id="AvailableRoles" runat="server" Width="250px" SelectionMode="Multiple"></asp:ListBox></TD></TR><TR><TD 
+style="TEXT-ALIGN: left"><asp:ListBox id="AvailableRoles" runat="server" Height="120px" Width="250px" SelectionMode="Multiple"></asp:ListBox></TD></TR><TR><TD 
 style="FONT-WEIGHT: bold; COLOR: white; HEIGHT: 20px; BACKGROUND-COLOR: #507cd1" 
 align=center colSpan=2><SPAN 
 style="FONT-SIZE: 10pt">Dependencia del 

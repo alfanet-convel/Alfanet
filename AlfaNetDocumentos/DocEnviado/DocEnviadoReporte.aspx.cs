@@ -31,11 +31,11 @@ public partial class _DocEnviadoReporte : System.Web.UI.Page
         string Admon = Request["Admon"];
         if (Admon == "S")
         {
-            ((MainMaster)this.Master).hidemenu();
+            //((MainMaster)this.Master).hidemenu();
         }
         else
         {
-            ((MainMaster)this.Master).showmenu();
+           // ((MainMaster)this.Master).showmenu();
         }
         String RptaImg = Request["RptaImg"];
         if (RptaImg == "S")
@@ -158,7 +158,7 @@ public partial class _DocEnviadoReporte : System.Web.UI.Page
     //        MembershipUser usuario;
     //        usuario = Membership.GetUser(Profile.GetProfile(User.Identity.Name.ToString()).UserName.ToString());
     //        string Body = "Tiene un nuevo Radicado Nro " + RadicadoCodigo + "<BR>" + " Fecha de Radicacion: " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "<BR>" + "Procedencia: " + TxtProcedencia.Text.ToString() + "<BR>" + "Naturaleza: " + TxtNaturaleza.Text.ToString().Trim() + "<BR>";
-    //        Correo.EnvioCorreo("soporte.archivar@gmail.com", usuario.Email, "Radicado Nro" + " " + RadicadoCodigo, Body, true, "1");
+    //        Correo.EnvioCorreo("alfanetpruebas@gmail.co", usuario.Email, "Radicado Nro" + " " + RadicadoCodigo, Body, true, "1");
             
     //    }
     //    catch (Exception Error)

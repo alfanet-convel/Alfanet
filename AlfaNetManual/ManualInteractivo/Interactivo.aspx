@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true" CodeFile="Interactivo.aspx.cs" Inherits="AlfaNetManual_ManualInteractivo_Interactivo" Title="Manual Interactivo" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Interactivo.aspx.cs" Inherits="AlfaNetManual_ManualInteractivo_Interactivo" Title="Manual Interactivo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <script language="javascript" type="text/javascript" for="Object1" event="onclick">
 // <!CDATA[

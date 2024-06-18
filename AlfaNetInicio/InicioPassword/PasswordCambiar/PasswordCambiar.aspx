@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true"  CodeFile="PasswordCambiar.aspx.cs" Inherits="_PasswordCambiar" %>
+﻿ <%@ Page Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true"  CodeFile="PasswordCambiar.aspx.cs" Inherits="_PasswordCambiar" %>
 
 <%@ Register Assembly="Infragistics2.WebUI.UltraWebNavigator.v7.1, Version=7.1.20071.40, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
     Namespace="Infragistics.WebUI.UltraWebNavigator" TagPrefix="ignav" %>
@@ -101,7 +101,7 @@
                                             <td align="right" style="width: 435px; height: 40px; text-align: center">
                                                 <asp:Button ID="ChangePasswordPushButton" runat="server" BackColor="White" BorderColor="#507CD1"
                                                     BorderStyle="Solid" BorderWidth="1px" CommandName="ChangePassword" Font-Names="Verdana" ForeColor="#284E98" Text="Cambiar contraseña"
-                                                    ValidationGroup="ChangePassword1" /></td>
+                                                    ValidationGroup="ChangePassword1" OnClick="ChangePasswordPushButton_Click" /></td>
                                             <td style="width: 351px; height: 40px">
                                                 <asp:Button ID="CancelPushButton" runat="server" BackColor="White" BorderColor="#507CD1"
                                                     BorderStyle="Solid" BorderWidth="1px" CausesValidation="False" CommandName="Cancel"

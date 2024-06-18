@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true" CodeFile="PermisosPlantillas.aspx.cs" Inherits="AlfanetPlantilla_PermisosPlantillas" Title="Página sin título" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="PermisosPlantillas.aspx.cs" Inherits="AlfanetPlantilla_PermisosPlantillas" Title="" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <link href="plantillas.css" rel="stylesheet" type="text/css" />

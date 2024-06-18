@@ -32,7 +32,7 @@
         }
     }
 </script>
-<asp:Content ID="ContentPasswordRecuperar" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <table style="width: 100%; height: 100%">
         <tr>
             <td style="width: 25%">
@@ -57,7 +57,7 @@
                 <asp:PasswordRecovery ID="PasswordRecovery2" runat="server"
     BackColor="#EFF3FB" BorderColor="#B5C7DE" BorderPadding="4" BorderStyle="Solid"
     BorderWidth="1px" Font-Names="Verdana" OnSendingMail="CancelEmail" Width="100%" Height="136px">
-    <MailDefinition From="alfanett@mintic.gov.co" Subject="Mintic">
+    <MailDefinition From="alfanetpruebas@gmail.co" Subject="AlfaNet">
     </MailDefinition>
     <SuccessTextStyle Font-Bold="True" ForeColor="#507CD1" />
     <TitleTextStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" Font-Size="0.9em" />

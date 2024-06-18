@@ -7,12 +7,30 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
-
+using System.Net;
+using System.Net.NetworkInformation;
 
 public partial class _MaestroMedio : System.Web.UI.Page
 {
+    DateTime FechaIni = DateTime.Now;
+    string ConsecutivoCodigo = "6";
+    string ModuloLog = "Maestro Medio";
+    string ConsecutivoCodigoErr = "4";
+    string ActividadLogCodigoErr = "Error";
     protected void Page_Load(object sender, EventArgs e)
     {
+        IPHostEntry host;
+        string localIP = "";
+        host = Dns.GetHostEntry(Dns.GetHostName());
+        foreach (IPAddress ip in host.AddressList)
+        {
+            if (ip.AddressFamily.ToString() == "InterNetwork")
+            {
+                localIP = ip.ToString();
+                Session["IP"] = localIP;
+            }
+        }
+        Session["Nombrepc"] = host.HostName.ToString();
         if (!IsPostBack)
         {
             string Admon = Request["Admon"];
@@ -22,7 +40,7 @@ public partial class _MaestroMedio : System.Web.UI.Page
             }
             else
             {
-                ((MainMaster)this.Master).showmenu();
+                //((MainMaster)this.Master).showmenu();
             }
             this.TCMedio.ActiveTabIndex = 0; 
         }
@@ -35,6 +53,7 @@ public partial class _MaestroMedio : System.Web.UI.Page
 
     protected void ImgBtnFind_Click(object sender, ImageClickEventArgs e)
     {
+        string ActLogCod = "BUSCAR";
         if (TxtMedio.Text != "")
         {
             if (TxtMedio.Text.Contains(" | "))
@@ -47,6 +66,31 @@ public partial class _MaestroMedio : System.Web.UI.Page
             DTMedio = tamedio.GetMedioById(HFCodigoSeleccionado.Value);
             RbtnLstPermiso.SelectedValue = DTMedio[0].MedioPermiso;
             TextBox4.Text = DTMedio[0].MedioFactor;
+            string nombre = DTMedio[0].MedioNombre;
+            //OBTENER CONSECUTIVO DE LOGS
+            DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+            DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+            Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+            DataRow[] fila = Conse.Select();
+            string x = fila[0].ItemArray[0].ToString();
+            string LOG = Convert.ToString(x);
+            Int64 LogId = Convert.ToInt64(LOG);
+            string UserName = Profile.GetProfile(Profile.UserName).UserName.ToString();
+            DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+            string UsrId = objUsr.Aspnet_UserIDByUserName(UserName).ToString();
+            string DatosIni = "Buscar";
+            string DatosFin = HFCodigoSeleccionado.Value + " | " + nombre;//MEDIOCOD+ MedioNombre
+            DateTime FechaFin = DateTime.Now;
+            string IP = Session["IP"].ToString();
+            string NombreEquipo = Session["Nombrepc"].ToString();
+            System.Web.HttpBrowserCapabilities nav = Request.Browser;
+            string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+            //Se hace insert de Log Buscar medio
+            DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter BuscarMaestra = new DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter();
+            BuscarMaestra.GetMaestros(LogId, FechaIni, UserName, ActLogCod, ModuloLog, DatosIni, DatosFin, FechaFin, IP, NombreEquipo, Navegador);
+            //Se actualiza consecutivo de Log
+            DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+            ConseLogs.GetConsecutivos(ConsecutivoCodigo);
 
 
         }
@@ -380,6 +424,7 @@ public partial class _MaestroMedio : System.Web.UI.Page
     }
     protected void Button1_Click1(object sender, EventArgs e)
     {
+        string ActLogCod = "ELIMINAR";
         MedioBLL Medio = new MedioBLL();
         bool Correcto;
 
@@ -387,9 +432,61 @@ public partial class _MaestroMedio : System.Web.UI.Page
         {
 
             Correcto = Medio.DeleteMedio(HFCodigoSeleccionado.Value);
+            //OBTENER CONSECUTIVO DE LOGS
+            DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+            DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+            Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+            DataRow[] fila = Conse.Select();
+            string x = fila[0].ItemArray[0].ToString();
+            string LOG = Convert.ToString(x);
+            Int64 LogId = Convert.ToInt64(LOG);
+            string UserName = Profile.GetProfile(Profile.UserName).UserName.ToString();
+            DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+            string UsrId = objUsr.Aspnet_UserIDByUserName(UserName).ToString();
+            string DatosIni = "Eliminando";
+            string DatosFin = "Se elimino el Medio de codigo: " + HFCodigoSeleccionado.Value;
+            DateTime FechaFin = DateTime.Now;
+            string IP = Session["IP"].ToString();
+            string NombreEquipo = Session["Nombrepc"].ToString();
+            System.Web.HttpBrowserCapabilities nav = Request.Browser;
+            string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+            //Se hace insert de Log eliminar medio
+            DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter DeleteMaestra = new DSLogAlfaNetTableAdapters.LogAlfaNetTablasMaestrasTableAdapter();
+            DeleteMaestra.GetMaestros(LogId, FechaIni, UserName, ActLogCod, ModuloLog, DatosIni, DatosFin, FechaFin, IP, NombreEquipo, Navegador);
+            //Se actualiza consecutivo Log
+            DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+            ConseLogs.GetConsecutivos(ConsecutivoCodigo);
         }
         catch (Exception Error)
         {
+            //Variables de LOG ERROR
+            DateTime FechaInicio = DateTime.Now;
+            string ModuloLog = "Maestro Medio";
+            string grupoo = "";
+            //OBTENER CONSECUTIVO DE LOGS
+            string DatosFinales = "Error al eliminar Medio " + Error;
+            DateTime WFMovimientoFechaFin = DateTime.Now;
+            DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConsecutivosErr = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+            DSGrupoSQL.ConsecutivoLogsDataTable ConseErr = new DSGrupoSQL.ConsecutivoLogsDataTable();
+            ConseErr = ConsecutivosErr.GetConseError(ConsecutivoCodigoErr);
+            DataRow[] fila2 = ConseErr.Select();
+            string z = fila2[0].ItemArray[0].ToString();
+            string LOGERROR = Convert.ToString(z);
+            Int64 LogIdErr = Convert.ToInt64(LOGERROR);
+            string username = Profile.GetProfile(Profile.UserName).UserName.ToString();
+            DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+            string UsrId = objUsr.Aspnet_UserIDByUserName(username).ToString();
+            string IP = HttpContext.Current.Session["IP"].ToString();
+            string NombreEquipo = HttpContext.Current.Session["Nombrepc"].ToString();
+            System.Web.HttpBrowserCapabilities nav = HttpContext.Current.Request.Browser;
+            string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+            //Se hace el insert de Log error
+            DSLogAlfaNetTableAdapters.LogAlfaNetErroresTableAdapter Errores = new DSLogAlfaNetTableAdapters.LogAlfaNetErroresTableAdapter();
+            Errores.GetError(LogIdErr, username, FechaInicio, ActividadLogCodigoErr, grupoo, ModuloLog, DatosFinales,
+            WFMovimientoFechaFin, IP, NombreEquipo, Navegador);
+            //Se hace el update consecutivo de Logs
+            DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+            ConseLogs.GetConsecutivos(ConsecutivoCodigoErr);
             this.LblMessageBox.Text = "Ocurrio un problema al tratar de eliminar el registro. ";
             this.MPEMensaje.Show();
         }

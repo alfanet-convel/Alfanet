@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true" CodeFile="ConsultasRecibida.aspx.cs" Inherits="AlfaNetReportes_Dinamicos_ConsultasRecibida" Title="Consulta Dinamica Recibido" %>
+<%@ Page Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true" CodeFile="ConsultasRecibida.aspx.cs" Inherits="AlfaNetReportes_Dinamicos_ConsultasRecibida" Title="Consulta Dinamica Recibido" %>
 
 <%@ Register Assembly="DevExpress.Web.ASPxPivotGrid.v9.1" Namespace="DevExpress.Web.ASPxPivotGrid"
     TagPrefix="dxwpg" %>
@@ -71,7 +71,8 @@ Loading... <asp:Image id="Image1" runat="server" ImageUrl="~/App_Themes/Office20
         <contenttemplate>
 <asp:CheckBox id="CheckBox1" runat="server" Width="243px" Text="Graficar los Valores de las Filas" OnCheckedChanged="CheckBox1_CheckedChanged" AutoPostBack="True" Checked="True">
 </asp:CheckBox> <dxpgw:ASPxPivotGridExporter id="ASPxPivotGridExporter1" runat="server" ASPxPivotGridID="ConsultaRadicados">
-    </dxpgw:ASPxPivotGridExporter><DIV style="TEXT-ALIGN: center"><TABLE class="style1"><TBODY><TR><TD style="WIDTH: 173px"><dxe:ASPxComboBox id="listExportFormat" runat="server" ImageFolder="~/App_Themes/Office2003 Blue/{0}/" CssFilePath="~/App_Themes/Office2003 Blue/{0}/styles.css" CssPostfix="Office2003_Blue" ValueType="System.String"><Items>
+    </dxpgw:ASPxPivotGridExporter><DIV style="TEXT-ALIGN: center"><TABLE class="style1"><TBODY><TR><TD style="WIDTH: 173px"><dxe:ASPxComboBox id="listExportFormat" runat="server" ImageFolder="~/App_Themes/Office2003 Blue/{0}/" CssFilePath="~/App_Themes/Office2003 Blue/{0}/styles.css" CssPostfix="Office2003_Blue" ValueType="System.String">
+    <Items>
 <dxe:ListEditItem Text="Pdf" Value="0"></dxe:ListEditItem>
 <dxe:ListEditItem Text="Excel" Value="1"></dxe:ListEditItem>
 <dxe:ListEditItem Text="Mht" Value="2"></dxe:ListEditItem>
@@ -83,17 +84,40 @@ Loading... <asp:Image id="Image1" runat="server" ImageUrl="~/App_Themes/Office20
 <ButtonStyle Width="13px"></ButtonStyle>
 </dxe:ASPxComboBox> </TD><TD><dxe:ASPxButton id="ButtonOpen" onclick="ButtonOpen_Click" runat="server" Text="Abrir" CssFilePath="~/App_Themes/Office2003 Blue/{0}/styles.css" CssPostfix="Office2003_Blue"></dxe:ASPxButton> </TD><TD><dxe:ASPxButton id="ButtonSaveAs" onclick="ButtonSaveAs_Click" runat="server" Text="Guardar" CssFilePath="~/App_Themes/Office2003 Blue/{0}/styles.css" CssPostfix="Office2003_Blue"></dxe:ASPxButton> </TD><TD style="WIDTH: 3px"></TD><TD style="WIDTH: 206px">Grupos Naturalezas</TD><TD style="WIDTH: 3px"><dxe:ASPxComboBox id="ASPxComboBox1" runat="server" AutoPostBack="True" ImageFolder="~/App_Themes/Office2003 Blue/{0}/" CssFilePath="~/App_Themes/Office2003 Blue/{0}/styles.css" CssPostfix="Office2003_Blue" ValueType="System.String" OnSelectedIndexChanged="ASPxComboBox1_SelectedIndexChanged" OnDataBound="ASPxComboBox1_DataBound" SelectedIndex="0"><Items>
 <dxe:ListEditItem Text="TODAS" Value="TODAS"></dxe:ListEditItem>
-<dxe:ListEditItem Text="FACTURAS" Value="FACTURAS"></dxe:ListEditItem>
-<dxe:ListEditItem Text="REEMBOLSO" Value="REEMBOLSO"></dxe:ListEditItem>
-<dxe:ListEditItem Text="NOTA" Value="NOTA"></dxe:ListEditItem>
-<dxe:ListEditItem Text="CUENTA" Value="CUENTA"></dxe:ListEditItem>
+<dxe:ListEditItem Text="PQR" Value="PQR"></dxe:ListEditItem>
+<dxe:ListEditItem Text="TRAMITES" Value="TRA"></dxe:ListEditItem>
+<dxe:ListEditItem Text="DERECHOS DE PETICION" Value="DERE"></dxe:ListEditItem>
 </Items>
 
 <ButtonStyle Width="13px"></ButtonStyle>
-</dxe:ASPxComboBox> </TD><TD style="WIDTH: 3px">&nbsp;</TD><TD style="WIDTH: 1px">Año&nbsp;a&nbsp;consultar </TD><TD style="WIDTH: 3px"><dxe:ASPxComboBox id="ASPxComboBox2" runat="server" DataSourceID="SqlDataSource1" AutoPostBack="True" ImageFolder="~/App_Themes/Office2003 Blue/{0}/" CssFilePath="~/App_Themes/Office2003 Blue/{0}/styles.css" CssPostfix="Office2003_Blue" ValueType="System.String" OnSelectedIndexChanged="ASPxComboBox2_SelectedIndexChanged" OnDataBound="ASPxComboBox2_DataBound" TextField="Expr1" ValueField="Expr1">
+</dxe:ASPxComboBox> </TD><TD style="WIDTH: 3px">&nbsp;</TD><TD style="WIDTH: 1px">A�o&nbsp;a&nbsp;consultar </TD><TD style="WIDTH: 3px">
+<dxe:ASPxComboBox id="ASPxComboBox2" runat="server"  AutoPostBack="True" ImageFolder="~/App_Themes/Office2003 Blue/{0}/" CssFilePath="~/App_Themes/Office2003 Blue/{0}/styles.css" CssPostfix="Office2003_Blue" ValueType="System.String" OnSelectedIndexChanged="ASPxComboBox2_SelectedIndexChanged" OnDataBound="ASPxComboBox2_DataBound" >
+
+<Items>
+<dxe:ListEditItem Text="2013" Value="2013"></dxe:ListEditItem>
+<dxe:ListEditItem Text="2012" Value="2012"></dxe:ListEditItem>
+<dxe:ListEditItem Text="2011" Value="2011"></dxe:ListEditItem>
+<dxe:ListEditItem Text="2010" Value="2010"></dxe:ListEditItem>
+<dxe:ListEditItem Text="2009" Value="2009"></dxe:ListEditItem>
+<dxe:ListEditItem Text="2008" Value="2008"></dxe:ListEditItem>
+<dxe:ListEditItem Text="2007" Value="2007"></dxe:ListEditItem>
+<dxe:ListEditItem Text="2006" Value="2006"></dxe:ListEditItem>
+<dxe:ListEditItem Text="2005" Value="2005"></dxe:ListEditItem>
+<dxe:ListEditItem Text="2004" Value="2004"></dxe:ListEditItem>
+<dxe:ListEditItem Text="2003" Value="2003"></dxe:ListEditItem>
+<dxe:ListEditItem Text="2002" Value="2002"></dxe:ListEditItem>
+<dxe:ListEditItem Text="2001" Value="2001"></dxe:ListEditItem>
+
+
+
+</Items>
+
+
 <ButtonStyle Width="13px">
 </ButtonStyle>
-</dxe:ASPxComboBox> <asp:SqlDataSource id="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStrSQLServer %>" SelectCommand="SELECT DISTINCT YEAR(WFMovimientoFecha) AS Expr1 FROM Radicado ORDER BY Expr1"></asp:SqlDataSource></TD></TR></TBODY></TABLE>
+</dxe:ASPxComboBox> 
+<%--<asp:SqlDataSource id="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStrSQLServer %>" SelectCommand="SELECT DISTINCT YEAR(WFMovimientoFecha) AS Expr1 FROM Radicado ORDER BY Expr1"></asp:SqlDataSource>--%>
+</TD></TR></TBODY></TABLE>
         <br />
         <table style="width: 100%">
             <tr>
@@ -130,7 +154,7 @@ Loading... <asp:Image id="Image1" runat="server" ImageUrl="~/App_Themes/Office20
                                 <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Buscar:"></asp:Label></td>
                             <td style="width: 1332px; height: 36px">
                                 <asp:ImageButton ID="ImageButton2" runat="server" Height="34px" ImageUrl="~/AlfaNetImagen/ToolBar/buscarnew2.gif"
-                                    Width="35px" /></td>
+                                    Width="35px" OnClick="ImageButton2_Click" /></td>
                         </tr>
                     </table>
                 </td>
@@ -140,7 +164,8 @@ Loading... <asp:Image id="Image1" runat="server" ImageUrl="~/App_Themes/Office20
         </table>
         <br />
         <%@ register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
-    </DIV><TABLE><TBODY><TR><TD style="WIDTH: 621px"><dxwpg:ASPxPivotGrid id="ConsultaRadicados" runat="server" Width="900px" DataSourceID="AlfaWeb" OnPreRender="ConsultaRadicados_PreRender" EnableCallBacks="False"><Fields>
+    </DIV><TABLE><TBODY><TR><TD style="WIDTH: 621px">
+    <dxwpg:ASPxPivotGrid id="ConsultaRadicados" runat="server" Width="900px" DataSourceID="AlfaWeb" OnPreRender="ConsultaRadicados_PreRender" EnableCallBacks="False" Visible="false"><Fields>
 <dxwpg:PivotGridField FieldName="RadicadoCodigo" ID="fieldRadicadoCodigo" Area="FilterArea" AreaIndex="4" Caption="Radicado" SummaryType="Count"></dxwpg:PivotGridField>
 <dxwpg:PivotGridField FieldName="WFMovimientoFecha" ID="fieldWFMovimientoFecha" Area="ColumnArea" AreaIndex="0" GroupInterval="DateMonth" UnboundFieldName="fieldWFMovimientoFecha" Caption="Fecha Radicado"></dxwpg:PivotGridField>
 <dxwpg:PivotGridField FieldName="ProcedenciaNombre" ID="fieldProcedenciaNombre" Area="FilterArea" AreaIndex="1" Caption="Procedencia"></dxwpg:PivotGridField>
@@ -173,13 +198,16 @@ Loading... <asp:Image id="Image1" runat="server" ImageUrl="~/App_Themes/Office20
 
 <SortByColumn Height="7px" Width="11px" Url="~/App_Themes/Office2003 Blue/PivotGrid/pgSortByColumn.png"></SortByColumn>
 </Images>
-</dxwpg:ASPxPivotGrid></TD></TR></TBODY></TABLE><asp:SqlDataSource id="AlfaWeb" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStrSQLServer %>" SelectCommand="Radicado_ConsultasRadicadoDinamico" SelectCommandType="StoredProcedure"><SelectParameters>
-    <asp:ControlParameter ControlID="RadDatePicker1" DbType="DateTime" DefaultValue="01/01/2018"
+</dxwpg:ASPxPivotGrid></TD></TR></TBODY></TABLE>
+<asp:SqlDataSource id="AlfaWeb" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStrSQLServer %>" SelectCommand="Radicado_ConsultasRadicadoDinamico" SelectCommandType="StoredProcedure"><SelectParameters>
+    <asp:ControlParameter ControlID="RadDatePicker1" DbType="DateTime" DefaultValue="01/12/2009"
         Name="WFMovimientoFecha" PropertyName="SelectedDate" />
-    <asp:ControlParameter ControlID="RadDatePicker2" DbType="DateTime" DefaultValue="31/12/2018"
+    <asp:ControlParameter ControlID="RadDatePicker2" DbType="DateTime" DefaultValue="01/12/2009"
         Name="WFMovimientoFecha1" PropertyName="SelectedDate" />
 </SelectParameters>
-</asp:SqlDataSource> <dxchartsui:WebChartControl style="TEXT-ALIGN: center" id="WebChartControl1" runat="server" Width="900px" DataSourceID="ConsultaRadicados" ShowLoadingPanel="False" SeriesDataMember="Series" DiagramTypeName="XYDiagram" AlternateText="Grafico de Consultas Dinamicas Documentos Recibidos" AppearanceName="Pastel Kit" Height="500px"><SeriesSerializable>
+</asp:SqlDataSource> 
+<dxchartsui:WebChartControl style="TEXT-ALIGN: center" id="WebChartControl1" runat="server" Width="900px" DataSourceID="ConsultaRadicados" ShowLoadingPanel="False" SeriesDataMember="Series" DiagramTypeName="XYDiagram" AlternateText="Grafico de Consultas Dinamicas Documentos Recibidos" AppearanceName="Pastel Kit" Height="500px" Visible="false">
+<SeriesSerializable>
 <cc2:Series Name="Series 1" ArgumentScaleType="Numerical" LabelTypeName="SideBySideBarSeriesLabel" PointOptionsTypeName="PointOptions" SeriesViewTypeName="SideBySideBarSeriesView">
 <View HiddenSerializableString="to be serialized"></View>
 

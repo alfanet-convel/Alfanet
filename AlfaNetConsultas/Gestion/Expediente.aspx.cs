@@ -22,7 +22,7 @@ using DevExpress.Web;
 using DevExpress.Web.ASPxGridView;
 using DevExpress.Web.ASPxCallbackPanel;
 
-public partial class _Expediente : System.Web.UI.Page 
+public partial class AlfaNetConsultas_Gestion_Expediente : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
         {  
@@ -41,7 +41,8 @@ public partial class _Expediente : System.Web.UI.Page
                             this.MyAccordion.SelectedIndex = 1;
 
                             this.ODSWFExpediente.SelectParameters["ExpedienteCodigo"].DefaultValue = Expediente;
-
+					this.ASPxGVExpediente.DataSourceID = "ODSWFExpediente";
+                    this.ASPxGVExpediente.DataBind();
                             //this.GVExpediente.DataBind();
                         }
                      
@@ -183,8 +184,8 @@ public partial class _Expediente : System.Web.UI.Page
                     }
                     else if (Ext[0] == "2")
                     {
-                        NroDoc.Attributes.Add("onClick", "urlInt(event,1);");
-                        HprVisor.Attributes.Add("onClick", "VImagenesReg(event," + NroDoc.Text + ",1);");
+                        NroDoc.Attributes.Add("onClick", "urlInt(event,2);");
+                        HprVisor.Attributes.Add("onClick", "VImagenesReg(event," + NroDoc.Text + ",2);");
                     }
                 }
         }

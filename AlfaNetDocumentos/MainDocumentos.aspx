@@ -17,7 +17,7 @@
                     <img src="../AlfaNetImagen/MainPages/MainDocumentos.JPG" style="width: 250px; height: 219px" /></td>
                 <td>
                    
-                    <h1 style="text-align: center">
+                    <h1 style="text-align: center"> Documentos Alfanet
                         <strong><span style="color: appworkspace">DOCUMENTOS</span></strong></h1>
                     <h1 style="text-align: center">
                         <strong><span style="color: appworkspace"></span></strong><strong><span style="color: appworkspace">

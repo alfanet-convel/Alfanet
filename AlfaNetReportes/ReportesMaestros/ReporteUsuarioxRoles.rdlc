@@ -234,6 +234,7 @@ FROM         Usuariosxdependencia INNER JOIN
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>5</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value />
                     </Textbox>
@@ -255,6 +256,7 @@ FROM         Usuariosxdependencia INNER JOIN
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>4</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=Fields!UserName.Value</Value>
                     </Textbox>
@@ -276,6 +278,7 @@ FROM         Usuariosxdependencia INNER JOIN
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>3</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=Fields!NombresUsuario.Value</Value>
                     </Textbox>
@@ -297,6 +300,7 @@ FROM         Usuariosxdependencia INNER JOIN
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>2</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=Fields!ApellidosUsuario.Value</Value>
                     </Textbox>
@@ -318,6 +322,7 @@ FROM         Usuariosxdependencia INNER JOIN
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>1</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=Fields!RoleName.Value</Value>
                     </Textbox>
@@ -369,6 +374,7 @@ FROM         Usuariosxdependencia INNER JOIN
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>11</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value />
                     </Textbox>
@@ -391,6 +397,7 @@ FROM         Usuariosxdependencia INNER JOIN
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>10</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>User Name</Value>
                     </Textbox>
@@ -413,6 +420,7 @@ FROM         Usuariosxdependencia INNER JOIN
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>9</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Nombres Usuario</Value>
                     </Textbox>
@@ -435,6 +443,7 @@ FROM         Usuariosxdependencia INNER JOIN
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>8</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Apellidos Usuario</Value>
                     </Textbox>
@@ -457,6 +466,7 @@ FROM         Usuariosxdependencia INNER JOIN
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>7</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Permiso</Value>
                     </Textbox>
@@ -479,6 +489,7 @@ FROM         Usuariosxdependencia INNER JOIN
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
+                      <ZIndex>6</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Estado</Value>
                     </Textbox>

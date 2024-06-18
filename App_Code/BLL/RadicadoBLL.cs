@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
@@ -11,6 +11,10 @@ using System.Web.UI.HtmlControls;
 using DSRadicadoTableAdapters;
 using DSGrupoSQLTableAdapters;
 using System.IO;
+using System.Web.Configuration;
+using System.Collections;
+using System.Text;
+using System.DirectoryServices;
 
 
 //using DS
@@ -273,7 +277,7 @@ public class RadicadoBLL
         }
         catch (Exception e)
         {
-            throw new ApplicationException("Error en la capa Radicado1BLL. " + e.Message);
+            throw new ApplicationException("Error en la capa BLL. " + e.Message);
         }
        }
     // SELECT Gestion Radicado METHOD
@@ -463,7 +467,7 @@ public class RadicadoBLL
            }
            catch (Exception e)
            {
-               throw new ApplicationException("Error en la capa Radicado2BLL. " + e.Message);
+               throw new ApplicationException("Error en la capa BLL. " + e.Message);
            }
        }
 
@@ -655,15 +659,209 @@ public class RadicadoBLL
            }
            catch (Exception e)
            {
-               throw new ApplicationException("Error en la capa Radicado3BLL. " + e.Message);
+               throw new ApplicationException("Error en la capa BLL. " + e.Message);
            }
        }
 
-    // CREATE RADICADO METHOD
+
+
+      // SELECT Gestion Radicado v3 METHOD
+    [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Select, true)]
+    public DSRadicado.Radicado_ConsultasGestionTareasDataTable GetGTRadicadov3(String WFMovimientoFecha, String WFMovimientoFecha1, String WFMovimientoFechaFin, String WFMovimientoFechaFin1, String RadicadoFechaVencimiento, String RadicadoFechaVencimiento1, int WFMovimientoTipo, int WFMovimientoTipo1, String WFMovimientoPasoActual, String WFMovimientoPasoFinal, string DependenciaCodOrigen, String DependenciaCodDestino, String RadicadoCodigoFuente, String WFProcesoCodigo, String WFAccionCodigo, String SerieCodigo, String NaturalezaCodigo, String ProcedenciaCodigo, String ExpedienteCodigo, String Detalle, String DependenciaConsulta)
+    {
+
+           try
+           {
+               if (WFMovimientoPasoActual == "")
+                   WFMovimientoPasoActual = null;
+               if (WFMovimientoPasoFinal == "")
+                   WFMovimientoPasoFinal = null;
+               if (RadicadoCodigoFuente != "" && RadicadoCodigoFuente != null)
+               {
+                   if (RadicadoCodigoFuente.Contains(" | "))
+                   {
+                       RadicadoCodigoFuente = RadicadoCodigoFuente.Remove(RadicadoCodigoFuente.IndexOf(" | "));
+                   }
+               }
+               else
+               {
+                   RadicadoCodigoFuente = null;
+               }
+               if (WFAccionCodigo != "" && WFAccionCodigo != null)
+               {
+                   if (WFAccionCodigo.Contains(" | "))
+                   {
+                       WFAccionCodigo = WFAccionCodigo.Remove(WFAccionCodigo.IndexOf(" | "));
+                   }
+               }
+               else
+               {
+                   WFAccionCodigo = null;
+               }
+               if (WFProcesoCodigo != "" && WFProcesoCodigo != null)
+               {
+                   if (WFProcesoCodigo.Contains(" | "))
+                   {
+                       WFProcesoCodigo = WFProcesoCodigo.Remove(WFProcesoCodigo.IndexOf(" | "));
+                   }
+               }
+               else
+               {
+                   WFProcesoCodigo = null;
+               }
+               if (SerieCodigo != "" && SerieCodigo != null)
+               {
+                   if (SerieCodigo.Contains(" | "))
+                   {
+                       SerieCodigo = SerieCodigo.Remove(SerieCodigo.IndexOf(" | "));
+                   }
+               }
+               else
+               {
+                   SerieCodigo = null;
+               }
+               if (NaturalezaCodigo != "" && NaturalezaCodigo != null)
+               {
+                   if (NaturalezaCodigo.Contains(" | "))
+                   {
+                       NaturalezaCodigo = NaturalezaCodigo.Remove(NaturalezaCodigo.IndexOf(" | "));
+                   }
+               }
+               else
+               {
+                   NaturalezaCodigo = null;
+               }
+               if (DependenciaCodDestino != "" && DependenciaCodDestino != null)
+               {
+                   if (DependenciaCodDestino.Contains(" | "))
+                   {
+                       DependenciaCodDestino = DependenciaCodDestino.Remove(DependenciaCodDestino.IndexOf(" | "));
+                   }
+               }
+               else
+               {
+                   DependenciaCodDestino = null;
+               }
+               if (DependenciaCodOrigen != "" && DependenciaCodOrigen != null)
+               {
+                   if (DependenciaCodOrigen.Contains(" | "))
+                   {
+                       DependenciaCodOrigen = DependenciaCodOrigen.Remove(DependenciaCodOrigen.IndexOf(" | "));
+                   }
+               }
+               else
+               {
+                   DependenciaCodOrigen = null;
+               }
+               if (ProcedenciaCodigo != "" && ProcedenciaCodigo != null)
+               {
+                   if (ProcedenciaCodigo.Contains(" | "))
+                   {
+                       ProcedenciaCodigo = ProcedenciaCodigo.Remove(ProcedenciaCodigo.IndexOf(" | "));
+                   }
+                   else if (ProcedenciaCodigo == "")
+                   {
+                       ProcedenciaCodigo = null;
+                   }
+               }
+               else
+               {
+                   ProcedenciaCodigo = null;
+               }
+               if (ExpedienteCodigo != "" && ExpedienteCodigo != null)
+               {
+                   if (ExpedienteCodigo.Contains(" | "))
+                   {
+                       ExpedienteCodigo = ExpedienteCodigo.Remove(ExpedienteCodigo.IndexOf(" | "));
+                   }
+                   else if (ExpedienteCodigo == "")
+                   {
+                       ExpedienteCodigo = null;
+                   }
+               }
+               else
+               {
+                   ExpedienteCodigo = null;
+               }
+               DateTime WFMovimientoFechaDateTime;
+               if (WFMovimientoFecha == "" || WFMovimientoFecha == null)
+               {
+                   //WFMovimientoFechaDateTime = null;
+                   WFMovimientoFechaDateTime = Convert.ToDateTime("01/01/1753");
+               }
+               else
+               {
+                   WFMovimientoFechaDateTime = Convert.ToDateTime(WFMovimientoFecha);
+               }
+
+               DateTime WFMovimientoFecha1DateTime;
+               if (WFMovimientoFecha1 == "" || WFMovimientoFecha1 == null)
+               {
+                   //WFMovimientoFecha1DateTime = null;
+                   WFMovimientoFecha1DateTime = DateTime.MaxValue;
+               }
+               else
+               {
+                   WFMovimientoFecha1DateTime = Convert.ToDateTime(WFMovimientoFecha1 + " " + "23:59:59");
+               }
+               DateTime WFMovimientoFechaFinDateTime;
+               if (WFMovimientoFechaFin == "" || WFMovimientoFechaFin == null)
+               {
+                   //WFMovimientoFechaFinDateTime = null;
+                   WFMovimientoFechaFinDateTime = Convert.ToDateTime("01/01/1753");
+               }
+               else
+               {
+                   WFMovimientoFechaFinDateTime = Convert.ToDateTime(WFMovimientoFechaFin);
+               }
+
+               DateTime WFMovimientoFechaFin1DateTime;
+               if (WFMovimientoFechaFin1 == "" || WFMovimientoFechaFin1 == null)
+               {
+                   //WFMovimientoFechaFin1DateTime = null;
+                   WFMovimientoFechaFin1DateTime = DateTime.MaxValue;
+               }
+               else
+               {
+                   WFMovimientoFechaFin1DateTime = Convert.ToDateTime(WFMovimientoFechaFin1 + " " + "23:59:59");
+               }
+
+               DateTime RadicadoFechaVencimientoDateTime;
+               if (RadicadoFechaVencimiento == "" || RadicadoFechaVencimiento == null)
+               {
+                   //RadicadoFechaVencimientoDateTime = null;
+                   RadicadoFechaVencimientoDateTime = Convert.ToDateTime("01/01/1753");
+               }
+               else
+               {
+                   RadicadoFechaVencimientoDateTime = Convert.ToDateTime(RadicadoFechaVencimiento);
+               }
+
+               DateTime RadicadoFechaVencimiento1DateTime;
+               if (RadicadoFechaVencimiento1 == "" || RadicadoFechaVencimiento1 == null)
+               {
+                   //RadicadoFechaVencimiento1DateTime = null;
+                   RadicadoFechaVencimiento1DateTime = DateTime.MaxValue;
+               }
+               else
+               {
+                   RadicadoFechaVencimiento1DateTime = Convert.ToDateTime(RadicadoFechaVencimiento1 + " " + "23:59:59");
+               }
+               return AdapterRadicadoGestionT.GetConsultasGestTareas3By(WFMovimientoFechaDateTime, WFMovimientoFecha1DateTime, WFMovimientoFechaFinDateTime, WFMovimientoFechaFin1DateTime, RadicadoFechaVencimientoDateTime, RadicadoFechaVencimiento1DateTime, WFMovimientoTipo, WFMovimientoTipo1, WFMovimientoPasoActual, WFMovimientoPasoFinal, DependenciaCodOrigen, DependenciaCodDestino, RadicadoCodigoFuente, WFProcesoCodigo, WFAccionCodigo, SerieCodigo, NaturalezaCodigo, ProcedenciaCodigo, ExpedienteCodigo, Detalle, DependenciaConsulta);
+               //return AdapterRadicadoGestionT.GetRecibidoGestionTareas(WFMovimientoFechaDateTime, WFMovimientoFecha1DateTime, WFMovimientoFechaFinDateTime, WFMovimientoFechaFin1DateTime, RadicadoFechaVencimientoDateTime, RadicadoFechaVencimiento1DateTime, WFMovimientoTipo, WFMovimientoTipo1, WFMovimientoPasoActual, WFMovimientoPasoFinal, DependenciaCodOrigen, DependenciaCodDestino, RadicadoCodigoFuente, WFProcesoCodigo, WFAccionCodigo, SerieCodigo, NaturalezaCodigo, ProcedenciaCodigo, ExpedienteCodigo);
+
+           }
+           catch (Exception e)
+           {
+               throw new ApplicationException("Error en la capa BLL. " + e.Message);
+           }
+       }
+
+
+     // CREATE RADICADO METHOD
     [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Insert,true)]
     public string AddRadicado(String GrupoCodigo, DateTime WFMovimientoFecha, DateTime RadicadoFechaProcedencia, String ProcedenciaCodigo,String WFProcesoCodigo, String RadicadoNumeroExterno, String NaturalezaCodigo, String DependenciaCodigo, String RadicadoDetalle, String RadicadoAnexo, DateTime RadicadoFechaVencimiento, String ExpedienteCodigo, String MedioCodigo, String DependenciaCodDestino, String WFAccionCodigo,String WFMovimientoPasoActual, String WFMovimientoPasoFinal, DateTime WFMovimientoFechaEst, DateTime WFMovimientoFechaFin, int WFMovimientoTipo, String WFMovimientoNotas, String SerieCodigo, String WFMovimientoMultitarea, String NumeroGuia)  
         {
-            string radicacod="";  
         try
         {
             GrupoCodigo = "1";
@@ -782,11 +980,10 @@ public class RadicadoBLL
             ////////////////////////////////////////////////
                int? Result = 1;
                DSRadicado.Radicado1DataTable DTRadCreate = new DSRadicado.Radicado1DataTable();
-               radicacod = "hola1";
-               DTRadCreate = AdapterRadicado.GetRadicado_CreateRadicado(GrupoCodigo, WFMovimientoFecha, RadicadoFechaProcedencia, ProcedenciaCodigo, WFProcesoCodigo, RadicadoNumeroExterno, NaturalezaCodigo, DependenciaCodigo, RadicadoDetalle, RadicadoAnexo, RadicadoFechaVencimiento, ExpedienteCodigo, MedioCodigo, DependenciaCodDestino, WFAccionCodigo, WFMovimientoPasoActual, WFMovimientoPasoFinal, RadicadoFechaVencimiento, RadicadoFechaVencimiento, WFMovimientoTipo, WFMovimientoNotas, SerieCodigo, ref  Result, WFMovimientoMultitarea, NumeroGuia,UserId);
+
+               DTRadCreate = AdapterRadicado.GetRadicado_CreateRadicado(GrupoCodigo, WFMovimientoFecha, RadicadoFechaProcedencia, ProcedenciaCodigo, WFProcesoCodigo, RadicadoNumeroExterno, NaturalezaCodigo, DependenciaCodigo, RadicadoDetalle, RadicadoAnexo, RadicadoFechaVencimiento, ExpedienteCodigo, MedioCodigo, DependenciaCodDestino, WFAccionCodigo, WFMovimientoPasoActual, WFMovimientoPasoFinal, RadicadoFechaVencimiento, RadicadoFechaVencimiento, WFMovimientoTipo, WFMovimientoNotas, SerieCodigo, ref  Result, WFMovimientoMultitarea, NumeroGuia,UserId,"0");
                    //AdapterRadicado.Radicado_CreateRadicado(GrupoCodigo, WFMovimientoFecha, RadicadoFechaProcedencia, ProcedenciaCodigo, WFProcesoCodigo, RadicadoNumeroExterno, NaturalezaCodigo, DependenciaCodigo, RadicadoDetalle, RadicadoAnexo, RadicadoFechaVencimiento, ExpedienteCodigo, MedioCodigo, DependenciaCodDestino, WFAccionCodigo, WFMovimientoPasoActual, WFMovimientoPasoFinal, RadicadoFechaVencimiento, RadicadoFechaVencimiento, WFMovimientoTipo, WFMovimientoNotas, SerieCodigo, ref  Result, WFMovimientoMultitarea);
-               //string radicacod;
-		radicacod ="hola2" ;
+                string radicacod;   
                if (DTRadCreate.Count > 0)
                {
                    radicacod = DTRadCreate.Rows[0].ItemArray[21].ToString();
@@ -805,10 +1002,10 @@ public class RadicadoBLL
             //FileStream file = new FileStream(@"F:\FBSCGR MIGRACION ORACLE\AlfaNet\testMutual.txt", FileMode.OpenOrCreate, FileAccess.Write);
 
             // Create a new stream to write to the file
-            StreamWriter sw = File.AppendText(@"D:\Alfanet\testMutual.txt");
+            StreamWriter sw = File.AppendText(@"Z:\Alfanet\AlfaNetApp\testMutual.txt");
 
             // Write a string to the file
-            sw.WriteLine(" Source: " + e.Source + "\n Contenido: " + e.Message + " \n Datos Ingresados: " + GrupoCodigo + "|" + WFMovimientoFecha + "|" + RadicadoFechaProcedencia + "|" + ProcedenciaCodigo + "|" + WFProcesoCodigo + "|" + RadicadoNumeroExterno + "|" + NaturalezaCodigo + "|" + DependenciaCodigo + "|" + RadicadoDetalle + "|" + RadicadoAnexo + "|" + RadicadoFechaVencimiento + "|" + ExpedienteCodigo + "|" + MedioCodigo + "|" + DependenciaCodDestino + "|" + WFAccionCodigo + "|" + WFMovimientoPasoActual + "|" + WFMovimientoPasoFinal + "|" + WFMovimientoFechaEst + "|" + WFMovimientoFechaFin + "|" + WFMovimientoTipo + "|" + WFMovimientoNotas + "|" + SerieCodigo + "|" + WFMovimientoMultitarea + "|" + NumeroGuia + " radicadocod " + radicacod);
+            sw.WriteLine(" Source: " + e.Source + "\n Contenido: " + e.Message + " \n Datos Ingresados: " + GrupoCodigo + "|" + WFMovimientoFecha + "|" + RadicadoFechaProcedencia + "|" + ProcedenciaCodigo + "|" + WFProcesoCodigo + "|" + RadicadoNumeroExterno + "|" + NaturalezaCodigo + "|" + DependenciaCodigo + "|" + RadicadoDetalle + "|" + RadicadoAnexo + "|" + RadicadoFechaVencimiento + "|" + ExpedienteCodigo + "|" + MedioCodigo + "|" + DependenciaCodDestino + "|" + WFAccionCodigo + "|" + WFMovimientoPasoActual + "|" + WFMovimientoPasoFinal + "|" + WFMovimientoFechaEst + "|" + WFMovimientoFechaFin + "|" + WFMovimientoTipo + "|" + WFMovimientoNotas + "|" + SerieCodigo + "|" + WFMovimientoMultitarea + "|" + NumeroGuia);
 
             // Close StreamWriter
             sw.Close();
@@ -827,7 +1024,7 @@ public class RadicadoBLL
            
               
 
-            throw new ApplicationException("Error en la capa Radicado4BLL. " + e.Message);
+            throw new ApplicationException("Error en la capa BLL. " + e.Message);
         }
     }
     
@@ -890,7 +1087,7 @@ public class RadicadoBLL
             }
             catch (Exception e)
             {
-                throw new ApplicationException("Error en la capa Radicado5BLL. " + e.Message);
+                throw new ApplicationException("Error en la capa BLL. " + e.Message);
             }
         }
     // COPIA TODOS RADICADO METHOD
@@ -951,7 +1148,7 @@ public class RadicadoBLL
             }
             catch (Exception e)
             {
-                throw new ApplicationException("Error en la capa Radicado6BLL. " + e.Message);
+                throw new ApplicationException("Error en la capa BLL. " + e.Message);
             }
         }
     [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Update, true)]
@@ -1020,7 +1217,7 @@ public class RadicadoBLL
         }
         catch (Exception e)
         {
-            throw new ApplicationException("Error en la capa Radicado7BLL. " + e.Message);
+            throw new ApplicationException("Error en la capa BLL. " + e.Message);
         }
     }
     private string CStr(DataRow dataRow)
@@ -1091,7 +1288,7 @@ public class RadicadoBLL
         }
         catch (Exception e)
         {
-            throw new ApplicationException("Error en la capa Radicado8BLL. " + e.Message);
+            throw new ApplicationException("Error en la capa BLL. " + e.Message);
         }
     }
     public void Create_Plantilla(String DependenciaCodigo, String ExpedienteCodigo, String MedioCodigo, String WFAccionCodigo)
@@ -1153,7 +1350,7 @@ public class RadicadoBLL
         }
         catch (Exception e)
         {
-            throw new ApplicationException("Error en la capa Radicado9BLL. " + e.Message);
+            throw new ApplicationException("Error en la capa BLL. " + e.Message);
         }
     }
 

@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MainMaster.master" AutoEventWireup="true"  CodeFile="HistorialWF.aspx.cs" Inherits="_HistorialWF" %>
 
-<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845DCD8080CC91"
     Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
     
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
@@ -63,7 +63,7 @@
 </asp:DetailsView><BR />
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="Label3" Width="400px"  Font-Bold="true" Height="30px"  runat="server" 
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="Label3" Width="400px"  Font-Bold="true" Height="35px"  runat="server" 
                     BackColor="#C9FEC1" Text=" &nbsp;&nbsp;&nbsp; En caso de
                  requerir  información  detallada del  proceso, es necesario  dar clic sobre el 
                 escritorio o Post-It que desee detallar" BorderStyle="Outset"></asp:Label>

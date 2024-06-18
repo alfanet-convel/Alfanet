@@ -20,15 +20,10 @@ using iTextSharp.text;
         {
             iTextSharp.text.Image header = iTextSharp.text.Image.GetInstance(HttpContext.Current.Server.MapPath(@"~\Plantillas\Plantillas\Imagenes\Encabezado.png"));
             header.ScalePercent(75f);
-            //header.ScalePercent(18f);
-            header.SetAbsolutePosition(document.PageSize.Width - 71f - 540f, document.PageSize.Height - 101f);
-            //header.SetAbsolutePosition(document.PageSize.Width - 90f - 540f, document.PageSize.Height - 110f);
-
-            iTextSharp.text.Image footer = iTextSharp.text.Image.GetInstance(HttpContext.Current.Server.MapPath(@"~\Plantillas\Plantillas\Imagenes\Pie.png"));
-            footer.ScalePercent(24f);
-            footer.SetAbsolutePosition(document.PageSize.Width - 72f - 540f, document.PageSize.Height - 67f - 700f);
-            //footer.ScalePercent(74f);
-            //footer.SetAbsolutePosition(document.PageSize.Width - 45f - 540f, document.PageSize.Height - 100f - 700f);
+            header.SetAbsolutePosition(document.PageSize.Width - 72f - 540f, document.PageSize.Height - 68f);
+        iTextSharp.text.Image footer = iTextSharp.text.Image.GetInstance(HttpContext.Current.Server.MapPath(@"~\Plantillas\Plantillas\Imagenes\Pie.png"));
+            footer.ScalePercent(49f);
+            footer.SetAbsolutePosition(document.PageSize.Width - 77f - 540f, document.PageSize.Height - 68f - 700f);
             document.Add(header);
             document.Add(footer);
         }

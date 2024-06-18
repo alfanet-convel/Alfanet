@@ -92,10 +92,10 @@
         <td>
             <asp:Panel ID="Panel1" runat="server" CssClass="popupControl" Height="590px" Width="440px">
             
-<iframe runat="server" id="Default3" style="width: 440px; height: 590px" enableviewstate="true" visible="true"></iframe> 
+<iframe runat="server" id="Default3" style="width: 440px; height: 590px" enableviewstate="true" visible="false"></iframe> 
     <br />
             </asp:Panel>
-            <asp:Image ID="Image2" runat="server" Visible="false" Height="42px" ImageUrl="~/AlfaNetImagen/ToolBar/images.jpg"
+            <asp:Image ID="Image2" runat="server" Visible="False" Height="42px" ImageUrl="~/AlfaNetImagen/ToolBar/images.jpg"
                 Width="36px" ToolTip="Visor de Imagenes" />
             <cc1:PopupControlExtender ID="PopupControlExtender1" runat="server" OffsetX="-486" OffsetY="-550" PopupControlID="Panel1" Position="Right" TargetControlID="Image2">
             </cc1:PopupControlExtender>

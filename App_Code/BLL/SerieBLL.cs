@@ -139,6 +139,41 @@ catch (Exception e)
     throw new ApplicationException("Error en la capa BLL. " + e.Message);
 }
     }
+	public DSSerieSQL.SerieByTextDataTable GetSubSerieByText(string SerieNombre, string SerieHabilitar)
+    {
+        try
+        {
+            string strbase = Convert.ToString(System.Configuration.ConfigurationManager.AppSettings.Get("BaseDatos"));
+
+            if (strbase == "SqlServer")
+            {
+                return AdapterSerieByText.GetSubSerieByText(SerieNombre, SerieHabilitar);
+
+            }
+            else
+            {
+                mDataTable = ObjSerie.ReadSerieByTextNombre(SerieNombre, SerieHabilitar);
+                DSSerieSQL.SerieByTextDataTable Instanciando = new DSSerieSQL.SerieByTextDataTable();
+
+
+                foreach (DataRow row in mDataTable.Rows)
+                {
+                    DSSerieSQL.SerieByTextRow Fila = Instanciando.NewSerieByTextRow();
+                    Fila.SerieCodigo = row.ItemArray[0].ToString();
+                    Fila.SerieNombre = row.ItemArray[1].ToString();
+                    Instanciando.Rows.Add(Fila);
+
+                }
+                return Instanciando;
+                Instanciando.Dispose();
+                mDataTable.Dispose();
+            }
+        }
+        catch (Exception e)
+        {
+            throw new ApplicationException("Error en la capa BLL. " + e.Message);
+        }
+    }
     [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Select, false)]
     public DSSerieSQL.SerieByTextDataTable GetSerieTextById(string SerieCodigo, string SerieHabilitar)
     {

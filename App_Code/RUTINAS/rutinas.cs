@@ -562,17 +562,6 @@ public class rutinas : System.Web.UI.Page
         tabla = this.rtn_ejecutarprocedimientoalmacenado("WS_Read_ComunicadosByTramite", parametros);
         return tabla;
     }
-    public DataTable rtn_traer_ComunicadosxTramiteSisc2(string vDocumentoCodigo, string vExpedienteCodigo)
-    {
-        if (vDocumentoCodigo.Length == 0) vDocumentoCodigo = "NULL";
-        if (vExpedienteCodigo.Length == 0) vExpedienteCodigo = "NULL";
-
-        string parametros = "@DocumentoCodigo,varchar,input," + vDocumentoCodigo + "|";
-        parametros += "@ExpedienteCodigo,varchar,input," + vExpedienteCodigo;
-        DataTable tabla = new DataTable();
-        tabla = this.rtn_ejecutarprocedimientoalmacenado("WS_Read_ComunicadosByTramiteSisc2", parametros);
-        return tabla;
-    }
     //Fin Anderson Ardila
 
     public DataTable rtn_traer_wfmovimiento(string vDocumentoCodigo, string vDependenciaCodigo,

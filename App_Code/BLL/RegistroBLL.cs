@@ -384,37 +384,23 @@ public class RegistroBLL
             //   Radicados.AddRadicado1Row(Radicado);
 
             ////////////////////////////////////////////////
-            String UserId;
             MembershipUser user = Membership.GetUser();
-            if (user != null)
-            {
-                Object CodigoRuta = user.ProviderUserKey;
-                 UserId = Convert.ToString(CodigoRuta);
-            }
-            else
-            {
-                UserId = LogDigitador;
-                LogDigitador = "TLINEA";
-            }
-
+            Object CodigoRuta = user.ProviderUserKey;
+            String UserId = Convert.ToString(CodigoRuta);
             ////////////////////////////////////////////////
               int? Result = 1;
-              Object ObjRptaAddReg = null;
-              DSRegistro.Registro_CreateRegistroDataTable DTCREREG = new DSRegistro.Registro_CreateRegistroDataTable();
-              DTCREREG = AdapterRegistro.GetRegistro_CreateRegistro(ref  Result, GrupoCodigo, WFMovimientoFecha, ProcedenciaCodDestino, DependenciaCodDestino, DependenciaCodigo, NaturalezaCodigo, RadicadoCodigo, RegistroDetalle, RegistroGuia, RegistroEmpGuia, AnexoExtRegistro, LogDigitador, ExpedienteCodigo, MedioCodigo, SerieCodigo, RegPesoEnvio, RegValorEnvio, RegistroTipo, WFAccionCodigo, WFMovimientoFechaEst, WFMovimientoFechaFin, WFMovimientoTipo, WFMovimientoNotas, WFMovimientoMultitarea, UserId);
-
-              
+              Object ObjRptaAddReg;
+              ObjRptaAddReg = AdapterRegistro.Registro_CreateRegistro(ref  Result, GrupoCodigo, WFMovimientoFecha, ProcedenciaCodDestino, DependenciaCodDestino, DependenciaCodigo, NaturalezaCodigo, RadicadoCodigo, RegistroDetalle, RegistroGuia, RegistroEmpGuia, AnexoExtRegistro, LogDigitador, ExpedienteCodigo, MedioCodigo, SerieCodigo, RegPesoEnvio, RegValorEnvio, RegistroTipo, WFAccionCodigo, WFMovimientoFechaEst, WFMovimientoFechaFin, WFMovimientoTipo, WFMovimientoNotas, WFMovimientoMultitarea,UserId);
             string regiscod;
-            if (DTCREREG.Count == 0)
+            if (ObjRptaAddReg == null)
             {
                 String RptaAddReg = Convert.ToString(ObjRptaAddReg);
                 regiscod = Convert.ToString(Result);
             }
             else
             {
-                string coderror = DTCREREG[0].ErrorMessage;
                 //throw new Exception(" Ocurrio un Error al crear el registro debe verificar que los parametros sean validos");
-                regiscod = "Error al crear registro. Verifique que los parametros sean validos" + coderror;
+                regiscod = "Error al crear registro. Verifique que los parametros sean validos";
             }
             //AdapterRadicado.Radicado_CreateRadicado1(Radicados,GrupoCodigo, WFMovimientoFecha, RadicadoFechaProcedencia, ProcedenciaCodigo, RadicadoNumeroExterno, NaturalezaCodigo, DependenciaCodigo, RadicadoDetalle, RadicadoFechaVencimiento, ExpedienteCodigo, MedioCodigo, DependenciaCodDestino, WFAccionCodigo, RadicadoFechaVencimiento, RadicadoFechaVencimiento, WFMovimientoTipo, WFMovimientoNotas, SerieCodigo,ref  Result, WFMovimientoMultitarea);
                  
@@ -428,7 +414,7 @@ public class RegistroBLL
         {
             throw new ApplicationException("Error en la capa BLL. " + e.Message);
         }
-        }
+}
 
     // CREATE Registro BDU METHOD
     [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Insert, true)]
@@ -548,7 +534,7 @@ public class RegistroBLL
         {
             throw new ApplicationException("Error en la capa BLL. " + e.Message);
         }
-    }
+        }
 
         // Copias Registro METHOD
         [System.ComponentModel.DataObjectMethodAttribute(System.ComponentModel.DataObjectMethodType.Insert, true)]

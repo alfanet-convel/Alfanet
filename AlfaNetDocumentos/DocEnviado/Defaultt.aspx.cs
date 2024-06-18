@@ -157,7 +157,7 @@ public partial class _Defaultt :System.Web.UI.Page
 
                     foreach (TreeNode myNode in this.TreeVDestino.CheckedNodes)
                     {
-                        RegistroCodigo = ObjReg.AddRegistro(GrpDocReg, Convert.ToDateTime(DateFechaRad.Text.ToString()), null, myNode.Text.ToString(), txtPhone.Text.ToString(), TxtNaturaleza.Text.ToString(), Convert.ToInt32(RadCodString), this.txtEmail.Text.ToString(), null, null, null, null, TxtRadFuente.Text, TxtExpediente.Text.ToString(), TxtMedioRecibo.Text.ToString(), TextBox1.Text.ToString(), null, RadioButtonList1.Text.ToString(), WFAccion, Convert.ToDateTime(DateFechaRad.Text.ToString()), Convert.ToDateTime(DateFechaRad.Text.ToString()), Convert.ToInt32(RadioButtonList1.Text.ToString()), null, "0");
+                        RegistroCodigo = ObjReg.AddRegistro(GrpDocReg, Convert.ToDateTime(DateFechaRad.Text.ToString()), null, myNode.Text.ToString(), txtPhone.Text.ToString(), TxtNaturaleza.Text.ToString(), Convert.ToInt32(RadCodString), this.txtEmail.Text.ToString(), null, null, null, null, Profile.GetProfile(Profile.UserName).CodigoDepUsuario.ToString(), TxtExpediente.Text.ToString(), TxtMedioRecibo.Text.ToString(), TextBox1.Text.ToString(), null, RadioButtonList1.Text.ToString(), WFAccion, Convert.ToDateTime(DateFechaRad.Text.ToString()), Convert.ToDateTime(DateFechaRad.Text.ToString()), Convert.ToInt32(RadioButtonList1.Text.ToString()), null, "0");
                         
                         //foreach (System.Web.UI.WebControls.ListItem Item in ListBoxFuente.Items)
                         //{
@@ -191,7 +191,7 @@ public partial class _Defaultt :System.Web.UI.Page
                 }
                 else if (this.txtFullName.Text != "Multiple")
                 {
-                    RegistroCodigo = ObjReg.AddRegistro(GrpDocReg, Convert.ToDateTime(DateFechaRad.Text.ToString()), null, this.txtFullName.Text.ToString(), txtPhone.Text.ToString(), TxtNaturaleza.Text.ToString(), Convert.ToInt32(RadCodString), this.txtEmail.Text.ToString(), null, null, null, null, TxtRadFuente.Text, TxtExpediente.Text.ToString(), TxtMedioRecibo.Text.ToString(), TextBox1.Text.ToString(), null, RadioButtonList1.Text.ToString(), WFAccion, Convert.ToDateTime(DateFechaRad.Text.ToString()), Convert.ToDateTime(DateFechaRad.Text.ToString()), Convert.ToInt32(RadioButtonList1.Text.ToString()), null, "0");
+                    RegistroCodigo = ObjReg.AddRegistro(GrpDocReg, Convert.ToDateTime(DateFechaRad.Text.ToString()), null, this.txtFullName.Text.ToString(), txtPhone.Text.ToString(), TxtNaturaleza.Text.ToString(), Convert.ToInt32(RadCodString), this.txtEmail.Text.ToString(), null, null, null, null, Profile.GetProfile(Profile.UserName).CodigoDepUsuario.ToString(), TxtExpediente.Text.ToString(), TxtMedioRecibo.Text.ToString(), TextBox1.Text.ToString(), null, RadioButtonList1.Text.ToString(), WFAccion, Convert.ToDateTime(DateFechaRad.Text.ToString()), Convert.ToDateTime(DateFechaRad.Text.ToString()), Convert.ToInt32(RadioButtonList1.Text.ToString()), null, "0");
 
                     this.insertarradicadosfuente(RegistroCodigo);
                     FileName = RegistroCodigo+ txtFullName.Text.Remove(txtFullName.Text.IndexOf(" | ")) + ".png";
@@ -216,7 +216,7 @@ public partial class _Defaultt :System.Web.UI.Page
             {
                 foreach (System.Web.UI.WebControls.ListItem Procedencia in this.ListBoxEnterar.Items)
                 {
-                    RegistroCodigo = ObjReg.AddRegistro(GrpDocReg, Convert.ToDateTime(DateFechaRad.Text.ToString()), Procedencia.Text , null, txtPhone.Text.ToString(), TxtNaturaleza.Text.ToString(), Convert.ToInt32(RadCodString), txtEmail.Text.ToString(), null, null, null, null, TxtRadFuente.Text, TxtExpediente.Text.ToString(), TxtMedioRecibo.Text.ToString(), TextBox1.Text.ToString(), null, RadioButtonList1.Text.ToString(), WFAccion, Convert.ToDateTime(DateFechaRad.Text.ToString()), Convert.ToDateTime(DateFechaRad.Text.ToString()), Convert.ToInt32(RadioButtonList1.Text.ToString()), null, "0");
+                    RegistroCodigo = ObjReg.AddRegistro(GrpDocReg, Convert.ToDateTime(DateFechaRad.Text.ToString()), Procedencia.Text, null, txtPhone.Text.ToString(), TxtNaturaleza.Text.ToString(), Convert.ToInt32(RadCodString), txtEmail.Text.ToString(), null, null, null, null, Profile.GetProfile(Profile.UserName).CodigoDepUsuario.ToString(), TxtExpediente.Text.ToString(), TxtMedioRecibo.Text.ToString(), TextBox1.Text.ToString(), null, RadioButtonList1.Text.ToString(), WFAccion, Convert.ToDateTime(DateFechaRad.Text.ToString()), Convert.ToDateTime(DateFechaRad.Text.ToString()), Convert.ToInt32(RadioButtonList1.Text.ToString()), null, "0");
 
                     // insertar radicados fuente
                     this.insertarradicadosfuente(RegistroCodigo);
@@ -268,7 +268,7 @@ public partial class _Defaultt :System.Web.UI.Page
             //    System.Guid a = new Guid(rows[0].ItemArray[0].ToString().Trim());
             //    usuario = Membership.GetUser(a);
             //    string Body = "Tiene un nuevo Registro Nro " + RegistroCodigo + "<BR>" + " Fecha de Tramite: " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "<BR>" + "Dependencia: " + this.txtPhone.Text.ToString() + "<BR>" + "Naturaleza: " + this.TxtNaturaleza.Text.ToString().Trim() + "<BR>";
-            //    Correo.EnvioCorreo("soporte.archivar@gmail.com", usuario.Email, "Registro Nro" + " " + RegistroCodigo, Body, true, "1");
+            //    Correo.EnvioCorreo("alfanetpruebas@gmail.co", usuario.Email, "Registro Nro" + " " + RegistroCodigo, Body, true, "1");
             //}
         }
         catch (Exception Error)

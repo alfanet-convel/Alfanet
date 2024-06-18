@@ -185,17 +185,12 @@ public partial class _HistorialWFNEnviada : System.Web.UI.Page
             if (i % 2 != 0)
             {
                 HtmlTableRow Row1 = new HtmlTableRow();
+
                 Tabla.Rows.Add(Row1);
 
                 HtmlTableCell Cell0 = new HtmlTableCell();
                 Row1.Cells.Add(Cell0);
                 Cell0.Align = "Center";
-                
-                
-
-                HtmlTableCell Cell1 = new HtmlTableCell();
-
-                Row1.Cells.Add(Cell1);
 
                 Label LabelDep = new Label();
                 LabelDep.ID = "LabelDep" + Convert.ToString(i);
@@ -213,7 +208,47 @@ public partial class _HistorialWFNEnviada : System.Web.UI.Page
                 LabelDep.Width = 150;
                 Cell0.Controls.Add(LabelDep);
 
-                
+                if (!String.IsNullOrEmpty(Notas))//Reemplazo1
+                {
+                    //HtmlTableCell Cell01 = new HtmlTableCell();
+                    //Cell01.Width = "20px";
+                    //Row1.Cells.Add(Cell01);
+
+                    Image ImgPostIt = new Image();
+                    ImgPostIt.ID = "ImgPostIt" + Convert.ToString(i);
+                    ImgPostIt.ImageUrl = "~/AlfaNetImagen/ToolBar/post-it-big.png";
+                    ImgPostIt.Visible = true;
+                    Cell0.Controls.Add(ImgPostIt);
+
+                    Panel PnlPostIt = new Panel();
+                    PnlPostIt.ID = "PnlPostIt" + Convert.ToString(i);
+                    PnlPostIt.CssClass = "popupControl";
+                    Cell0.Controls.Add(PnlPostIt);
+
+                    Label LbPasoPostIt = new Label();
+                    LbPasoPostIt.ID = "LbPasoPostIt" + Convert.ToString(i);
+                    LbPasoPostIt.Width = Unit.Pixel(300);
+                    LbPasoPostIt.Height = Unit.Pixel(80);
+                    LbPasoPostIt.Text = Notas;
+                    LbPasoPostIt.Font.Bold = true;
+                    LbPasoPostIt.BackColor = System.Drawing.Color.Transparent;
+                    PnlPostIt.Controls.Add(LbPasoPostIt);
+
+                    PnlPostIt.HorizontalAlign = HorizontalAlign.Left;
+
+                    AjaxControlToolkit.PopupControlExtender PCPostIt = new AjaxControlToolkit.PopupControlExtender();
+                    PCPostIt.ID = "PCPostIt" + Convert.ToString(i);
+                    PCPostIt.TargetControlID = "ImgPostIt" + Convert.ToString(i);
+                    PCPostIt.PopupControlID = "PnlPostIt" + Convert.ToString(i);
+
+                    Cell0.Controls.Add(PCPostIt);
+                }
+
+
+                HtmlTableCell Cell1 = new HtmlTableCell();
+
+                Row1.Cells.Add(Cell1);
+
                 Image ImgPaso = new Image();
                 ImgPaso.ID = "ImgPaso" + Convert.ToString(i);
                 if (DRRegHis.WfmovimientoTipo.ToString() == "1" || DRRegHis.WfmovimientoTipo.ToString() == "0")
@@ -226,7 +261,6 @@ public partial class _HistorialWFNEnviada : System.Web.UI.Page
                 }
                 //ImgPaso.ImageUrl = "~/AlfaNetImagen/WFImagen/WFEscritorioImg.jpg";
                 ImgPaso.Visible = true;
-                ImgPaso.Height = 80;
                 Cell1.Controls.Add(ImgPaso);
 
                 Panel Pnl = new Panel();
@@ -270,8 +304,6 @@ public partial class _HistorialWFNEnviada : System.Web.UI.Page
 
                 /*Insertar el panel*/
                 Pnl.Controls.Add(nid);
-
-                #region comentario
 
 
                 /*
@@ -414,9 +446,6 @@ public partial class _HistorialWFNEnviada : System.Web.UI.Page
                // LbDestino.Font.Bold = true;
                 Pnl.Controls.Add(LbDestino);
                 */
-
-                #endregion
-
                 Pnl.HorizontalAlign = HorizontalAlign.Left;
 
                 AjaxControlToolkit.PopupControlExtender PCPaso = new AjaxControlToolkit.PopupControlExtender();
@@ -434,63 +463,15 @@ public partial class _HistorialWFNEnviada : System.Web.UI.Page
                     ImageButton ImgFlecha = new ImageButton();
                     ImgFlecha.ID = "ImgFlecha" + Convert.ToString(i);
                     ImgFlecha.ImageUrl = "~/AlfaNetImagen/ToolBar/flechadanima.gif";
-                    ImgFlecha.Width = 60;
-                    ImgFlecha.Height = 70;
                     ImgFlecha.PostBackUrl = "javascript:void(0);";
                     ImgFlecha.Visible = true;
 
                     Cell2.Controls.Add(ImgFlecha);
                 }
                 HtmlTableCell Cell2a = new HtmlTableCell();
+
                 Row1.Cells.Add(Cell2a);
-                Cell2a.Align = "left";
 
-
-                if (!String.IsNullOrEmpty(Notas))//Reemplazo1
-                {
-
-                    //HtmlTableCell Cell01 = new HtmlTableCell();
-                    //Cell01.Width = "20px";
-                    //Row1.Cells.Add(Cell01);
-
-                    Image ImgPostIt = new Image();
-                    ImgPostIt.ID = "ImgPostIt" + Convert.ToString(i);
-                    ImgPostIt.ImageUrl = "~/AlfaNetImagen/ToolBar/post-it-big.png";
-                    ImgPostIt.Visible = true;
-                    ImgPostIt.Height = 50;
-                    Cell2a.Controls.Add(ImgPostIt);
-
-                    Panel PnlPostIt = new Panel();
-                    PnlPostIt.ID = "PnlPostIt" + Convert.ToString(i);
-                    PnlPostIt.CssClass = "popupControl";
-                    PnlPostIt.BorderStyle = BorderStyle.None;
-                    Cell2a.Controls.Add(PnlPostIt);
-                   
-                    TextBox LbPasoPostIt = new TextBox();
-
-                    //Label LbPasoPostIt = new Label();
-                    LbPasoPostIt.ID = "LbPasoPostIt" + Convert.ToString(i);
-                    LbPasoPostIt.TextMode = TextBoxMode.MultiLine;
-                    LbPasoPostIt.Width = Unit.Pixel(300);
-                    LbPasoPostIt.Height = Unit.Pixel(80);
-                    LbPasoPostIt.Text = Notas;
-                    LbPasoPostIt.Font.Bold = true;
-                    LbPasoPostIt.Enabled = false;
-                    LbPasoPostIt.BackColor = System.Drawing.Color.FromArgb(253, 250, 143);
-                    LbPasoPostIt.BorderStyle = BorderStyle.Outset;
-                    LbPasoPostIt.BorderWidth = 2;
-                    LbPasoPostIt.BorderColor = System.Drawing.Color.FromArgb(174, 175, 174);
-                    PnlPostIt.Controls.Add(LbPasoPostIt);
-
-                    PnlPostIt.HorizontalAlign = HorizontalAlign.Left;
-
-                    AjaxControlToolkit.PopupControlExtender PCPostIt = new AjaxControlToolkit.PopupControlExtender();
-                    PCPostIt.ID = "PCPostIt" + Convert.ToString(i);
-                    PCPostIt.TargetControlID = "ImgPostIt" + Convert.ToString(i);
-                    PCPostIt.PopupControlID = "PnlPostIt" + Convert.ToString(i);
-
-                    Cell2a.Controls.Add(PCPostIt);
-                }
             }
             else
             {
@@ -498,12 +479,9 @@ public partial class _HistorialWFNEnviada : System.Web.UI.Page
 
                 Tabla.Rows.Add(Row2);
 
-                //HtmlTableCell Cell0 = new HtmlTableCell();
-                //Row2.Cells.Add(Cell0);
+                HtmlTableCell Cell0 = new HtmlTableCell();
+                Row2.Cells.Add(Cell0);
 
-                HtmlTableCell Cell1 = new HtmlTableCell();
-                Row2.Cells.Add(Cell1);
-                Cell1.Align = "Right";
 
                 HtmlTableCell Cell3 = new HtmlTableCell();
 
@@ -513,8 +491,6 @@ public partial class _HistorialWFNEnviada : System.Web.UI.Page
                     ImageButton ImgFlecha2 = new ImageButton();
                     ImgFlecha2.ID = "ImgFlecha" + Convert.ToString(i);
                     ImgFlecha2.ImageUrl = "~/AlfaNetImagen/ToolBar/flechaianima.gif";
-                    ImgFlecha2.Width = 60;
-                    ImgFlecha2.Height = 70;
                     ImgFlecha2.PostBackUrl = "javascript:void(0);";
                     ImgFlecha2.Visible = true;
 
@@ -538,7 +514,7 @@ public partial class _HistorialWFNEnviada : System.Web.UI.Page
                 }
                 //ImgPaso2.ImageUrl = "~/AlfaNetImagen/WFImagen/WFEscritorioImg.jpg";
                 ImgPaso2.Visible = true;
-                ImgPaso2.Height = 80;
+
                 Cell4.Controls.Add(ImgPaso2);
 
                 Panel Pnl1 = new Panel();
@@ -581,8 +557,6 @@ public partial class _HistorialWFNEnviada : System.Web.UI.Page
                    Datos_2, tmpDestino);
 
                 Pnl1.Controls.Add(nid);
-                #region comentario
-
                 /*
                 Label LbPasoNombre1 = new Label();
                 LbPasoNombre1.ID = "LbPasoNombre1" + Convert.ToString(i);
@@ -722,8 +696,6 @@ public partial class _HistorialWFNEnviada : System.Web.UI.Page
                 //LbDestino.Font.Bold = true;
                 Pnl1.Controls.Add(LbDestino);
                 */
-                #endregion
-
                 Pnl1.HorizontalAlign = HorizontalAlign.Left;
 
                 AjaxControlToolkit.PopupControlExtender PCPaso1 = new AjaxControlToolkit.PopupControlExtender();
@@ -743,28 +715,20 @@ public partial class _HistorialWFNEnviada : System.Web.UI.Page
                     ImgPostIt1.ID = "ImgPostIt1" + Convert.ToString(i);
                     ImgPostIt1.ImageUrl = "~/AlfaNetImagen/ToolBar/post-it-big.png";
                     ImgPostIt1.Visible = true;
-                    ImgPostIt1.Height = 50;
-                    Cell1.Controls.Add(ImgPostIt1);
+                    Cell4.Controls.Add(ImgPostIt1);
 
                     Panel PnlPostIt1 = new Panel();
                     PnlPostIt1.ID = "PnlPostIt1" + Convert.ToString(i);
                     PnlPostIt1.CssClass = "popupControl";
-                    PnlPostIt1.BorderStyle = BorderStyle.None;
-                    Cell1.Controls.Add(PnlPostIt1);
+                    Cell4.Controls.Add(PnlPostIt1);
 
-                    TextBox LbPasoPostIt1 = new TextBox();
-                    //Label LbPasoPostIt1 = new Label();
+                    Label LbPasoPostIt1 = new Label();
                     LbPasoPostIt1.ID = "LbPasoPostIt1" + Convert.ToString(i);
-                    LbPasoPostIt1.TextMode = TextBoxMode.MultiLine;
                     LbPasoPostIt1.Width = Unit.Pixel(300);
                     LbPasoPostIt1.Height = Unit.Pixel(80);
                     LbPasoPostIt1.Text = Notas;
                     LbPasoPostIt1.Font.Bold = true;
-                    LbPasoPostIt1.Enabled = false;
-                    LbPasoPostIt1.BackColor = System.Drawing.Color.FromArgb(253, 250, 143);
-                    LbPasoPostIt1.BorderStyle = BorderStyle.Outset;
-                    LbPasoPostIt1.BorderWidth = 2;
-                    LbPasoPostIt1.BorderColor = System.Drawing.Color.FromArgb(174, 175, 174);
+                    LbPasoPostIt1.BackColor = System.Drawing.Color.Transparent;
                     PnlPostIt1.Controls.Add(LbPasoPostIt1);
 
                     PnlPostIt1.HorizontalAlign = HorizontalAlign.Left;
@@ -774,7 +738,7 @@ public partial class _HistorialWFNEnviada : System.Web.UI.Page
                     PCPostIt1.TargetControlID = "ImgPostIt1" + Convert.ToString(i);
                     PCPostIt1.PopupControlID = "PnlPostIt1" + Convert.ToString(i);
 
-                    Cell1.Controls.Add(PCPostIt1);
+                    Cell4.Controls.Add(PCPostIt1);
                 }
 
                 HtmlTableCell Cell4a = new HtmlTableCell();
@@ -992,30 +956,23 @@ public partial class _HistorialWFNEnviada : System.Web.UI.Page
                     ImgPostItCopia.ID = "ImgPostItCopia" + Convert.ToString(i);
                     ImgPostItCopia.ImageUrl = "~/AlfaNetImagen/ToolBar/post-it-big.png";
                     ImgPostItCopia.Visible = true;
-                    ImgPostItCopia.Height = 50;
                     Cell2a.Controls.Add(ImgPostItCopia);
 
                     Panel PnlPostItCopia = new Panel();
                     PnlPostItCopia.ID = "PnlPostItCopia" + Convert.ToString(i);
                     PnlPostItCopia.CssClass = "popupControl";
-                    PnlPostItCopia.Height = Unit.Pixel(80);
+                    PnlPostItCopia.Height = Unit.Pixel(100);
                     PnlPostItCopia.Width = Unit.Pixel(300);
-                    PnlPostItCopia.BorderStyle = BorderStyle.None;
+                    PnlPostItCopia.ScrollBars = ScrollBars.Vertical;
                     Cell2a.Controls.Add(PnlPostItCopia);
 
-                    //Label LbPasoPostItCopia = new Label();
-                    TextBox LbPasoPostItCopia = new TextBox();
+                    Label LbPasoPostItCopia = new Label();
                     LbPasoPostItCopia.ID = "LbPasoPostItCopia" + Convert.ToString(i);
-                    LbPasoPostItCopia.TextMode = TextBoxMode.MultiLine;
-                    LbPasoPostItCopia.Width = Unit.Pixel(300);
-                    LbPasoPostItCopia.Height = Unit.Pixel(80);
+                    LbPasoPostItCopia.Width = Unit.Pixel(290);
+                    LbPasoPostItCopia.Height = Unit.Pixel(500);
                     LbPasoPostItCopia.Text = DRradHis.WFMovimientoNotas;
                     LbPasoPostItCopia.Font.Bold = true;
-                    LbPasoPostItCopia.Enabled = false;
-                    LbPasoPostItCopia.BackColor = System.Drawing.Color.FromArgb(253, 250, 143);
-                    LbPasoPostItCopia.BorderStyle = BorderStyle.Outset;
-                    LbPasoPostItCopia.BorderWidth = 2;
-                    LbPasoPostItCopia.BorderColor = System.Drawing.Color.FromArgb(174, 175, 174);
+                    LbPasoPostItCopia.BackColor = System.Drawing.Color.Transparent;
                     PnlPostItCopia.Controls.Add(LbPasoPostItCopia);
 
                     PnlPostItCopia.HorizontalAlign = HorizontalAlign.Left;

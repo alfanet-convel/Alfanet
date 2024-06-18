@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.ComponentModel;
 using ASP;
 using Microsoft;
 using System.Data;
@@ -22,76 +23,129 @@ using DevExpress.Web;
 using DevExpress.Web.ASPxGridView;
 using DevExpress.Web.ASPxCallbackPanel;
 using System.IO;
+// REFERENCIAS SPREADSHEET EXCEL EN XLSX
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Spreadsheet;
+using SpreadsheetLight;
+using System.Net;
+using System.Net.NetworkInformation;
+using DevExpress.Web.ASPxGridView;
 
 public partial class _GestionTDocRecibido : System.Web.UI.Page
 {
-    //RadicadoBLL ObjGestionTRad = new RadicadoBLL();
-    //DSRadicado.Radicado_ConsultasGestionTareasDataTable ConsultaRadicado = new DSRadicado.Radicado_ConsultasGestionTareasDataTable();
-   protected void Page_Load(object sender, EventArgs e)
-        {  
-         try
-            {    
-                if (!IsPostBack)
-                    {
-                        //this.RadioButtonList1.SelectedValue = null;
-                        //DDLOtros.SelectedValue = null;  
-                    }
-                    else
-                    { 
-             
-                    }
-                   
-            }
-         catch (Exception Error)
+    string ModuloLog = "Consultas Gest.Tareas";
+    string ConsecutivoCodigo = "1";
+    string ConsecutivoCodigoErr = "4";
+    string ActividadLogCodigoErr = "ERROR";
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        IPHostEntry host;
+        string localIP = "";
+        host = Dns.GetHostEntry(Dns.GetHostName());
+        foreach (IPAddress ip in host.AddressList)
+        {
+            if (ip.AddressFamily.ToString() == "InterNetwork")
             {
-            this.ExceptionDetails.Text = "Problema" + Error;
+                String IPAdd = string.Empty;
+                IPAdd = Request.ServerVariables["HTTP_X_FORWARDER_FOR"];
+                if (String.IsNullOrEmpty(IPAdd))
+                {
+                    IPAdd = Request.ServerVariables["REMOTE_ADDR"];
+                    localIP = IPAdd.ToString();
+                    Session["IP"] = localIP;
+                }
             }
+        }
+		Session["Nombrepc"] = host.HostName.ToString();
+        // System.Net.IPHostEntry hostEntry = Dns.GetHostEntry(Session["IP"].ToString());
+        // Dns.BeginGetHostEntry(Request.UserHostAddress, new AsyncCallback(GetHostNameCallBack), Request.UserHostAddress);
+
+        try
+        {
+            if (!IsPostBack)
+            {
+                this.RadioButtonList1.SelectedValue = null;
+                //DDLOtros.SelectedValue = null;  
+            }
+            else
+            {
+                DataTable dt = new DataTable();
+                List<string> dataColumnNames = new List<string>();
+                foreach (GridViewColumn item in ASPxGridView1.Columns)
+                {
+                    GridViewEditDataColumn dataColumn = item as GridViewEditDataColumn;
+                    if (dataColumn != null)
+                    {
+                        dt.Columns.Add(dataColumn.FieldName);
+                        dataColumnNames.Add(dataColumn.FieldName);
+                    }
+                }
+                for (int i = 0; i < ASPxGridView1.VisibleRowCount; i++)
+                {
+                    object[] rowValues = ASPxGridView1.GetRowValues(i, dataColumnNames.ToArray()) as object[];
+                    dt.Rows.Add(rowValues);
+                }
+            }
+
+        }
+        catch (Exception Error)
+        {
+            this.ExceptionDetails.Text = "Problema" + Error;
+        }
     }
+    // public void GetHostNameCallBack(IAsyncResult asyncResult)
+    // {
+        // string userHostAddress = (string)asyncResult.AsyncState;
+        // System.Net.IPHostEntry hostEntry = System.Net.Dns.EndGetHostEntry(asyncResult);
+        // Session["Nombrepc"] = hostEntry.HostName;
+        // // tenemos el nombre del equipo cliente en hostEntry.HostName
+    // }
     protected void ChBFechaRad_CheckedChanged(object sender, EventArgs e)
     {
-          if (ChBFechaRad.Checked == true)
-               {
-              this.LblFechaFinal.Visible = true;
-              this.LblFechaInicial.Visible = true;
-              this.TxtFechaFinal.Visible = true;
-              this.TxtFechaInicial.Visible = true;
-              this.ImgCalendarFinal.Visible = true;
-              this.ImgCalendarInicial.Visible = true;
-              //this.RFVFechaRadIni.Enabled = true;
-              //this.RFVFecharadFin.Enabled = true;
-              }
-          else
-               {
-                   this.LblFechaFinal.Visible = false;
-                   this.LblFechaInicial.Visible = false;
-                   this.TxtFechaFinal.Visible = false;
-                   this.TxtFechaInicial.Visible = false;
-                   this.TxtFechaFinal.Text = "";
-                   this.TxtFechaInicial.Text = "";
-                   this.ImgCalendarFinal.Visible = false;
-                   this.ImgCalendarInicial.Visible = false;
-                   //this.RFVFechaRadIni.Enabled = false;
-                   //this.RFVFecharadFin.Enabled = false;
-               }
+        if (ChBFechaRad.Checked == true)
+        {
+            this.LblFechaFinal.Visible = true;
+            this.LblFechaInicial.Visible = true;
+            this.TxtFechaFinal.Visible = true;
+            this.TxtFechaInicial.Visible = true;
+            this.ImgCalendarFinal.Visible = true;
+            this.ImgCalendarInicial.Visible = true;
+            //this.RFVFechaRadIni.Enabled = true;
+            //this.RFVFecharadFin.Enabled = true;
+        }
+        else
+        {
+            this.LblFechaFinal.Visible = false;
+            this.LblFechaInicial.Visible = false;
+            this.TxtFechaFinal.Visible = false;
+            this.TxtFechaInicial.Visible = false;
+            this.TxtFechaFinal.Text = "";
+            this.TxtFechaInicial.Text = "";
+            this.ImgCalendarFinal.Visible = false;
+            this.ImgCalendarInicial.Visible = false;
+            //this.RFVFechaRadIni.Enabled = false;
+            //this.RFVFecharadFin.Enabled = false;
+        }
     }
-    
+
     protected void ChBNaturaleza_CheckedChanged(object sender, EventArgs e)
     {
         if (ChBNaturaleza.Checked == true)
         {
             this.LblNaturaleza.Visible = true;
             this.TxtBNaturaleza.Visible = true;
-          //  this.RFVNaturaleza.Enabled = true;
+            //  this.RFVNaturaleza.Enabled = true;
         }
         else
         {
             this.LblNaturaleza.Visible = false;
             this.TxtBNaturaleza.Visible = false;
             this.TxtBNaturaleza.Text = "";
-          //  this.RFVNaturaleza.Enabled = false;
+            //  this.RFVNaturaleza.Enabled = false;
         }
     }
-   
+
     protected void TreeVNaturaleza_SelectedNodeChanged(object sender, EventArgs e)
     {
         if ((String.IsNullOrEmpty(this.TreeVNaturaleza.SelectedNode.Text)) == false)
@@ -206,92 +260,126 @@ public partial class _GestionTDocRecibido : System.Web.UI.Page
         string dt_qw = "";
         try
         {
-            if (DDLSel.SelectedValue != "0")
+            if (DDLSel.SelectedValue == "0")
             {
+                this.ODSBuscar.SelectParameters["WFMovimientoTipo"].DefaultValue = "1";
+                this.ODSBuscar.SelectParameters["WFMovimientoTipo1"].DefaultValue = "3";
+                this.ODSBuscar.SelectParameters["WFMovimientoPasoActual"].DefaultValue = "";
+                this.ODSBuscar.SelectParameters["WFMovimientoPasoFinal"].DefaultValue = "";
+                lotros = "1?3??";
 
-                /* this.ODSBuscar.SelectParameters["WFMovimientoTipo"].DefaultValue = "1";
-                 this.ODSBuscar.SelectParameters["WFMovimientoTipo1"].DefaultValue = "3";
-                 this.ODSBuscar.SelectParameters["WFMovimientoPasoActual"].DefaultValue = "1";
-                 this.ODSBuscar.SelectParameters["WFMovimientoPasoFinal"].DefaultValue = "0";
-                 lotros = "1?3??";
-
-                 //ConsultaRadicado = ObjGestionTRad.GetGTRadicado(this.TxtFechaInicial.Text.ToString(), this.TxtFechaFinal.Text.ToString(), this.TxtFechaFinInicial.Text.ToString(), this.TxtFechaFinFinal.Text.ToString(), this.TxtFechaVenInicial.Text.ToString(), this.TxtFechaVenFinal.Text.ToString(), 1, 3, "", "", TxtBDepOrigen.Text.ToString(), this.TxtBDepDestino.Text.ToString(), this.TxtBFuente.Text.ToString(), this.TxtBProceso.Text.ToString().Trim(), this.TxtBAccion.Text.ToString().Trim(), "", this.TxtBNaturaleza.Text.ToString());
-
-             }
-             else */
-                if (DDLSel.SelectedValue == "1")
-                {
-                    this.ODSBuscar.SelectParameters["WFMovimientoTipo"].DefaultValue = "3";//Mov Archivar
-                    this.ODSBuscar.SelectParameters["WFMovimientoTipo1"].DefaultValue = "3";
-                    this.ODSBuscar.SelectParameters["WFMovimientoPasoActual"].DefaultValue = "0";
-                    this.ODSBuscar.SelectParameters["WFMovimientoPasoFinal"].DefaultValue = "1";//Archivado
-                    lotros = "3?3?0?1";
-                    //ConsultaRadicado = ObjGestionTRad.GetGTRadicado(this.TxtFechaInicial.Text.ToString(), this.TxtFechaFinal.Text.ToString(), this.TxtFechaFinInicial.Text.ToString(), this.TxtFechaFinFinal.Text.ToString(), this.TxtFechaVenInicial.Text.ToString(), this.TxtFechaVenFinal.Text.ToString(), 3, 3, "0", "1", TxtBDepOrigen.Text.ToString(), this.TxtBDepDestino.Text.ToString(), this.TxtBFuente.Text.ToString(), this.TxtBProceso.Text.ToString().Trim(), this.TxtBAccion.Text.ToString().Trim(), "", this.TxtBNaturaleza.Text.ToString());
-                }
-                else if (DDLSel.SelectedValue == "2")
-                {
-                    this.ODSBuscar.SelectParameters["WFMovimientoTipo"].DefaultValue = "1";//Mov Radicar
-                    this.ODSBuscar.SelectParameters["WFMovimientoTipo1"].DefaultValue = "3";
-                    this.ODSBuscar.SelectParameters["WFMovimientoPasoActual"].DefaultValue = "1"; //
-                    this.ODSBuscar.SelectParameters["WFMovimientoPasoFinal"].DefaultValue = "0";  //Sin Archivar
-                    lotros = "1?1?1?0";
-                    // ConsultaRadicado = ObjGestionTRad.GetGTRadicado(this.TxtFechaInicial.Text.ToString(), this.TxtFechaFinal.Text.ToString(), this.TxtFechaFinInicial.Text.ToString(), this.TxtFechaFinFinal.Text.ToString(), this.TxtFechaVenInicial.Text.ToString(), this.TxtFechaVenFinal.Text.ToString(), 1, 1, "1", "0", TxtBDepOrigen.Text.ToString(), this.TxtBDepDestino.Text.ToString(), this.TxtBFuente.Text.ToString(), this.TxtBProceso.Text.ToString().Trim(), this.TxtBAccion.Text.ToString().Trim(), "", this.TxtBNaturaleza.Text.ToString());
-                }
-                else if (DDLSel.SelectedValue == "3")
-                {
-                    this.ODSBuscar.SelectParameters["WFMovimientoTipo"].DefaultValue = "3";//Mov Radicar
-                    this.ODSBuscar.SelectParameters["WFMovimientoTipo1"].DefaultValue = "1";
-                    this.ODSBuscar.SelectParameters["WFMovimientoPasoActual"].DefaultValue = ""; //
-                    this.ODSBuscar.SelectParameters["WFMovimientoPasoFinal"].DefaultValue = "";  //Sin Archivar
-                    lotros = "1?1?1?0";
-                    // ConsultaRadicado = ObjGestionTRad.GetGTRadicado(this.TxtFechaInicial.Text.ToString(), this.TxtFechaFinal.Text.ToString(), this.TxtFechaFinInicial.Text.ToString(), this.TxtFechaFinFinal.Text.ToString(), this.TxtFechaVenInicial.Text.ToString(), this.TxtFechaVenFinal.Text.ToString(), 1, 1, "1", "0", TxtBDepOrigen.Text.ToString(), this.TxtBDepDestino.Text.ToString(), this.TxtBFuente.Text.ToString(), this.TxtBProceso.Text.ToString().Trim(), this.TxtBAccion.Text.ToString().Trim(), "", this.TxtBNaturaleza.Text.ToString());
-                }
-                //<asp:Parameter Name="SerieCodigo" Type="String" />
-                this.ODSBuscar.SelectParameters["WFMovimientoFecha"].DefaultValue = this.TxtFechaInicial.Text;
-                this.ODSBuscar.SelectParameters["WFMovimientoFecha1"].DefaultValue = this.TxtFechaFinal.Text;
-                this.ODSBuscar.SelectParameters["WFMovimientoFechaFin"].DefaultValue = this.TxtFechaFinInicial.Text;
-                this.ODSBuscar.SelectParameters["WFMovimientoFechaFin1"].DefaultValue = this.TxtFechaFinFinal.Text;
-                this.ODSBuscar.SelectParameters["RadicadoFechaVencimiento"].DefaultValue = this.TxtFechaVenInicial.Text;
-                this.ODSBuscar.SelectParameters["RadicadoFechaVencimiento1"].DefaultValue = this.TxtFechaVenFinal.Text;
-                this.ODSBuscar.SelectParameters["DependenciaCodOrigen"].DefaultValue = this.TxtBDepOrigen.Text;
-                this.ODSBuscar.SelectParameters["DependenciaCodDestino"].DefaultValue = this.TxtBDepDestino.Text;
-                this.ODSBuscar.SelectParameters["RadicadoCodigoFuente"].DefaultValue = this.DDLRespuesta.SelectedValue;
-                this.ODSBuscar.SelectParameters["WFProcesoCodigo"].DefaultValue = this.TxtBProceso.Text;
-                this.ODSBuscar.SelectParameters["WFAccionCodigo"].DefaultValue = this.TxtBAccion.Text;
-                this.ODSBuscar.SelectParameters["SerieCodigo"].DefaultValue = "";
-                this.ODSBuscar.SelectParameters["NaturalezaCodigo"].DefaultValue = this.TxtBNaturaleza.Text;
-                this.ODSBuscar.SelectParameters["ProcedenciaCodigo"].DefaultValue = this.TxtBProcedencia.Text;
-                this.ODSBuscar.SelectParameters["ExpedienteCodigo"].DefaultValue = this.TxtBExpediente.Text;
-                //insertar la dependencia de donde se está haciendo la consulta modif feb 28 2011
-                this.ODSBuscar.SelectParameters["DependenciaConsulta"].DefaultValue = Profile.CodigoDepUsuario.ToString();
-
-
-                //Registrar el evento de busqueda
-
-
-
-
-                /*
-                rutinas r1 = new rutinas();
-                DataTable t1 = r1.rtn_registrar_log("0", UserId, "7",
-                    this.TxtFechaInicial.Text + "?" + this.TxtFechaFinal.Text + "?" + this.TxtFechaFinInicial.Text + "?" + this.TxtFechaFinFinal.Text + "?"
-                    + this.TxtFechaVenInicial.Text + "?" + this.TxtFechaVenFinal.Text + "?" +  value_pipe(this.TxtBDepOrigen.Text)+ "?"
-                    + value_pipe(this.TxtBDepDestino.Text) + "?" + value_pipe(this.RadioButtonList1.SelectedValue)+ "?" +
-                    value_pipe(this.TxtBProceso.Text) + "?" + value_pipe(this.TxtBAccion.Text) + "?" + value_pipe(this.TxtBNaturaleza.Text)+ "?"
-                    + value_pipe(this.TxtBProcedencia.Text) + "?" + value_pipe(this.TxtBExpediente.Text) + "?" + lotros, "2");
-                */
-                //GVBuscar.DataSource = ConsultaRadicado;
-                //GVBuscar.Visible = true;
-                //GVBuscar.DataBind();
-                ASPxGridView1.DataSourceID = "ODSBuscar";
-                ASPxGridView1.DataBind();
-
-                this.MyAccordion.SelectedIndex = 1;
+                //ConsultaRadicado = ObjGestionTRad.GetGTRadicado(this.TxtFechaInicial.Text.ToString(), this.TxtFechaFinal.Text.ToString(), this.TxtFechaFinInicial.Text.ToString(), this.TxtFechaFinFinal.Text.ToString(), this.TxtFechaVenInicial.Text.ToString(), this.TxtFechaVenFinal.Text.ToString(), 1, 3, "", "", TxtBDepOrigen.Text.ToString(), this.TxtBDepDestino.Text.ToString(), this.TxtBFuente.Text.ToString(), this.TxtBProceso.Text.ToString().Trim(), this.TxtBAccion.Text.ToString().Trim(), "", this.TxtBNaturaleza.Text.ToString());
             }
+            else if (DDLSel.SelectedValue == "1")
+            {
+                this.ODSBuscar.SelectParameters["WFMovimientoTipo"].DefaultValue = "3";
+                this.ODSBuscar.SelectParameters["WFMovimientoTipo1"].DefaultValue = "3";
+                this.ODSBuscar.SelectParameters["WFMovimientoPasoActual"].DefaultValue = "0";
+                this.ODSBuscar.SelectParameters["WFMovimientoPasoFinal"].DefaultValue = "1";
+                lotros = "3?3?0?1";
+                //ConsultaRadicado = ObjGestionTRad.GetGTRadicado(this.TxtFechaInicial.Text.ToString(), this.TxtFechaFinal.Text.ToString(), this.TxtFechaFinInicial.Text.ToString(), this.TxtFechaFinFinal.Text.ToString(), this.TxtFechaVenInicial.Text.ToString(), this.TxtFechaVenFinal.Text.ToString(), 3, 3, "0", "1", TxtBDepOrigen.Text.ToString(), this.TxtBDepDestino.Text.ToString(), this.TxtBFuente.Text.ToString(), this.TxtBProceso.Text.ToString().Trim(), this.TxtBAccion.Text.ToString().Trim(), "", this.TxtBNaturaleza.Text.ToString());
+            }
+            else if (DDLSel.SelectedValue == "2")
+            {
+                this.ODSBuscar.SelectParameters["WFMovimientoTipo"].DefaultValue = "1";
+                this.ODSBuscar.SelectParameters["WFMovimientoTipo1"].DefaultValue = "1";
+                this.ODSBuscar.SelectParameters["WFMovimientoPasoActual"].DefaultValue = "1";
+                this.ODSBuscar.SelectParameters["WFMovimientoPasoFinal"].DefaultValue = "0";
+                lotros = "1?1?1?0";
+                // ConsultaRadicado = ObjGestionTRad.GetGTRadicado(this.TxtFechaInicial.Text.ToString(), this.TxtFechaFinal.Text.ToString(), this.TxtFechaFinInicial.Text.ToString(), this.TxtFechaFinFinal.Text.ToString(), this.TxtFechaVenInicial.Text.ToString(), this.TxtFechaVenFinal.Text.ToString(), 1, 1, "1", "0", TxtBDepOrigen.Text.ToString(), this.TxtBDepDestino.Text.ToString(), this.TxtBFuente.Text.ToString(), this.TxtBProceso.Text.ToString().Trim(), this.TxtBAccion.Text.ToString().Trim(), "", this.TxtBNaturaleza.Text.ToString());
+            }
+            //            <asp:Parameter Name="SerieCodigo" Type="String" />
+            this.ODSBuscar.SelectParameters["WFMovimientoFecha"].DefaultValue = this.TxtFechaInicial.Text;
+            this.ODSBuscar.SelectParameters["WFMovimientoFecha1"].DefaultValue = this.TxtFechaFinal.Text;
+            this.ODSBuscar.SelectParameters["WFMovimientoFechaFin"].DefaultValue = this.TxtFechaFinInicial.Text;
+            this.ODSBuscar.SelectParameters["WFMovimientoFechaFin1"].DefaultValue = this.TxtFechaFinFinal.Text;
+            this.ODSBuscar.SelectParameters["RadicadoFechaVencimiento"].DefaultValue = this.TxtFechaVenInicial.Text;
+            this.ODSBuscar.SelectParameters["RadicadoFechaVencimiento1"].DefaultValue = this.TxtFechaVenFinal.Text;
+            this.ODSBuscar.SelectParameters["DependenciaCodOrigen"].DefaultValue = this.TxtBDepOrigen.Text;
+            this.ODSBuscar.SelectParameters["DependenciaCodDestino"].DefaultValue = this.TxtBDepDestino.Text;
+            this.ODSBuscar.SelectParameters["RadicadoCodigoFuente"].DefaultValue = this.RadioButtonList1.SelectedValue;
+            this.ODSBuscar.SelectParameters["WFProcesoCodigo"].DefaultValue = this.TxtBProceso.Text;
+            this.ODSBuscar.SelectParameters["WFAccionCodigo"].DefaultValue = this.TxtBAccion.Text;
+            this.ODSBuscar.SelectParameters["SerieCodigo"].DefaultValue = "";
+            this.ODSBuscar.SelectParameters["NaturalezaCodigo"].DefaultValue = this.TxtBNaturaleza.Text;
+            this.ODSBuscar.SelectParameters["ProcedenciaCodigo"].DefaultValue = this.TxtBProcedencia.Text;
+            this.ODSBuscar.SelectParameters["ExpedienteCodigo"].DefaultValue = this.TxtBExpediente.Text;
+            this.ODSBuscar.SelectParameters["Detalle"].DefaultValue = this.TXTDetalle.Text;
+            //insertar la dependencia de donde se está haciendo la consulta modif feb 28 2011
+            this.ODSBuscar.SelectParameters["DependenciaConsulta"].DefaultValue = Profile.CodigoDepUsuario.ToString();
+            string Resuelto;
+            if (this.RadioButtonList1.SelectedValue == "" || this.RadioButtonList1.SelectedValue == null)
+            {
+                Resuelto = "null";
+            }
+            else { Resuelto = this.RadioButtonList1.SelectedValue; }
+
+            ASPxGridView1.DataSourceID = "ODSBuscar";
+            ASPxGridView1.DataBind();
+
+            // // Siguiente codigo para duplicar la información del Datasource  -- JUAN FIGUEREDO 22-SEP-2020
+            // DataTable dt = new DataTable();
+            // List<string> dataColumnNames = new List<string>();
+            // foreach (GridViewColumn item in ASPxGridView1.Columns)
+            // {
+                // GridViewEditDataColumn dataColumn = item as GridViewEditDataColumn;
+                // if (dataColumn != null)
+                // {
+                    // dt.Columns.Add(dataColumn.FieldName);
+                    // dataColumnNames.Add(dataColumn.FieldName);
+                // }
+            // }
+            // for (int i = 0; i < ASPxGridView1.VisibleRowCount; i++)
+            // {
+                // object[] rowValues = ASPxGridView1.GetRowValues(i, dataColumnNames.ToArray()) as object[];
+                // dt.Rows.Add(rowValues);
+            // }
+            // Session["DatosGrid"] = dt;
+            // //Fin duplicado de informacion datasource, se utilizará posteriormente para Generar Excel en .Xlsx
+
+
+            // string Resuelto;
+            // if (this.RadioButtonList1.SelectedValue == "" || this.RadioButtonList1.SelectedValue == null)
+            // {
+                // Resuelto = "null";
+            // }
+            // else { Resuelto = this.RadioButtonList1.SelectedValue; }
+
+            //OBTENER CONSECUTIVO LOGS
+            String Log = Profile.GetProfile(Profile.UserName).CodigoDepUsuario.ToString() + " | " + Profile.UserName.ToString() + " | " + this.TxtFechaInicial.Text + " - " + this.TxtFechaFinal.Text + " | " + this.TxtFechaFinInicial.Text + " - " +
+                this.TxtFechaFinFinal.Text + " | " + this.TxtFechaVenInicial.Text + " - " + this.TxtFechaVenFinal.Text + " | " + value_pipe(this.TxtBDepOrigen.Text) + " - " + value_pipe(this.TxtBDepDestino.Text) + " | " + Resuelto + " | " + value_pipe(TxtBProceso.Text) + " | " + value_pipe(TxtBAccion.Text) + " | " + value_pipe(TxtBNaturaleza.Text) + " | " + value_pipe(TxtBProcedencia.Text) + " | " + value_pipe(TxtBExpediente.Text) + " | " + value_pipe(TXTDetalle.Text) + " | " + Profile.GetProfile(Profile.UserName).CodigoDepUsuario.ToString() + " | " + lotros;
+
+		DateTime FechaInicio = DateTime.Now;
+		string ActLogCod = "CONSULTAR";
+            DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter Consecutivos = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+            DSGrupoSQL.ConsecutivoLogsDataTable Conse = new DSGrupoSQL.ConsecutivoLogsDataTable();
+            Conse = Consecutivos.GetConseActual(ConsecutivoCodigo);
+            DataRow[] fila = Conse.Select();
+            string x = fila[0].ItemArray[0].ToString();
+            string LOG = Convert.ToString(x);
+            string username = Profile.GetProfile(Profile.UserName).UserName.ToString();
+            DSUsuarioTableAdapters.UserIdByUserNameTableAdapter objUsr = new DSUsuarioTableAdapters.UserIdByUserNameTableAdapter();
+            string UsrId = objUsr.Aspnet_UserIDByUserName(username).ToString();
+            string Datosfin = Log;//ExpedienteCod
+            DateTime FechaFin = DateTime.Now;
+            Int64 LogId = Convert.ToInt64(LOG);
+            string GrupoCod = "0";
+            string IP = Session["IP"].ToString();
+            string NombreEquipo = Session["Nombrepc"].ToString();
+            System.Web.HttpBrowserCapabilities nav = Request.Browser;
+            string Navegador = nav.Browser.ToString() + " Version: " + nav.Version.ToString();
+            //Se hace insert de log consultar expediente
+            DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter InsertarConsultaRadicado = new DSLogAlfaNetTableAdapters.LogAlfaNetTableAdapter();
+            InsertarConsultaRadicado.InsertConsulta(LogId, username, FechaInicio, ActLogCod, GrupoCod, ModuloLog, Datosfin, FechaFin, IP, NombreEquipo, Navegador);
+            //Se hace el consecutivo de Logs
+            DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter ConseLogs = new DSGrupoSQLTableAdapters.ConsecutivoLogsTableAdapter();
+            ConseLogs.GetConsecutivos(ConsecutivoCodigo);
+
+            this.MyAccordion.SelectedIndex = 1;
         }
         catch (Exception Error)
         {
-            this.ExceptionDetails.Text = "Problema" + Error;
+            this.ExceptionDetails.Text = "Problema " + Error;
         }
     }
 
@@ -315,7 +403,7 @@ public partial class _GestionTDocRecibido : System.Web.UI.Page
     }
     protected void BtnNuevo_Click(object sender, EventArgs e)
     {
-        
+
     }
     //protected void GVBuscar_PageIndexChanging(object sender, GridViewPageEventArgs e)
     //{
@@ -338,7 +426,7 @@ public partial class _GestionTDocRecibido : System.Web.UI.Page
     //    Response.Redirect("~/AlfaNetImagen/VisorImagenes/VisorImagenes.aspx");
     //}
     protected void LinkButton1_Click(object sender, EventArgs e)
-    { 
+    {
         //String RadicadoCodigo = GVBuscar.DataKeys[dato1].Value.ToString();
         ////String RadicadoCodigo = GVBuscar.SelectedDataKey.Value.ToString();
         ////String RadicadoCodigo = this.GVBuscar.SelectedValue.ToString();
@@ -350,39 +438,39 @@ public partial class _GestionTDocRecibido : System.Web.UI.Page
         Response.Redirect("~/AlfaNetDocumentos/DocRecibido/DocRecibidoReporte.aspx?TipoCodigo=1&RadicadoCodigo=1" + ((LinkButton)sender).Text + "&GrupoCodigo=1&ControlDias=2");
 
     }
-   // protected void cmdBuscar_Click(object sender, ImageClickEventArgs e)
-   // {
-   //     try
-   //     {
-   //         //DSRadicadoTableAdapters.Radicado_ConsultasGestionTareasTableAdapter OBJTAGT = new Radicado_ConsultasGestionTareasTableAdapter();
-   //         //DSRadicado.Radicado_ConsultasGestionTareasDataTable ConsultaRadicado = new DSRadicado.Radicado_ConsultasGestionTareasDataTable();
-   //    // ConsultaRadicado = ObjGestionTRad.GetGTRadicado(this.TxtFechaInicial.Text.ToString(), this.TxtFechaFinal.Text.ToString(), this.TxtFechaFinInicial.Text.ToString(), this.TxtFechaFinFinal.Text.ToString(), this.TxtFechaVenInicial.Text.ToString(), this.TxtFechaVenFinal.Text.ToString(),1,"1","0", TxtBDepOrigen.Text.ToString(), this.TxtBDepDestino.Text.ToString(), this.TxtBFuente.Text.ToString(), this.TxtBProceso.Text.ToString().Trim(), this.TxtBAccion.Text.ToString().Trim(), "", this.TxtBNaturaleza.Text.ToString());
-   //         //RadicadoBLL ObjGTConsulta = new RadicadoBLL();
-   //         //DSRadicadoTableAdapters.Radicado_ConsultasGestionTareasPruebaTableAdapter = new Radicado_ConsultasGestionTareasPruebaTableAdapter();
-   //         //RadicadoBLL ObjConsultaRad = new RadicadoBLL();
-   //         //DSRadicado.Radicado_ConsultasRadicadoDataTable ConsultaRadicado = new DSRadicado.Radicado_ConsultasRadicadoDataTable();
-   //        // if (DDLSel.SelectedValue =="")
-   //     /////ConsultaRadicado = ObjGestionTRad.GetGTRadicado(this.TxtFechaInicial.Text.ToString(), this.TxtFechaFinal.Text.ToString(), this.TxtFechaFinInicial.Text.ToString(), this.TxtFechaFinFinal.Text.ToString(), this.TxtFechaVenInicial.Text.ToString(), this.TxtFechaVenFinal.Text.ToString(),1,"1","0", TxtBDepOrigen.Text.ToString(), this.TxtBDepDestino.Text.ToString(), this.TxtBFuente.Text.ToString(), this.TxtBProceso.Text.ToString().Trim(), this.TxtBAccion.Text.ToString().Trim(), "", this.TxtBNaturaleza.Text.ToString());
-   // //else
-   //// if (DDLSel.SelectedValue == "0")
-   //     //ConsultaRadicado = ObjGestionTRad.GetGTRadicado(this.TxtFechaInicial.Text.ToString(), this.TxtFechaFinal.Text.ToString(), this.TxtFechaFinInicial.Text.ToString(), this.TxtFechaFinFinal.Text.ToString(), this.TxtFechaVenInicial.Text.ToString(), this.TxtFechaVenFinal.Text.ToString(),1,3,"","", TxtBDepOrigen.Text.ToString(), this.TxtBDepDestino.Text.ToString(), this.RadioButtonList1.SelectedValue, this.TxtBProceso.Text.ToString().Trim(), this.TxtBAccion.Text.ToString().Trim(), "", this.TxtBNaturaleza.Text.ToString());
-   //// else if (DDLSel.SelectedValue == "1")
-   //     //ConsultaRadicado = ObjGestionTRad.GetGTRadicado(this.TxtFechaInicial.Text.ToString(), this.TxtFechaFinal.Text.ToString(), this.TxtFechaFinInicial.Text.ToString(), this.TxtFechaFinFinal.Text.ToString(), this.TxtFechaVenInicial.Text.ToString(), this.TxtFechaVenFinal.Text.ToString(), 3, 3, "0", "1", TxtBDepOrigen.Text.ToString(), this.TxtBDepDestino.Text.ToString(), this.RadioButtonList1.SelectedValue, this.TxtBProceso.Text.ToString().Trim(), this.TxtBAccion.Text.ToString().Trim(), "", this.TxtBNaturaleza.Text.ToString());
-   // //else if (DDLSel.SelectedValue == "2")
-   //     //ConsultaRadicado = ObjGestionTRad.GetGTRadicado(this.TxtFechaInicial.Text.ToString(), this.TxtFechaFinal.Text.ToString(), this.TxtFechaFinInicial.Text.ToString(), this.TxtFechaFinFinal.Text.ToString(), this.TxtFechaVenInicial.Text.ToString(), this.TxtFechaVenFinal.Text.ToString(), 1, 1, "1", "0", TxtBDepOrigen.Text.ToString(), this.TxtBDepDestino.Text.ToString(), this.RadioButtonList1.SelectedValue, this.TxtBProceso.Text.ToString().Trim(), this.TxtBAccion.Text.ToString().Trim(), "", this.TxtBNaturaleza.Text.ToString());
-   //         //ConsultaRadicado.Select(
-   // //DataRow[] rows = ConsultaRadicado.Select("WfmovimientoTipo <> 0");
+    // protected void cmdBuscar_Click(object sender, ImageClickEventArgs e)
+    // {
+    //     try
+    //     {
+    //         //DSRadicadoTableAdapters.Radicado_ConsultasGestionTareasTableAdapter OBJTAGT = new Radicado_ConsultasGestionTareasTableAdapter();
+    //         //DSRadicado.Radicado_ConsultasGestionTareasDataTable ConsultaRadicado = new DSRadicado.Radicado_ConsultasGestionTareasDataTable();
+    //    // ConsultaRadicado = ObjGestionTRad.GetGTRadicado(this.TxtFechaInicial.Text.ToString(), this.TxtFechaFinal.Text.ToString(), this.TxtFechaFinInicial.Text.ToString(), this.TxtFechaFinFinal.Text.ToString(), this.TxtFechaVenInicial.Text.ToString(), this.TxtFechaVenFinal.Text.ToString(),1,"1","0", TxtBDepOrigen.Text.ToString(), this.TxtBDepDestino.Text.ToString(), this.TxtBFuente.Text.ToString(), this.TxtBProceso.Text.ToString().Trim(), this.TxtBAccion.Text.ToString().Trim(), "", this.TxtBNaturaleza.Text.ToString());
+    //         //RadicadoBLL ObjGTConsulta = new RadicadoBLL();
+    //         //DSRadicadoTableAdapters.Radicado_ConsultasGestionTareasPruebaTableAdapter = new Radicado_ConsultasGestionTareasPruebaTableAdapter();
+    //         //RadicadoBLL ObjConsultaRad = new RadicadoBLL();
+    //         //DSRadicado.Radicado_ConsultasRadicadoDataTable ConsultaRadicado = new DSRadicado.Radicado_ConsultasRadicadoDataTable();
+    //        // if (DDLSel.SelectedValue =="")
+    //     /////ConsultaRadicado = ObjGestionTRad.GetGTRadicado(this.TxtFechaInicial.Text.ToString(), this.TxtFechaFinal.Text.ToString(), this.TxtFechaFinInicial.Text.ToString(), this.TxtFechaFinFinal.Text.ToString(), this.TxtFechaVenInicial.Text.ToString(), this.TxtFechaVenFinal.Text.ToString(),1,"1","0", TxtBDepOrigen.Text.ToString(), this.TxtBDepDestino.Text.ToString(), this.TxtBFuente.Text.ToString(), this.TxtBProceso.Text.ToString().Trim(), this.TxtBAccion.Text.ToString().Trim(), "", this.TxtBNaturaleza.Text.ToString());
+    // //else
+    //// if (DDLSel.SelectedValue == "0")
+    //     //ConsultaRadicado = ObjGestionTRad.GetGTRadicado(this.TxtFechaInicial.Text.ToString(), this.TxtFechaFinal.Text.ToString(), this.TxtFechaFinInicial.Text.ToString(), this.TxtFechaFinFinal.Text.ToString(), this.TxtFechaVenInicial.Text.ToString(), this.TxtFechaVenFinal.Text.ToString(),1,3,"","", TxtBDepOrigen.Text.ToString(), this.TxtBDepDestino.Text.ToString(), this.RadioButtonList1.SelectedValue, this.TxtBProceso.Text.ToString().Trim(), this.TxtBAccion.Text.ToString().Trim(), "", this.TxtBNaturaleza.Text.ToString());
+    //// else if (DDLSel.SelectedValue == "1")
+    //     //ConsultaRadicado = ObjGestionTRad.GetGTRadicado(this.TxtFechaInicial.Text.ToString(), this.TxtFechaFinal.Text.ToString(), this.TxtFechaFinInicial.Text.ToString(), this.TxtFechaFinFinal.Text.ToString(), this.TxtFechaVenInicial.Text.ToString(), this.TxtFechaVenFinal.Text.ToString(), 3, 3, "0", "1", TxtBDepOrigen.Text.ToString(), this.TxtBDepDestino.Text.ToString(), this.RadioButtonList1.SelectedValue, this.TxtBProceso.Text.ToString().Trim(), this.TxtBAccion.Text.ToString().Trim(), "", this.TxtBNaturaleza.Text.ToString());
+    // //else if (DDLSel.SelectedValue == "2")
+    //     //ConsultaRadicado = ObjGestionTRad.GetGTRadicado(this.TxtFechaInicial.Text.ToString(), this.TxtFechaFinal.Text.ToString(), this.TxtFechaFinInicial.Text.ToString(), this.TxtFechaFinFinal.Text.ToString(), this.TxtFechaVenInicial.Text.ToString(), this.TxtFechaVenFinal.Text.ToString(), 1, 1, "1", "0", TxtBDepOrigen.Text.ToString(), this.TxtBDepDestino.Text.ToString(), this.RadioButtonList1.SelectedValue, this.TxtBProceso.Text.ToString().Trim(), this.TxtBAccion.Text.ToString().Trim(), "", this.TxtBNaturaleza.Text.ToString());
+    //         //ConsultaRadicado.Select(
+    // //DataRow[] rows = ConsultaRadicado.Select("WfmovimientoTipo <> 0");
 
-   //        // GVBuscar.DataSource = ConsultaRadicado;
-   //      //   GVBuscar.Visible = true;
-   //       //  GVBuscar.DataBind();
-   //      //   this.MyAccordion.SelectedIndex = 1;
-   //     }
-   //     catch (Exception Error)
-   //     {
-   //         this.ExceptionDetails.Text = "Problema" + Error;
-   //     }
-   // }
+    //        // GVBuscar.DataSource = ConsultaRadicado;
+    //      //   GVBuscar.Visible = true;
+    //       //  GVBuscar.DataBind();
+    //      //   this.MyAccordion.SelectedIndex = 1;
+    //     }
+    //     catch (Exception Error)
+    //     {
+    //         this.ExceptionDetails.Text = "Problema" + Error;
+    //     }
+    // }
     protected void ChBFechaFin_CheckedChanged(object sender, EventArgs e)
     {
         if (ChBFechaFin.Checked == true)
@@ -407,8 +495,8 @@ public partial class _GestionTDocRecibido : System.Web.UI.Page
             this.TxtFechaFinInicial.Text = "";
             this.ImgCalendarFinFinal.Visible = false;
             this.ImgCalendarFinInicial.Visible = false;
-           // this.RFVFechaFinIni.Enabled = false;
-           // this.RFVFechaFinFin.Enabled = false;
+            // this.RFVFechaFinIni.Enabled = false;
+            // this.RFVFechaFinFin.Enabled = false;
         }
     }
     protected void ChBFechaVen_CheckedChanged(object sender, EventArgs e)
@@ -421,8 +509,8 @@ public partial class _GestionTDocRecibido : System.Web.UI.Page
             this.TxtFechaVenInicial.Visible = true;
             this.ImgCalendarVenFinal.Visible = true;
             this.ImgCalendarVenInicial.Visible = true;
-           // this.RFVFechaVenIni.Enabled = true;
-           // this.RFVFechaVenFin.Enabled = true;
+            // this.RFVFechaVenIni.Enabled = true;
+            // this.RFVFechaVenFin.Enabled = true;
 
         }
         else
@@ -435,8 +523,8 @@ public partial class _GestionTDocRecibido : System.Web.UI.Page
             this.TxtFechaVenInicial.Text = "";
             this.ImgCalendarVenFinal.Visible = false;
             this.ImgCalendarVenInicial.Visible = false;
-           // this.RFVFechaVenIni.Enabled = false;
-           // this.RFVFechaVenFin.Enabled = false;
+            // this.RFVFechaVenIni.Enabled = false;
+            // this.RFVFechaVenFin.Enabled = false;
         }
     }
     protected void ChBDependencias_CheckedChanged(object sender, EventArgs e)
@@ -445,13 +533,13 @@ public partial class _GestionTDocRecibido : System.Web.UI.Page
         {
             this.LblDepOrigen.Visible = true;
             this.LblDepDestino.Visible = true;
-                        
+
             this.TxtBDepOrigen.Visible = true;
             this.TxtBDepDestino.Visible = true;
-                       
+
             //this.RFVDepOrigen.Enabled = true;
             //this.RFVDepDestino.Enabled = true;
-           
+
         }
         else
         {
@@ -461,15 +549,15 @@ public partial class _GestionTDocRecibido : System.Web.UI.Page
             this.TxtBDepOrigen.Visible = false;
             this.TxtBDepDestino.Visible = false;
 
-           // this.RFVDepOrigen.Enabled = false;
-           // this.RFVDepDestino.Enabled = false;
+            // this.RFVDepOrigen.Enabled = false;
+            // this.RFVDepDestino.Enabled = false;
 
             this.TxtBDepOrigen.Text = "";
             this.TxtBDepDestino.Text = "";
-            
+
         }
     }
-    /*protected void ChBFuente_CheckedChanged(object sender, EventArgs e)
+    protected void ChBFuente_CheckedChanged(object sender, EventArgs e)
     {
         if (ChBFuente.Checked == true)
         {
@@ -477,7 +565,7 @@ public partial class _GestionTDocRecibido : System.Web.UI.Page
             this.RadioButtonList1.Visible = true;
             this.RadioButtonList1.SelectedValue = null;
             //this.TxtBFuente.Visible = true;
-          //  this.RFVFuente.Enabled = true;
+            //  this.RFVFuente.Enabled = true;
         }
         else
         {
@@ -486,23 +574,23 @@ public partial class _GestionTDocRecibido : System.Web.UI.Page
             this.RadioButtonList1.SelectedValue = null;
             //this.TxtBFuente.Visible = false;
             //this.TxtBFuente.Text = "";
-          //  this.RFVFuente.Enabled = false;
+            //  this.RFVFuente.Enabled = false;
         }
-    }*/
+    }
     protected void ChBProceso_CheckedChanged(object sender, EventArgs e)
     {
         if (ChBProceso.Checked == true)
         {
             this.LblProceso.Visible = true;
             this.TxtBProceso.Visible = true;
-           // this.RFVProceso.Enabled = true;
+            // this.RFVProceso.Enabled = true;
         }
         else
         {
             this.LblProceso.Visible = false;
             this.TxtBProceso.Visible = false;
             this.TxtBProceso.Text = "";
-           // this.RFVProceso.Enabled = false;
+            // this.RFVProceso.Enabled = false;
         }
     }
     protected void ChBAccion_CheckedChanged(object sender, EventArgs e)
@@ -511,14 +599,14 @@ public partial class _GestionTDocRecibido : System.Web.UI.Page
         {
             this.LblAccion.Visible = true;
             this.TxtBAccion.Visible = true;
-          //  this.RFVAccion.Enabled = true;
+            //  this.RFVAccion.Enabled = true;
         }
         else
         {
             this.LblAccion.Visible = false;
             this.TxtBAccion.Visible = false;
             this.TxtBAccion.Text = "";
-           // this.RFVAccion.Enabled = false;
+            // this.RFVAccion.Enabled = false;
         }
     }
     //protected void GVBuscar_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -588,7 +676,7 @@ public partial class _GestionTDocRecibido : System.Web.UI.Page
     //                PnlRpta.Controls.Add(new LiteralControl("<br />"));
     //                i+=1;
     //            }
-                
+
 
     //            LabelResuesta.Text = "Con Respuesta";
     //        }
@@ -626,6 +714,20 @@ public partial class _GestionTDocRecibido : System.Web.UI.Page
             //  this.RFVNaturaleza.Enabled = false;
         }
     }
+    protected void ChBDetalle_CheckedChanged(object sender, EventArgs e)
+    {
+        if (ChBDetalle.Checked == true)
+        {
+            this.lbDetalle.Visible = true;
+            this.TXTDetalle.Visible = true;
+        }
+        else
+        {
+            this.lbDetalle.Visible = false;
+            this.TXTDetalle.Visible = false;
+            this.TXTDetalle.Text = "";
+        }
+    }
     protected void TreeVExpediente_TreeNodePopulate(object sender, TreeNodeEventArgs e)
     {
         if (TreeVExpediente.SelectedNode == null)
@@ -661,59 +763,114 @@ public partial class _GestionTDocRecibido : System.Web.UI.Page
         String contentType = "";
         String fileName = "";
 
+        try
+        {
+            int caseSwitch = 1;
+            if (this.listExportFormat.SelectedIndex != 1)
+            {
+                switch (this.listExportFormat.SelectedIndex)
+                {
+                    case 0:
+                        contentType = "application/pdf";
+                        fileName = "PivotGrid.pdf";
+                        this.ASPxGridViewExporter1.WritePdf(stream);
+                        break;
+                    case 1:
+                        contentType = "application/ms-excel";
+                        fileName = "PivotGrid.xls";
+                        this.ASPxGridViewExporter1.WriteXls(stream);
+                        break;
+                    case 2:
+                        contentType = "text/enriched";
+                        fileName = "PivotGrid.rtf";
+                        this.ASPxGridViewExporter1.WriteRtf(stream);
+                        break;
+                    case 3:
+                        contentType = "text/plain";
+                        fileName = "PivotGrid.txt";
+                        this.ASPxGridViewExporter1.WriteCsv(stream);
+                        break;
+                }
+                Byte[] buffer = stream.GetBuffer();
+                // Dim buffer() As Byte = stream.GetBuffer()
 
-        //this.ASPxGridViewExporter1.OptionsPrint.PrintHeadersOnEveryPage = true;
-        //this.ASPxGridViewExporter1.OptionsPrint.PrintFilterHeaders = DefaultBoolean.True;
-        //this.ASPxGridViewExporter1.OptionsPrint.PrintColumnHeaders = DefaultBoolean.True;
-        //this.ASPxGridViewExporter1.OptionsPrint.PrintRowHeaders = DefaultBoolean.True;
-        //this.ASPxGridViewExporter1.OptionsPrint.PrintDataHeaders = DefaultBoolean.True;
-        //this.ASPxGridViewExporter1.ReportHeader.
+                String disposition;
+                if (saveAs)
+                {
+                    disposition = "attachment";
+                }
+                else
+                {
+                    disposition = "inline";
+                }
+                if (listExportFormat.SelectedIndex != -1)
+                {
+                    Response.Clear();
+                    Response.Buffer = false;
+                    Response.AppendHeader("Content-Type", contentType);
+                    Response.AppendHeader("Content-Transfer-Encoding", "binary");
+                    Response.AppendHeader("Content-Disposition", disposition + "; filename=" + fileName);
+                    Response.BinaryWrite(buffer);
+                    Response.End();
+                }
+            }
+            else  //   Generar Excel en formato .xlsx  -- JUAN FIGUEREDO 22-SEP-2020
+            {
+                string NombreArchivo = "ReporteGestionTareas" + DateTime.Now.ToString("yyyy-MM-dd_HH_mm_ss") + ".xlsx";
+                string name = AppDomain.CurrentDomain.BaseDirectory + "Excel.xlsx";
+                SLDocument osldocument = new SLDocument();
 
-        int caseSwitch = 1;
-        switch (this.listExportFormat.SelectedIndex)
-        {
-            case 0:
-                contentType = "application/pdf";
-                fileName = "PivotGrid.pdf";
-                this.ASPxGridViewExporter1.WritePdf(stream);
-                break;
-            case 1:
-                contentType = "application/ms-excel";
-                fileName = "PivotGrid.xls";
-                this.ASPxGridViewExporter1.WriteXls(stream);
-                break;
-            case 2:
-                contentType = "text/enriched";
-                fileName = "PivotGrid.rtf";
-                this.ASPxGridViewExporter1.WriteRtf(stream);
-                break;
-            case 3:
-                contentType = "text/plain";
-                fileName = "PivotGrid.txt";
-                this.ASPxGridViewExporter1.WriteCsv(stream);
-                break;
-        }
-        Byte[] buffer = stream.GetBuffer();
-        // Dim buffer() As Byte = stream.GetBuffer()
+                SLStyle style = new SLStyle();
+                style.Font.FontSize = 12;
+                style.Font.Bold = true;
+                SLStyle styleCOL = new SLStyle();
 
-        String disposition;
-        if (saveAs)
-        {
-            disposition = "attachment";
+                //DataTable dt = new DataTable();
+                //dt = (DataTable)Session["DatosGrid"];
+                DataTable dt = new DataTable();
+                List<string> dataColumnNames = new List<string>();
+                foreach (GridViewColumn item in ASPxGridView1.Columns)
+                {
+                    GridViewEditDataColumn dataColumn = item as GridViewEditDataColumn;
+                    if (dataColumn != null)
+                    {
+                        dt.Columns.Add(dataColumn.FieldName);
+                        dataColumnNames.Add(dataColumn.FieldName);
+                    }
+                }
+                for (int i = 0; i < ASPxGridView1.VisibleRowCount; i++)
+                {
+                    //ASPxGridView1.Columns["WFMovimientoFecha"].CellStyle 
+                    object[] rowValues = ASPxGridView1.GetRowValues(i, dataColumnNames.ToArray()) as object[];
+                    rowValues[1] = Convert.ToDateTime(rowValues[1]).ToString("dd/MM/yyyy HH:mm:ss");
+                    dt.Rows.Add(rowValues);
+                }
+
+                int ic = 1;
+                foreach (DataColumn column in dt.Columns)
+                {
+                    osldocument.SetCellStyle(1, ic, style);
+                    osldocument.SetColumnWidth(ic, 20);
+                    if (ic == 2) { column.ColumnName = "FechaRadicacion"; }
+                    if (ic == 7) { column.ColumnName = "Acción"; }
+                    ic++;
+                }
+
+                osldocument.ImportDataTable(1, 1, dt, true);
+                //osldocument.SaveAs(pathfile);
+                Response.Clear();
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                //this.ASPxGridViewExporter1.WriteXls(stream);
+                Response.AddHeader("Content-Disposition", "attachment; filename=" + NombreArchivo);
+                osldocument.SaveAs(Response.OutputStream);
+                Response.Flush(); //sIN EsTa linEA gENERA ERRoR
+                Response.End();
+                Session["DatosGrid"] = null;
+            }
         }
-        else
+        catch (Exception error)
         {
-            disposition = "inline";
-        }
-        if (listExportFormat.SelectedIndex != -1)
-        {
-            Response.Clear();
-            Response.Buffer = false;
-            Response.AppendHeader("Content-Type", contentType);
-            Response.AppendHeader("Content-Transfer-Encoding", "binary");
-            Response.AppendHeader("Content-Disposition", disposition + "; filename=" + fileName);
-            Response.BinaryWrite(buffer);
-            Response.End();
+            this.ExceptionDetails.Text = "Se ha presentado un problema, por favor intente nuevamente o en su defecto realice una consulta con menor cantidad de registros.  " + error;
         }
     }
     protected void ASPxGridView1_HtmlRowPrepared(object sender, DevExpress.Web.ASPxGridView.ASPxGridViewTableRowEventArgs e)
@@ -811,6 +968,6 @@ public partial class _GestionTDocRecibido : System.Web.UI.Page
         //Panel popup = ((Panel)e.Row.FindControl("popup"));
 
         return "";
-    }    
+    }
 }
-      
+

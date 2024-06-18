@@ -236,7 +236,98 @@ public partial class _NuevoDocRecibido1 : System.Web.UI.Page
                 this.ExceptionDetails.Text += ErrorHandled.FindError(Error);
 
             }
+        }else if(Roles.IsUserInRole(Usuario, "Documentos"))
+            
+        {
+            Session["HFRadicado"] = "";
+            this.ExceptionDetails.Text = "";
+            this.LbRadicado.Text = "";
+            this.Label7.Visible = false;
+
+            ////////////////////////////////////////////////
+            // MembershipUser user = Membership.GetUser();
+            Object CodigoRuta = user.ProviderUserKey;
+            String UserId = Convert.ToString(CodigoRuta);
+            ////////////////////////////////////////////////
+
+            String NroRad = "";
+            string Grupo = "";
+            try
+            {
+                //parametros de Busqueda Radicado
+                Grupo = this.DropDownListGrupo.SelectedValue;
+
+                NroRad = TxtBuscarRadicado.Text;
+                this.Label10.Visible = true;
+                this.Label11.Visible = true;
+                if (NroRad != null)
+                {
+                    if (NroRad.Contains(" | "))
+                    {
+                        NroRad = NroRad.Remove(NroRad.IndexOf(" | "));
+                    }
+                }
+
+                string codigodelgruporadicados = this.DropDownListGrupo.SelectedValue;
+                //Busqueda de Documento Radicado
+                DataTable tabla = new DataTable();
+                tabla = ejecutar.rtn_traer_radicados_por_grupo_por_id(Grupo, NroRad);
+                DataRow[] rows = tabla.Select();
+
+                this.DateFechaRad.Text = rows[0]["wfmovimientofecha"].ToString().Trim();
+                this.SelDateFechaProcedencia.Text = rows[0]["radicadofechaprocedencia"].ToString().Trim().Substring(0, 10);
+                this.SelDateFechaVencimiento.Text = rows[0]["radicadofechavencimiento"].ToString().Trim().Substring(0, 10);
+                this.TxtNumeroExterno.Text = rows[0]["radicadonumeroexterno"].ToString().Trim();
+                this.TxtProcedencia.Text = rows[0]["procedenciacodigo"].ToString().Trim() + " | " + rows[0]["procedencianombre"].ToString().Trim() + " | " + rows[0]["ciudadnombre"].ToString().Trim();
+                this.TxtDetalle.Text = rows[0]["radicadodetalle"].ToString();
+                this.TxtNaturaleza.Text = rows[0]["naturalezacodigo"].ToString() + " | " + rows[0]["naturalezanombre"].ToString().Trim();
+                this.TxtMedioRecibo.Text = rows[0]["mediocodigo"].ToString() + " | " + rows[0]["medionombre"].ToString().Trim();
+                this.TxtExpediente.Text = rows[0]["expedientecodigo"].ToString() + " | " + rows[0]["expedientenombre"].ToString().Trim();
+                this.TxtAnexo.Text = rows[0]["radicadoanexo"].ToString();
+                this.TxtNumeroGuia.Text = rows[0]["radicadoguia"].ToString();
+                this.Label11.Text = rows[0]["NombreUsuario"].ToString();
+                this.Label7.Visible = true;
+                //Configuracion de funciones de pantalla para busqueda.
+                this.cmdActualizar.Enabled = true;
+                this.cmdAceptar.Enabled = false;
+
+                this.TxtSerieD.Visible = false;
+                this.TxtAccion.Visible = false;
+                this.ImgFindCargar.Visible = false;
+                this.ImgTreeAccion.Visible = false;
+
+                this.LblCargarA.Visible = false;
+                this.LblAccion.Visible = false;
+
+                this.ImageButton10.Visible = false;
+                this.LbRadicado.Text = NroRad;
+                //this.ExceptionDetails.Text = "Radicado Nro" + " " + NroRad;
+
+                this.NavDocRecibido1.HFGrupoPadreCodigoValor("1");
+                this.NavDocRecibido1.HFGrupoCodigoValor(Grupo);
+                this.NavDocRecibido1.HFRadicadoCodigoValor(NroRad);
+
+                string DateMin = SelDateFechaProcedencia.Text;
+                DateMin = DateMin.Substring(0, 10);
+
+                this.RangeVFecVen.MinimumValue = DateMin;
+                this.RequiredFieldValidator4.Enabled = false;
+                this.RequiredFieldValidator5.Enabled = false;
+
+
+            }
+            catch (Exception Error)
+            {
+                this.Label11.Visible = false;
+                this.Label10.Visible = false;
+                this.ExceptionDetails.Text = "Ocurrio un problema al Buscar el Radicado. ";
+                //Exception inner = Error.InnerException;
+                this.ExceptionDetails.Text += ErrorHandled.FindError(Error);
+
+            }
         }
+
+			
         else
         {
             cmdActualizar.Visible = false;
@@ -623,7 +714,7 @@ public partial class _NuevoDocRecibido1 : System.Web.UI.Page
                 DataRow[] rows = DTUsuariosxDependencia.Select();
                 System.Guid a = new Guid(rows[0].ItemArray[0].ToString().Trim());
                 usuario = Membership.GetUser(a);
-                string Body = "Tiene un nuevo Radicado Nro " + RadicadoCodigo + "<BR>" + " Fecha de Radicacion: " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "<BR>" + "Procedencia: " + TxtProcedencia.Text.ToString() + "<BR>" + "Naturaleza: " + TxtNaturaleza.Text.ToString().Trim() + "<BR>";
+                string Body = "Tiene un nuevo Radicado Nro " + RadicadoCodigo + "<BR>" + " Fecha de Radicacion: " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "<BR>" + "Procedencia: " + TxtProcedencia.Text.ToString() + "<BR>" + "Naturaleza: " + TxtNaturaleza.Text.ToString().Trim() + "<BR>"; 
                 Correo.EnvioCorreo("alfanet.archivar@gmail.com", usuario.Email, "Radicado Nro" + " " + RadicadoCodigo, Body, true, "1");
             }
         }
@@ -940,4 +1031,5 @@ public partial class _NuevoDocRecibido1 : System.Web.UI.Page
        Application["grupo"] = this.DropDownListGrupo.SelectedValue.ToString();
        this.TxtBuscarRadicado.Text = null;
     }
+
 }

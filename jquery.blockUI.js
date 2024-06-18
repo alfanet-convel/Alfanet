@@ -12,7 +12,7 @@
 * Thanks to Amir-Hossein Sobhi for some excellent contributions!
 */
 
-; (function() {
+; (function () {
     "use strict";
 
     function setup($) {
@@ -24,7 +24,7 @@
 
         $.fn._fadeIn = $.fn.fadeIn;
 
-        var noOp = $.noop || function() { };
+        var noOp = $.noop || function () { };
 
         // this bit is to ensure we don't call setExpression when we shouldn't (with extra muscle to handle
         // retarded userAgent strings on Vista)
@@ -35,11 +35,11 @@
         var setExpr = $.isFunction(document.createElement('div').style.setExpression);
 
         // global $ methods for blocking/unblocking the entire page
-        $.blockUI = function(opts) { install(window, opts); };
-        $.unblockUI = function(opts) { remove(window, opts); };
+        $.blockUI = function (opts) { install(window, opts); };
+        $.unblockUI = function (opts) { remove(window, opts); };
 
         // convenience method for quick growl-like notifications  (http://www.google.com/search?q=growl)
-        $.growlUI = function(title, message, timeout, onClose) {
+        $.growlUI = function (title, message, timeout, onClose) {
             var $m = $('<div class="growlUI"></div>');
             if (title) $m.append('<h1>' + title + '</h1>');
             if (message) $m.append('<h2>' + message + '</h2>');
@@ -53,16 +53,16 @@
         };
 
         // plugin method for blocking element content
-        $.fn.block = function(opts) {
+        $.fn.block = function (opts) {
             var fullOpts = $.extend({}, $.blockUI.defaults, opts || {});
-            this.each(function() {
+            this.each(function () {
                 var $el = $(this);
                 if (fullOpts.ignoreIfBlocked && $el.data('blockUI.isBlocked'))
                     return;
                 $el.unblock({ fadeOut: 0 });
             });
 
-            return this.each(function() {
+            return this.each(function () {
                 if ($.css(this, 'position') == 'static')
                     this.style.position = 'relative';
                 this.style.zoom = 1; // force 'hasLayout' in ie
@@ -71,8 +71,8 @@
         };
 
         // plugin method for unblocking element content
-        $.fn.unblock = function(opts) {
-            return this.each(function() {
+        $.fn.unblock = function (opts) {
+            return this.each(function () {
                 remove(this, opts);
             });
         };
@@ -313,7 +313,7 @@
 
             //$([lyr1[0],lyr2[0],lyr3[0]]).appendTo(full ? 'body' : el);
             var layers = [lyr1, lyr2, lyr3], $par = full ? $('body') : $(el);
-            $.each(layers, function() {
+            $.each(layers, function () {
                 this.appendTo($par);
             });
 
@@ -339,7 +339,7 @@
                 }
 
                 // simulate fixed position
-                $.each(layers, function(i, o) {
+                $.each(layers, function (i, o) {
                     var s = o[0].style;
                     s.position = 'absolute';
                     if (i < 2) {
@@ -410,7 +410,7 @@
 
             if (opts.timeout) {
                 // auto-unblock
-                var to = setTimeout(function() {
+                var to = setTimeout(function () {
                     if (full)
                         $.unblockUI(opts);
                     else
@@ -457,7 +457,7 @@
 
             if (opts.fadeOut) {
                 els.fadeOut(opts.fadeOut);
-                setTimeout(function() { reset(els, data, opts, el); }, opts.fadeOut);
+                setTimeout(function () { reset(els, data, opts, el); }, opts.fadeOut);
             }
             else
                 reset(els, data, opts, el);
@@ -465,7 +465,7 @@
 
         // move blocking element back into the DOM where it started
         function reset(els, data, opts, el) {
-            els.each(function(i, o) {
+            els.each(function (i, o) {
                 // remove via DOM calls so we don't lose event handlers
                 if (this.parentNode)
                     this.parentNode.removeChild(this);
@@ -523,7 +523,7 @@
                     var fwd = !e.shiftKey && e.target === els[els.length - 1];
                     var back = e.shiftKey && e.target === els[0];
                     if (fwd || back) {
-                        setTimeout(function() { focus(back); }, 10);
+                        setTimeout(function () { focus(back); }, 10);
                         return false;
                     }
                 }

@@ -21,7 +21,7 @@ using System.Collections;
 /// </summary>
 [WebService(Namespace = "http://tempuri.org/")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-public class sisc2 : System.Web.Services.WebService
+public class sisc2 : System.Web.Services.WebService 
 {
     private string AuthenticateUser(string strUser, string strPwd)
     {
@@ -71,8 +71,7 @@ public class sisc2 : System.Web.Services.WebService
 
     }
 
-    public sisc2()
-    {
+    public sisc2 () {
 
         //Eliminar la marca de comentario de la línea siguiente si utiliza los componentes diseñados 
         //InitializeComponent(); 
@@ -110,83 +109,83 @@ public class sisc2 : System.Web.Services.WebService
                 int sizeNombre;
                 //string NombreArchivo = null;
                 //***********************************************************************************//
-                /*        NUI = "800123145-2";
-         Nombre=				"PRUEBAS REGISTRO POSTAL 07-01-2012";
-         Direccion	=		"PRUEBAS REG POSTAL DIR NOTIFICACION";
-         Ciudad		=		"11001";
-         Telefono1	=		"5706949";
-         Telefono2	=		"5706949";
-         Email1		=		"consultoria2@todosistemassti.com";
-         Email2		=		"consultoria2@todosistemassti.com";
-         Fax			=		"";
-         Naturaleza = "10002";
-         Dependencia = "2.02.2.2.42";
-         //Expediente	=		"";
-         Detalle		=		"Solicitud de Registro Operadores Postal";
-         NombreArchivo=		"IM-REGISTRO OPERADORES POSTALES_32945_PRUEBAS REGISTRO POSTAL 07-01-2012_ROP-421.PDF";
-        //string Archivo		=		{byte[2048]};
-         string URL = "pagina web";
-         NumeroExterno=		"";
-         NumerodeGuia	=	"";
-         MediodeRecibo=		"10";
-         //FechaProcedencia=	"07/02/2012";
-          Cargar		=		"";
-          Accion = "";
-          Anexos = "No hay Anexos";
-          enterar = "";
-          user = "user";
-          password = "1234";*/
+        /*        NUI = "800123145-2";
+ Nombre=				"PRUEBAS REGISTRO POSTAL 07-01-2012";
+ Direccion	=		"PRUEBAS REG POSTAL DIR NOTIFICACION";
+ Ciudad		=		"11001";
+ Telefono1	=		"5706949";
+ Telefono2	=		"5706949";
+ Email1		=		"consultoria2@todosistemassti.com";
+ Email2		=		"consultoria2@todosistemassti.com";
+ Fax			=		"";
+ Naturaleza = "10002";
+ Dependencia = "2.02.2.2.42";
+ //Expediente	=		"";
+ Detalle		=		"Solicitud de Registro Operadores Postal";
+ NombreArchivo=		"IM-REGISTRO OPERADORES POSTALES_32945_PRUEBAS REGISTRO POSTAL 07-01-2012_ROP-421.PDF";
+//string Archivo		=		{byte[2048]};
+ string URL = "pagina web";
+ NumeroExterno=		"";
+ NumerodeGuia	=	"";
+ MediodeRecibo=		"10";
+ //FechaProcedencia=	"07/02/2012";
+  Cargar		=		"";
+  Accion = "";
+  Anexos = "No hay Anexos";
+  enterar = "";
+  user = "user";
+  password = "1234";*/
 
-                /*   Registro = sisc.Radicar_Tramite("", //NUI
-                                                                     "ABCDEGE SA", //Nombre 
-                                                                     "CR 8 NO. 20 - 56 P 6", //Direccion 
-                                                                     "11001", //Ciudad
-                                                                     "999777", //Telefono1 
-                                                                     "111555", //Telefono2
-                                                                     "consultoria2@todosistemassti.com", //Email1 
-                                                                     "consultoria2@todosistemassti.com", //Email2
-                                                                     "", //Fax 
-                                                                     "10002", //Naturaleza 
-                                                                     "2.02.2.2.42", //Dependencia 
-                                                                     "", //Expediente 
-                                                                     "Pruebas sisc", //Detalle 
-                                                                     NombreDoc, //Nombrearchivo 
-                                                                     bytedoc, //URL 
-                                                                     "353535", //NumeroExterno 
-                                                                     "9-89985", //NumerodeGuia 
-                                                                     "10", //MediodeRecibo 
-                                                                     DateTime.Now.ToShortDateString(), //FechaProcedencia 
-                                                                     "1.1", //cargar
-                                                                     "9", //Accion 
-                                                                     "No hay Anexos", //Anexos 
-                                                                     "301.1"
-                                                                     , "user",
-                                                                     "1234");*/
+             /*   Registro = sisc.Radicar_Tramite("", //NUI
+                                                                  "ABCDEGE SA", //Nombre 
+                                                                  "CR 8 NO. 20 - 56 P 6", //Direccion 
+                                                                  "11001", //Ciudad
+                                                                  "999777", //Telefono1 
+                                                                  "111555", //Telefono2
+                                                                  "consultoria2@todosistemassti.com", //Email1 
+                                                                  "consultoria2@todosistemassti.com", //Email2
+                                                                  "", //Fax 
+                                                                  "10002", //Naturaleza 
+                                                                  "2.02.2.2.42", //Dependencia 
+                                                                  "", //Expediente 
+                                                                  "Pruebas sisc", //Detalle 
+                                                                  NombreDoc, //Nombrearchivo 
+                                                                  bytedoc, //URL 
+                                                                  "353535", //NumeroExterno 
+                                                                  "9-89985", //NumerodeGuia 
+                                                                  "10", //MediodeRecibo 
+                                                                  DateTime.Now.ToShortDateString(), //FechaProcedencia 
+                                                                  "1.1", //cargar
+                                                                  "9", //Accion 
+                                                                  "No hay Anexos", //Anexos 
+                                                                  "301.1"
+                                                                  , "user",
+                                                                  "1234");*/
                 //***********************************************************************************//
 
                 String Fecha = Convert.ToString(DateTime.Now);
                 RadicarTramiteUAndesTableAdapters.Expediente_RadicarTramiteESPTableAdapter Tabla = new RadicarTramiteUAndesTableAdapters.Expediente_RadicarTramiteESPTableAdapter();
                 RadicarTramiteUAndes.Expediente_RadicarTramiteESPDataTable Dtabla = new RadicarTramiteUAndes.Expediente_RadicarTramiteESPDataTable();
 
-                /*  RadicarTramiteUAndesTableAdapters.Consulta_NuiTableAdapter consultanui = new RadicarTramiteUAndesTableAdapters.Consulta_NuiTableAdapter();
-                  DataTable existe = new DataTable();
-                  existe = consultanui.GetData(NUI);
+              /*  RadicarTramiteUAndesTableAdapters.Consulta_NuiTableAdapter consultanui = new RadicarTramiteUAndesTableAdapters.Consulta_NuiTableAdapter();
+                DataTable existe = new DataTable();
+                existe = consultanui.GetData(NUI);
 
-                  string a = "";
+                string a = "";
 
-                  foreach (DataRow item in existe.Rows)
-                  {
-                      a = item["Column1"].ToString();
-                  }*/
+                foreach (DataRow item in existe.Rows)
+                {
+                    a = item["Column1"].ToString();
+                }*/
                 string Result;
-                /* if (a == "0")
-                 {
-                     NUI = "TICS_" + NUI;
-                     //string mensaje = "Nos Encontramos en mantenimiento por favor comunicarse con Mintic.";
+               /* if (a == "0")
+                {
+                    NUI = "TICS_" + NUI;
+                    //string mensaje = "Nos Encontramos en mantenimiento por favor comunicarse con Mintic.";
 
-                     //Result = "<Root>" + "<RadicadoCodigo></RadicadoCodigo>" + "<WFMovimientoFecha></WFMovimientoFecha><ExpedienteCodigo></ExpedienteCodigo>" + "<CodigoError>" + "1" + "</CodigoError>" + "<MensajeError>" + mensaje + "</MensajeError>" + "</Root>";
-                     //return Result;
-                 }*/
+                    //Result = "<Root>" + "<RadicadoCodigo></RadicadoCodigo>" + "<WFMovimientoFecha></WFMovimientoFecha><ExpedienteCodigo></ExpedienteCodigo>" + "<CodigoError>" + "1" + "</CodigoError>" + "<MensajeError>" + mensaje + "</MensajeError>" + "</Root>";
+                    //return Result;
+                }*/
 
                 Dtabla = Tabla.GetData(NUI, Nombre, Direccion, Ciudad, Telefono1, Telefono2, Email1, Email2, Fax, Naturaleza, Dependencia, Expediente, Detalle, URL.ToString(), Convert.ToString(DateTime.Now.ToString()));
                 coderror = Dtabla[0].ErrorNumber;
@@ -207,7 +206,7 @@ public class sisc2 : System.Web.Services.WebService
                 }
                 else
                 {
-                    Result = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "<Root>" + "<RadicadoCodigo>" + "Ocurrio un problema al Radicar. " + "</RadicadoCodigo>" + "<WFMovimientoFecha>" + Dtabla[0].WFMovimientoFecha + "</WFMovimientoFecha>" + "<ExpedienteCodigo>" + Dtabla[0].ExpedienteCodigo + "</ExpedienteCodigo>" + "<CodigoError>" + "1" + "</CodigoError>" + "<MensajeError>" + Descarga + "</MensajeError>" + "</Root>";
+                    Result = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "<Root>" + "<RadicadoCodigo>" + Dtabla[0].RadicadoCodigo + "</RadicadoCodigo>" + "<WFMovimientoFecha>" + Dtabla[0].WFMovimientoFecha + "</WFMovimientoFecha>" + "<ExpedienteCodigo>" + Dtabla[0].ExpedienteCodigo + "</ExpedienteCodigo>" + "<CodigoError>" + "1" + "</CodigoError>" + "<MensajeError>" + Descarga + "</MensajeError>" + "</Root>";
                 }
 
                 return Result;
@@ -243,11 +242,11 @@ public class sisc2 : System.Web.Services.WebService
                 String TipoArchivo = Extension[Extension.Length - 1];
                 TipoArchivo = TipoArchivo.ToLower();
 
-                if (oArchivo.Length >= 10240000)
+                if (oArchivo.Length >= 10000000)
                 {
                     return "El tamaño del archivo no corresponde con el maximo permitido";
                 }
-                if (TipoArchivo == "docx" || TipoArchivo == "doc" || TipoArchivo == "xls" || TipoArchivo == "xlsx" || TipoArchivo == "pdf" || TipoArchivo == "tif" || TipoArchivo == "tiff" || TipoArchivo == "jpg" || TipoArchivo == "txt" || TipoArchivo == "cvs" || TipoArchivo == "rtf" || TipoArchivo == "zip" || TipoArchivo == "rar" || TipoArchivo == "xml")
+                if (TipoArchivo == "docx" || TipoArchivo == "doc" || TipoArchivo == "xls" || TipoArchivo == "xlsx" || TipoArchivo == "pdf" || TipoArchivo == "tif" || TipoArchivo == "tiff" || TipoArchivo == "jpg" || TipoArchivo == "txt" || TipoArchivo == "cvs" || TipoArchivo == "rtf" || TipoArchivo == "zip" || TipoArchivo == "rar" || TipoArchivo == "xml" || TipoArchivo == "png" || TipoArchivo == "PNG" || TipoArchivo == "jpeg" || TipoArchivo == "JPEG")
                 {
 
                     String Grupo = "Radicados";
@@ -285,7 +284,7 @@ public class sisc2 : System.Web.Services.WebService
                 }
                 else
                 {
-                    return "<Mensaje>" + "El formato no corresponde con los permitidos(Word, Excel, Pdf, Jpg, Tif, Zip, Rar, Csv, Rtf, Xml)" + "</Mensaje>";
+                    return "<Mensaje>" + "El formato no corresponde con los permitidos(Word, Excel, Pdf, Jpg, Tif, Zip, Rar, Csv, Rtf, Xml, png, jpeg)" + "</Mensaje>";
                 }
             }
 
@@ -495,8 +494,8 @@ public class sisc2 : System.Web.Services.WebService
     //Autor: Juan Ricardo Gonzalez Sepulveda
     //Fecha: 25/06/2011
     //RegistroCoumenicaciones enviadas, 
-   // [WebMethod]
-    /*public string Registrar_Tramite(string DependenciaRemite, String CodDestino, string NomDestino, string WFTipo, String[] RadFuente, string Expediente, string Naturaleza, String SerieDocumental, string Detalle, String NombreArchivo, Byte[] Archivo, string MetododeEnvio, string guia, string archivaren, string anexos, string copiar, string user, string password)
+    [WebMethod]
+    public string Registrar_Tramite(string DependenciaRemite, String CodDestino, string NomDestino, string WFTipo, String[] RadFuente, string Expediente, string Naturaleza, String SerieDocumental, string Detalle, String NombreArchivo, Byte[] Archivo, string MetododeEnvio, string guia, string archivaren, string anexos, string copiar, string user, string password)
     {
         Boolean ingreso = Login(user, password);
         if (ingreso == true)
@@ -519,7 +518,6 @@ public class sisc2 : System.Web.Services.WebService
             int sizeNombre;
             string Result = null;
             String Descarga;
-           
 
             //Codigo Temporal Simular Session Usuario        
 
@@ -543,34 +541,15 @@ public class sisc2 : System.Web.Services.WebService
                 //{
                 //    coderror = "1";
                 //}
-               
-                if (Result == "Error al crear registro. Verifique que los parametros sean validosInstrucción INSERT en conflicto con la restricción FOREIGN KEY \"FK_Registro_Dependencia\". El conflicto ha aparecido en la base de datos \"BDMINTIC\", tabla \"dbo.Dependencia\", column 'DependenciaCodigo'.")
-                {
-                    Result = "La dependecia está mal escrita. ";
-                }
-                if (Result == "Error al crear registro. Verifique que los parametros sean validosInstrucción INSERT en conflicto con la restricción FOREIGN KEY \"FK_Registro_Naturaleza\". El conflicto ha aparecido en la base de datos \"BDMINTIC\", tabla \"dbo.Naturaleza\", column 'NaturalezaCodigo'.")
-                {
-                    Result = "La Naturaleza está mal escrita. ";
-                }
-                if (Result == "Error al crear registro. Verifique que los parametros sean validosInstrucción INSERT en conflicto con la restricción FOREIGN KEY \"FK_Registro_Expediente\". El conflicto ha aparecido en la base de datos \"BDMINTIC\", tabla \"dbo.Expediente\", column 'ExpedienteCodigo'.")
-                {
-                    Result = "El expediente está mal escrito. ";
-                }
-                if (Result == "Error al crear registro. Verifique que los parametros sean validosInstrucción INSERT en conflicto con la restricción FOREIGN KEY \"FK_Registro_Serie\". El conflicto ha aparecido en la base de datos \"BDMINTIC\", tabla \"dbo.Serie\", column 'SerieCodigo'.")
-                {
-                    Result = "La serie documental está mal escrita. ";
-                }
 
                 Descarga = AdjuntarImgReg(Result, NombreArchivo, Archivo, user, password);
                 if (Descarga == "Proceso Finalizado")
                 {
-                    Result = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "<Root>" + "<RegistroCodigo>" + Result + "</RegistroCodigo>" + "<WFMovimientoFecha>" + Fecha + "</WFMovimientoFecha>" + "<ExpedienteCodigo>" + Expediente + "</ExpedienteCodigo>" + //"<CodigoError>" + coderror + "</CodigoError>" + 
-                        "<Mensaje>" + "Proceso exitoso" + "</Mensaje>" + "</Root>";
-
+                    Result = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "<Root>" + "<RadicadoCodigo>" + Result + "</RadicadoCodigo>" + "<WFMovimientoFecha>" + Fecha + "</WFMovimientoFecha>" + "<ExpedienteCodigo>" + Expediente + "</ExpedienteCodigo>" + "<CodigoError>" + coderror + "</CodigoError>" + "<MensajeError>" + "Dtabla[0].ErrorMessage" + "</MensajeError>" + "</Root>";
                 }
                 else
                 {
-                    Result = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "<Root>" + "<RegistroCodigo>" + "Ocurrio un problema al Registrar." + "</RegistroCodigo>" + "<WFMovimientoFecha>" + Fecha + "</WFMovimientoFecha>" + "<ExpedienteCodigo>" + Expediente + "</ExpedienteCodigo>" + "<CodigoError>" + "1" + "</CodigoError>" + "<MensajeError>" + Result + Descarga + "</MensajeError>" + "</Root>";
+                    Result = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "<Root>" + "<RadicadoCodigo>" + Result + "</RadicadoCodigo>" + "<WFMovimientoFecha>" + Fecha + "</WFMovimientoFecha>" + "<ExpedienteCodigo>" + Expediente + "</ExpedienteCodigo>" + "<CodigoError>" + "1" + "</CodigoError>" + "<MensajeError>" + Descarga + "</MensajeError>" + "</Root>";
                 }
 
                 return Result;
@@ -580,167 +559,11 @@ public class sisc2 : System.Web.Services.WebService
                 string Resultex;
 
 
-                Resultex = "Ocurrio un problema al Registrar.";
-                //Exception inner = Error.InnerException;
-                Resultex = ErrorHandled.FindError(ex);
-                Resultex += " " + ex.Message;
-                Result = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "<Root>" + "<RegistroCodigo></RegistroCodigo>" + "<WFMovimientoFecha></WFMovimientoFecha>" + "<ExpedienteCodigo></ExpedienteCodigo>" + "<CodigoError>" + "1" + "</CodigoError>" + "<MensajeError>" + Resultex + "</MensajeError>" + "</Root>";
-                return Result;
-            }
-        }
-        else
-        {
-            String registros = "";
-            registros = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + " <Root> " + "<ERROR>" + "El usuario o la clave esta mal escrito" + "</ERROR>" + "</Root>";
-            return registros;
-        }
-
-    }*/
-    private bool CrearLog(string log)
-    {
-        try
-        {
-            if (System.IO.File.Exists(@"E:\LogsAlfanet"))
-            {
-                const string fic = @"E:\LogsAlfanet\Log.txt";
-                string fecha = DateTime.Now.ToString();
-                string texto = fecha + "Error | " + log;
-
-                StreamWriter sw = new StreamWriter(fic, true);
-                sw.WriteLine(texto);
-                sw.WriteLine("-------------------------------------------------");
-                sw.Flush();
-                sw.Close();
-            }
-            else
-            {
-                string activeDir = @"E:\";
-
-                //Create a new subfolder under the current active folder
-                string newPath = System.IO.Path.Combine(activeDir, "LogsAlfanet");
-
-                // Create the subfolder
-                System.IO.Directory.CreateDirectory(newPath);
-                const string fic = @"E:\LogsAlfanet\Log.txt";
-                string fecha = DateTime.Now.ToString();
-                string texto = fecha + "Error | " + log;
-
-                StreamWriter sw = new StreamWriter(fic, true);
-                sw.WriteLine(texto);
-                sw.WriteLine("-------------------------------------------------");
-                sw.Flush();
-                sw.Close();
-            }
-            return true;
-        }
-        catch (Exception)
-        {
-            return false;
-        }
-    }
-    [WebMethod]
-    public string Registrar_Tramite(string DependenciaRemite, string CodDestino, string NomDestino, string WFTipo, string[] RadFuente, string Expediente,
-                                      string Naturaleza, string SerieDocumental, string Detalle, string NombreArchivo, byte[] Archivo,
-                                      string MetododeEnvio, string guia, string archivaren, string anexos, string copiar, string user, string password)
-    {
-
-        Boolean ingreso = Login(user, password);
-        if (ingreso == true)
-        {
-            string Result = null;
-            String Descarga = string.Empty;
-            String mensaje = "";
-            String mensaje2 = "";
-            string coderror = string.Empty;
-            string procedenciaCodDestino = null;
-            string dependenciaCodDestino = CodDestino;
-            string registroSalida = string.Empty;
-           
-            try
-            {
-                MembershipUser m = Membership.GetUser("TLINEA");
-                String Fecha = Convert.ToString(DateTime.Now);
-                if (WFTipo.Trim() == "0")
-                {
-                    procedenciaCodDestino = CodDestino.Trim();
-                    dependenciaCodDestino = null;
-                }
-
-                bool registro = RegistrarTramite("2", DateTime.Now, procedenciaCodDestino, dependenciaCodDestino, DependenciaRemite.Trim(), Naturaleza,
-                                                 0, Detalle, null, null, null, null, m.ProviderUserKey.ToString(), Expediente.Trim(), "TL", SerieDocumental,
-                                                 null, WFTipo, "2", DateTime.Now, DateTime.Now, Convert.ToInt32(WFTipo), Detalle, "0", out registroSalida);
-                if (registroSalida == "Instrucción INSERT en conflicto con la restricción FOREIGN KEY \"FK_Registro_Dependencia\". El conflicto ha aparecido en la base de datos \"pruebasclientesnuevos\", tabla \"dbo.Dependencia\", column 'Depend")
-                {
-                    registroSalida = "La dependecia está mal escrita. ";
-                }
-                if (registroSalida == "Instrucción INSERT en conflicto con la restricción FOREIGN KEY \"FK_Registro_DependenciaCodDestino\". El conflicto ha aparecido en la base de datos \"pruebasclientesnuevos\", tabla \"dbo.Dependencia\", colu")
-                {
-                    registroSalida = "El Código de la Dependencia destino está mal escrita. ";
-                }
-                if (registroSalida == "Instrucción INSERT en conflicto con la restricción FOREIGN KEY \"FK_Registro_Expediente\". El conflicto ha aparecido en la base de datos \"pruebasclientesnuevos\", tabla \"dbo.Expediente\", column 'Expedien")
-                {
-                    registroSalida = "El expediente está mal escrito. ";
-                }
-                if (registroSalida == "Instrucción INSERT en conflicto con la restricción FOREIGN KEY \"FK_Registro_Naturaleza\". El conflicto ha aparecido en la base de datos \"pruebasclientesnuevos\", tabla \"dbo.Naturaleza\", column 'Naturale")
-                {
-                    registroSalida = "La Naturleza está mal escrita. ";
-                }
-                if (registroSalida == "Instrucción INSERT en conflicto con la restricción FOREIGN KEY \"FK_Registro_Serie\". El conflicto ha aparecido en la base de datos \"pruebasclientesnuevos\", tabla \"dbo.Serie\", column 'SerieCodigo'.")
-                {                      
-                    registroSalida = "La Serie Documental está mal escrita. ";
-                }
-                if (registro)
-                {
-                    for (int i = 0; i < RadFuente.Length; i++)
-                    {
-                        bool asocio = AsociarRespuestaARadicado(registroSalida, RadFuente[i].Trim());
-                        if (!asocio)
-                        {
-                            mensaje += mensaje + RadFuente[i].Trim() + " | ";
-                        }
-                    }
-                    if (mensaje != "")
-                    {
-                        mensaje = "Ocurrio un problema al intentar asociar el registro con algun radicado. " + mensaje;
-                        coderror = "3";
-                    }
-                   
-                    Descarga = AdjuntarImgReg(registroSalida, NombreArchivo, Archivo, user, password);
-
-                    if (Descarga == "Proceso Finalizado")
-                    {
-                        Result = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "<Root>" + "<RegistroCodigo>" + registroSalida + "</RegistroCodigo>" + "<WFMovimientoFecha>" +
-                                Fecha + "</WFMovimientoFecha>" + "<ExpedienteCodigo>" + Expediente + "</ExpedienteCodigo>" + "<CodigoError>" +
-                                coderror + "</CodigoError>" + "<Mensaje>" + "Proceso Finalizado Correctamente" + "</Mensaje>" + "</Root>";
-                    }
-                    else
-                    {
-                        mensaje2 = " No se pudo adjuntar la imagen al registro.";
-                        Result = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "<Root>" + "<RegistroCodigo>" + registroSalida + "</RegistroCodigo>" + "<WFMovimientoFecha>" +
-                                Fecha + "</WFMovimientoFecha>" + "<ExpedienteCodigo>" + Expediente + "</ExpedienteCodigo>" + "<CodigoError>" + "2" + "</CodigoError>"
-                                + "<MensajeError>" + mensaje + mensaje2 + "</MensajeError>" + "</Root>";
-                    }
-                }
-                else
-                {
-                    Result = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "<Root>" + "<RegistroCodigo>" + "" + "</RegistroCodigo>" + "<WFMovimientoFecha>" +
-                                Fecha + "</WFMovimientoFecha>" + "<ExpedienteCodigo>" + Expediente + "</ExpedienteCodigo>" + "<CodigoError>" + "1" + "</CodigoError>"
-                                + "<MensajeError>" + registroSalida + "</MensajeError>" + "</Root>";
-                }
-                return Result;
-            }
-            catch (Exception ex)
-            {
-                string Resultex;
-
-                CrearLog(ex.Message);
-                Resultex = "Ocurrio un problema al Registrar. ";
+                Resultex = "Ocurrio un problema al Radicar. ";
                 //Exception inner = Error.InnerException;
                 Resultex += ErrorHandled.FindError(ex);
                 Resultex += " " + ex.Message;
-                Result = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "<Root>" + "<RegistroCodigo></RegistroCodigo>" +
-                         "<WFMovimientoFecha></WFMovimientoFecha><ExpedienteCodigo></ExpedienteCodigo>" + "<CodigoError>" + "1" + "</CodigoError>" + "<MensajeError>" +
-                         Resultex + "</MensajeError>" + "</Root>";
+                Result = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "<Root>" + "<RadicadoCodigo></RadicadoCodigo>" + "<WFMovimientoFecha></WFMovimientoFecha><ExpedienteCodigo></ExpedienteCodigo>" + "<CodigoError>" + "1" + "</CodigoError>" + "<MensajeError>" + Resultex + "</MensajeError>" + "</Root>";
                 return Result;
             }
         }
@@ -749,72 +572,6 @@ public class sisc2 : System.Web.Services.WebService
             String registros = "";
             registros = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + " <Root> " + "<ERROR>" + "El usuario o la clave esta mal escrito" + "</ERROR>" + "</Root>";
             return registros;
-        }
-    }
-
-    private bool RegistrarTramite(String GrupoCodigo, DateTime WFMovimientoFecha, String ProcedenciaCodDestino, String DependenciaCodDestino, String DependenciaCodigo,
-                              String NaturalezaCodigo, int RadicadoCodigo, String RegistroDetalle, String RegistroGuia, String RegPesoEnvio, String RegistroEmpGuia,
-                              String AnexoExtRegistro, String LogDigitador, String ExpedienteCodigo, String MedioCodigo, String SerieCodigo, String RegValorEnvio,
-                              String RegistroTipo, String WFAccionCodigo, DateTime WFMovimientoFechaEst, DateTime WFMovimientoFechaFin, int WFMovimientoTipo,
-                              String WFMovimientoNotas, String WFMovimientoMultitarea, out string Result)
-    {
-        DalWebService dal = null;
-        string error = string.Empty;
-        try
-        {
-            String UserId;
-            MembershipUser user = Membership.GetUser();
-            if (user != null)
-            {
-                Object CodigoRuta = user.ProviderUserKey;
-                UserId = Convert.ToString(CodigoRuta);
-            }
-            else
-            {
-                UserId = LogDigitador;
-                LogDigitador = "TLINEA";
-            }
-
-            dal = new DalWebService();
-
-            error = dal.RegistrarTramite(out Result, GrupoCodigo, WFMovimientoFecha, ProcedenciaCodDestino, DependenciaCodDestino,
-                                      DependenciaCodigo, NaturalezaCodigo, RadicadoCodigo, RegistroDetalle, RegistroGuia,
-                                      RegistroEmpGuia, AnexoExtRegistro, LogDigitador, ExpedienteCodigo, MedioCodigo, SerieCodigo,
-                                      RegPesoEnvio, RegValorEnvio, RegistroTipo, WFAccionCodigo, WFMovimientoFechaEst,
-                                      WFMovimientoFechaFin, WFMovimientoTipo, WFMovimientoNotas, WFMovimientoMultitarea, UserId);
-            if (error != "OK")
-            {
-                Result = error;
-                CrearLog("Error realizando el proceso de registro. " + Result);
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        catch (Exception ex)
-        {
-            CrearLog("Error realizando el proceso de registro. " + ex.Message);
-            Result = "Error durante el proceso de registro. Metodo privado RegistrarTramite.";
-            return false;
-        }
-    }
-
-    private bool AsociarRespuestaARadicado(string registro, string radicado)
-    {
-        DalWebService dal = null;
-        try
-        {
-            dal = new DalWebService();
-
-            dal.AsociarRespuestaARadicado(Convert.ToInt32(registro.Trim()), Convert.ToInt32(radicado.Trim()));
-            return true;
-        }
-        catch (Exception ex)
-        {
-            CrearLog("Error asociando respuesta a radicado. " + ex.Message);
-            return false;
         }
     }
 
@@ -831,7 +588,7 @@ public class sisc2 : System.Web.Services.WebService
                 String TipoArchivo = Extension[Extension.Length - 1];
                 TipoArchivo = TipoArchivo.ToLower();
 
-                if (oArchivo.Length >= 10240000)
+                if (oArchivo.Length >= 10000000)
                 {
                     return "El tamaño del archivo no corresponde con el maximo permitido";
                 }
@@ -897,7 +654,7 @@ public class sisc2 : System.Web.Services.WebService
                 DataTable tablaComunicado = new DataTable();
                 DataTable tablaImagen = new DataTable();
                 rutinas ejecutar = new rutinas();
-                tablaComunicado = ejecutar.rtn_traer_ComunicadosxTramiteSisc2(vDocumentoCodigo, vExpedienteCodigo);
+                tablaComunicado = ejecutar.rtn_traer_ComunicadosxTramite(vDocumentoCodigo, vExpedienteCodigo);
                 String[] registros = new String[tablaComunicado.Rows.Count + 1];
 
                 if (tablaComunicado.Rows.Count == 0)
@@ -1046,3 +803,4 @@ public class sisc2 : System.Web.Services.WebService
         }
     }
 }
+

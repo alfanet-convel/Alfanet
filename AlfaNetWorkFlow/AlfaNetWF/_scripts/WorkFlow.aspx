@@ -90,8 +90,47 @@
         }
     }
 </script>
-    <script type="text/javascript">
-   
+<script src="_scripts/jquery-1.5.js" type="text/javascript"></script>
+<script type="text/javascript">
+          
+           $(document).ready(function() {
+                $(".ContenidoPanel").show();
+                $(".ContenidoPanel2").hide();
+                $(".ArrowSube").attr("class", "ArrowSube");
+                $(".ArrowSube2").attr("class", "ArrowSube2");
+                $(".ExpandTexto").html("(Ocultar Detalles..)");
+                $(".ExpandTexto2").html("(Ocultar Documentos..)");
+                
+                $("DIV.PanelDes > DIV.PanelMovible").toggle(
+                function() {
+                    $(this).parent().find(".ContenidoPanel").slideToggle(200);
+                    $(this).parent().find(".ArrowSube").attr("class", "ArrowBaja");
+                    $(this).parent().find(".ExpandTexto").html("(Mostar Detalles..)");
+                },
+                function() {
+                    $(this).parent().find(".ContenidoPanel").slideToggle(200);
+                    $(this).parent().find(".ArrowBaja").attr("class", "ArrowSube");
+                    $(this).parent().find(".ExpandTexto").html("(Ocultar Detalles..)");
+                    
+                });
+                
+                $("DIV.PanelDes2 > DIV.PanelMovible2").toggle(
+                function() {
+                    $(this).parent().find(".ContenidoPanel2").slideToggle(200);
+                    $(this).parent().find(".ArrowSube2").attr("class", "ArrowBaja2");
+                    $(this).parent().find(".ExpandTexto2").html("(Mostrar Documentos..)");
+                },
+                function() {
+                    $(this).parent().find(".ContenidoPanel2").slideToggle(200);
+                    $(this).parent().find(".ArrowBaja2").attr("class", "ArrowSube2");
+                    $(this).parent().find(".ExpandTexto2").html("(Ocultar Documentos..)");
+                    
+                });
+
+            });            
+        
+        
+        
         //Funcion para controlar el evento de cargar a:
        function Disable_Attr(e,ToggleControl,HFControl)
         {
@@ -300,8 +339,8 @@
             }
 </script>    
 <asp:UpdatePanel ID="UdPnRecExtVen" runat="server">
-                                                        <ContentTemplate>
-                                                            <dxpc:ASPxPopupControl id="popup" runat="server" ImageFolder="~/App_Themes/Office2003 Blue/{0}/" CssPostfix="Office2003_Blue" CssFilePath="~/App_Themes/Office2003 Blue/{0}/styles.css" HeaderText="Vinculo a Respuesta" PopupHorizontalAlign="OutsideRight" AllowDragging="True" ClientInstanceName="popup">
+  <ContentTemplate>
+<dxpc:ASPxPopupControl id="popup" runat="server" ImageFolder="~/App_Themes/Office2003 Blue/{0}/" CssPostfix="Office2003_Blue" CssFilePath="~/App_Themes/Office2003 Blue/{0}/styles.css" HeaderText="Vinculo a Respuesta" PopupHorizontalAlign="OutsideRight" AllowDragging="True" ClientInstanceName="popup">
 <ClientSideEvents Shown="popup_Shown"></ClientSideEvents>
 <ContentCollection>
 <dxpc:PopupControlContentControl runat="server"><dxcp:ASPxCallbackPanel runat="server" ClientInstanceName="callbackPanel" RenderMode="Table" Width="100%" Height="100%" ID="callbackPanel" OnCallback="callbackPanel_Callback">
@@ -309,39 +348,40 @@
 
 <LoadingDivStyle Opacity="100" BackColor="White"></LoadingDivStyle>
 <PanelCollection>
-<dxp:PanelContent runat="server"><asp:Panel runat="server" ID="PnlContent">
+<dxp:PanelContent runat="server">
+<asp:Panel runat="server" ID="PnlContent">
     </asp:Panel>
-
  </dxp:PanelContent>
 </PanelCollection>
 </dxcp:ASPxCallbackPanel>
  </dxpc:PopupControlContentControl>
 </ContentCollection>
 </dxpc:ASPxPopupControl>
-                                                        </ContentTemplate>
-                                                    </asp:UpdatePanel>
-    <table width="100%">
+
+</ContentTemplate>
+</asp:UpdatePanel>
+
+<table width="100%">
         <tr>
-            <td align="center">            
-       <asp:Panel ID="Panel2" runat="server" CssClass="collapsePanelHeader" BackImageUrl="~/AlfaNetImagen/MainMaster/bg-menu-main.png" style="vertical-align: top; text-align: left; font-size:small" Width="100%"> 
-              <div style="padding:5px; cursor: pointer; vertical-align: middle;">
-               <div style="float: left; width: 350px; font-weight: bold;">
-                    <asp:Label ID="LblDocRecExt" runat="server" Font-Bold="False" Height="20px" Width="41px" Font-Italic="False">#</asp:Label>
-                  DOCUMENTOS RECIBIDOS EXTERNOS</div>
-                  <div style="float: left; margin-left: 20px;">
-                        <asp:Label ID="Label1" runat="server" Height="20px" Width="180px" style="vertical-align: middle; text-align: left" Font-Size="Smaller">(Ver Detalles...)</asp:Label>
-                  </div>
-                <asp:ImageButton ID="Image1" runat="server" AlternateText="(Ver Detalles...)" ImageUrl="~/AlfaNetImagen/MainMaster/expand_blue.jpg" /></div>
-        </asp:Panel>
-         
-                    <asp:Panel ID="Panel1" runat="server" Height="0" Width="100%" style="vertical-align: top; text-align: left; font-size:small" CssClass="collapsePanel" HorizontalAlign="Left">
+            <td align="left">   
+            <div id="Div3" class="PanelDes">
+              <div id="Div4" class="PanelMovible"> 
+            <div id="Div5" class="HeaderNumero">
+                    <asp:Label ID="LblDocRecExt" runat="server" Font-Bold="False" Height="20px" Width="41px" Font-Italic="False">#</asp:Label>&nbsp;</div>
+            <div id="Div6" class="HeaderTitulo">
+                DOCUMENTOS RECIBIDOS EXTERNOS</div>
+            <div id="Div7" class="ExpandTexto"></div>
+            <div id="Div8" class="ArrowSube"></div>
+        </div>
+        <div id="Div9" class="ContenidoPanel" style="display:none">
+        
             <div>
-                        <table style="width: 100%; height: 100%">
+                        <table>
                             <tr>
                                 <td style="text-align: float">
-                                    <table style="width: 100%; height: 100%">
+                                    <table>
                                         <tr>
-                                            <td style="width: 20%">
+                                            <td>
                                             </td>
                                             <td>
                                         <asp:UpdatePanel id="UpdatePanel2" runat="server" Visible="false">
@@ -352,12 +392,10 @@
 <asp:ListItem Value="2">Naturaleza</asp:ListItem>
 </asp:RadioButtonList></TD></TR></TBODY></table>
 </contenttemplate>
-                                            <triggers>
-<asp:PostBackTrigger ControlID="ImgBtnFindProcedencia"></asp:PostBackTrigger>
-</triggers>
+            
                                         </asp:UpdatePanel>
                                             </td>
-                                            <td style="width: 20%">
+                                            <td>
                                             </td>
                                         </tr>
                                     </table>
@@ -365,30 +403,26 @@
                             </tr>
                         </table>
                         </div>
-                        <asp:Panel ID="Panel3" runat="server" CssClass="collapsePanelHeader" Width="99%" BackColor="Lavender" BorderColor="Red" BorderStyle="Solid" BorderWidth="3px">
-                           
-                            <div style="padding:5px; cursor: pointer; vertical-align: middle;">
-                                <div style="float: left">
-                                    <img src="../../AlfaNetImagen/ToolBar/alarmaroja.gif" />&nbsp;</div>
-                                <div style="float: left; width: 400px; vertical-align: middle; color: activecaption; text-align: left; font: caption;">
-                                    &nbsp;<asp:Label ID="Label14" runat="server" Font-Size="Smaller" ForeColor="ActiveCaption">USTED TIENE</asp:Label>
-                                    &nbsp;<asp:Label ID="LblDocRecExtVen" runat="server" Font-Bold="False" Height="20px" Width="25px" Font-Size="Larger" style="vertical-align: bottom; text-align: center; font: caption;">#</asp:Label>&nbsp; 
-                                    <asp:Label ID="Label19" runat="server" Font-Size="Smaller" ForeColor="ActiveCaption">DOCUMENTOS VENCIDOS</asp:Label></div>
-                                <div style="float: left; margin-left: 20px;">
-                                    <asp:Label ID="Label2" runat="server" ForeColor="ActiveCaption" Height="20px" Width="180px" Font-Size="Smaller">(Ver Documentos...)</asp:Label>
-                                </div>
-                                <asp:ImageButton ID="Image2" runat="server" AlternateText="(Ver Detalles...)" ImageUrl="~/AlfaNetImagen/MainMaster/expand_blue.jpg" />&nbsp;
-                            </div>
-                         
-                        </asp:Panel>        
+                        <div id="Div24" class="PanelDes2">
+        <div id="Div25" class="PanelMovible2" style="border-color:red; border-style:solid; border-width:3px; background-color:#FFF9FB;"> 
+            <div id="Div26" class="HeaderNumero2">
+                <img alt='' src="../../AlfaNetImagen/ToolBar/alarmaroja.gif" />&nbsp;
+                USTED TIENE&nbsp;
+                <asp:Label ID="LblDocRecExtVen" runat="server" Font-Bold="False" Height="20px" Width="25px" Font-Size="Larger" style="vertical-align: bottom; text-align: center; font: caption;">#</asp:Label>&nbsp;
+            </div>
+            <div id="Div27" class="HeaderTitulo2">DOCUMENTOS VENCIDOS</div>
+            <div id="Div28" class="ArrowSube2"></div>
+            <div id="Div29" class="ExpandTexto2"></div>
+        </div>
+        <div id="Div30" class="ContenidoPanel2" style="display:none">
                         
-                        <asp:Panel ID="Panel4" runat="server" CssClass="collapsePanel" Height="0" Width="100%">
+                  <asp:UpdatePanel ID="UPv1" runat="server" UpdateMode="Conditional"><ContentTemplate>
                             
                             <table>
                             <tr>
                                 <td>
-                                    <asp:Button ID="BtnTerminarDocRecVen" runat="server" OnClick="BtnTerminarDocrecVen_Click" Text="Terminar" /></td>
-                                <td>
+                                    <asp:Button ID="BtnTerminarDocRecVen" runat="server" OnClick="BtnTerminarDocrecVen_Click" Text="Terminar" />
+                                </td>
                                     <td style="width: 555px">
                                     <table>
                                         <tr>
@@ -439,7 +473,7 @@
                                                                                                 <asp:Label ID="Label12" runat="server" Font-Bold="True" ForeColor="White" Text="Lista de Documentos"
                                                                                                     ></asp:Label></td>
                                                                                             <td style="background-color: #94b6e8; text-align: right">
-                                                                                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<asp:ImageButton ID="ImageButton19" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/Cancel.png" />
+                                                                                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                                                                             </td>
                                                                                         </tr>
                                                                                     </table>
@@ -496,6 +530,7 @@
                                                                                     PopupControlID="UpdatePanel10"
                                                                                     TargetControlID="LinkButton6" Enabled="True"> 
                                                                                 </ajaxToolkit:ModalPopupExtender>
+                                                                                <asp:ImageButton ID="ImageButton19" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/Cancel.png" Style="visibility: hidden" />
                                                                             </ItemTemplate>
                                                                             <HeaderStyle HorizontalAlign="Center" />
                                                                             <ItemStyle HorizontalAlign="Center" />
@@ -836,10 +871,7 @@
                                 </tr>
                                                    
                         </table>
-                           </asp:Panel>         
-                                        
-                                        
-                        <asp:ObjectDataSource ID="ODSDocRecExtVen" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetWFDocVen"
+                         <asp:ObjectDataSource ID="ODSDocRecExtVen" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetWFDocVen"
                             TypeName="DSWorkFlowTableAdapters.WFMovimientoTableAdapter" OnFiltering="ODSDocRecExtVen_Filtering">
                             <SelectParameters>
                                 <asp:Parameter DefaultValue="1" Name="WFMovimientoTipo" Type="Int32" />
@@ -852,33 +884,25 @@
                             </SelectParameters>
                             
                         </asp:ObjectDataSource>
-                            <ajaxToolkit:CollapsiblePanelExtender ID="CPExtender2" runat="server"
-        TargetControlID="Panel4"
-        ExpandControlID="Panel3"
-        CollapseControlID="Panel3" 
-        Collapsed="True"
-        TextLabelID="Label2"
-        ImageControlID="Image2"    
-        ExpandedText="(Ocultar Documentos...)"
-        CollapsedText="(Ver Documentos...)"
-        ExpandedImage="~/AlfaNetImagen/MainMaster/collapse_blue.jpg"
-        CollapsedImage="~/AlfaNetImagen/MainMaster/expand_blue.jpg"
-        SuppressPostBack="true"/>
-                        <asp:Panel ID="Panel5" runat="server" CssClass="collapsePanelHeader" Width="99%" BorderColor="Yellow" BorderStyle="Solid" BorderWidth="3px" BackColor="Lavender">
-                            <div style="padding:5px; cursor: pointer; vertical-align: middle;">
-                                    <div style="float: left">
-                                    <img src="../../AlfaNetImagen/ToolBar/alarmaamarilla.gif" />&nbsp;</div>
-                                <div style="float: left; width: 400px; vertical-align: middle; color: activecaption; text-align: left; font: caption;">
-                                    &nbsp;<asp:Label ID="Label20" runat="server" Font-Size="Smaller" ForeColor="ActiveCaption">USTED TIENE</asp:Label>
-                                    &nbsp;<asp:Label ID="LblDocRecExtProxVen" runat="server" Font-Bold="False" Height="20px" Width="25px" Font-Size="Larger" style="vertical-align: bottom; text-align: center; font: caption;">#</asp:Label>&nbsp; 
-                                    <asp:Label ID="Label21" runat="server" Font-Size="Smaller" ForeColor="ActiveCaption">DOCUMENTOS PROXIMOS A VENCER</asp:Label></div>
-                                <div style="float: left; margin-left: 20px;">
-                                    <asp:Label ID="Label3" runat="server" ForeColor="ActiveCaption" Height="20px" Width="180px" Font-Size="Smaller">(Ver Documentos...)</asp:Label>
-                                </div>
-                                <asp:ImageButton ID="Image3" runat="server" AlternateText="(Ver Detalles...)"
-                    ImageUrl="~/AlfaNetImagen/MainMaster/expand_blue.jpg" /></div>
-                        </asp:Panel><asp:Panel ID="Panel6" runat="server" CssClass="collapsePanel" Height="0px" Width="100%">
-                            <p><table style="width: 560px">
+                        </ContentTemplate></asp:UpdatePanel>
+        
+         </div>
+        </div>
+                        <div id="Div17" class="PanelDes2">
+        <div id="Div18" class="PanelMovible2" style="border-color:yellow; border-style:solid; border-width:3px; background-color:#FFF9FB;"> 
+            <div id="Div19" class="HeaderNumero2">
+                <img alt='' src="../../AlfaNetImagen/ToolBar/alarmaamarilla.gif" />&nbsp;
+                USTED TIENE&nbsp;
+               <asp:Label ID="LblDocRecExtProxVen" runat="server" Font-Bold="False" Height="20px" Width="25px" Font-Size="Larger" style="vertical-align: bottom; text-align: center; font: caption;">#</asp:Label>&nbsp;
+            </div>
+            <div id="Div20" class="HeaderTitulo2">DOCUMENTOS PROXIMOS A VENCER</div>
+            <div id="Div22" class="ArrowSube2"></div>
+            <div id="Div21" class="ExpandTexto2"></div>
+        </div>
+        <div id="Div23" class="ContenidoPanel2" style="display:none">
+        <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+        <table style="width: 560px">
                                 <tr>
                                     <td style="width: 26px; text-align: center;">
                                         <asp:Button ID="Button4" runat="server" OnClick="BtnTerminarDocRecProx_Click" Text="Terminar" /></td>
@@ -1182,7 +1206,7 @@
 </styleseditors>
                             </dxwgv:ASPxGridView>
                             
-                        </asp:Panel>
+                       
                         <asp:ObjectDataSource ID="ODSDocRecExtProxVen" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetWFDocProxVen"
                             TypeName="DSWorkFlowTableAdapters.WFMovimientoTableAdapter" FilterExpression="ProcedenciaNUI='{0}'" OnFiltering="ODSDocRecExtVen_Filtering">
                                 <SelectParameters>
@@ -1198,34 +1222,24 @@
                                 <asp:ControlParameter ControlID="TxtProcedencia" Name="ProcedenciaNUI" PropertyName="Text" />
                             </FilterParameters>
                             </asp:ObjectDataSource>
-                        <ajaxToolkit:CollapsiblePanelExtender ID="CPExtender3" runat="server"
-        TargetControlID="Panel6"
-        ExpandControlID="Panel5"
-        CollapseControlID="Panel5" 
-        Collapsed="True"
-        TextLabelID="Label3"
-        ImageControlID="Image3"    
-        ExpandedText="(Ocultar Documentos...)"
-        CollapsedText="(Ver Documentos...)"
-        ExpandedImage="~/AlfaNetImagen/MainMaster/collapse_blue.jpg"
-        CollapsedImage="~/AlfaNetImagen/MainMaster/expand_blue.jpg"
-        SuppressPostBack="true"/>
-                        <asp:Panel ID="Panel7" runat="server" CssClass="collapsePanelHeader" Width="99%" BorderColor="Green" BorderStyle="Solid" BorderWidth="3px" BackColor="Lavender">
-                            <div style="padding:5px; cursor: pointer; vertical-align: middle;">
-                                    <div style="float: left">
-                                    <img src="../../AlfaNetImagen/ToolBar/alarmaverde.gif" />&nbsp;</div>
-                                <div style="float: left; width: 400px; vertical-align: middle; color: activecaption; text-align: left; font: caption;">
-                                    &nbsp;<asp:Label ID="Label22" runat="server" Font-Size="Smaller" ForeColor="ActiveCaption">USTED TIENE</asp:Label>
-                                    &nbsp;<asp:Label ID="LblDocRecExtPen" runat="server" Font-Bold="False" Height="20px" Width="25px" Font-Size="Larger" style="vertical-align: bottom; text-align: center; font: caption;">#</asp:Label>&nbsp; 
-                                    <asp:Label ID="Label24" runat="server" Font-Size="Smaller" ForeColor="ActiveCaption">DOCUMENTOS PENDIENTES</asp:Label></div>
-                                <div style="float: left; margin-left: 20px;">
-                                    <asp:Label ID="Label4" runat="server" ForeColor="ActiveCaption" Height="20px" Width="180px" Font-Size="Smaller">(Ver Documentos...)</asp:Label>
-                                </div>
-                                <asp:ImageButton ID="Image4" runat="server" AlternateText="(Ver Detalles...)"
-                    ImageUrl="~/AlfaNetImagen/MainMaster/expand_blue.jpg" /></div>
-                        </asp:Panel>
+                            </ContentTemplate></asp:UpdatePanel>
+         </div>
+        </div>
+                        <div id="Div10" class="PanelDes2">
+        <div id="Div11" class="PanelMovible2" style="border-color:Green; border-style:solid; border-width:3px; background-color:#FFF9FB;"> 
+            <div id="Div12" class="HeaderNumero2">
+                <img alt='' src="../../AlfaNetImagen/ToolBar/alarmaverde.gif" />&nbsp;
+                USTED TIENE&nbsp;
+                <asp:Label ID="LblDocRecExtPen" runat="server" Font-Bold="False" Height="20px" Width="25px" Font-Size="Larger" style="vertical-align: bottom; text-align: center; font: caption;">#</asp:Label>&nbsp; 
+            </div>
+            <div id="Div13" class="HeaderTitulo2">DOCUMENTOS PENDIENTES</div>
+            <div id="Div15" class="ArrowSube2"></div>
+            <div id="Div14" class="ExpandTexto2"></div>
+        </div>
+        <div id="Div16" class="ContenidoPanel2" style="display:none">
+        <asp:UpdatePanel ID="UpdatePanel6" runat="server"><ContentTemplate>
                         <asp:Panel ID="Panel8" runat="server" CssClass="collapsePanel" Width="100%" Height="100%">
-                            <p><table style="width: 560px">
+                            <p/><table style="width: 560px">
                                 <tr>
                                     <td style="text-align: center; width: 26px;">
                                         <asp:Button ID="Button5" runat="server" OnClick="BtnTerminarDocRecPen_Click" Text="Terminar" /></td>
@@ -1527,7 +1541,7 @@
 </styleseditors>
                             </dxwgv:ASPxGridView>
                             
-                            </p>
+                            
                         </asp:Panel>
                         <asp:ObjectDataSource ID="ODSDocRecExtPen" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetWFDocPen"
                             TypeName="DSWorkFlowTableAdapters.WFMovimientoTableAdapter" FilterExpression="ProcedenciaNUI='{0}'" OnFiltering="ODSDocRecExtVen_Filtering">
@@ -1544,35 +1558,26 @@
                                 <asp:ControlParameter ControlID="TxtProcedencia" Name="ProcedenciaNUI" PropertyName="Text" />
                             </FilterParameters>
                             </asp:ObjectDataSource>
-                        <ajaxToolkit:CollapsiblePanelExtender ID="CPExtender4" runat="server"
-        TargetControlID="Panel8"
-        ExpandControlID="Panel7"
-        CollapseControlID="Panel7" 
-        Collapsed="True"
-        TextLabelID="Label4"
-        ImageControlID="Image4"    
-        ExpandedText="(Ocultar Documentos...)"
-        CollapsedText="(Ver Documentos...)"
-        ExpandedImage="~/AlfaNetImagen/MainMaster/collapse_blue.jpg"
-        CollapsedImage="~/AlfaNetImagen/MainMaster/expand_blue.jpg"
-        SuppressPostBack="true"/><asp:Panel ID="Panel25" runat="server" CssClass="collapsePanelHeader" Width="99%" BorderColor="SlateBlue" BorderStyle="Solid" BorderWidth="3px" BackColor="Lavender">
-            <div style="padding:5px; cursor: pointer; vertical-align: middle;">
-                <div style="float: left">
-                    <img src="../../AlfaNetImagen/ToolBar/wfcopias.gif" height="14" width="14" />&nbsp;</div>
-                <div style="float: left; width: 400px; vertical-align: middle; color: activecaption; text-align: left; font: caption;">
-                    &nbsp;<asp:Label ID="Label25" runat="server" Font-Size="Smaller" ForeColor="ActiveCaption">USTED TIENE</asp:Label>&nbsp;<asp:Label ID="LblDocRecCopia" runat="server" Font-Bold="False"
+                       </ContentTemplate></asp:UpdatePanel>
+                            </div>
+        </div>       
+                        <div id="Div31" class="PanelDes2">
+        <div id="Div32" class="PanelMovible2" style="border-color:#6960EC; border-style:solid; border-width:3px; background-color:#FFF9FB;"> 
+            <div id="Div33" class="HeaderNumero2">
+                <img alt='' src="../../AlfaNetImagen/ToolBar/wfcopias.gif" height="14" width="14" />&nbsp;
+                USTED TIENE&nbsp;
+                <asp:Label ID="LblDocRecCopia" runat="server" Font-Bold="False"
                         Font-Size="Larger" Height="20px" Style="font: caption; vertical-align: bottom;
-                        text-align: center" Width="25px">#</asp:Label>&nbsp; 
-                    <asp:Label ID="Label26" runat="server" Font-Size="Smaller" ForeColor="ActiveCaption">DOCUMENTOS COPIA</asp:Label></div>
-                <div style="float: left; margin-left: 20px;">
-                    <asp:Label ID="Label23" runat="server" Font-Size="Smaller" ForeColor="ActiveCaption"
-                        Height="20px" Width="180px">(Ver Documentos...)</asp:Label>
-                </div>
-                <asp:ImageButton ID="ImageBtnCopia" runat="server" AlternateText="(Ver Detalles...)" ImageUrl="~/AlfaNetImagen/MainMaster/expand_blue.jpg" />
+                        text-align: center" Width="25px">#</asp:Label>&nbsp;
             </div>
-        </asp:Panel>
-                        <asp:Panel ID="Panel26" runat="server" CssClass="collapsePanel" Height="0" Width="100%">
-                            <p>
+            <div id="Div34" class="HeaderTitulo2">DOCUMENTOS COPIA</div>
+            <div id="Div35" class="ArrowSube2"></div>
+            <div id="Div36" class="ExpandTexto2"></div>
+        </div>
+        <div id="Div37" class="ContenidoPanel2" style="display:none">
+        <asp:UpdatePanel ID="UpdatePanel7" runat="server" UpdateMode="Conditional"><ContentTemplate>
+     
+                       
                                 <table style="width: 560px">
                                     <tr>
                                         <td style="width: 26px; text-align: center;">
@@ -1832,20 +1837,11 @@
 </styleseditors>
                                 </dxwgv:ASPxGridView>
                                 
-                            </p>
-                        </asp:Panel>
-                        <ajaxToolkit:CollapsiblePanelExtender ID="CPEDocRecCopia" runat="server"
-        TargetControlID="Panel26"
-        ExpandControlID="Panel25"
-        CollapseControlID="Panel25" 
-        Collapsed="True"
-        TextLabelID="Label23"
-        ImageControlID="ImageBtnCopia"    
-        ExpandedText="(Ocultar Documentos...)"
-        CollapsedText="(Ver Documentos...)"
-        ExpandedImage="~/AlfaNetImagen/MainMaster/collapse_blue.jpg"
-        CollapsedImage="~/AlfaNetImagen/MainMaster/expand_blue.jpg"
-        SuppressPostBack="true"/>
+                            
+                        
+                      </ContentTemplate></asp:UpdatePanel>
+        </div>
+        </div>
                         <asp:ObjectDataSource ID="ODSDocRecCopia" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetWFDocCopia"
                             TypeName="DSWorkFlowTableAdapters.WFMovimientoTableAdapter" FilterExpression="ProcedenciaNUI='{0}'" OnFiltering="ODSDocRecExtVen_Filtering">
                             <SelectParameters>
@@ -1861,10 +1857,6 @@
                                 <asp:ControlParameter ControlID="TxtProcedencia" Name="ProcedenciaNUI" PropertyName="Text" />
                             </FilterParameters>
                         </asp:ObjectDataSource>
-  
-                        
-      </asp:Panel>
-      
       <asp:ObjectDataSource ID="ODSDocRec" runat="server" OldValuesParameterFormatString="original_{0}"
                     SelectMethod="GetWFDoc" TypeName="DSWorkFlowTableAdapters.WFMovimientoTableAdapter">
           <SelectParameters>
@@ -1874,35 +1866,25 @@
               <asp:Parameter DefaultValue="1" Name="GrupoCodigo" Type="String" />
           </SelectParameters>
       </asp:ObjectDataSource>
-                <ajaxToolkit:CollapsiblePanelExtender ID="CPExtender1" runat="Server"
-        TargetControlID="Panel1"
-        ExpandControlID="Panel2"
-        CollapseControlID="Panel2"
-        TextLabelID="Label1"
-        ImageControlID="Image1"    
-        ExpandedText="(Ocultar Detalles...)"
-        CollapsedText="(Ver Detalles...)"
-        ExpandedImage="~/AlfaNetImagen/MainMaster/collapse_blue.jpg"
-        CollapsedImage="~/AlfaNetImagen/MainMaster/expand_blue.jpg"
-        SuppressPostBack="true" Collapsed="True"/>
-                <br />
-                <asp:Panel ID="Panel16" runat="server" CssClass="collapsePanelHeader" BackImageUrl="~/AlfaNetImagen/MainMaster/bg-menu-main.png" style="vertical-align: top; text-align: left" Width="100%">
             
-                    <div style="padding:5px; cursor: pointer; vertical-align: middle;">
-                        <div style="float: left; width: 350px; font-weight: bold;">
-                            <asp:Label ID="LblDocEnvExt" runat="server" Font-Bold="False" Font-Italic="False" Font-Size="Larger"
+                <br />
+                </div>
+                </div>
+                <br />
+               <div id="Div45" class="PanelDes">
+        <div id="Div46" class="PanelMovible"> 
+            <div id="Div47" class="HeaderNumero">
+                       <asp:Label ID="LblDocEnvExt" runat="server" Font-Bold="False" Font-Italic="False" Font-Size="Larger"
                                 Height="20px" Width="41px">#</asp:Label>
-                            DOCUMENTOS ENVIADOS EXTERNOS</div>
-                        <div style="float: left; margin-left: 20px;">
-                            <asp:Label ID="Label13" runat="server" Font-Size="Smaller" Height="20px" Style="vertical-align: middle;
-                                text-align: left" Width="180px">(Ver Detalles...)</asp:Label>
-                        </div>
-                        <asp:ImageButton ID="ImageButton4" runat="server" AlternateText="(Ver Detalles...)" ImageUrl="~/AlfaNetImagen/MainMaster/expand_blue.jpg" /></div>
-                
-                </asp:Panel>
-       
-                <asp:Panel ID="Panel9" runat="server" CssClass="collapsePanel" Height="0" Width="100%" style="vertical-align: top; text-align: left">
-                    <table style="width: 100%; height: 100%">
+                    &nbsp;</div>
+            <div id="Div48" class="HeaderTitulo">
+                DOCUMENTOS ENVIADOS EXTERNOS</div>
+            <div id="Div49" class="ExpandTexto"></div>
+            <div id="Div50" class="ArrowSube"></div>
+            </div>
+        <div id="Div51" class="ContenidoPanel" style="display:none">
+           
+                   <table style="width: 100%; height: 100%">
                         <tr>
                             <td style="width: 20%">
                             </td>
@@ -1924,26 +1906,24 @@
                             </td>
                         </tr>
                     </table>
-                <asp:Panel ID="Panel12" runat="server" CssClass="collapsePanelHeader" Width="99%" BorderColor="SlateBlue" BorderStyle="Solid" BorderWidth="3px" BackColor="Lavender">
-                
-                    <div style="padding:5px; cursor: pointer; vertical-align: middle;">
-                        <div style="float: left">
-                            <img src="../../AlfaNetImagen/ToolBar/wfcopias.gif" height="14" width="14" />&nbsp;</div>
-                        <div style="float: left; width: 400px; vertical-align: middle; color: activecaption; text-align: left; font: caption;">
-                            &nbsp;<asp:Label ID="Label27" runat="server" Font-Size="Smaller" ForeColor="ActiveCaption">USTED TIENE</asp:Label>
-                            &nbsp;<asp:Label ID="LblDocEnvExtCopia" runat="server" Font-Bold="False" Font-Size="Larger"
+                    
+        <div id="Div38" class="PanelDes2">
+        <div id="Div39" class="PanelMovible2" style="border-color:#6960EC; border-style:solid; border-width:3px; background-color:#FFF9FB;"> 
+            <div id="Div40" class="HeaderNumero2">
+                <img alt='' src="../../AlfaNetImagen/ToolBar/wfcopias.gif" height="14" width="14" />&nbsp;
+                USTED TIENE&nbsp;
+                <asp:Label ID="LblDocEnvExtCopia" runat="server" Font-Bold="False" Font-Size="Larger"
                                 Height="20px" Style="font: caption; vertical-align: bottom; text-align: center"
-                                Width="25px">#</asp:Label>&nbsp; 
-                            <asp:Label ID="Label28" runat="server" Font-Size="Smaller" ForeColor="ActiveCaption">DOCUMENTOS COPIA EXTERNOS</asp:Label></div>
-                        <div style="float: left; margin-left: 20px;">
-                            <asp:Label ID="Label9" runat="server" Font-Size="Smaller" ForeColor="ActiveCaption"
-                                Height="20px" Width="180px">(Ver Documentos...)</asp:Label>
-                        </div>
-                        <asp:ImageButton ID="ImageButton2" runat="server" AlternateText="(Ver Detalles...)" ImageUrl="~/AlfaNetImagen/MainMaster/expand_blue.jpg" />
+                                Width="25px">#</asp:Label>&nbsp;
+            </div>
+            <div id="Div41" class="HeaderTitulo2">DOCUMENTOS COPIA EXTERNOS</div>
+            <div id="Div42" class="ArrowSube2"></div>
+            <div id="Div43" class="ExpandTexto2"></div>
         </div>
-            
-                </asp:Panel>
-                    <asp:Panel ID="Panel11" runat="server" CssClass="collapsePanel" Height="0" Width="100%" style="text-align: float">
+        <div id="Div44" class="ContenidoPanel2" style="display:none">
+         
+                    <asp:UpdatePanel ID="UpdatePanel8" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
                         <table style="width: 360px">
                             <tr>
                                 <td>
@@ -2194,8 +2174,7 @@
 <ProgressBar Height="25px"></ProgressBar>
 </styleseditors>
                         </dxwgv:ASPxGridView>
-                        
-                    </asp:Panel>
+
                     <asp:ObjectDataSource ID="ODSDocEnvExtCopia" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetWFDocCopiaEnviada"
                             TypeName="DSWorkFlowTableAdapters.WFMovimiento_ReadWFMovimientoCopiaEnviadoTableAdapter" OnFiltering="ODSDocEnvExtCopia_Filtering">
                         <SelectParameters>
@@ -2208,18 +2187,9 @@
                                     PropertyName="Value" Type="DateTime" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
-                    <ajaxToolkit:CollapsiblePanelExtender ID="CollapsiblePanelExtender1" runat="server"
-        TargetControlID="Panel11"
-        ExpandControlID="Panel12"
-        CollapseControlID="Panel12" 
-        Collapsed="True"
-        TextLabelID="Label7"
-        ImageControlID="ImageButton1"    
-        ExpandedText="(Ocultar Documentos...)"
-        CollapsedText="(Ver Documentos...)"
-        ExpandedImage="~/AlfaNetImagen/MainMaster/collapse_blue.jpg"
-        CollapsedImage="~/AlfaNetImagen/MainMaster/expand_blue.jpg"
-        SuppressPostBack="true"/><asp:ObjectDataSource ID="ObjectDataSource2" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetWFDocCopiaEnviada"
+       
+       
+        <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetWFDocCopiaEnviada"
                             TypeName="DSWorkFlowTableAdapters.WFMovimiento_ReadWFMovimientoCopiaEnviadoTableAdapter" FilterExpression="NaturalezaCodigo='{0}'" OnFiltering="ODSDocEnvExtCopia_Filtering">
             <FilterParameters>
                 <asp:ControlParameter ControlID="TxtDependenciaExt" Name="CodProcedencia" />
@@ -2234,6 +2204,7 @@
                                     PropertyName="Value" Type="DateTime" />
             </SelectParameters>
         </asp:ObjectDataSource>
+          
                     <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" BorderColor="white" DataKeyNames="NumeroDocumento,DependenciaCodDestino,WFMovimientoPaso,WFMovimientoTipo,GrupoCodigo"
                         DataSourceID="ObjectDataSource2">
                         <Columns>
@@ -2241,7 +2212,7 @@
                                 SortExpression="NumeroDocumento" Visible="False" />
                         </Columns>
                     </asp:GridView>
-                </asp:Panel>
+                
                 <asp:ObjectDataSource ID="ObjectDataSource4" runat="server" OldValuesParameterFormatString="original_{0}"
                     SelectMethod="GetWFDoc" TypeName="DSWorkFlowTableAdapters.WFMovimientoTableAdapter">
                     <SelectParameters>
@@ -2251,31 +2222,26 @@
                         <asp:Parameter DefaultValue="1" Name="GrupoCodigo" Type="String" />
                     </SelectParameters>
                 </asp:ObjectDataSource>
-                <ajaxToolkit:CollapsiblePanelExtender ID="CollapsiblePanelExtender4" runat="server"
-        TargetControlID="Panel9"
-        ExpandControlID="Panel16"
-        CollapseControlID="Panel16"
-        TextLabelID="Label13"
-        ImageControlID="ImageButton4"    
-        ExpandedText="(Ocultar Detalles...)"
-        CollapsedText="(Ver Detalles...)"
-        ExpandedImage="~/AlfaNetImagen/MainMaster/collapse_blue.jpg"
-        CollapsedImage="~/AlfaNetImagen/MainMaster/expand_blue.jpg"
-        SuppressPostBack="true" Collapsed="True"/>
+                </ContentTemplate></asp:UpdatePanel>
+               </div>
+            </div>  
+               </div>
+               </div>
                 <br />
-                <asp:Panel ID="Panel17" runat="server" CssClass="collapsePanelHeader" BackImageUrl="~/AlfaNetImagen/MainMaster/bg-menu-main.png" style="vertical-align: top; text-align: left" Width="100%">
-                    <div style="padding:5px; cursor: pointer; vertical-align: middle;">
-                        <div style="float: left; width: 350px; font-weight: bold;">
-                            <asp:Label ID="LblDocEnvInt" runat="server" Font-Bold="False" Font-Italic="False" Font-Size="Larger"
+                 <div id="Div52" class="PanelDes">
+        <div id="Div53" class="PanelMovible"> 
+            <div id="Div54" class="HeaderNumero">
+                       <asp:Label ID="LblDocEnvInt" runat="server" Font-Bold="False" Font-Italic="False" Font-Size="Larger"
                                 Height="20px" Width="41px">#</asp:Label>
-                            DOCUMENTOS ENVIADOS INTERNOS</div>
-                        <div style="float: left; margin-left: 20px;">
-                            <asp:Label ID="Label15" runat="server" Font-Size="Smaller" Height="20px" Style="vertical-align: middle;
-                                text-align: left" Width="180px">(Ver Detalles...)</asp:Label>
-                        </div>
-                        <asp:ImageButton ID="ImageButton5" runat="server" AlternateText="(Ver Detalles...)" ImageUrl="~/AlfaNetImagen/MainMaster/expand_blue.jpg" /></div>
-                </asp:Panel>
-                <asp:Panel ID="Panel18" runat="server" CssClass="collapsePanel" Width="100%" style="vertical-align: top; text-align: left" Height="0px" HorizontalAlign="Center">
+                    &nbsp;</div>
+            <div id="Div55" class="HeaderTitulo">
+                DOCUMENTOS ENVIADOS INTERNOS</div>
+            <div id="Div56" class="ExpandTexto"></div>
+            <div id="Div57" class="ArrowSube"></div>
+            </div>
+        <div id="Div58" class="ContenidoPanel" style="display:none"> 
+                
+               
                     <table style="width: 100%; height: 100%">
                         <tr>
                             <td style="width: 20%">
@@ -2300,21 +2266,22 @@
                         </tr>
                     </table>
                     <br />
-                    <asp:Panel ID="Panel19" runat="server" CssClass="collapsePanelHeader" Width="99%" BackColor="Lavender" BorderColor="Green" BorderStyle="Solid" BorderWidth="3px">
-                        <div style="padding:5px; cursor: pointer;">
-                            <div style="float: left">
-                                <img src="../../AlfaNetImagen/ToolBar/alarmaverde.gif" />&nbsp;</div>
-                            <div style="float: left; vertical-align: middle; color: activecaption; text-align: left; font: caption; width: 400px;">
-                                &nbsp;USTED TIENE &nbsp;<asp:Label ID="LblDocEnvIntVen" runat="server" Font-Bold="False"
+                      <div id="Div59" class="PanelDes2">
+        <div id="Div60" class="PanelMovible2" style="border-color:Green; border-style:solid; border-width:3px; background-color:#FFF9FB;"> 
+            <div id="Div61" class="HeaderNumero2">
+                <img alt='' src="../../AlfaNetImagen/ToolBar/alarmaverde.gif" />&nbsp;
+                USTED TIENE&nbsp;
+                <asp:Label ID="LblDocEnvIntVen" runat="server" Font-Bold="False"
                                     Font-Size="Larger" Style="font: caption; vertical-align: bottom;
-                                    text-align: center" Width="25px">#</asp:Label>&nbsp; &nbsp;DOCUMENTOS RECIBIDOS</div>
-                            <div style="float: left; margin-left: 20px;">
-                                <asp:Label ID="Label17" runat="server" Font-Size="Smaller" ForeColor="ActiveCaption"
-                                    Width="180px" Height="20px">(Ver Documentos...)</asp:Label>
-                            </div>
-                            <asp:ImageButton ID="ImageButton6" runat="server" AlternateText="(Ver Detalles...)" ImageUrl="~/AlfaNetImagen/MainMaster/expand_blue.jpg" /></div>
-                    </asp:Panel>
-                    <asp:Panel ID="Panel20" runat="server" CssClass="collapsePanel" Width="100%" style="text-align: left" Height="100%">
+                                    text-align: center" Width="25px">#</asp:Label>&nbsp; 
+            </div>
+            <div id="Div62" class="HeaderTitulo2">DOCUMENTOS RECIBIDOS</div>
+            <div id="Div63" class="ArrowSube2"></div>
+            <div id="Div64" class="ExpandTexto2"></div>
+        </div>
+        <div id="Div65" class="ContenidoPanel2" style="display:none">
+            <asp:UpdatePanel ID="UpdatePanel9" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
                         <table style="width: 360px">
                             <tr>
                                 <td style="width: 25px; text-align: center">
@@ -2323,7 +2290,7 @@
                                         </td>
                             </tr>
                         </table>
-                        
+                     
                         <dxwgv:ASPxGridView ID="ASPxGVDocEnvIntVen" runat="server" AutoGenerateColumns="False"
                                                                 CssFilePath="~/App_Themes/Office2003 Blue/{0}/styles.css" CssPostfix="Office2003_Blue"
                                                                 DataSourceID="ODSDocEnvIntVen"
@@ -2643,7 +2610,7 @@
 </styleseditors>
                         </dxwgv:ASPxGridView>
                         
-                    </asp:Panel>
+                 
                     <asp:ObjectDataSource ID="ODSDocEnvIntVen" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetWFDocEnviado"
                             TypeName="DSWorkFlowTableAdapters.WFMovimiento_ReadWFMovimientoCopiaEnviadoTableAdapter" OnFiltering="ODSDocEnvIntVen_Filtering">
                         <SelectParameters>
@@ -2656,35 +2623,26 @@
                             <asp:Parameter DefaultValue="1" Name="WFControlDias" Type="Int32" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
-                    <ajaxToolkit:CollapsiblePanelExtender ID="CollapsiblePanelExtender5" runat="server"
-        TargetControlID="Panel20"
-        ExpandControlID="Panel19"
-        CollapseControlID="Panel19" 
-        Collapsed="True"
-        TextLabelID="Label17"
-        ImageControlID="ImageButton6"    
-        ExpandedText="(Ocultar Documentos...)"
-        CollapsedText="(Ver Documentos...)"
-        ExpandedImage="~/AlfaNetImagen/MainMaster/collapse_blue.jpg"
-        CollapsedImage="~/AlfaNetImagen/MainMaster/expand_blue.jpg"
-        SuppressPostBack="true"/>
-                    <asp:Panel ID="Panel10" runat="server" CssClass="collapsePanelHeader" Width="99%" BorderColor="SlateBlue" BorderStyle="Solid" BorderWidth="3px" BackColor="Lavender">
-            <div style="padding:5px; cursor: pointer; vertical-align: middle;">
-                <div style="float: left">
-                    <img src="../../AlfaNetImagen/ToolBar/wfcopias.gif" height="14" width="14" />&nbsp;</div>
-                <div style="float: left; width: 400px; vertical-align: middle; color: activecaption; text-align: left; font: caption;">
-                    &nbsp;USTED TIENE &nbsp;<asp:Label ID="LblDocCopiaInt" runat="server" Font-Bold="False" Font-Size="Larger"
-                        Height="20px" Style="font: caption; vertical-align: bottom; text-align: center"
-                        Width="25px">#</asp:Label>&nbsp; DOCUMENTOS COPIA</div>
-                <div style="float: left; margin-left: 20px;">
-                    <asp:Label ID="Label7" runat="server" Font-Size="Smaller" ForeColor="ActiveCaption"
-                        Height="20px" Width="180px">(Ver Documentos...)</asp:Label>
+                    </ContentTemplate></asp:UpdatePanel>
                 </div>
-                <asp:ImageButton ID="ImageButton1" runat="server" AlternateText="(Ver Detalles...)" ImageUrl="~/AlfaNetImagen/MainMaster/expand_blue.jpg" />
+        </div>
+          <div id="Div66" class="PanelDes2">
+        <div id="Div67" class="PanelMovible2" style="border-color:#6960EC; border-style:solid; border-width:3px; background-color:#FFF9FB;"> 
+            <div id="Div68" class="HeaderNumero2">
+                <img alt='' src="../../AlfaNetImagen/ToolBar/wfcopias.gif" height="14" width="14" />&nbsp;
+                USTED TIENE&nbsp;
+                <asp:Label ID="LblDocCopiaInt" runat="server" Font-Bold="False" Font-Size="Larger"
+                        Height="20px" Style="font: caption; vertical-align: bottom; text-align: center"
+                        Width="25px">#</asp:Label>&nbsp;
             </div>
-        </asp:Panel>
-                    <asp:Panel ID="Panel13" runat="server" CssClass="collapsePanel" Height="0" Width="100%">
-                        <p>
+            <div id="Div69" class="HeaderTitulo2">DOCUMENTOS COPIA</div>
+            <div id="Div70" class="ArrowSube2"></div>
+            <div id="Div71" class="ExpandTexto2"></div>
+        </div>
+        <div id="Div72" class="ContenidoPanel2" style="display:none">
+                  <asp:UpdatePanel ID="UpdatePanel11" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
+                  
                             <table style="width: 560px">
                                 <tr>
                                     <td style="width: 26px; text-align: center;">
@@ -2694,7 +2652,7 @@
                                             </td>
                                 </tr>
                             </table>
-                            
+                          
                             <dxwgv:ASPxGridView ID="ASPxGVDocEnvIntCopia" runat="server" AutoGenerateColumns="False"
                                                                 CssFilePath="~/App_Themes/Office2003 Blue/{0}/styles.css" CssPostfix="Office2003_Blue"
                                                                 DataSourceID="ODSDocEnvIntCopia"
@@ -2940,8 +2898,7 @@
                             &nbsp; &nbsp; &nbsp;
                             &nbsp;
                             &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-                        </p>
-                    </asp:Panel>
+                       
                     <asp:ObjectDataSource ID="ODSDocEnvIntCopia" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetWFDocCopiaEnviada"
                             TypeName="DSWorkFlowTableAdapters.WFMovimiento_ReadWFMovimientoCopiaEnviadoTableAdapter" OnFiltering="ODSDocEnvIntVen_Filtering">
                         <SelectParameters>
@@ -2954,18 +2911,8 @@
                                     PropertyName="Value" Type="DateTime" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
-                    <ajaxToolkit:CollapsiblePanelExtender ID="CollapsiblePanelExtender2" runat="server"
-        TargetControlID="Panel13"
-        ExpandControlID="Panel10"
-        CollapseControlID="Panel10" 
-        Collapsed="True"
-        TextLabelID="Label7"
-        ImageControlID="ImageButton1"    
-        ExpandedText="(Ocultar Documentos...)"
-        CollapsedText="(Ver Documentos...)"
-        ExpandedImage="~/AlfaNetImagen/MainMaster/collapse_blue.jpg"
-        CollapsedImage="~/AlfaNetImagen/MainMaster/expand_blue.jpg"
-        SuppressPostBack="true"/>
+                   </div>
+                   </div>
                     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="NumeroDocumento,DependenciaCodDestino,WFMovimientoPaso,WFMovimientoTipo,GrupoCodigo"
                         DataSourceID="ObjectDataSource1" Width="290px">
                         <Columns>
@@ -2988,7 +2935,7 @@
                                     PropertyName="Value" Type="DateTime" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
-                </asp:Panel>
+            
                 <asp:ObjectDataSource ID="ObjectDataSource8" runat="server" OldValuesParameterFormatString="original_{0}"
                     SelectMethod="GetWFDoc" TypeName="DSWorkFlowTableAdapters.WFMovimientoTableAdapter" OnFiltering="ODSDocEnvIntVen_Filtering">
                     <SelectParameters>
@@ -2998,17 +2945,13 @@
                         <asp:Parameter DefaultValue="1" Name="GrupoCodigo" Type="String" />
                     </SelectParameters>
                 </asp:ObjectDataSource>
-                <ajaxToolkit:CollapsiblePanelExtender ID="CollapsiblePanelExtender8" runat="server"
-        TargetControlID="Panel18"
-        ExpandControlID="Panel17"
-        CollapseControlID="Panel17"
-        TextLabelID="Label15"
-        ImageControlID="ImageButton5"    
-        ExpandedText="(Ocultar Detalles...)"
-        CollapsedText="(Ver Detalles...)"
-        ExpandedImage="~/AlfaNetImagen/MainMaster/collapse_blue.jpg"
-        CollapsedImage="~/AlfaNetImagen/MainMaster/expand_blue.jpg"
-        SuppressPostBack="true" Collapsed="True"/>
+               </ContentTemplate>
+               </asp:UpdatePanel>
+               </div>
+        
+        </div>
+        </div>
+
                 <asp:UpdatePanel id="UpdatePanel1" runat="server">
                     <contenttemplate>
 <asp:Panel style="BORDER-RIGHT: black 2px solid; BORDER-TOP: black 2px solid; DISPLAY: none; BORDER-LEFT: black 2px solid; BORDER-BOTTOM: black 2px solid; BACKGROUND-COLOR: white" id="PnlMensaje" runat="server"><TABLE><TBODY><TR><TD style="BACKGROUND-COLOR: activecaption" align=center><asp:Label id="Label555" runat="server" Width="120px" Font-Size="12pt" ForeColor="White" Text="Mensaje" Font-Bold="False"></asp:Label></TD><TD style="BACKGROUND-COLOR: activecaption"><asp:ImageButton style="VERTICAL-ALIGN: top" id="btnCerrar" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/cross.png" ImageAlign="Right" ValidationGroup="789"></asp:ImageButton>&nbsp;</TD></TR><TR><TD style="PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px" align=center colSpan=2><asp:Label id="LblMessageBox" runat="server" Font-Size="Small" ForeColor="Red" Font-Bold="True"></asp:Label></TD></TR></TBODY></TABLE></asp:Panel> <ajaxToolkit:ModalPopupExtender id="MPEMensaje" runat="server" TargetControlID="LblMessageBox" BackgroundCssClass="MessageStyle" PopupControlID="PnlMensaje"></ajaxToolkit:ModalPopupExtender>
@@ -3042,14 +2985,14 @@
            </table>
                 <%--<asp:UpdatePanel ID="UP1" runat="server">
                     <ContentTemplate>
-<BR /><asp:Panel style="DISPLAY: none" id="PnlMensaje" runat="server" Width="125px" Height="63px"><TABLE width=275 border=0><TBODY><TR><TD style="HEIGHT: 32px; BACKGROUND-COLOR: activecaption" align=center><asp:Label id="LblMensaje" runat="server" Width="120px" Font-Size="14pt" ForeColor="White" Font-Bold="False" Text="Mensaje"></asp:Label></TD><TD style="WIDTH: 12%; HEIGHT: 32px; BACKGROUND-COLOR: activecaption"><asp:ImageButton style="VERTICAL-ALIGN: top" id="btnCerrar" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/cross.png" ImageAlign="Right"></asp:ImageButton> </TD></TR><TR><TD style="HEIGHT: 45px; BACKGROUND-COLOR: highlighttext" align=center colSpan=2><BR /><IMG src="../../AlfaNetImagen/ToolBar/error.png" />&nbsp; &nbsp;<asp:Label id="LblMessageBox" runat="server" Font-Size="12pt" ForeColor="Red"></asp:Label><BR /><BR /><asp:Button id="Button1" runat="server" BackColor="ActiveCaption" Font-Size="X-Small" ForeColor="White" Font-Bold="True" Text="Aceptar" Font-Italic="False"></asp:Button><BR /></TD></TR></TBODY></TABLE></asp:Panel> <ajaxToolkit:ModalPopupExtender id="MPEMensaje" runat="server" TargetControlID="PnlMensaje" OkControlID="Button1" CancelControlID="btnCerrar" PopupControlID="PnlMensaje"></ajaxToolkit:ModalPopupExtender>
+<BR /><asp:Panel style="DISPLAY: none" id="PnlMensaje" runat="server" Width="125px" Height="63px"><TABLE width=275 border=0><TBODY><TR><TD style="HEIGHT: 32px; BACKGROUND-COLOR: activecaption" align=center><asp:Label id="LblMensaje" runat="server" Width="120px" Font-Size="14pt" ForeColor="White" Font-Bold="False" Text="Mensaje"></asp:Label></TD><TD style="WIDTH: 12%; HEIGHT: 32px; BACKGROUND-COLOR: activecaption"><asp:ImageButton style="VERTICAL-ALIGN: top" id="btnCerrar" runat="server" ImageUrl="~/AlfaNetImagen/ToolBar/cross.png" ImageAlign="Right"></asp:ImageButton> </TD></TR><TR><TD style="HEIGHT: 45px; BACKGROUND-COLOR: highlighttext" align=center colSpan=2><BR /><img alt='' src="../../AlfaNetImagen/ToolBar/error.png" />&nbsp; &nbsp;<asp:Label id="LblMessageBox" runat="server" Font-Size="12pt" ForeColor="Red"></asp:Label><BR /><BR /><asp:Button id="Button1" runat="server" BackColor="ActiveCaption" Font-Size="X-Small" ForeColor="White" Font-Bold="True" Text="Aceptar" Font-Italic="False"></asp:Button><BR /></TD></TR></TBODY></TABLE></asp:Panel> <ajaxToolkit:ModalPopupExtender id="MPEMensaje" runat="server" TargetControlID="PnlMensaje" OkControlID="Button1" CancelControlID="btnCerrar" PopupControlID="PnlMensaje"></ajaxToolkit:ModalPopupExtender>
 </ContentTemplate>
                 </asp:UpdatePanel>--%>
                 </td>
         </tr>
     </table>
 </div>
-  </asp:Content>
+</asp:Content>
 
 
 

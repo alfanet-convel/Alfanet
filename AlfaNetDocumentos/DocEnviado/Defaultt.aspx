@@ -47,7 +47,6 @@
                            <Panes>
                                 <cc1:AccordionPane ID="AccordionPane1" runat="server" ContentCssClass=""  HeaderCssClass="">
                                         <Header>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
                                             <a class="accordionLink" href="">Informacion de Carta Respuesta.:</a>
                                         
 </Header>

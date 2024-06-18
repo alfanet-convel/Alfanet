@@ -34,7 +34,8 @@
 
 <FieldHeaderStyle BackColor="#DEE8F5" Font-Bold="True"></FieldHeaderStyle>
 <Fields>
-<asp:TemplateField HeaderText="Procedencia NUI" SortExpression="ProcedenciaNUI" Visible="False"><EditItemTemplate>
+<asp:TemplateField HeaderText="Procedencia NUI" SortExpression="ProcedenciaNUI" Visible="False">
+<EditItemTemplate>
 <asp:Label id="Label1" runat="server" Text='<%# Eval("ProcedenciaNUI") %>'></asp:Label> 
 </EditItemTemplate>
 <InsertItemTemplate>
@@ -78,19 +79,21 @@
 <asp:Label ID="Label6" runat="server" Text='<%# Bind("ProcedenciaCodigo") %>'></asp:Label> 
 </ItemTemplate>
 </asp:TemplateField>
-<asp:TemplateField HeaderText="Procedencia" SortExpression="ProcedenciaNombre"><EditItemTemplate>
-<asp:Label id="Label5" runat="server" Text='<%# Bind("ProcedenciaNombre") %>' 
-            Visible="False"></asp:Label> <asp:Label id="Label133" runat="server" Visible="False" ForeColor="White" Text="Procedencia Asociada" Font-Bold="False"></asp:Label>&nbsp;<asp:TextBox id="TextBox4" runat="server" Text='<%# Bind("ProcedenciaNombre") %>' CssClass="TxtMaestro"></asp:TextBox>
-        <asp:RequiredFieldValidator id="RequiredFieldValidator4" runat="server" ErrorMessage="Debe ingresar un nombre para la procedencia" ControlToValidate="TextBox4">*</asp:RequiredFieldValidator> 
+
+<asp:TemplateField HeaderText="Procedencia" SortExpression="ProcedenciaNombre">
+<EditItemTemplate>
+<asp:TextBox id="TextBox4" runat="server" Text='<%# Bind("ProcedenciaNombre") %>' CssClass="TxtMaestro"></asp:TextBox>
+<asp:RequiredFieldValidator id="RequiredFieldValidator4" runat="server" ErrorMessage="Debe ingresar un nombre para la procedencia" ControlToValidate="TextBox4">*</asp:RequiredFieldValidator> 
 </EditItemTemplate>
 <InsertItemTemplate>
 <asp:TextBox id="TextBox5" runat="server" Text='<%# Bind("ProcedenciaNombre") %>' CssClass="TxtMaestro"></asp:TextBox> 
-    <asp:RequiredFieldValidator id="RequiredFieldValidator4" runat="server" ErrorMessage="Debe ingresar un nombre para la procedencia" ControlToValidate="TextBox5">*</asp:RequiredFieldValidator> 
+<asp:RequiredFieldValidator id="RequiredFieldValidator4" runat="server" ErrorMessage="Debe ingresar un nombre para la procedencia" ControlToValidate="TextBox5">*</asp:RequiredFieldValidator> 
 </InsertItemTemplate>
 <ItemTemplate>
 <asp:Label id="Label5" runat="server" Text='<%# Bind("ProcedenciaNombre") %>'></asp:Label> 
 </ItemTemplate>
 </asp:TemplateField>
+
 <asp:TemplateField HeaderText="Procedencia Padre" SortExpression="ProcedenciaNUIPadre" Visible="False"><EditItemTemplate>
 <asp:RadioButtonList style="TEXT-ALIGN: left" id="RbtnLstSelPadre" runat="server" Width="200px" CssClass="DVRbtnLstStyle" AutoPostBack="True" OnSelectedIndexChanged="RbtnLstSelPadre_SelectedIndexChanged"><asp:ListItem Selected="True" Value="0"> Es Procedencia ?</asp:ListItem>
 <asp:ListItem Value="1"> Es Sub Procedencia  ?</asp:ListItem>
@@ -109,7 +112,9 @@
 <asp:Label id="Label3" runat="server" Text='<%# Bind("ProcedenciaNUIPadre") %>'></asp:Label> 
 </ItemTemplate>
 </asp:TemplateField>
-<asp:TemplateField HeaderText="Direccion" SortExpression="ProcedenciaDireccion"><EditItemTemplate>
+
+<asp:TemplateField HeaderText="Direccion" SortExpression="ProcedenciaDireccion">
+<EditItemTemplate>
 <asp:TextBox id="TextBox6" runat="server" Text='<%# Bind("ProcedenciaDireccion") %>' CssClass="TxtMaestroPadre1"></asp:TextBox> 
         <asp:RequiredFieldValidator id="RequiredFieldValidator5" runat="server" ControlToValidate="TextBox6" ErrorMessage="Debe ingresar una direccion para la procedencia">*</asp:RequiredFieldValidator> 
 </EditItemTemplate>
@@ -121,6 +126,7 @@
 <asp:Label id="Label7" runat="server" Text='<%# Bind("ProcedenciaDireccion") %>'></asp:Label> 
 </ItemTemplate>
 </asp:TemplateField>
+
 <asp:TemplateField HeaderText="Primer Telefono" SortExpression="ProcedenciaTelefono1"><EditItemTemplate>
 <asp:TextBox id="TextBox7" runat="server" Text='<%# Bind("ProcedenciaTelefono1") %>'></asp:TextBox> 
         <asp:RequiredFieldValidator id="RequiredFieldValidator6" runat="server" ControlToValidate="TextBox7" ErrorMessage="Debe ingresar numero telefonico para la procedencia">*</asp:RequiredFieldValidator> 
@@ -185,28 +191,6 @@
 <asp:Label id="Label10" runat="server" Text='<%# Bind("CiudadCodigo") %>'></asp:Label> 
 </ItemTemplate>
 </asp:TemplateField>
-    <asp:TemplateField HeaderText="CiudadNombre" SortExpression="CiudadNombre">
-        <EditItemTemplate>
-            <asp:Label ID="Label13" runat="server" Text='<%# Bind("CiudadNombre") %>'></asp:Label>
-        </EditItemTemplate>
-        <InsertItemTemplate>
-           <asp:Label ID="Label13" runat="server" Text='<%# Bind("CiudadNombre") %>'></asp:Label>
-        </InsertItemTemplate>
-        <ItemTemplate>
-            <asp:Label ID="Label13" runat="server" Text='<%# Bind("CiudadNombre") %>'></asp:Label>
-        </ItemTemplate>
-    </asp:TemplateField>
-    <asp:TemplateField HeaderText="DepartamentoNombre" SortExpression="DepartamentoNombre">
-        <EditItemTemplate>
-            <asp:Label ID="Label14" runat="server" Text='<%# Bind("DepartamentoNombre") %>'></asp:Label>
-        </EditItemTemplate>
-        <InsertItemTemplate>
-           <asp:Label ID="Label14" runat="server" Text='<%# Bind("DepartamentoNombre") %>'></asp:Label>
-        </InsertItemTemplate>
-        <ItemTemplate>
-            <asp:Label ID="Label14" runat="server" Text='<%# Bind("DepartamentoNombre") %>'></asp:Label>
-        </ItemTemplate>
-    </asp:TemplateField>
 <asp:TemplateField HeaderText="Habilitar/DesHabilitar" SortExpression="ProcedenciaHabilitar"><EditItemTemplate>
 <asp:TextBox id="TextBox2" runat="server" Width="1px" Text='<%# Bind("ProcedenciaHabilitar") %>' Visible="False"></asp:TextBox> <asp:CheckBox id="CheckBox1" runat="server"></asp:CheckBox> 
 </EditItemTemplate>
@@ -344,8 +328,6 @@
                 <asp:Parameter Name="ProcedenciaHabilitar" Type="String" />
                 <asp:Parameter Name="ProcedenciaPermiso" Type="String" />
                 <asp:Parameter Name="Original_ProcedenciaNUI" Type="String" />
-                <asp:Parameter Name="CiudadNombre" Type="String" />
-                <asp:Parameter Name="DepartamentoNombre" Type="String" />
             </UpdateParameters>
             <InsertParameters>
                 <asp:Parameter Name="ProcedenciaNUI" Type="String" />
@@ -362,13 +344,11 @@
                 <asp:Parameter Name="CiudadCodigo" Type="String" />
                 <asp:Parameter Name="ProcedenciaHabilitar" Type="String" />
                 <asp:Parameter Name="ProcedenciaPermiso" Type="String" />
-                <asp:Parameter Name="CiudadNombre" Type="String" />
-                <asp:Parameter Name="DepartamentoNombre" Type="String" />
             </InsertParameters>
         </asp:ObjectDataSource>
     <br />
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnStrSQLServer %>"
-        SelectCommand="SELECT 'invalid' AS Consecutivo --FROM Procedencia">
+        SelectCommand="SELECT MAX(CONVERT (bigint, dbo.UDF_ParseAlphaChars(ProcedenciaNUI)) + 1) AS Consecutivo FROM Procedencia">
     </asp:SqlDataSource>
              
 </asp:Content>

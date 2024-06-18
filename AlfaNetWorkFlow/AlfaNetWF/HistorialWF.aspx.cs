@@ -56,31 +56,31 @@ public partial class _HistorialWF : System.Web.UI.Page
                 {
                 HFCodigoSeleccionado.Value = codImagen;
                 HFGrupoSeleccionado.Value = GrupoCodigo;
-                segui = "hola1";
+           
                 this.LblDetalleMultitarea.Text = "Detalle Multitarea del Radicado Número: " + HFCodigoSeleccionado.Value;
                 this.LblDetalleMultitarea.Visible = true;
                 this.LblAccionEnterese.Text = "Detalle Accion Enterese del Radicado Número: " + HFCodigoSeleccionado.Value;
                 this.LblAccionEnterese.Visible = true;
-                segui = "hola2";
+               
                 this.DetailsView1.HeaderText = "Detalle Historico Radicado Número: " + HFCodigoSeleccionado.Value;
-                segui = "hola3 " + HFCodigoSeleccionado.Value;
+            
                 this.DetailsView1.DataBind();
-                segui = "hola4";
+                
 
                 DSRadicadoTableAdapters.Radicado_ConsultasHistoricoTableAdapter ObjTaRadHis = new DSRadicadoTableAdapters.Radicado_ConsultasHistoricoTableAdapter();
                 DSRadicado.Radicado_ConsultasHistoricoDataTable DTRadHis = new DSRadicado.Radicado_ConsultasHistoricoDataTable();
                 DTRadHis = ObjTaRadHis.GetRadicadoHistorial(Convert.ToInt32(HFCodigoSeleccionado.Value),GrupoCodigo);
-                segui = "hola5";
+             
                 DSRadicado.Radicado_ConsultasHistoricoDataTable DTTip1 = new DSRadicado.Radicado_ConsultasHistoricoDataTable();
                 DataRow[] rows = DTRadHis.Select("WfmovimientoTipo = 1 or WfmovimientoTipo = 3 or WfmovimientoTipo = 7");
                 escriba(rows);
-                segui = "hola6";
+           
                 DataRow[] RowsCopia = DTRadHis.Select("WfmovimientoTipo = 2");
                 escribaCopias(RowsCopia);
-                segui = "hola7";
+               
                 DataRow[] rowsProceso = DTRadHis.Select("WfmovimientoTipo = 4");
                 escriba(rowsProceso);
-                segui = "hola8";
+             
                 }
             }
             else

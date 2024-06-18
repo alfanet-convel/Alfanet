@@ -92,68 +92,6 @@ public partial class _WorkFlow_old : System.Web.UI.Page
     }
 
 
-    /*Visualizar los registros asociados al radicado*/
-    protected void callbackPanel_Callback(object source, DevExpress.Web.ASPxClasses.CallbackEventArgsBase e)
-    {
-
-        Label LbTitulo = new Label();
-        LbTitulo.Text = "Registro Nro.:";
-        PnlContent.Controls.Add(LbTitulo);
-        PnlContent.Controls.Add(new LiteralControl("<br />"));
-        /*Separar los datos de documento y grupo*/
-        String s1 = e.Parameter.ToString();
-        char[] seps = { '|' };
-        String[] Parametros = s1.Split(seps);
-
-        String listDocs = "";
-
-        double Num;
-
-        bool isNum = double.TryParse(Parametros[0].ToString().Trim(), out Num);
-
-        /*Isertar el link referente al registro registro*/
-
-        if (isNum && (Parametros.Length == 2))
-        {
-            DSRadicadoFuenteSQLTableAdapters.RadicadoFuente_ReadRadicadoFuenteRegistroTableAdapter DSRadFuenteReg = new DSRadicadoFuenteSQLTableAdapters.RadicadoFuente_ReadRadicadoFuenteRegistroTableAdapter();
-            DSRadicadoFuenteSQL.RadicadoFuente_ReadRadicadoFuenteRegistroDataTable DTRadFuenteReg = new DSRadicadoFuenteSQL.RadicadoFuente_ReadRadicadoFuenteRegistroDataTable();
-            DTRadFuenteReg = DSRadFuenteReg.GetRegistrosRadicadoFuente(Convert.ToInt32(Parametros[0].ToString()), Parametros[1].ToString());
-
-            int i = 1;
-            PnlContent.Controls.Add(new LiteralControl("<table valign=\"middle\">"));
-            foreach (DSRadicadoFuenteSQL.RadicadoFuente_ReadRadicadoFuenteRegistroRow DRRadFuenteReg in DTRadFuenteReg.Rows)
-            {
-                PnlContent.Controls.Add(new LiteralControl("<tr><td>"));
-                HyperLink HprRpta = new HyperLink();
-                HprRpta.ID = "HprRpta" + i.ToString();
-                HprRpta.Text = DRRadFuenteReg.RegistroCodigo.ToString();
-                HprRpta.Target = "_Blank";
-                HprRpta.ForeColor = System.Drawing.Color.Blue;
-                HprRpta.Font.Underline = true;
-                HprRpta.Attributes.Add("onClick", "urlInt(event," + DRRadFuenteReg.GrupoRegistroCodigo + ");");
-                PnlContent.Controls.Add(HprRpta);
-                PnlContent.Controls.Add(new LiteralControl("</td><td>"));
-                System.Web.UI.WebControls.Image ImgRpta = new System.Web.UI.WebControls.Image();
-                ImgRpta.ID = "ImgRpta" + i.ToString();
-                ImgRpta.Width = new Unit("20px");
-                ImgRpta.Height = new Unit("20px");
-                ImgRpta.ImageUrl = "~/AlfaNetImagen/iconos/icono_tif.JPG";
-                ImgRpta.Attributes.Add("onClick", "VImagenesReg(event," + DRRadFuenteReg.RegistroCodigo + "," + DRRadFuenteReg.GrupoRegistroCodigo + ");");
-                PnlContent.Controls.Add(ImgRpta);
-                PnlContent.Controls.Add(new LiteralControl("</td></tr>"));
-
-                i += 1;
-            }
-            PnlContent.Controls.Add(new LiteralControl("</table>"));
-
-        }
-
-
-
-
-    }
-
-
     /*metodo para insertar el número máximo de elementos por página*/
     protected void ODSDocRecExtVen_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
     {
@@ -608,7 +546,7 @@ public partial class _WorkFlow_old : System.Web.UI.Page
                             //    System.Guid a = new Guid(rows[0].ItemArray[0].ToString().Trim());
                             //    usuario = Membership.GetUser(a);
                             //    string Body = "Tiene una nueva Tarea Nro " + mNumeroDocumento + "<BR>" + " Fecha de Radicacion: " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " Accion: " + mWFAccionCodigo + "<BR>";
-                            //    Correo.EnvioCorreo("soporte.archivar@gmail.com", usuario.Email, "Tarea Nro" + " " + mNumeroDocumento, Body, true, "1");
+                            //    Correo.EnvioCorreo("alfanetpruebas@gmail.co", usuario.Email, "Tarea Nro" + " " + mNumeroDocumento, Body, true, "1");
                             //}
                     }
 
@@ -836,7 +774,6 @@ public partial class _WorkFlow_old : System.Web.UI.Page
             ((LinkButton)GVR.Row.FindControl("linkButton5")).Attributes.Add("onClick", "url(event,1);");
             //((HyperLink)GVR.Row.FindControl("HyperLink1")).Attributes.Add("onClick", "url(event);");
 
-
             //RequiredFieldValidator RFVCargar = ((RequiredFieldValidator)GVR.Row.FindControl("RFVCargar"));
             ((CheckBox)GVR.Row.FindControl("SelectorDocumento")).Attributes.Add("onClick", "ColorRow(this);");
 
@@ -966,89 +903,6 @@ public partial class _WorkFlow_old : System.Web.UI.Page
                
         
     }
-
-    /*version de prueba para llenar el gridview*/
-    protected void RowBoundVenv2(GridView GV, GridViewRowEventArgs GVR)
-    {
-        // FORMATEA ROWS
-        ((ImageButton)GVR.Row.FindControl("ImageButton3")).Attributes.Add("onClick", "urlRpta(event);");
-
-        HiddenField Grupo = ((HiddenField)GVR.Row.FindControl("HFGrupo"));
-        HyperLink NroDoc = ((HyperLink)GVR.Row.FindControl("HyperLink1"));
-        HyperLink Expediente = new HyperLink();
-
-        Expediente.Text = GV.DataKeys[GVR.Row.RowIndex].Values[6].ToString();
-        if (Expediente.Text == "")
-        {
-            Expediente.Text = "30001";
-        }
-        NroDoc.Attributes.Add("onClick", "url(event," + Grupo.Value + ");");
-        
-        ((HyperLink)GVR.Row.FindControl("HprLnkImgExtVen")).Attributes.Add("onClick", "VImagenes(event," + NroDoc.Text + "," + Grupo.Value + ");");
-        ((HyperLink)GVR.Row.FindControl("HprLnkHisExtven")).Attributes.Add("onClick", "Historico(event," + NroDoc.Text + "," + Grupo.Value + ");");
-        ((HyperLink)GVR.Row.FindControl("HprLnkExp")).Attributes.Add("onClick", "Expediente(event," + NroDoc.Text + ",'" + Expediente.Text + "'," + Grupo.Value + ");");
-
-        TextBox mCargar = ((TextBox)GVR.Row.FindControl("TxtCargarDocVen"));
-        HiddenField mHFCarga = (HiddenField)GVR.Row.FindControl("HFCargar");
-        TextBox TAcc = (TextBox)GVR.Row.Cells[9].FindControl("TxtAccionDocExtVen");
-
-        RequiredFieldValidator RFVCargar = ((RequiredFieldValidator)GVR.Row.FindControl("RFVCargar"));
-        ((CheckBox)GVR.Row.FindControl("SelectorDocumento")).Attributes.Add("onClick", "ColorRowVen(this," + mCargar.ClientID + "," + TAcc.ClientID + ");");
-
-        ((TreeView)GVR.Row.FindControl("TreeVDependencia")).Attributes.Add("onClick", "return OnTreeClick2(event,getElementById('" + mCargar.ClientID + "'),getElementById('" + mHFCarga.ClientID + "'));");
-        ((TreeView)GVR.Row.FindControl("TreeVSerie")).Attributes.Add("onClick", "return OnTreeClickSerie(event,getElementById('" + mCargar.ClientID + "'),getElementById('" + mHFCarga.ClientID + "'));");
-
-        TextBox LblNot = (TextBox)GVR.Row.Cells[5].FindControl("TxtDocNotasextven");
-        Image ImgNot = (Image)GVR.Row.Cells[5].FindControl("ImgDocNotasExtVen");
-        if (LblNot.Text == "")
-        {
-            ImgNot.Visible = false;
-        }
-
-        if (GV.DataKeys[GVR.Row.RowIndex].Values[3].ToString() == "1")
-        {
-
-        }
-        else if (GV.DataKeys[GVR.Row.RowIndex].Values[3].ToString() == "4")
-        {
-            TextBox TCar = (TextBox)GVR.Row.Cells[8].FindControl("TxtCargarDocVen");
-
-            TCar.Text = "Definido Por Proceso";
-            TCar.Enabled = false;
-            TAcc.Text = "Definido Por Proceso";
-            TAcc.Enabled = false;
-        }
-        /*Editar los controles para el campo RadicadoCodigo*/
-
-        /*Editar funcionalidades de columna RadicadoCodigo*/
-
-        HiddenField LabelResuesta2 = (HiddenField)GVR.Row.FindControl("HiddenFieldRes1");
-        Image Imagelinkdoc = (Image)GVR.Row.FindControl("ImageLinkDoc");
-
-        if (LabelResuesta2.Value == "0")
-        {
-            LabelResuesta2.Value = "Sin Respuesta";
-            Imagelinkdoc.Visible = false;
-        }
-        else
-        {
-            HtmlControl c1 = (HtmlControl)GVR.Row.FindControl("LnkRpta");
-            c1.Attributes.Add("onclick", "OnMoreInfoClick(this,'" + NroDoc.Text + "|" + Grupo.Value.ToString() + "'" + ")");
-
-        }
-
-        
-        if (HFMultiTarea.Value != "1")
-        {
-            TreeView TreeMulti = (TreeView)GVR.Row.FindControl("TreeVMultitarea");
-            TreeMulti.Visible = false;
-
-        }
-
-
-    }
-
-
     protected void RowBoundCopia(GridViewRowEventArgs GVR)
     {
         
@@ -1117,7 +971,6 @@ public partial class _WorkFlow_old : System.Web.UI.Page
         }
 
     }
-
     protected void RowBoundCopiaEnv(GridViewRowEventArgs GVR)
     {
         ((LinkButton)GVR.Row.FindControl("linkButton5")).Attributes.Add("onClick", "urlInt(event);");
@@ -1171,7 +1024,7 @@ public partial class _WorkFlow_old : System.Web.UI.Page
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
-            RowBoundVenv2(GVDocRecExtVen, e);
+            RowBoundVen(GVDocRecExtVen, e);
         }
     }
     protected void GVDocRecExtCopia_RowDataBound(object sender, GridViewRowEventArgs e)
