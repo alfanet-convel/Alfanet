@@ -1,0 +1,456 @@
+﻿ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|30/06/2022 9:33:45 a.m.|30/06/2022 12:00:00 a.m.|43104608||2|006|1245|661/43104608 | 43104608-MONSALVE CANO PAULA ANDREA/REEMBOLSO DE CAJA MENOR/$2.219.940||30/06/2022 9:33:00 a.m.|43104608|074|1259|9|1|0|30/06/2022 9:33:00 a.m.|30/06/2022 9:33:00 a.m.|1|661/43104608 | 43104608-MONSALVE CANO PAULA ANDREA/REEMBOLSO DE CAJA MENOR/$2.219.940||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|30/06/2022 9:36:05 a.m.|30/06/2022 12:00:00 a.m.|43104608||2|006|1245|661/REEMBOLSO DE CAJA MENOR/$2219940/43104608 | 43104608-MONSALVE CANO PAULA ANDREA||30/06/2022 9:36:00 a.m.|43104608|074|1259|9|1|0|30/06/2022 9:36:00 a.m.|30/06/2022 9:36:00 a.m.|1|661/REEMBOLSO DE CAJA MENOR/$2219940/43104608 | 43104608-MONSALVE CANO PAULA ANDREA||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|1/08/2022 2:36:54 p.m.|14/07/2022 12:00:00 a.m.|711/SERVICIOS PUBLICOS/$700.420/70000276/711||70000276|5|1589|||4/08/2022 2:36:00 p.m.|711|074|1233|9|1|0|4/08/2022 2:36:00 p.m.|4/08/2022 2:36:00 p.m.|1|||0| radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|4/08/2022 1:45:08 p.m.|1/08/2022 12:00:00 a.m.|1151481342||11|008|1243|001/SERVICIO/$ 6.300.000/11/ 724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||30/09/2022 1:45:00 p.m.|724|074|1582|12|1|0|30/09/2022 1:45:00 p.m.|30/09/2022 1:45:00 p.m.|1|001/SERVICIO/$ 6.300.000/11/ 724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|25/08/2022 12:35:15 p.m.|25/08/2022 12:00:00 a.m.|EPS SURA||33306378|020|1574|674/INCAPACIDAD GENERAL/||1/09/2022 12:35:00 p.m.|1042708110|057|1301|15|1|0|1/09/2022 12:35:00 p.m.|1/09/2022 12:35:00 p.m.|1|674/INCAPACIDAD GENERAL/||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|25/08/2022 12:36:03 p.m.|25/08/2022 12:00:00 a.m.|EPS SURA||33306378|020|1574|674/INCAPACIDAD GENERAL/1042708110-PEREZ LOPEZ YEISON||25/08/2022 12:36:00 p.m.|1042708110|057|1301|15|1|0|25/08/2022 12:36:00 p.m.|25/08/2022 12:36:00 p.m.|1|674/INCAPACIDAD GENERAL/1042708110-PEREZ LOPEZ YEISON||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|29/08/2022 11:31:56 a.m.|29/08/2022 12:00:00 a.m.|661/DEVOLUCIÓN DE RETENIDO/$1.754.757/2043-1/661||2043-1|008|1245|||30/08/2022 11:31:00 a.m.|661|057|1303|9|1|0|30/08/2022 11:31:00 a.m.|30/08/2022 11:31:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|29/08/2022 11:33:17 a.m.|29/08/2022 12:00:00 a.m.|661/DEVOLUCIÓN DE RETENIDO/$1.754.757/2043-1/661||2043-1|008|1245|811013959 CIELOS Y MUROS SAS||30/08/2022 11:33:00 a.m.|661|057|1303|9|1|0|30/08/2022 11:33:00 a.m.|30/08/2022 11:33:00 a.m.|1|811013959 CIELOS Y MUROS SAS||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|29/08/2022 11:33:36 a.m.|29/08/2022 12:00:00 a.m.|661/DEVOLUCIÓN DE RETENIDO/$1.754.757/2043-1/661||2043|008|1245|811013959 CIELOS Y MUROS SAS||30/08/2022 11:33:00 a.m.|661|057|1303|9|1|0|30/08/2022 11:33:00 a.m.|30/08/2022 11:33:00 a.m.|1|811013959 CIELOS Y MUROS SAS||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|29/08/2022 11:33:55 a.m.|29/08/2022 12:00:00 a.m.|661/DEVOLUCIÓN DE RETENIDO/$1.754.757/2043/661||2043|008|1245|811013959 CIELOS Y MUROS SAS||30/08/2022 11:33:00 a.m.|661|057|1303|9|1|0|30/08/2022 11:33:00 a.m.|30/08/2022 11:33:00 a.m.|1|811013959 CIELOS Y MUROS SAS||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|29/08/2022 11:34:10 a.m.|29/08/2022 12:00:00 a.m.|661/DEVOLUCIÓN DE RETENIDO/$1754757/2043/661||2043|008|1245|811013959 CIELOS Y MUROS SAS||30/08/2022 11:34:00 a.m.|661|057|1303|9|1|0|30/08/2022 11:34:00 a.m.|30/08/2022 11:34:00 a.m.|1|811013959 CIELOS Y MUROS SAS||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|29/08/2022 11:34:27 a.m.|29/08/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/$1754757/2043/661||2043|008|1245|811013959 CIELOS Y MUROS SAS||30/08/2022 11:34:00 a.m.|661|057|1303|9|1|0|30/08/2022 11:34:00 a.m.|30/08/2022 11:34:00 a.m.|1|811013959 CIELOS Y MUROS SAS||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|29/08/2022 11:37:42 a.m.|29/08/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/$1754757/2043/661||2043|008|1245|811013959 CIELOS Y MUROS SAS||30/08/2022 11:37:00 a.m.|661|057|1303|9|1|0|30/08/2022 11:37:00 a.m.|30/08/2022 11:37:00 a.m.|1|811013959 CIELOS Y MUROS SAS||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|29/08/2022 11:40:15 a.m.|29/08/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/1.754.757/2043/661||2043|008|1245|811013959 CIELOS Y MUROS SAS||30/08/2022 11:40:00 a.m.|661|057|1303|9|1|0|30/08/2022 11:40:00 a.m.|30/08/2022 11:40:00 a.m.|1|811013959 CIELOS Y MUROS SAS||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|29/08/2022 11:40:35 a.m.|29/08/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/1754757/2043/661||2043|008|1245|811013959 CIELOS Y MUROS SAS||30/08/2022 11:40:00 a.m.|661|057|1303|9|1|0|30/08/2022 11:40:00 a.m.|30/08/2022 11:40:00 a.m.|1|811013959 CIELOS Y MUROS SAS||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|29/08/2022 11:55:42 a.m.|12/08/2022 12:00:00 a.m.|900156264||700429045|020|1575|649/INCAPACIDAD GENERAL/15446923-MARTINEZ ARIAS YEISON ESTEBE||5/09/2022 11:55:00 a.m.|15446923|054|MARIA|15|1|0|5/09/2022 11:55:00 a.m.|5/09/2022 11:55:00 a.m.|1|649/INCAPACIDAD GENERAL/15446923-MARTINEZ ARIAS YEISON ESTEBE||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|29/08/2022 11:57:34 a.m.|12/08/2022 12:00:00 a.m.|NUEVA EPS||15446923|020|1575|649/INCAPACIDAD GENERAL/15446923-MARTINEZ ARIAS YEISON ESTEBE||5/09/2022 11:57:00 a.m.|15446923|054|1301|15|1|0|5/09/2022 11:57:00 a.m.|5/09/2022 11:57:00 a.m.|1|649/INCAPACIDAD GENERAL/15446923-MARTINEZ ARIAS YEISON ESTEBE||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|31/08/2022 8:39:55 a.m.|31/08/2022 12:00:00 a.m.|860.063.875-8 Enel Codensa||69178997|5|1588|698/servicios públicos/$ 8.462.350/69178994-7/698 | 698 - AD-PROYECTO DE VIVIENDA COUNTRY|Copia de la factura|5/09/2022 8:39:00 a.m.|698|054|1249|9|1|0|5/09/2022 8:39:00 a.m.|5/09/2022 8:39:00 a.m.|1|698/servicios públicos/$ 8.462.350/69178994-7/698 | 698 - AD-PROYECTO DE VIVIENDA COUNTRY||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|5/09/2022 7:40:17 a.m.|2/09/2022 12:00:00 a.m.|900548776||298|5|1243|674 | 674 MIXA ||31/10/2022 7:40:00 a.m.|674|074|674 |12|1|0|31/10/2022 7:40:00 a.m.|31/10/2022 7:40:00 a.m.|1|674 | 674 MIXA ||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|6/09/2022 8:03:21 a.m.|2/09/2022 12:00:00 a.m.|800130907||92866452|020|1574|674/INCAPACIDAD GENERAL/||13/09/2022 8:03:00 a.m.|71252034|057|1301|15|1|0|13/09/2022 8:03:00 a.m.|13/09/2022 8:03:00 a.m.|1|674/INCAPACIDAD GENERAL/||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|9/09/2022 9:09:51 a.m.|9/09/2022 12:00:00 a.m.|001/INCAPACIDAD GENERAL/73118011-MEZA MEDRANO EDUARDO DE JESUS||11665297|020|1584|||10/09/2022 9:09:00 a.m.|73118011|074|1301|15|1|0|10/09/2022 9:09:00 a.m.|10/09/2022 9:09:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|9/09/2022 9:10:40 a.m.|9/09/2022 12:00:00 a.m.|001/INCAPACIDAD GENERAL/73118011-MEZA MEDRANO EDUARDO DE JESUS||11665297|020|1584|||10/09/2022 9:10:00 a.m.|73118011|074|1301|15|1|0|10/09/2022 9:10:00 a.m.|10/09/2022 9:10:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|9/09/2022 9:43:11 a.m.|6/09/2022 12:00:00 a.m.|800130907||102011061|020|1501|662/INCAPACIDAD GENERAL/1082969682 | 1082969682-PACHECO DITTA LUIS ALFREDO||16/09/2022 9:43:00 a.m.|1082969682|PERSONAL|1301|15|1|0|16/09/2022 9:43:00 a.m.|16/09/2022 9:43:00 a.m.|1|662/INCAPACIDAD GENERAL/1082969682 | 1082969682-PACHECO DITTA LUIS ALFREDO||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|9/09/2022 9:43:33 a.m.|6/09/2022 12:00:00 a.m.|800130907||102011061|020|1501|662/INCAPACIDAD GENERAL/1082969682 | 1082969682-PACHECO DITTA LUIS ALFREDO||16/09/2022 9:43:00 a.m.|1082969682|PERSONAL|1301|15|1|0|16/09/2022 9:43:00 a.m.|16/09/2022 9:43:00 a.m.|1|662/INCAPACIDAD GENERAL/1082969682 | 1082969682-PACHECO DITTA LUIS ALFREDO||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|17/09/2022 10:57:21 a.m.|13/09/2022 12:00:00 a.m.|900.905.022-6 Ingelevi Ingeniería Eléctrica SAS||20220913|008|1588|698/anticipo/$ 217.341.465/20220913-1/698 | 698 - AD-PROYECTO DE VIVIENDA COUNTRY|Copia de la Cuenta de Cobro aprobada.|22/09/2022 10:57:00 a.m.|698|074|1249|9|1|0|22/09/2022 10:57:00 a.m.|22/09/2022 10:57:00 a.m.|1|698/anticipo/$ 217.341.465/20220913-1/698 | 698 - AD-PROYECTO DE VIVIENDA COUNTRY||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|17/09/2022 10:58:30 a.m.|13/09/2022 12:00:00 a.m.|900.905.022-6 Ingelevi Ingeniería Eléctrica SAS||20220913|008|1588|698/anticipo/217341465/20220913-1/698 - AD-PROYECTO DE VIVIENDA COUNTRY|Copia de la Cuenta de Cobro aprobada.|22/09/2022 10:58:00 a.m.|698|074|1249|9|1|0|22/09/2022 10:58:00 a.m.|22/09/2022 10:58:00 a.m.|1|698/anticipo/217341465/20220913-1/698 - AD-PROYECTO DE VIVIENDA COUNTRY||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|17/09/2022 10:59:08 a.m.|13/09/2022 12:00:00 a.m.|900905022 Ingelevi Ingeniería Eléctrica SAS||20220913|008|1588|698/anticipo/217341465/20220913-1/698 - AD-PROYECTO DE VIVIENDA COUNTRY|Copia de la Cuenta de Cobro aprobada.|22/09/2022 10:59:00 a.m.|698|074|1249|9|1|0|22/09/2022 10:59:00 a.m.|22/09/2022 10:59:00 a.m.|1|698/anticipo/217341465/20220913-1/698 - AD-PROYECTO DE VIVIENDA COUNTRY||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|17/09/2022 11:00:32 a.m.|13/09/2022 12:00:00 a.m.|900905022 Ingelevi Ingeniería Eléctrica SAS||20220913|008|1588|698/mano de obra/217341465/20220913-1/698 - AD-PROYECTO DE VIVIENDA COUNTRY|Copia de la Cuenta de Cobro aprobada.|22/09/2022 11:00:00 a.m.|698|074|1249|9|1|0|22/09/2022 11:00:00 a.m.|22/09/2022 11:00:00 a.m.|1|698/mano de obra/217341465/20220913-1/698 - AD-PROYECTO DE VIVIENDA COUNTRY||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|21/09/2022 7:34:22 a.m.|16/09/2022 12:00:00 a.m.|860063875||94363256|5|1569|686 | 686  AD-EDIFICIO VALENTI/94363256||26/09/2022 7:34:00 a.m.|686|074|ivon|9|1|0|26/09/2022 7:34:00 a.m.|26/09/2022 7:34:00 a.m.|1|686 | 686  AD-EDIFICIO VALENTI/94363256||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|29/09/2022 11:02:25 a.m.|29/09/2022 12:00:00 a.m.|GUIMAR||11475|5|1243|11475/711 | 711 MERAKI ETAPA 1||31/10/2022 11:02:00 a.m.|711|074|1589|12|1|0|31/10/2022 11:02:00 a.m.|31/10/2022 11:02:00 a.m.|1|11475/711 | 711 MERAKI ETAPA 1||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/10/2022 8:50:38 a.m.|28/10/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/$8.725.265/086/661||086|008|1245|||28/10/2022 8:50:00 a.m.|661|057|1303|12|1|0|28/10/2022 8:50:00 a.m.|28/10/2022 8:50:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/10/2022 8:51:01 a.m.|28/10/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/8.725.265/086/661||086|008|1245|||28/10/2022 8:51:00 a.m.|661|057|1303|12|1|0|28/10/2022 8:51:00 a.m.|28/10/2022 8:51:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/10/2022 8:51:16 a.m.|28/10/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/8.725.265/086/661||086|008|1245|||29/10/2022 8:51:00 a.m.|661|057|1303|12|1|0|29/10/2022 8:51:00 a.m.|29/10/2022 8:51:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/10/2022 8:51:34 a.m.|28/10/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/$8725265/086/661||086|008|1245|||29/10/2022 8:51:00 a.m.|661|057|1303|12|1|0|29/10/2022 8:51:00 a.m.|29/10/2022 8:51:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/10/2022 8:51:55 a.m.|28/10/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/$8725265/086/661||086|008|1245|||29/10/2022 8:51:00 a.m.|661|057|1303|12|1|0|29/10/2022 8:51:00 a.m.|29/10/2022 8:51:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/10/2022 8:55:02 a.m.|28/10/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/$8725265/086/661||086|008|1245|||29/10/2022 8:55:00 a.m.|661|057|1303|12|1|0|29/10/2022 8:55:00 a.m.|29/10/2022 8:55:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/10/2022 8:58:49 a.m.|28/10/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/$8725265/086/661||086|008|1245|||29/10/2022 8:58:00 a.m.|661|057|1303|12|1|0|29/10/2022 8:58:00 a.m.|29/10/2022 8:58:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/10/2022 9:08:04 a.m.|28/10/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/8725265/086/661||086|008|1245|||29/10/2022 9:08:00 a.m.|661|057|1303|12|1|0|29/10/2022 9:08:00 a.m.|29/10/2022 9:08:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/10/2022 9:10:54 a.m.|28/10/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/8725265/086/661||086|008|1245|||29/10/2022 9:10:00 a.m.|661|057|1303|12|1|0|29/10/2022 9:10:00 a.m.|29/10/2022 9:10:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/10/2022 9:10:58 a.m.|28/10/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/8725265/086/661||086|008|1245|||29/10/2022 9:10:00 a.m.|661|057|1303|12|1|0|29/10/2022 9:10:00 a.m.|29/10/2022 9:10:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/10/2022 9:12:42 a.m.|28/10/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/8725265/086/661||086|008|1245|||29/10/2022 9:12:00 a.m.|661|057|1303|12|1|0|29/10/2022 9:12:00 a.m.|29/10/2022 9:12:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/10/2022 9:12:43 a.m.|28/10/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/8725265/086/661||086|008|1245|||29/10/2022 9:12:00 a.m.|661|057|1303|12|1|0|29/10/2022 9:12:00 a.m.|29/10/2022 9:12:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/10/2022 9:20:09 a.m.|28/10/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/8725265/086/661||086|008|1245|||29/10/2022 9:20:00 a.m.|661|057|1303|12|1|0|29/10/2022 9:20:00 a.m.|29/10/2022 9:20:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/10/2022 9:20:11 a.m.|28/10/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/8725265/086/661||086|008|1245|||29/10/2022 9:20:00 a.m.|661|057|1303|12|1|0|29/10/2022 9:20:00 a.m.|29/10/2022 9:20:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/10/2022 9:20:52 a.m.|28/10/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/8725265/086/661||086|008|1245|||29/10/2022 9:20:00 a.m.|661|057|1303|12|1|0|29/10/2022 9:20:00 a.m.|29/10/2022 9:20:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/10/2022 9:21:37 a.m.|28/10/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/8725265/086/661||086|008|1245|||29/10/2022 9:21:00 a.m.|661|057|1303|12|1|0|29/10/2022 9:21:00 a.m.|29/10/2022 9:21:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/10/2022 9:25:12 a.m.|28/10/2022 12:00:00 a.m.|661/DEVOLUCION DE RETENIDO/8725265/086/661||086|008|1245|||29/10/2022 9:25:00 a.m.|661|057|1303|12|1|0|29/10/2022 9:25:00 a.m.|29/10/2022 9:25:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|30/10/2022 12:54:19 p.m.|29/10/2022 12:00:00 a.m.|206/||206|5|1243|206/710 | 710 HOTEL OSH CHAMELIER||30/11/2022 12:54:00 p.m.|710|074|1552|12|1|0|30/11/2022 12:54:00 p.m.|30/11/2022 12:54:00 p.m.|1|206/710 | 710 HOTEL OSH CHAMELIER||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|9/12/2022 10:50:11 a.m.|28/11/2022 12:00:00 a.m.|SALUD TO||8014710|020|1575|649/INCAPACIDAD GENERAL/ 8014710-LEZCANO SEPULVEDA SAULO ANTONIO||16/12/2022 10:50:00 a.m.|8014710|054|1301|15|1|0|16/12/2022 10:50:00 a.m.|16/12/2022 10:50:00 a.m.|1|649/INCAPACIDAD GENERAL/ 8014710-LEZCANO SEPULVEDA SAULO ANTONIO||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|12/01/2023 4:44:50 p.m.|5/12/2022 12:00:00 a.m.|001/INCAPACIDAD GENERAL/49666992 LOPEZ BAYONA SANDRA MILENA||5122022|020|1588|||19/01/2023 4:44:00 p.m.|698|057|1301|15|1|0|19/01/2023 4:44:00 p.m.|19/01/2023 4:44:00 p.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|12/01/2023 4:44:59 p.m.|5/12/2022 12:00:00 a.m.|001/INCAPACIDAD GENERAL/49666992 LOPEZ BAYONA SANDRA MILENA||5122022|020|1588|||19/01/2023 4:44:00 p.m.|698|057|1301|15|1|0|19/01/2023 4:44:00 p.m.|19/01/2023 4:44:00 p.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|23/01/2023 11:59:29 a.m.|19/01/2023 12:00:00 a.m.|900380949||1070824|5|1571|1070824/683 | 683 - AD-PROYECTO TERRITORIO MÍO||28/01/2023 11:59:00 a.m.|683|057|1262|9|1|0|28/01/2023 11:59:00 a.m.|28/01/2023 11:59:00 a.m.|1|1070824/683 | 683 - AD-PROYECTO TERRITORIO MÍO||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|10/02/2023 3:04:17 p.m.|10/02/2023 12:00:00 a.m.|92527831||76|006|1582|76/724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||15/02/2023 3:04:00 p.m.|724|054|1252|9|1|0|15/02/2023 3:04:00 p.m.|15/02/2023 3:04:00 p.m.|1|76/724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|10/02/2023 3:04:32 p.m.|10/02/2023 12:00:00 a.m.|92527831||76|006|1582|76/724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||15/02/2023 3:04:00 p.m.|724|054|1252|9|1|0|15/02/2023 3:04:00 p.m.|15/02/2023 3:04:00 p.m.|1|76/724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|10/02/2023 3:05:25 p.m.|10/02/2023 12:00:00 a.m.|92527831||76|006|1582|76/724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||15/02/2023 3:05:00 p.m.|724|054|1252|9|1|0|15/02/2023 3:05:00 p.m.|15/02/2023 3:05:00 p.m.|1|76/724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|10/02/2023 3:06:03 p.m.|10/02/2023 12:00:00 a.m.|92527831||76|006|1582|76/724 |724 CONSTRUCCION SOLEMIO ETAPA 2||15/02/2023 3:06:00 p.m.|724|054|1252|9|1|0|15/02/2023 3:06:00 p.m.|15/02/2023 3:06:00 p.m.|1|76/724 |724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|13/02/2023 3:38:29 p.m.|13/02/2023 12:00:00 a.m.|890100783||34251|5|1243|34251/724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||31/03/2023 3:38:00 p.m.|724|074|1582|12|1|0|31/03/2023 3:38:00 p.m.|31/03/2023 3:38:00 p.m.|1|34251/724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|13/02/2023 3:39:39 p.m.|13/02/2023 12:00:00 a.m.|890100783||34251|5|1243|34251/724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||31/03/2023 3:39:00 p.m.|724|074|1582|12|1|0|31/03/2023 3:39:00 p.m.|31/03/2023 3:39:00 p.m.|1|34251/724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|13/02/2023 3:41:21 p.m.|13/02/2023 12:00:00 a.m.|890100783||34251|5|1243|34251/724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||31/03/2023 3:41:00 p.m.|724|074|1582|12|1|0|31/03/2023 3:41:00 p.m.|31/03/2023 3:41:00 p.m.|1|34251/724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|13/02/2023 3:46:39 p.m.|13/02/2023 12:00:00 a.m.|890100783||342510|5|1243|34251/724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||31/03/2023 3:46:00 p.m.|724|074|1582|12|1|0|31/03/2023 3:46:00 p.m.|31/03/2023 3:46:00 p.m.|1|34251/724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|13/02/2023 3:46:53 p.m.|13/02/2023 12:00:00 a.m.|890100783||34251|5|1243|34251 724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||31/03/2023 3:46:00 p.m.|724|074|1582|12|1|0|31/03/2023 3:46:00 p.m.|31/03/2023 3:46:00 p.m.|1|34251 724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|1/03/2023 10:44:47 a.m.|26/01/2023 12:00:00 a.m.|salud total||284673|020|1552|INCAPACIDAD GENERAL / 1051884652 BERRIO MIRANDA LUIS ALBERTO ||8/03/2023 10:44:00 a.m.|1051884652|057|1301|15|1|0|8/03/2023 10:44:00 a.m.|8/03/2023 10:44:00 a.m.|1|INCAPACIDAD GENERAL / 1051884652 BERRIO MIRANDA LUIS ALBERTO ||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|1/03/2023 10:45:00 a.m.|26/01/2023 12:00:00 a.m.|salud total||284673|020|1552|INCAPACIDAD GENERAL / 1051884652 BERRIO MIRANDA LUIS ALBERTO ||8/03/2023 10:45:00 a.m.|1051884652|057|1301|15|1|0|8/03/2023 10:45:00 a.m.|8/03/2023 10:45:00 a.m.|1|INCAPACIDAD GENERAL / 1051884652 BERRIO MIRANDA LUIS ALBERTO ||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|7/03/2023 4:18:27 p.m.|7/03/2023 12:00:00 a.m.|900570383||207437|5|1243|207437/724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||30/04/2023 4:18:00 p.m.|724|074|1582|12|1|0|30/04/2023 4:18:00 p.m.|30/04/2023 4:18:00 p.m.|1|207437/724 |  724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|30/03/2023 9:05:38 a.m.|29/03/2023 12:00:00 a.m.|126882/||126882|5|1243|126882/674 | 674 MIXA ||30/04/2023 9:05:00 a.m.|674|074|1574|12|1|0|30/04/2023 9:05:00 a.m.|30/04/2023 9:05:00 a.m.|1|126882/674 | 674 MIXA ||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|10/04/2023 1:51:37 p.m.|31/03/2023 12:00:00 a.m.|900604350||423149|020|1592|720/INCAPACIDAD GENERAL/1131769254/JULIAN DAVID DUARTE DUARTE|INCAPACIDDAD|17/04/2023 1:51:00 p.m.|1131769254|057|1301|15|1|0|17/04/2023 1:51:00 p.m.|17/04/2023 1:51:00 p.m.|1|720/INCAPACIDAD GENERAL/1131769254/JULIAN DAVID DUARTE DUARTE||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|10/04/2023 1:52:08 p.m.|31/03/2023 12:00:00 a.m.|900604350||423149|020|1592|720/INCAPACIDAD GENERAL/1131769254/JULIAN DAVID DUARTE DUARTE|INCAPACIDDAD|17/04/2023 1:52:00 p.m.|1131769254|057|1301|15|1|0|17/04/2023 1:52:00 p.m.|17/04/2023 1:52:00 p.m.|1|720/INCAPACIDAD GENERAL/1131769254/JULIAN DAVID DUARTE DUARTE||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|10/04/2023 1:52:27 p.m.|31/03/2023 12:00:00 a.m.|900604350||423149|020|1592|720/INCAPACIDAD GENERAL/1131769254/JULIAN DAVID DUARTE DUARTE|INCAPACIDDAD|10/04/2023 1:52:00 p.m.|1131769254|057|1301|15|1|0|10/04/2023 1:52:00 p.m.|10/04/2023 1:52:00 p.m.|1|720/INCAPACIDAD GENERAL/1131769254/JULIAN DAVID DUARTE DUARTE||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|10/04/2023 1:55:50 p.m.|31/03/2023 12:00:00 a.m.|900604350||423149|020|1592|720/INCAPACIDAD GENERAL/1131769254/JULIAN DAVID DUARTE DUARTE|INCAPACIDDAD|10/04/2023 1:55:00 p.m.|1131769254|057|1301|15|1|0|10/04/2023 1:55:00 p.m.|10/04/2023 1:55:00 p.m.|1|720/INCAPACIDAD GENERAL/1131769254/JULIAN DAVID DUARTE DUARTE||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|10/04/2023 1:56:11 p.m.|31/03/2023 12:00:00 a.m.|900604350||423149|020|1592|720/INCAPACIDAD GENERAL 1131769254JULIAN DAVID DUARTE DUARTE|INCAPACIDDAD|10/04/2023 1:56:00 p.m.|1131769254|057|1301|15|1|0|10/04/2023 1:56:00 p.m.|10/04/2023 1:56:00 p.m.|1|720/INCAPACIDAD GENERAL 1131769254JULIAN DAVID DUARTE DUARTE||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|10/04/2023 1:59:52 p.m.|31/03/2023 12:00:00 a.m.|900604350||423149|020|1592|720/INCAPACIDAD GENERAL 1131769254 JULIAN DAVID DUARTE DUARTE|INCAPACIDDAD|10/04/2023 1:59:00 p.m.|1131769254|057|1301|15|1|0|10/04/2023 1:59:00 p.m.|10/04/2023 1:59:00 p.m.|1|720/INCAPACIDAD GENERAL 1131769254 JULIAN DAVID DUARTE DUARTE||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|10/04/2023 3:34:10 p.m.|10/04/2023 12:00:00 a.m.|800135913||44208096|5|1582|44208096/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||19/04/2023 3:34:00 p.m.|724|051|1252|9|1|0|19/04/2023 3:34:00 p.m.|19/04/2023 3:34:00 p.m.|1|44208096/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|12/04/2023 7:54:55 a.m.|12/04/2023 12:00:00 a.m.|890905022||12042023|006|1594|696/caja menor/12042023|Anexo relación de caja menor No.1|12/04/2023 7:54:00 a.m.|696.01|006|1262|9|1|0|12/04/2023 7:54:00 a.m.|12/04/2023 7:54:00 a.m.|1|696/caja menor/12042023||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|12/04/2023 12:01:30 p.m.|12/04/2023 12:00:00 a.m.|800135913||44208175|5|1582|44208175/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||17/04/2023 12:01:00 p.m.|724|051|1252|9|1|0|17/04/2023 12:01:00 p.m.|17/04/2023 12:01:00 p.m.|1|44208175/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|12/04/2023 12:01:39 p.m.|12/04/2023 12:00:00 a.m.|800135913||44208175|5|1582|44208175/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||17/04/2023 12:01:00 p.m.|724|051|1252|9|1|0|17/04/2023 12:01:00 p.m.|17/04/2023 12:01:00 p.m.|1|44208175/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|12/04/2023 12:02:22 p.m.|12/04/2023 12:00:00 a.m.|800135913||44208175|5|1582|44208175/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||17/04/2023 12:02:00 p.m.|724|051|1252|9|1|0|17/04/2023 12:02:00 p.m.|17/04/2023 12:02:00 p.m.|1|44208175/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|12/04/2023 12:02:53 p.m.|12/04/2023 12:00:00 a.m.|800135913||44208175|5|1582|44208175/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||17/04/2023 12:02:00 p.m.|724|051|1252|9|1|0|17/04/2023 12:02:00 p.m.|17/04/2023 12:02:00 p.m.|1|44208175/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|15/04/2023 12:50:23 p.m.|1/04/2023 12:00:00 a.m.|33189180 / 715||33189180|5|1264|||26/04/2023 12:50:00 p.m.|715|057|1262|9|1|0|26/04/2023 12:50:00 p.m.|26/04/2023 12:50:00 p.m.|1|||0| radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|15/04/2023 12:50:51 p.m.|1/04/2023 12:00:00 a.m.|33189180 / 715||33189180|5|1264|||26/04/2023 12:50:00 p.m.|715|057|1262|9|1|0|26/04/2023 12:50:00 p.m.|26/04/2023 12:50:00 p.m.|1|||0| radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|15/04/2023 12:50:59 p.m.|1/04/2023 12:00:00 a.m.|3189180 / 715||3189180|5|1264|||26/04/2023 12:50:00 p.m.|715|057|1262|9|1|0|26/04/2023 12:50:00 p.m.|26/04/2023 12:50:00 p.m.|1|||0| radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|20/04/2023 9:37:09 a.m.|20/04/2023 12:00:00 a.m.| EPS SURAMERICANA S.A. 800088702||35114357|020|1584|001 INCAPACIDAD /1047476606 | 1047476606 ZAMBRANO HERNANDEZ MARIA CAROLINA||27/04/2023 9:37:00 a.m.|1047476606|074|1301|15|1|0|27/04/2023 9:37:00 a.m.|27/04/2023 9:37:00 a.m.|1|001 INCAPACIDAD /1047476606 | 1047476606 ZAMBRANO HERNANDEZ MARIA CAROLINA||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|10/05/2023 12:19:25 p.m.|8/05/2023 12:00:00 a.m.|806008394||5548|020|1571|GENERAL/5548/1044910084 | 1044910084-SANCHEZ CARMONA  ALBERTO||17/05/2023 12:19:00 p.m.|1044910084|PERSO|SANCH|15|1|0|17/05/2023 12:19:00 p.m.|17/05/2023 12:19:00 p.m.|1|GENERAL/5548/1044910084 | 1044910084-SANCHEZ CARMONA  ALBERTO||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|10/05/2023 12:20:17 p.m.|8/05/2023 12:00:00 a.m.|806008394||5548|020|1571|GENERAL/1044910084 | 1044910084-SANCHEZ CARMONA  ALBERTO||10/05/2023 12:20:00 p.m.|1044910084|PERSO|1301|15|1|0|10/05/2023 12:20:00 p.m.|10/05/2023 12:20:00 p.m.|1|GENERAL/1044910084 | 1044910084-SANCHEZ CARMONA  ALBERTO||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|29/05/2023 2:11:23 p.m.|26/05/2023 12:00:00 a.m.|900.388.823-5||1- 727-010|008|1541|1/727|727 BODEGA 254 ZONA FRANCA||29/05/2023 2:11:00 p.m.|727|074|1263|9|1|0|29/05/2023 2:11:00 p.m.|29/05/2023 2:11:00 p.m.|1|1/727|727 BODEGA 254 ZONA FRANCA||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|29/05/2023 4:18:55 p.m.|26/05/2023 12:00:00 a.m.|900570964||160306|5|1243|160306/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||30/06/2023 4:18:00 p.m.|724|074|1582|12|1|0|30/06/2023 4:18:00 p.m.|30/06/2023 4:18:00 p.m.|1|160306/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0| radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|6/06/2023 9:43:54 a.m.|5/06/2023 12:00:00 a.m.|900132333||15887|5|1243|15887/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||31/07/2023 9:43:00 a.m.|724|074|1582|12|1|0|31/07/2023 9:43:00 a.m.|31/07/2023 9:43:00 a.m.|1|15887/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0| radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|8/06/2023 12:32:46 p.m.|6/06/2023 12:00:00 a.m.|800130907||1000188923|020|1519|649/INCAPACIDAD/1000188923/1000188923 | 1000188923 GONZALEZ PEREZ MARIA CAMILA||16/06/2023 12:32:00 p.m.|1000188923|PERSONA|1303|15|1|0|16/06/2023 12:32:00 p.m.|16/06/2023 12:32:00 p.m.|1|649/INCAPACIDAD/1000188923/1000188923 | 1000188923 GONZALEZ PEREZ MARIA CAMILA||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|8/06/2023 12:33:49 p.m.|6/06/2023 12:00:00 a.m.|800130907||1000188923|020|1519|649/INCAPACIDAD/1000188923/1000188923 | 1000188923 GONZALEZ PEREZ MARIA CAMILA||8/06/2023 12:33:00 p.m.|1000188923|PERSONA|1303|15|1|0|8/06/2023 12:33:00 p.m.|8/06/2023 12:33:00 p.m.|1|649/INCAPACIDAD/1000188923/1000188923 | 1000188923 GONZALEZ PEREZ MARIA CAMILA||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|8/06/2023 12:34:02 p.m.|6/06/2023 12:00:00 a.m.|800130907||1000188923|020|1519|649/INCAPACIDAD/1000188923/1000188923 | 1000188923 GONZALEZ PEREZ MARIA CAMILA||9/06/2023 12:34:00 p.m.|1000188923|PERSONA|1303|15|1|0|9/06/2023 12:34:00 p.m.|9/06/2023 12:34:00 p.m.|1|649/INCAPACIDAD/1000188923/1000188923 | 1000188923 GONZALEZ PEREZ MARIA CAMILA||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|27/06/2023 9:04:20 a.m.|23/06/2023 12:00:00 a.m.|blanco berrio modesto ||1|008|1588|1/ 698 | 698 - AD-PROYECTO DE VIVIENDA COUNTRY||30/06/2023 9:04:00 a.m.|698|074|1263|9|1|0|30/06/2023 9:04:00 a.m.|30/06/2023 9:04:00 a.m.|1|1/ 698 | 698 - AD-PROYECTO DE VIVIENDA COUNTRY||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|17/07/2023 9:00:38 a.m.|17/07/2023 12:00:00 a.m.|901380930||59079907|5|1582|59079907/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||21/07/2023 9:00:00 a.m.|724|051|1252|9|1|0|21/07/2023 9:00:00 a.m.|21/07/2023 9:00:00 a.m.|1|59079907/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|19/07/2023 8:58:13 a.m.|18/07/2023 12:00:00 a.m.|901649497||4|5|1243|4/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||31/08/2023 8:58:00 a.m.|724|074|1582|12|1|0|31/08/2023 8:58:00 a.m.|31/08/2023 8:58:00 a.m.|1|4/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0| radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|25/07/2023 9:32:36 a.m.|24/07/2023 12:00:00 a.m.|900570964||163279|5|1243|163279/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||31/08/2023 9:32:00 a.m.|724|074|1582|12|1|0|31/08/2023 9:32:00 a.m.|31/08/2023 9:32:00 a.m.|1|163279/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0| radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|26/07/2023 9:13:36 a.m.|25/07/2023 12:00:00 a.m.|802004266||2211364|5|1243|2211364/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||31/08/2023 9:13:00 a.m.|724|074|1582|12|1|0|31/08/2023 9:13:00 a.m.|31/08/2023 9:13:00 a.m.|1|2211364/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0| radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|29/07/2023 7:26:19 a.m.|29/07/2023 12:00:00 a.m.|92527831||87|006|1582|87/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||1/08/2023 7:26:00 a.m.|724|054|1252|9|1|0|1/08/2023 7:26:00 a.m.|1/08/2023 7:26:00 a.m.|1|87/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|31/07/2023 4:11:04 p.m.|31/07/2023 12:00:00 a.m.|899.999.714-1 ||20166577|5|1595|20166577/ 698 - AD-PROYECTO DE VIVIENDA COUNTRY||9/08/2023 4:11:00 p.m.|698|057|1263|9|1|0|9/08/2023 4:11:00 p.m.|9/08/2023 4:11:00 p.m.|1|20166577/ 698 - AD-PROYECTO DE VIVIENDA COUNTRY||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|14/08/2023 11:58:42 a.m.|13/08/2023 12:00:00 a.m.|901212355||73|5|1243|73/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||30/09/2023 11:58:00 a.m.|724|074|1582|12|1|0|30/09/2023 11:58:00 a.m.|30/09/2023 11:58:00 a.m.|1|73/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0| radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|17/08/2023 10:48:04 a.m.|17/08/2023 12:00:00 a.m.|43629688||78|006|1552|710/78||17/08/2023 10:48:00 a.m.|710|PERSO|1248|9|1|0|17/08/2023 10:48:00 a.m.|17/08/2023 10:48:00 a.m.|1|710/78||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|17/08/2023 10:48:19 a.m.|17/08/2023 12:00:00 a.m.|43629688||78|006|1552|710/78 | 710 HOTEL OSH CHAMELIER||17/08/2023 10:48:00 a.m.|710|PERSO|1248|9|1|0|17/08/2023 10:48:00 a.m.|17/08/2023 10:48:00 a.m.|1|710/78 | 710 HOTEL OSH CHAMELIER||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|18/08/2023 7:14:48 a.m.|2/08/2023 12:00:00 a.m.|800249241||2459654|020|1571|GENERAL/2459654/1007195578 | 1007195578 MATTOS MARTINEZ GRIMAUL||28/08/2023 7:14:00 a.m.|1007195578|057|1301|INCAP|1|0|28/08/2023 7:14:00 a.m.|28/08/2023 7:14:00 a.m.|1|GENERAL/2459654/1007195578 | 1007195578 MATTOS MARTINEZ GRIMAUL||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|24/08/2023 3:43:37 p.m.|24/08/2023 12:00:00 a.m.|1010030367||2307000616|020|1584|||31/08/2023 3:43:00 p.m.|1010030367|074|1301|15|1|0|31/08/2023 3:43:00 p.m.|31/08/2023 3:43:00 p.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|24/08/2023 3:44:18 p.m.|24/08/2023 12:00:00 a.m.|1010030367||2307000616|020|1584|||25/08/2023 3:44:00 p.m.|1010030367|074|1301|15|1|0|25/08/2023 3:44:00 p.m.|25/08/2023 3:44:00 p.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|24/08/2023 3:45:13 p.m.|24/08/2023 12:00:00 a.m.|1010030367||2307000616|020|1584|||25/08/2023 3:45:00 p.m.|1010030367|074|1301|15|1|0|25/08/2023 3:45:00 p.m.|25/08/2023 3:45:00 p.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|24/08/2023 3:45:50 p.m.|24/08/2023 12:00:00 a.m.|1010030367||2307000616|020|1584|1010030367 | 1010030367 POLO GONZALEZ YOLIMA||25/08/2023 3:45:00 p.m.|1010030367|074|1301|15|1|0|25/08/2023 3:45:00 p.m.|25/08/2023 3:45:00 p.m.|1|1010030367 | 1010030367 POLO GONZALEZ YOLIMA||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|24/08/2023 3:46:14 p.m.|24/08/2023 12:00:00 a.m.|1010030367||2307000616|020|1584|1010030367 | 1010030367 POLO GONZALEZ YOLIMA||25/08/2023 3:46:00 p.m.|1010030367|074|1301|15|1|0|25/08/2023 3:46:00 p.m.|25/08/2023 3:46:00 p.m.|1|1010030367 | 1010030367 POLO GONZALEZ YOLIMA||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|24/08/2023 3:46:26 p.m.|24/08/2023 12:00:00 a.m.|1010030367||2307000616|020|1584|1010030367 | 1010030367 POLO GONZALEZ YOLIMA||25/08/2023 3:46:00 p.m.|1010030367|074|1301|15|1|0|25/08/2023 3:46:00 p.m.|25/08/2023 3:46:00 p.m.|1|1010030367 | 1010030367 POLO GONZALEZ YOLIMA||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|24/08/2023 3:58:34 p.m.|24/08/2023 12:00:00 a.m.|1010030367||2307000616|020|1584|1010030367 | 1010030367 POLO GONZALEZ YOLIMA||25/08/2023 3:58:00 p.m.|1010030367|074|1301|15|1|0|25/08/2023 3:58:00 p.m.|25/08/2023 3:58:00 p.m.|1|1010030367 | 1010030367 POLO GONZALEZ YOLIMA||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|24/08/2023 3:59:03 p.m.|24/08/2023 12:00:00 a.m.|1010030367||2307000616|020|1584|1010030367 | 1010030367 POLO GONZALEZ YOLIMA||25/08/2023 3:59:00 p.m.|1010030367|074|1301|15|1|0|25/08/2023 3:59:00 p.m.|25/08/2023 3:59:00 p.m.|1|1010030367 | 1010030367 POLO GONZALEZ YOLIMA||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|25/08/2023 2:25:33 p.m.|1/08/2023 12:00:00 a.m.|811030685||230167|008|1575|700/DEV.RETE GARANTIA/$ 17.930.845/230167/700 | 700 - AD-REMODELACIONES ESPUMAS PLASTICAS|CUENTA DE COBRO
+ACTAS DE LIQUIDACIONES
+POLIZAS
+PAZ Y SALVO CONTRATISTA Y CONVEL
+CERTIFICADO CONTADOR
+CONTRATOS 
+SEGURIDAD SOCIAL
+FIC
+CERTIFICADO GARANTIA
+ACTAS DE ENTREGA 
+CALCULOS DIFURORES
+CALCULOS CERCHA|30/09/2023 2:25:00 p.m.|700|057|NOR|9|1|0|30/09/2023 2:25:00 p.m.|30/09/2023 2:25:00 p.m.|1|700/DEV.RETE GARANTIA/$ 17.930.845/230167/700 | 700 - AD-REMODELACIONES ESPUMAS PLASTICAS||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/08/2023 9:46:41 a.m.|25/08/2023 12:00:00 a.m.|152493/||152493|5|1243|152493/710 | 710 HOTEL OSH CHAMELIER||30/09/2023 9:46:00 a.m.|710|074|1552|12|1|0|30/09/2023 9:46:00 a.m.|30/09/2023 9:46:00 a.m.|1|152493/710 | 710 HOTEL OSH CHAMELIER||0| radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/08/2023 11:20:03 a.m.|15/08/2023 12:00:00 a.m.|890904996||53361261|5|1574|53361261| 674 MIXA||28/08/2023 11:20:00 a.m.|MIXA|057|1231|9|1|0|28/08/2023 11:20:00 a.m.|28/08/2023 11:20:00 a.m.|1|53361261| 674 MIXA||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|28/08/2023 11:22:30 a.m.|15/08/2023 12:00:00 a.m.|890904996||53361261|5|1574|53361261| 674 MIXA||28/08/2023 11:22:00 a.m.|MIXA|057|1231|9|1|0|28/08/2023 11:22:00 a.m.|28/08/2023 11:22:00 a.m.|1|53361261| 674 MIXA||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|20/09/2023 4:43:03 p.m.|20/09/2023 12:00:00 a.m.|800135913||47827943|5|1582|47827943/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||23/09/2023 4:43:00 p.m.|724|051|1252|9|1|0|23/09/2023 4:43:00 p.m.|23/09/2023 4:43:00 p.m.|1|47827943/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|18/10/2023 10:00:11 a.m.|17/10/2023 12:00:00 a.m.|900709060 WATER TECHNOLOGY ENGINEERING SAS
+||24567|5|1255|24567/657 | 657 CONJUNTO RESIDENCIAL ATALAIA||30/11/2023 10:00:00 a.m.|657|074|1569|12|1|0|30/11/2023 10:00:00 a.m.|30/11/2023 10:00:00 a.m.|1|24567/657 | 657 CONJUNTO RESIDENCIAL ATALAIA||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|18/10/2023 10:00:23 a.m.|17/10/2023 12:00:00 a.m.|900709060 WATER TECHNOLOGY ENGINEERING SAS
+||24567|5|1255|24567/657 | 657 CONJUNTO RESIDENCIAL ATALAIA||30/11/2023 10:00:00 a.m.|657|074|1569|12|1|0|30/11/2023 10:00:00 a.m.|30/11/2023 10:00:00 a.m.|1|24567/657 | 657 CONJUNTO RESIDENCIAL ATALAIA||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|19/10/2023 3:57:00 p.m.|10/10/2023 12:00:00 a.m.|12366665/657||12366665|5|1569|||30/10/2023 3:57:00 p.m.|657|074|1252|9|1|0|30/10/2023 3:57:00 p.m.|30/10/2023 3:57:00 p.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|9/11/2023 8:29:30 a.m.|29/08/2023 12:00:00 a.m.|salud total||148554599|020|1552|INCAPACIDAD GENERAL  | 1137220933 PALACIO DIAZ RONALDO ||9/11/2023 8:29:00 a.m.|1137220933|057|1301|15|1|0|9/11/2023 8:29:00 a.m.|9/11/2023 8:29:00 a.m.|1|INCAPACIDAD GENERAL  | 1137220933 PALACIO DIAZ RONALDO ||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|20/11/2023 2:09:38 p.m.|20/11/2023 12:00:00 a.m.|382/||382|5|1243|382/715 | 715 - JAZZ ETAPA 2||31/12/2023 2:09:00 p.m.|715|074|1519|12|1|0|31/12/2023 2:09:00 p.m.|31/12/2023 2:09:00 p.m.|1|382/715 | 715 - JAZZ ETAPA 2||0| radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|4/12/2023 10:30:54 a.m.|1/12/2023 12:00:00 a.m.|800130907||158655300|020|1582|724/INCAPACIDAD GENERAL/1216969083 CABALLERO PEREZ GEINER JOSE||12/12/2023 10:30:00 a.m.|1216969083|PERS|1301|15|1|0|12/12/2023 10:30:00 a.m.|12/12/2023 10:30:00 a.m.|1|724/INCAPACIDAD GENERAL/1216969083 CABALLERO PEREZ GEINER JOSE||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|21/12/2023 9:31:43 a.m.|20/12/2023 12:00:00 a.m.|21137692/657||21137692|5|1569|||28/12/2023 9:31:00 a.m.|657|074|1227|9|1|0|28/12/2023 9:31:00 a.m.|28/12/2023 9:31:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|19/01/2024 8:57:18 a.m.|17/01/2024 12:00:00 a.m.|890900841-CIS COMFAMA GIRARDOTA-053080556814- GIRARDOTA||37231929|020|1598|||26/01/2024 8:57:00 a.m.|1035880353|057|1301|15|1|0|26/01/2024 8:57:00 a.m.|26/01/2024 8:57:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|19/01/2024 9:00:05 a.m.|17/01/2024 12:00:00 a.m.|890900841-CIS COMFAMA GIRARDOTA-053080556814- GIRARDOTA||37231929|020|1598|||26/01/2024 9:00:00 a.m.|1035880353|057|1301|15|1|0|26/01/2024 9:00:00 a.m.|26/01/2024 9:00:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|19/01/2024 9:00:11 a.m.|17/01/2024 12:00:00 a.m.|890900841-CIS COMFAMA GIRARDOTA-053080556814- GIRARDOTA||37231929|020|1598|||26/01/2024 9:00:00 a.m.|1035880353|057|1301|15|1|0|26/01/2024 9:00:00 a.m.|26/01/2024 9:00:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|19/01/2024 9:02:13 a.m.|17/01/2024 12:00:00 a.m.|CIS GIRARDOTA||37231929|020|1598|||26/01/2024 9:02:00 a.m.|1035880353|057|1301|15|1|0|26/01/2024 9:02:00 a.m.|26/01/2024 9:02:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|19/01/2024 9:09:24 a.m.|17/01/2024 12:00:00 a.m.|890900841-CIS COMFAMA GIRARDOTA- 053080556814||37231929|020|1598|||26/01/2024 9:09:00 a.m.|1035880353|057|1301|15|1|0|26/01/2024 9:09:00 a.m.|26/01/2024 9:09:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|29/01/2024 2:28:51 p.m.|24/01/2024 12:00:00 a.m.|721/1/1074135311/KAREN YOHANA REY CHAPARRO||0002029346|020|1585||ANEXO HISTORIA CLINICA|5/02/2024 2:28:00 p.m.|1074135311|074|1301|15|1|0|5/02/2024 2:28:00 p.m.|5/02/2024 2:28:00 p.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|26/02/2024 10:13:57 a.m.|23/02/2024 12:00:00 a.m.|cemex co||3110200|5|1243|3110200/728 | 728 AD-WAKE 2.0||31/03/2024 10:13:00 a.m.|728|074|1577|12|1|0|31/03/2024 10:13:00 a.m.|31/03/2024 10:13:00 a.m.|1|3110200/728 | 728 AD-WAKE 2.0||0| radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|26/02/2024 10:14:13 a.m.|23/02/2024 12:00:00 a.m.|cemex co||3110200|5|1243|3110200/728 | 728 AD-WAKE 2.0||31/03/2024 10:14:00 a.m.|728|074|1577|12|1|0|31/03/2024 10:14:00 a.m.|31/03/2024 10:14:00 a.m.|1|3110200/728 | 728 AD-WAKE 2.0||0| radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|8/03/2024 2:56:19 p.m.|8/03/2024 12:00:00 a.m.|71.746.595||17|006|1599|RELACION # 17/CAJA MENOR/LUIS BERNARDO GIRALDO ESCOBAR||8/03/2024 2:56:00 p.m.|696|074|1281|9|1|0|8/03/2024 2:56:00 p.m.|8/03/2024 2:56:00 p.m.|1|RELACION # 17/CAJA MENOR/LUIS BERNARDO GIRALDO ESCOBAR||0| radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|8/03/2024 3:21:13 p.m.|8/03/2024 12:00:00 a.m.|71746595||17|006|1599|RELACION 17/CAJA MENOR LUIS BERNANRDO GIRALDO ESCOBAR||8/03/2024 3:21:00 p.m.|696|074|1281|9|1|0|8/03/2024 3:21:00 p.m.|8/03/2024 3:21:00 p.m.|1|RELACION 17/CAJA MENOR LUIS BERNANRDO GIRALDO ESCOBAR||0| radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|8/03/2024 3:21:55 p.m.|8/03/2024 12:00:00 a.m.|71746595||17|006|1599|RELACION 17/CAJA MENOR LUIS BERNANRDO GIRALDO ESCOBAR||8/03/2024 3:21:00 p.m.|696|074|1281|9|1|0|8/03/2024 3:21:00 p.m.|8/03/2024 3:21:00 p.m.|1|RELACION 17/CAJA MENOR LUIS BERNANRDO GIRALDO ESCOBAR||0| radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|8/03/2024 3:23:45 p.m.|8/03/2024 12:00:00 a.m.|71746595||17|006|1599|RELACION 17/CAJA MENOR LUIS BERNANRDO GIRALDO ESCOBAR|CAJA MENOR HOBBY HOMES|8/03/2024 3:23:00 p.m.|696|074|1281|9|1|0|8/03/2024 3:23:00 p.m.|8/03/2024 3:23:00 p.m.|1|RELACION 17/CAJA MENOR LUIS BERNANRDO GIRALDO ESCOBAR||0| radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|12/03/2024 10:23:20 a.m.|12/03/2024 12:00:00 a.m.|71.746.595||17|006|1599|Relación # 17 /caja menor/ Luis Bernardo Giraldo||12/03/2024 10:23:00 a.m.|696|074|1281|9|1|0|12/03/2024 10:23:00 a.m.|12/03/2024 10:23:00 a.m.|1|Relación # 17 /caja menor/ Luis Bernardo Giraldo||0| radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|14/03/2024 2:11:37 p.m.|12/03/2024 12:00:00 a.m.|901083986||120320242|008|1582|12032024/DEVOLUCION DE RETENIDO/$5.084.197/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||22/03/2024 2:11:00 p.m.|724|074|1303|12|1|0|22/03/2024 2:11:00 p.m.|22/03/2024 2:11:00 p.m.|1|12032024/DEVOLUCION DE RETENIDO/$5.084.197/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|14/03/2024 2:11:50 p.m.|12/03/2024 12:00:00 a.m.|901083986||1203202|008|1582|12032024/DEVOLUCION DE RETENIDO/$5.084.197/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||22/03/2024 2:11:00 p.m.|724|074|1303|12|1|0|22/03/2024 2:11:00 p.m.|22/03/2024 2:11:00 p.m.|1|12032024/DEVOLUCION DE RETENIDO/$5.084.197/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|14/03/2024 2:15:50 p.m.|12/03/2024 12:00:00 a.m.|901083986||12032024|008|1582|12032024/DEVOLUCION DE RETENIDO/$5.084.197/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||22/03/2024 2:15:00 p.m.|724|074|1303|12|1|0|22/03/2024 2:15:00 p.m.|22/03/2024 2:15:00 p.m.|1|12032024/DEVOLUCION DE RETENIDO/$5.084.197/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|14/03/2024 2:16:54 p.m.|12/03/2024 12:00:00 a.m.|901083986||3|008|1582|3/DEVOLUCION DE RETENIDO/$1.528.873/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||22/03/2024 2:16:00 p.m.|724|074|1303|12|1|0|22/03/2024 2:16:00 p.m.|22/03/2024 2:16:00 p.m.|1|3/DEVOLUCION DE RETENIDO/$1.528.873/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|14/03/2024 2:18:47 p.m.|12/03/2024 12:00:00 a.m.|901083986||3|008|1582|3/DEVOLUCION DE RETENIDO/$1.528.873/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||22/03/2024 2:18:00 p.m.|724|074|1303|12|1|0|22/03/2024 2:18:00 p.m.|22/03/2024 2:18:00 p.m.|1|3/DEVOLUCION DE RETENIDO/$1.528.873/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|15/03/2024 1:45:17 p.m.|12/03/2024 12:00:00 a.m.|901083986||1|008|1582|1/DEVOLUCION DE RETENIDO/$5.084.197/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||22/03/2024 1:45:00 p.m.|724|074|1303|12|1|0|22/03/2024 1:45:00 p.m.|22/03/2024 1:45:00 p.m.|1|1/DEVOLUCION DE RETENIDO/$5.084.197/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|15/03/2024 1:47:46 p.m.|13/03/2024 12:00:00 a.m.|901083986||1224|008|1582|1224/DEVOLUCION DE RETENIDO/$5.084.197/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||22/03/2024 1:47:00 p.m.|724|074|1303|12|1|0|22/03/2024 1:47:00 p.m.|22/03/2024 1:47:00 p.m.|1|1224/DEVOLUCION DE RETENIDO/$5.084.197/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|15/03/2024 2:33:31 p.m.|15/03/2024 12:00:00 a.m.|900655127||15032024|008|1582|15032024/DEVOLUCION DE RETENIDO/$12.191.882/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||22/03/2024 2:33:00 p.m.|724|074|1303|12|1|0|22/03/2024 2:33:00 p.m.|22/03/2024 2:33:00 p.m.|1|15032024/DEVOLUCION DE RETENIDO/$12.191.882/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|15/03/2024 2:42:17 p.m.|15/03/2024 12:00:00 a.m.|901083986||2|008|1582|2/DEVOLUCION DE RETENIDO/$1.528.873/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2
+||22/03/2024 2:42:00 p.m.|724|074|1303|12|1|0|22/03/2024 2:42:00 p.m.|22/03/2024 2:42:00 p.m.|1|2/DEVOLUCION DE RETENIDO/$1.528.873/724 | 724 CONSTRUCCION SOLEMIO ETAPA 2
+||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|1/04/2024 10:18:16 a.m.|1/04/2024 12:00:00 a.m.|134653497  / 682  AD-PROYECTO CHÍA FOREST||134653497|5|1550|||4/04/2024 10:18:00 a.m.|682|057|1263|9|1|0|4/04/2024 10:18:00 a.m.|4/04/2024 10:18:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|1/04/2024 10:21:44 a.m.|1/04/2024 12:00:00 a.m.|134653497 / 682  AD-PROYECTO CHÍA FOREST||134653497|5|1550|||4/04/2024 10:21:00 a.m.|682|057|1263|9|1|0|4/04/2024 10:21:00 a.m.|4/04/2024 10:21:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|1/04/2024 10:23:23 a.m.|1/04/2024 12:00:00 a.m.|34653497 / 682  AD-PROYECTO CHÍA FOREST||34653497|5|1550|||4/04/2024 10:23:00 a.m.|682|057|1263|9|1|0|4/04/2024 10:23:00 a.m.|4/04/2024 10:23:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|1/04/2024 10:23:50 a.m.|1/04/2024 12:00:00 a.m.|34653497 / 682  AD-PROYECTO CHÍA FOREST||34653497|5|1550|||9/04/2024 10:23:00 a.m.|682|057|1263|9|1|0|9/04/2024 10:23:00 a.m.|9/04/2024 10:23:00 a.m.|1|||0|0 radicadocod hola1
+ Source: System.Data
+ Contenido: No se pudieron habilitar las restricciones. Una o varias filas contienen valores que infringen las restricciones NON-NULL, UNIQUE o FOREIGN-KEY. 
+ Datos Ingresados: 1|1/04/2024 10:34:06 a.m.|1/04/2024 12:00:00 a.m.|34653497 / 682  AD-PROYECTO CHÍA FOREST||34653497|5|1550|||9/04/2024 10:34:00 a.m.|682|057|1263|9|1|0|9/04/2024 10:34:00 a.m.|9/04/2024 10:34:00 a.m.|1|||0|0 radicadocod hola1
